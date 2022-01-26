@@ -101,13 +101,12 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -253,10 +252,10 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
