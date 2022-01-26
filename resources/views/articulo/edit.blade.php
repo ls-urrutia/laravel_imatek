@@ -1,6 +1,12 @@
-@extends('layouts.plantillabase')
+@extends('adminlte::page')
 
-@section('contenido')
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Edicion</h1>
+@stop
+
+@section('content')
 <h2>EDITAR REGISTROS</h2>
 
 <form action="/articulos/{{$articulo->id}}" method="POST">
