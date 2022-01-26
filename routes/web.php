@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 }); */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
+Route::resource('users',UserController::class);
 
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -30,9 +32,16 @@ Route::resource('articulos','\App\Http\Controllers\ArticuloController');
  */
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
+
+
+ Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
-})->name('dash');
+})->name('dash'); 
+
+
+
+
+
 
 /* Route::get('dash', '\App\Http\Controllers\DashboardController@index');
 

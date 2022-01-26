@@ -251,6 +251,14 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+            'can'         =>'Crear articulos'
+        ],
+        [
+            'text'        => 'Usuarios',
+            'url'         => '/users',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
         ['header' => 'Configuración de la cuenta'],
         [
