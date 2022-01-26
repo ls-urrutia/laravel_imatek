@@ -3,15 +3,15 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Creación</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-    <a href="articulos/create" class="btn btn-primary">CREAR</a>
+    <p>Datatable.</p>
+    <a href="articulos/create" class="btn btn-primary mb-3">CREAR</a>
 
-<table class="table table-dark table-striped mt-4">
-    <thead>
+<table id="articulos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
+    <thead class="bg-primary text-white">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Código</th>
@@ -48,7 +48,16 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#articulos').DataTable({
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
+        });
+    } );
+    </script>
 @stop
 
 
