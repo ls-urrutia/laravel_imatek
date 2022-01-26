@@ -249,12 +249,20 @@ return [
             'text'        => 'Articulos',
             'url'         => '/articulos',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'label'       => 4,
+            'label_color' => 'success',
+            'can'         =>'Crear articulos'
+        ],
+        [
+            'text'        => 'Usuarios',
+            'url'         => '/users',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
         ['header' => 'Configuración de la cuenta'],
         [
-            'text' => 'Perfil de Usuario',
+            'text' => 'Perfil de usuario',
             'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
