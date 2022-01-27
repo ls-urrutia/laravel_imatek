@@ -90,8 +90,8 @@ class User2Controller extends Controller
         $user2 = User::find($id);
 
         $user2->name = $request->get('nombreu');
-        $user2->email = $request->get('email');
-        $user2->password = $request->get('password');
+        $user2->email = $request->get('correo');
+        $user2->password = $request->get('passw');
         
 
         $user2->save();

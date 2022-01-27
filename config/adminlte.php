@@ -260,6 +260,13 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Roles',
+            'url'         => '/roles',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de usuario',
