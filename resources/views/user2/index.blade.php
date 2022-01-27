@@ -8,35 +8,34 @@
 
 @section('content')
     <p>Datatable.</p>
-    <a href="articulos/create" class="btn btn-primary mb-3">CREAR</a>
+    <a href="users2/create" class="btn btn-primary mb-3">CREAR</a>
 
-<table id="articulos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
+<table id="users2" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Código</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo electronico</th>
+            <th></th>
+
+            
         </tr>
     </thead>
     <tbody>
-        @foreach ($articulos as $articulo)
+        @foreach ($users2 as $user)
         <tr>
-             <td>{{ $articulo->id}}</td>
-             <td>{{ $articulo->codigo}}</td>
-             <td>{{ $articulo->descripcion}}</td>
-             <td>{{ $articulo->cantidad}}</td>
-             <td>{{ $articulo->precio}}</td>
-             <td>
-                <form action="{{ route('articulos.destroy',$articulo->id) }}" method="POST">
-                    <a href="/articulos/{{$articulo->id}}/edit" class="btn btn-info">Editar</a>
+             <td>{{ $user->id}}</td>
+             <td>{{ $user->name}}</td>
+             <td>{{ $user->email}}</td>
+
+              <td>
+                <form action="{{ route('users2.destroy',$user->id) }}" method="POST">
+                    <a href="/users2/{{$user->id}}/edit" class="btn btn-info">Editar</a>
                         @csrf
                         @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                    </form>
-             </td>
+             </td> 
         </tr>
         @endforeach
     </tbody>
@@ -55,7 +54,7 @@
 
     <script>
     $(document).ready(function() {
-        $('#articulos').DataTable({
+        $('#users2').DataTable({
             "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
 
         });
@@ -63,8 +62,3 @@
     </script>
     
 @stop
-
-
-
-
-

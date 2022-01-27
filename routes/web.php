@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\User2Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/', function () {
 
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 Route::resource('users',UserController::class);
+Route::resource('users2',User2Controller::class);
 
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 

@@ -4,7 +4,7 @@
            <input wire:model="search" class="form-control" placeholder="ingrese el nombre o correo">
        </div>
        <div class="card-body">
-           <table class="table table-striped">
+           <table class="table table-striped" id="usuarios">
                <thead>
                    <tr>
                        <th>ID</th>
