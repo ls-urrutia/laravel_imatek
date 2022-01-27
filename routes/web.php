@@ -17,7 +17,7 @@ use App\Http\Controllers\CentroController;
 */
 
 /* Route::get('/', function () {
-    return view('auth.login');
+  dasdsa  return view('auth.login');
 }); */
 
 Route::get('/', function () {
