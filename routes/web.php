@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+<<<<<<< HEAD
 use App\Http\Controllers\CentroController;
+=======
+use App\Http\Controllers\User2Controller;
+>>>>>>> b0d64a04207a4afc09f6249fade87ca67744db7f
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +34,7 @@ Route::resource('centros',CentroController::class);
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 
 Route::resource('users',UserController::class);
+Route::resource('users2',User2Controller::class);
 
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
