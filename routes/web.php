@@ -23,6 +23,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::resource('centros','\App\Http\Controllers\CentroController');
+
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 Route::resource('users',UserController::class);
 

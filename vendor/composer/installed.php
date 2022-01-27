@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ab3570c03406fc61d5ecfa014129457123e917ea',
+        'reference' => 'c07e0e6447fe1386f2bffb4875d869b15d47021c',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -218,6 +218,15 @@
             'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
             'aliases' => array(),
             'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+            'dev_requirement' => true,
+        ),
+        'ibex/crud-generator' => array(
+            'pretty_version' => 'v1.3',
+            'version' => '1.3.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ibex/crud-generator',
+            'aliases' => array(),
+            'reference' => '28bad86e286b9952453acb3687c8016a01022658',
             'dev_requirement' => true,
         ),
         'illuminate/auth' => array(
@@ -472,7 +481,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ab3570c03406fc61d5ecfa014129457123e917ea',
+            'reference' => 'c07e0e6447fe1386f2bffb4875d869b15d47021c',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
