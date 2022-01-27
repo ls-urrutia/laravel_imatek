@@ -3,9 +3,14 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\RoleController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
