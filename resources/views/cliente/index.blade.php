@@ -50,14 +50,29 @@
 
     <script>
     $(document).ready(function() {
-        $('#clientes').DataTable({
+        $('#articulos').DataTable({
             "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
         });
     } );
     </script>
 @stop
 
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
+@section('js')
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#clientes').DataTable({
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
+        });
+    } );
+    </script>
+@stop
 
 
 

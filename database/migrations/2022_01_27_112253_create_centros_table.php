@@ -18,7 +18,8 @@ class CreateCentrosTable extends Migration
             $table->string('nombre_centro');
             $table->string('telefono_empresa');
             $table->string('descripcion');
-            $table->foreignId('id_cliente')->constrained();
+            $table->bigInteger('id_cliente')->unsigned();
+            $table->foreign('id_cliente')->references('id_cliente')->on('clientes');
             $table->timestamps();
         });
     }

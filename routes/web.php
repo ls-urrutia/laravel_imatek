@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CentroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,10 @@ Route::get('/', function () {
 });
 
 
-Route::resource('centros','\App\Http\Controllers\CentroController');
+Route::resource('centros',CentroController::class);
 
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
+
 Route::resource('users',UserController::class);
 
 Route::resource('clientes','\App\Http\Controllers\ClienteController');

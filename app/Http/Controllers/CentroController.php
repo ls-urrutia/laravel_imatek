@@ -16,6 +16,14 @@ class CentroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $centros = Centro::paginate();
@@ -45,7 +53,12 @@ class CentroController extends Controller
     {
         request()->validate(Centro::$rules);
 
-        $centro = Centro::create($request->all());
+        $clientes = new Centro();
+        $clientes->nombre_centro = $request->get('nombre_centro');
+        $clientes->telefono_empresa = $request->get('telefono_empresa');
+        $clientes->descripcion = $request->get('descripcion');
+        $clientes->id_cliente = $request->get('id_cliente');
+        $clientes->save();
 
         return redirect()->route('centros.index')
             ->with('success', 'Centro created successfully.');

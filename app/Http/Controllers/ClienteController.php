@@ -14,6 +14,8 @@ class ClienteController extends Controller
      */
 
 
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +25,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
+        $data = array("lista_clientes" => $clientes);
         return view('cliente.index')->with('clientes',$clientes);
     }
 

@@ -20,9 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Centro extends Model
 {
-    
+
     static $rules = [
-		'id_centro' => 'required',
 		'nombre_centro' => 'required',
 		'telefono_empresa' => 'required',
 		'descripcion' => 'required',
@@ -30,6 +29,8 @@ class Centro extends Model
     ];
 
     protected $perPage = 20;
+
+    protected $primaryKey = 'id_centro';
 
     /**
      * Attributes that should be mass-assignable.
