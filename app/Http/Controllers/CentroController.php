@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Centro;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 /**
@@ -40,7 +41,10 @@ class CentroController extends Controller
     public function create()
     {
         $centro = new Centro();
-        return view('centro.create', compact('centro'));
+
+        $clientes = Cliente::pluck('nombre_empresa','id_cliente');
+
+        return view('centro.create', compact('centro', 'clientes'));
     }
 
     /**
@@ -86,8 +90,9 @@ class CentroController extends Controller
     public function edit($id)
     {
         $centro = Centro::find($id);
+        $clientes = Cliente::pluck('nombre_empresa','id_cliente');
 
-        return view('centro.edit', compact('centro'));
+        return view('centro.edit', compact('centro', 'clientes'));
     }
 
     /**

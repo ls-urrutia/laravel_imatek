@@ -19,7 +19,7 @@ class CreateCentrosTable extends Migration
             $table->string('telefono_empresa');
             $table->string('descripcion');
             $table->bigInteger('id_cliente')->unsigned();
-            $table->foreign('id_cliente')->references('id_cliente')->on('clientes');
+            $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete("cascade");
             $table->timestamps();
         });
     }

@@ -18,8 +18,9 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{Form::label('cliente','Cliente')}}
-            {{ Form::select('id_cliente', $centro, null, $options) }}
+            {{ Form::label('cliente_id') }}
+            {{ Form::select('cliente_id', $clientes, $centro->cliente_id, ['class' => 'form-control' . ($errors->has('cliente_id') ? 'is-invalid' : ''),'placeholder' => 'Lista Clientes']) }}
+            {!! $errors->first('cliente_id', '<div class="invalid-feedback">:message</p>') !!}
           </div>
 
     </div>

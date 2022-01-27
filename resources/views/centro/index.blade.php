@@ -36,13 +36,11 @@
                             <table id="centros" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-
 										<th>Id Centro</th>
 										<th>Nombre Centro</th>
 										<th>Telefono Empresa</th>
 										<th>Descripcion</th>
-										<th>Id Cliente</th>
+										<th>Empresa</th>
 
                                         <th></th>
                                     </tr>
@@ -50,13 +48,13 @@
                                 <tbody>
                                     @foreach ($centros as $centro)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-
 											<td>{{ $centro->id_centro }}</td>
 											<td>{{ $centro->nombre_centro }}</td>
 											<td>{{ $centro->telefono_empresa }}</td>
 											<td>{{ $centro->descripcion }}</td>
-											<td>{{ $centro->id_cliente }}</td>
+											<td>
+                                                {{ $centro->cliente->nombre_empresa}}
+                                            </td>
 
                                             <td>
                                                 <form action="{{ route('centros.destroy',$centro->id_centro) }}" method="POST">
