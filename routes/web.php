@@ -10,6 +10,10 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
 
 
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
