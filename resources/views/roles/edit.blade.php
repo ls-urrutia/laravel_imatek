@@ -8,28 +8,44 @@
 
 @section('content')
 <h2>EDITAR REGISTROS</h2>
+@if(session('info'))
+<div class="alert alert-succes">
+  {{session('info')}}
+</div>
+@endif
+     <div class="card">
+       <div class="card-body">
+          {!! Form::model($role, ['route'=>['roles.update',$role], 'method'=> 'put']) !!}
 
-<form action="/articulos/{{$articulo->id}}" method="POST">
-    @csrf
-    @method('PUT')
-  <div class="mb-3">
-    <label for="" class="form-label">Código</label>
-    <input id="codigo" name="codigo" type="text" class="form-control" value="{{$articulo->codigo}}">
-  </div>
-  <div class="mb-3">
-    <label for="" class="form-label">Descripción</label>
-    <input id="descripcion" name="descripcion" type="text" class="form-control" value="{{$articulo->descripcion}}">
-  </div>
-  <div class="mb-3">
-    <label for="" class="form-label">Cantidad</label>
-    <input id="cantidad" name="cantidad" type="number" class="form-control" value="{{$articulo->cantidad}}">
-  </div>
-  <div class="mb-3">
-    <label for="" class="form-label">Precio</label>
-    <input id="precio" name="precio" type="number" step="any" class="form-control" value="{{$articulo->precio}}">
-  </div>
-  <a href="/articulos" class="btn btn-secondary">Cancelar</a>
-  <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+                <div class="form group">
+                    {!! Form::label('name', 'Nombre') !!}
+                    {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                    @error('name')
+                    <small class="text-danger">
+                        {{$message}}
+                    </small>
+                    @enderror
+
+
+                </div>
+
+
+                <h2>Lista de Permisos</h2>
+                @foreach ($permissions as $permission)
+                    <div>
+                        <label for="">
+                            {!! Form::checkbox('permissions[]', $permission->id, null, ['class'=>'mr-1']) !!}
+                            {{$permission->name}}
+                        </label>
+                    </div>
+                @endforeach
+                {!! Form::submit('Editar Rol', ['class'=>'btn btn-primary']) !!}
+          {!! Form::close() !!}   
+
+
+
+        </div>
+     </div>
+
 
 @endsection
