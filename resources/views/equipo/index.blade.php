@@ -15,11 +15,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Centro') }}
+                                {{ __('Equipo') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('centros.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -33,33 +33,47 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="centros" class="table table-striped table-hover">
+                            <table id="equipos" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-										<th>Id Centro</th>
-										<th>Nombre Centro</th>
-										<th>Telefono Empresa</th>
+
+										<th>Id Equipo</th>
+										<th>Cod Equipo</th>
+										<th>N Factura</th>
+										<th>Tipo Equipo</th>
+										<th>Modelo</th>
+										<th>Ubicacion</th>
 										<th>Descripcion</th>
-										<th>Empresa</th>
+										<th>Estado</th>
+										<th>Fecha Compra</th>
+										<th>Proveedor</th>
+										<th>Id Centro</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($centros as $centro)
+                                    @foreach ($equipos as $equipo)
                                         <tr>
-											<td>{{ $centro->id_centro }}</td>
-											<td>{{ $centro->nombre_centro }}</td>
-											<td>{{ $centro->telefono_empresa }}</td>
-											<td>{{ $centro->descripcion }}</td>
+
+											<td>{{ $equipo->id_equipo }}</td>
+											<td>{{ $equipo->cod_equipo }}</td>
+											<td>{{ $equipo->n_factura }}</td>
+											<td>{{ $equipo->tipo_equipo }}</td>
+											<td>{{ $equipo->modelo }}</td>
+											<td>{{ $equipo->ubicacion }}</td>
+											<td>{{ $equipo->descripcion }}</td>
+											<td>{{ $equipo->estado }}</td>
+                                            <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
+											<td>{{ $equipo->proveedor }}</td>
 											<td>
-                                                {{ $centro->cliente->nombre_empresa}}
+                                                {{ $equipo->centro->nombre_centro }}
                                             </td>
 
                                             <td>
-                                                <form action="{{ route('centros.destroy',$centro->id_centro) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('centros.show',$centro->id_centro) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('centros.edit',$centro->id_centro) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -72,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $centros->links() !!}
+                {!! $equipos->links() !!}
             </div>
         </div>
     </div>
@@ -88,7 +102,7 @@
 
     <script>
     $(document).ready(function() {
-        $('#centros').DataTable({
+        $('#equipos').DataTable({
             "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
         });
     } );
