@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 /**
  * Class Equipo
@@ -25,8 +26,14 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Equipo extends Model
+
+
+
+
+
+ class Equipo extends Model
 {
+
 
     static $rules = [
 		'cod_equipo' => 'required',
@@ -60,6 +67,7 @@ class Equipo extends Model
     {
         return $this->hasOne('App\Models\Centro', 'id_centro', 'id_centro');
     }
+
 
 
 }

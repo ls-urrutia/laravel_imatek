@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\DatepickerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,13 @@ Route::resource('users2',User2Controller::class);
 
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
+Route::get('/datepicker','\App\Http\Controllers\DatepickerController@create');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
 
 
 

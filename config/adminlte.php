@@ -323,7 +323,7 @@ return [
         [
             'text'       => 'information',
             'icon_color' => 'cyan',
-            'url'        => '#',
+            'url'        => 'articulos/create',
         ],
     ],
 

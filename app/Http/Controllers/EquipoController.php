@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\Centro;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /**
  * Class EquipoController
@@ -18,9 +19,16 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+
+    public function call(Request $request)
+    {
+
     }
 
     public function index()
@@ -54,6 +62,7 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Equipo::$rules);
+
 
         $clientes = new Equipo();
         $clientes->cod_equipo = $request->get('cod_equipo');
@@ -129,4 +138,6 @@ class EquipoController extends Controller
         return redirect()->route('equipos.index')
             ->with('success', 'Equipo deleted successfully');
     }
+
+
 }

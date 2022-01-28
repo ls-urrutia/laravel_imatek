@@ -64,7 +64,7 @@
 											<td>{{ $equipo->ubicacion }}</td>
 											<td>{{ $equipo->descripcion }}</td>
 											<td>{{ $equipo->estado }}</td>
-											<td>{{ $equipo->fecha_compra }}</td>
+                                            <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{ $equipo->centro->nombre_centro }}
