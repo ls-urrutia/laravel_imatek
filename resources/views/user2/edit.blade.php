@@ -22,7 +22,7 @@
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Contraseña</label>
-        <input id="passw" name="passw" type="password" class="form-control" tabindex="3" value="{{$user2->password}}">
+        <input id="passw" name="passw" type="password" class="form-control" tabindex="3" >
     </div>
 
   <a href="/users2" class="btn btn-secondary">Cancelar</a>
