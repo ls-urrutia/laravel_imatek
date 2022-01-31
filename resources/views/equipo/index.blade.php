@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Centros</h1>
+    <h1>Equipos</h1>
 @stop
 
 @section('content')
@@ -67,7 +67,11 @@
                                             <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
-                                                {{ $equipo->centro->nombre_centro }}
+                                                {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
+
+                                                 
+
+                                                 
                                             </td>
 
                                             <td>
@@ -103,7 +107,16 @@
     <script>
     $(document).ready(function() {
         $('#equipos').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "Ningun registro encontrado",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "Sin registros",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            'search':'Buscar:'
+        }
+            
         });
     } );
     </script>

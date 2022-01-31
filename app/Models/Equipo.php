@@ -40,12 +40,12 @@ use Carbon\Carbon;
 		'n_factura' => 'required',
 		'tipo_equipo' => 'required',
 		'modelo' => 'required',
-		'ubicacion' => 'required',
+		
 		'descripcion' => 'required',
 		'estado' => 'required',
 		'fecha_compra' => 'required',
 		'proveedor' => 'required',
-		'id_centro' => 'required',
+		
     ];
 
     protected $perPage = 20;

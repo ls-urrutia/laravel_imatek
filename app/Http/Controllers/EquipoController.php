@@ -72,7 +72,9 @@ class EquipoController extends Controller
         $clientes->ubicacion = $request->get('ubicacion');
         $clientes->descripcion= $request->get('descripcion');
         $clientes->estado = $request->get('estado');
+
         $clientes->fecha_compra = $request->get('fecha_compra');
+        
         $clientes->proveedor = $request->get('proveedor');
         $clientes->id_centro = $request->get('id_centro');
         $clientes->save();

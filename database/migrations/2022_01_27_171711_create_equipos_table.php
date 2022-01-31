@@ -20,12 +20,12 @@ class CreateEquiposTable extends Migration
             $table->integer('n_factura');
             $table->string('tipo_equipo');
             $table->string('modelo');
-            $table->string('ubicacion');
+            $table->string('ubicacion')->nullable();
             $table->string('descripcion');
             $table->string('estado');
             $table->date('fecha_compra');
             $table->string('proveedor');
-            $table->bigInteger('id_centro')->unsigned();
+            $table->bigInteger('id_centro')->nullable()->unsigned();
             $table->foreign('id_centro')->references('id_centro')->on('centros');
             $table->timestamps();
         });

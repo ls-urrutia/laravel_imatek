@@ -18,9 +18,9 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('cliente_id') }}
-            {{ Form::select('cliente_id', $clientes, $centro->cliente_id, ['class' => 'form-control' . ($errors->has('cliente_id') ? 'is-invalid' : ''),'placeholder' => 'Lista Clientes']) }}
-            {!! $errors->first('cliente_id', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('id_cliente') }}
+            {{ Form::select('id_cliente', $clientes, $centro->id_cliente, ['class' => 'form-control' . ($errors->has('id_cliente') ? 'is-invalid' : ''),'placeholder' => 'Lista Clientes']) }}
+            {!! $errors->first('id_cliente', '<div class="invalid-feedback">:message</p>') !!}
           </div>
 
     </div>

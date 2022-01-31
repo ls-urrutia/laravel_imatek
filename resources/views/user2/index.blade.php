@@ -53,12 +53,22 @@
     
 
     <script>
+      
     $(document).ready(function() {
         $('#users2').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
-
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "Ningun registro encontrado",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "Sin registros",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            'search':'Buscar:'
+        }
+            
         });
     } );
+   
     </script>
     
 @stop
