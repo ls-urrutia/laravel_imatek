@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
-
 /**
  * Class Equipo
  *
@@ -42,7 +40,6 @@ use Carbon\Carbon;
 		'modelo' => 'required',
 		
 		'descripcion' => 'required',
-		'estado' => 'required',
 		'fecha_compra' => 'required',
 		'proveedor' => 'required',
 		
@@ -51,6 +48,8 @@ use Carbon\Carbon;
     protected $perPage = 20;
 
     protected $primaryKey = 'id_equipo';
+
+
 
     /**
      * Attributes that should be mass-assignable.

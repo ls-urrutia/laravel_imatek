@@ -623,6 +623,7 @@ class ComposerStaticInitce807b479c3b026d4e98ef31acbb6773
         'App\\Http\\Controllers\\ClienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClienteController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
+        'App\\Http\\Controllers\\EquipoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EquipoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\User2Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/User2Controller.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',

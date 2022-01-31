@@ -13,6 +13,8 @@ use App\Http\Controllers\EquipoController;
 
 
 
+use App\Http\Controllers\MantencioneController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
 Route::resource('centros',CentroController::class);
 
 Route::resource('equipos',EquipoController::class);
+
+Route::resource('mantenciones',MantencioneController::class);
+
 
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 

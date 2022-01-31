@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\Centro;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 /**
  * Class EquipoController
@@ -25,11 +24,6 @@ class EquipoController extends Controller
         $this->middleware('auth');
     }
 
-
-    public function call(Request $request)
-    {
-
-    }
 
     public function index()
     {
