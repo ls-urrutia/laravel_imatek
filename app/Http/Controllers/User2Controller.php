@@ -91,7 +91,7 @@ class User2Controller extends Controller
 
         $user2->name = $request->get('nombreu');
         $user2->email = $request->get('correo');
-        $user2->password = $request->get('passw');
+        $user2->password = bcrypt($request->get('passw'));
         
 
         $user2->save();

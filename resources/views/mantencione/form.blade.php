@@ -30,6 +30,11 @@
             {{ Form::select('id_equipo', $equipos, $mantencione->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
             {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('imagen') }}
+            {{ Form::file('imagen', $imagen, $mantencione->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo', 'multiple']) }}
+            {!! $errors->first('imagen', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
 
     </div>
     <div class="box-footer mt20">
