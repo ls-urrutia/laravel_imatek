@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\User2;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 
-class User2Controller extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +17,19 @@ class User2Controller extends Controller
      */
 
 
+
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+
     public function index()
     {
         //
-        $users2 = User::all();
-        return view('user2.index')->with('users2',$users2);
-
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -38,7 +40,9 @@ class User2Controller extends Controller
     public function create()
     {
         //
-        return view('user2.create');
+        $permissions = Permission::all();
+
+        return view('roles.create', compact('permissions'));
     }
 
     /**
@@ -50,14 +54,13 @@ class User2Controller extends Controller
     public function store(Request $request)
     {
         //
-        $user2 = new User();
-        $user2->name = $request->get('nombreu');
-        $user2->email = $request->get('correo');
-        $user2->password = bcrypt($request->get('passw'));
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $role = Role::create(['name' => $request->name]);
 
-        $user2->save();
-
-        return redirect('/users2');
+        $role->permissions()->sync($request->permissions);
+        return redirect()->route('roles.edit', $role)->with('info', 'El rol se creo con exito');
     }
 
     /**
@@ -66,9 +69,10 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
         //
+        return view('roles.show', compact('role'));
     }
 
     /**
@@ -77,11 +81,11 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
         //
-        $user2 = User::find($id);
-        return view('user2.edit')->with('user2',$user2);
+        $permissions = Permission::all();
+        return view('roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -91,19 +95,15 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         //
-        $user2 = User::find($id);
-
-        $user2->name = $request->get('nombreu');
-        $user2->email = $request->get('correo');
-        $user2->password = $request->get('passw');
-
-
-        $user2->save();
-
-        return redirect('/users2');
+        $request->validate([
+            'name'=> 'required'
+        ]);
+        $role->update($request->all());
+        $role->permissions()->sync($request->permissions);
+        return redirect()->route('roles.edit', $role)->with('info', 'El rol se modifico con exito');
     }
 
     /**
@@ -115,9 +115,5 @@ class User2Controller extends Controller
     public function destroy($id)
     {
         //
-        $user2 = User::find($id);
-        $user2->delete();
-
-        return redirect('/users2');
     }
 }

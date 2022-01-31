@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
@@ -40,8 +42,10 @@ Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 Route::resource('users',UserController::class);
 
 Route::resource('users2',User2Controller::class);
-
+Route::resource('roles', roleController::class);
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

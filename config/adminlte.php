@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
+    'layout_dark_mode' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -126,9 +126,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar' => 'sidebar-dark-grey elevation-4',
+    'classes_sidebar_nav' => 'sidebar-dark-grey elevation-4',
+    'classes_topnav' => 'navbar-dark navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -238,7 +238,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar',
         ],
         [
             'text' => 'blog',
@@ -254,12 +254,142 @@ return [
             'can'         =>'Crear articulos'
         ],
         [
-            'text'        => 'Usuarios',
-            'url'         => '/users',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'    => 'Gestión de usuarios',
+            'icon'    => 'none',
+            'submenu' => [
+                [
+                    'text'    => 'Usuarios',
+                    'url'     => '#',
+                    'icon'    => 'none',
+                    'submenu' => [
+                        [
+                            'text' => 'Lista Usuarios',
+                            'url'  => '/users2',
+                            'icon'    => 'none',
+                        ],
+                        [
+                            'text' => 'Crear Usuarios',
+                            'url'  => '/users2/create',
+                            'icon'    => 'none',
+                        ],
+                        ],
+                    ],
+
+                    [
+                        'text'    => 'Roles',
+                        'url'     => '#',
+                        'icon'    => 'none',
+                        'submenu' => [
+                        [
+                            'text' => 'Asignar Roles',
+                            'url'  => '/users',
+                            'icon'    => 'none',
+                        ],
+                        [
+                            'text' => 'Crear Roles',
+                            'url'  => '/roles/create',
+                            'icon'    => 'none',
+                        ],
+                    ],
+
+                ],
+
+                ],
+
+
+
         ],
+        [
+            'text'    => 'Gestión Equipos',
+            'icon'    => 'none',
+            'submenu' => [
+
+
+                [
+                    'text'    => 'Equipos',
+                    'url'     => '#',
+                    'icon'    => 'none',
+                    'submenu' => [
+                [
+                    'text'    => 'Lista Equipos',
+                    'url'     => '/equipos/',
+                    'icon'    => 'none',
+                ],
+                [
+                    'text'    => 'Agregar Equipo',
+                    'url'     => '/equipos/create',
+                    'icon'    => 'none',
+                ],
+                ],
+            ],
+
+
+                [
+                    'text'    => 'Mantenciones',
+                    'url'     => '#',
+                    'icon'    => 'none',
+                    'submenu' => [
+                [
+                    'text'    => 'Lista Mantenciones',
+                    'url'     => '/mantenciones',
+                    'icon'    => 'none',
+                ],
+                [
+                    'text'    => 'Agregar a mantención',
+                    'url'     => '/mantenciones/create',
+                    'icon'    => 'none',
+                ],
+            ],
+
+        ],
+        ],
+
+],
+[
+    'text'    => 'Gestión Centros',
+    'icon'    => 'none',
+    'submenu' => [
+
+
+        [
+            'text'    => 'Lista Centros',
+            'url'     => '/centros',
+            'icon'    => 'none',
+        ],
+
+
+        [
+            'text'    => 'Agregar Centro',
+            'url'     => '/centros/create',
+            'icon'    => 'none',
+
+       ],
+
+    ],
+],
+[
+    'text'    => 'Gestión Clientes',
+    'icon'    => 'none',
+    'submenu' => [
+
+
+        [
+            'text'    => 'Lista Clientes',
+            'url'     => '/clientes',
+            'icon'    => 'none',
+        ],
+
+
+        [
+            'text'    => 'Agregar Cliente',
+            'url'     => '/clientes/create',
+            'icon'    => 'none',
+
+       ],
+
+    ],
+],
+
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de usuario',
@@ -270,60 +400,6 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => 'articulos/create',
         ],
     ],
 
