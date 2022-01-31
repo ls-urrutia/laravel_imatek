@@ -23,7 +23,7 @@
     <input id="cantidad" name="cantidad" type="number" class="form-control" tabindex="3">
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Precio</label>
+    <label for="" class="form-label">Precio </label>
     <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" tabindex="3">
   </div>
   <a href="/articulos" class="btn btn-secondary" tabindex="5">Cancelar</a>

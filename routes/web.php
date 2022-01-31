@@ -13,6 +13,8 @@ use App\Http\Controllers\EquipoController;
 
 
 
+use App\Http\Controllers\MantencioneController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
 Route::resource('centros',CentroController::class);
 
 Route::resource('equipos',EquipoController::class);
+
+Route::resource('mantenciones',MantencioneController::class);
+
 
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 
@@ -45,17 +49,9 @@ Route::resource('users',UserController::class);
 Route::resource('users2',User2Controller::class);
 Route::resource('roles', roleController::class);
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
-
-
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
-
-
-
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
 })->name('dash');
