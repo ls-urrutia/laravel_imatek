@@ -38,11 +38,11 @@ use Illuminate\Database\Eloquent\Model;
 		'n_factura' => 'required',
 		'tipo_equipo' => 'required',
 		'modelo' => 'required',
-		'ubicacion' => 'required',
+		
 		'descripcion' => 'required',
 		'fecha_compra' => 'required',
 		'proveedor' => 'required',
-		'id_centro' => 'required',
+		
     ];
 
     protected $perPage = 20;

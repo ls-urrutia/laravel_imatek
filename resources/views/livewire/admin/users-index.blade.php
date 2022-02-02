@@ -30,3 +30,23 @@
        </div>
    </div>
 </div>
+
+
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+<script>
+    $(document).ready(function() {
+        $('#usuarios').DataTable({
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "Ningun registro encontrado",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "Sin registros",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            'search':'Buscar:'
+        }
+            
+        });
+    } );
+    </script>

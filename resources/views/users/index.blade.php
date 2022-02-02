@@ -56,14 +56,12 @@
                                                 <a class="btn btn-primary" href="{{route('users.edit',$user)}}">Editar</a>
                                             </td>
                                         </tr>
-                                        
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -80,7 +78,7 @@
 
 <script>
 $(document).ready(function() {
-    $('#equipos').DataTable({
+    $('#usuarios').DataTable({
         "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
         "language": {
         "lengthMenu": "Mostrar _MENU_ registros por pagina",
@@ -90,7 +88,6 @@ $(document).ready(function() {
         "infoFiltered": "(filtrado de _MAX_ registros totales)",
         'search':'Buscar:'
     }
-        
     });
 } );
 </script>
