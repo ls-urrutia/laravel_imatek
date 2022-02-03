@@ -79,6 +79,22 @@ class EquipoController extends Controller
 
 
 
+
+        if(count($request->cod_equipo) > 0) ///es aca
+        {
+
+                $data2[]=array(
+                    'id_equipo'=>$lastid,
+                    'tipo_movimiento'=>$request->tipo_movimiento = "Compra",
+                    'fecha_movimiento'=>$request->fecha_ingreso[$movimiento],
+                    'tipo_documento'=>$request->tipo_documento[$movimiento],
+                    'n_documento'=>$request->n_documento[$movimiento],
+                );
+                Movimiento::insert($data2);
+          }
+            }
+
+
         return redirect()->route('equipos.index')
             ->with('success', 'Equipo created successfully.');
     }
