@@ -28,8 +28,7 @@ class Mantencione extends Model
 {
 
     static $rules = [
-		'cod_mantencion' => 'required',
-		'n_despacho' => 'required',
+		
 		'fecha_mantencion' => 'required',
 		'descripcion' => 'required',
 		'validacion' => 'required',
@@ -45,7 +44,7 @@ class Mantencione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_mantencion','cod_mantencion','n_despacho','fecha_mantencion','descripcion','validacion','id_usuario','id_equipo'];
+    protected $fillable = ['id_mantencion','fecha_mantencion','descripcion','validacion','imagen1','imagen2','imagen3','id_usuario','id_equipo'];
 
 
     /**

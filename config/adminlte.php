@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => true,
+    'layout_dark_mode' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -318,6 +318,7 @@ return [
                 ],
             ],
 
+<<<<<<< HEAD
                 [
 
                     'text'    => 'Gestión Mantenciones',
@@ -337,6 +338,28 @@ return [
             ],
 
 
+=======
+
+
+        ],
+        ],
+        [
+            'text'    => 'Mantenciones',
+            'url'     => '#',
+            'icon'    => 'none',
+            'submenu' => [
+        [
+            'text'    => 'Lista Mantenciones',
+            'url'     => '/mantenciones',
+            'icon'    => 'none',
+        ],
+        [
+            'text'    => 'Agregar a mantención',
+            'url'     => '/mantenciones/create',
+            'icon'    => 'none',
+        ],
+    ],
+>>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910
 
 
 ],

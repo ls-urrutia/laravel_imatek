@@ -55,13 +55,36 @@ class MantencioneController extends Controller
     public function store(Request $request)
     {
         request()->validate(Mantencione::$rules);
+        
 
         $mantenciones = new Mantencione();
-        $mantenciones->cod_mantencion= $request->get('cod_mantencion');
-        $mantenciones->n_despacho= $request->get('n_despacho');
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
         $mantenciones->descripcion = $request->get('descripcion');
         $mantenciones->validacion= $request->get('validacion');
+        if($request->hasFile('imagen1')){
+            $image1= $request->file('imagen1');
+            $extension = $image1->getClientOriginalExtension();
+            $imagename = time().'.'.$extension;
+            $image1->move('imagenes/fmantenciones',$imagename);
+            $mantenciones->imagen1 = $imagename;
+
+        }
+        if($request->hasFile('imagen2')){
+            $image2= $request->file('imagen2');
+            $extension2 = $image2->getClientOriginalExtension();
+            $imagename2 = time().'.'.$extension2;
+            $image2->move('imagenes/fmantenciones',$imagename2);
+            $mantenciones->imagen2 = $imagename2;
+
+        }
+        if($request->hasFile('imagen3')){
+            $image3= $request->file('imagen3');
+            $extension3 = $image3->getClientOriginalExtension();
+            $imagename3 = time().'.'.$extension3;
+            $image3->move('imagenes/fmantenciones/',$imagename3);
+            $mantenciones->imagen3 = $imagename3;
+
+        }
         $mantenciones->id_usuario =  $request->user()->id;
         $mantenciones->id_equipo = $request->get('id_equipo');
         $mantenciones->save();

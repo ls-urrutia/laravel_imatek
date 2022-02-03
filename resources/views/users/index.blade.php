@@ -56,14 +56,12 @@
                                                 <a class="btn btn-primary" href="{{route('users.edit',$user)}}">Editar</a>
                                             </td>
                                         </tr>
-
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -90,7 +88,6 @@ $(document).ready(function() {
         "infoFiltered": "(filtrado de _MAX_ registros totales)",
         'search':'Buscar:'
     }
-
     });
 } );
 </script>

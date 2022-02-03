@@ -8,6 +8,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
+
+
+
+
+
 use App\Http\Controllers\MantencioneController;
 use Illuminate\Http\Request;
 
