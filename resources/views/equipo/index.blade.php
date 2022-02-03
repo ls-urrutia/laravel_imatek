@@ -39,10 +39,11 @@
 
 										<th>Id Equipo</th>
 										<th>Cod Equipo</th>
-										<th>N Factura</th>
+                                        <th>Tipo Documento</th>
+										<th>N° Documento</th>
 										<th>Tipo Equipo</th>
 										<th>Modelo</th>
-										<th>Ubicacion</th>
+										<th>Ciclos</th>
 										<th>Descripcion</th>
 										<th>Estado</th>
 										<th>Fecha Compra</th>
@@ -58,10 +59,11 @@
 
 											<td>{{ $equipo->id_equipo }}</td>
 											<td>{{ $equipo->cod_equipo }}</td>
-											<td>{{ $equipo->n_factura }}</td>
+                                            <td>{{ $equipo->tipo_documento }}</td>
+											<td>{{ $equipo->n_documento }}</td>
 											<td>{{ $equipo->tipo_equipo }}</td>
 											<td>{{ $equipo->modelo }}</td>
-											<td>{{ $equipo->ubicacion }}</td>
+											<td>{{ $equipo->ciclos}}</td>
 											<td>{{ $equipo->descripcion }}</td>
 											<td>{{ $equipo->estado }}</td>
                                             <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
@@ -69,9 +71,9 @@
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
 
-                                                 
 
-                                                 
+
+
                                             </td>
 
                                             <td>
@@ -116,7 +118,7 @@
             "infoFiltered": "(filtrado de _MAX_ registros totales)",
             'search':'Buscar:'
         }
-            
+
         });
     } );
     </script>

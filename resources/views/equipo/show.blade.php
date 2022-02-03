@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Id Equipo:</strong>
                             {{ $equipo->id_equipo }}
@@ -29,8 +29,8 @@
                             {{ $equipo->cod_equipo }}
                         </div>
                         <div class="form-group">
-                            <strong>N Factura:</strong>
-                            {{ $equipo->n_factura }}
+                            <strong>N Documento:</strong>
+                            {{ $equipo->n_documento }}
                         </div>
                         <div class="form-group">
                             <strong>Tipo Equipo:</strong>
@@ -41,8 +41,8 @@
                             {{ $equipo->modelo }}
                         </div>
                         <div class="form-group">
-                            <strong>Ubicacion:</strong>
-                            {{ $equipo->ubicacion }}
+                            <strong>ciclos:</strong>
+                            {{ $equipo->ciclos }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>

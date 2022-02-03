@@ -35,14 +35,15 @@ use Illuminate\Database\Eloquent\Model;
 
     static $rules = [
 		'cod_equipo' => 'required',
-		'n_factura' => 'required',
+        'tipo_documento' => 'required',
+        'n_documento' => 'required',
 		'tipo_equipo' => 'required',
 		'modelo' => 'required',
-		
+        'ciclos' => 'required',
+        'estado' => 'required',
 		'descripcion' => 'required',
-		'fecha_compra' => 'required',
+		'fecha_ingreso' => 'required',
 		'proveedor' => 'required',
-		
     ];
 
     protected $perPage = 20;
@@ -56,7 +57,7 @@ use Illuminate\Database\Eloquent\Model;
      *
      * @var array
      */
-    protected $fillable = ['id_equipo','cod_equipo','n_factura','tipo_equipo','modelo','ubicacion','descripcion','estado','fecha_compra','proveedor','id_centro'];
+    protected $fillable = ['id_equipo','cod_equipo','tipo_documento','n_documento','tipo_equipo','modelo','ciclos','descripcion','estado','fecha_ingreso','proveedor','id_centro'];
 
 
     /**

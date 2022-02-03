@@ -299,14 +299,9 @@ return [
 
 
         ],
+
         [
-            'text'    => 'Gestión Equipos',
-            'icon'    => 'none',
-            'submenu' => [
-
-
-                [
-                    'text'    => 'Equipos',
+                    'text'    => 'Gestión Equipos',
                     'url'     => '#',
                     'icon'    => 'none',
                     'submenu' => [
@@ -323,9 +318,9 @@ return [
                 ],
             ],
 
-
                 [
-                    'text'    => 'Mantenciones',
+
+                    'text'    => 'Gestión Mantenciones',
                     'url'     => '#',
                     'icon'    => 'none',
                     'submenu' => [
@@ -341,8 +336,8 @@ return [
                 ],
             ],
 
-        ],
-        ],
+
+
 
 ],
 [
