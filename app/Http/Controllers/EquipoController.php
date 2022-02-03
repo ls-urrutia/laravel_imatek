@@ -55,9 +55,9 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {/*
+    {
         request()->validate(Equipo::$rules);
- */
+
 
         /* $data=$request->all();
  */
@@ -74,7 +74,9 @@ class EquipoController extends Controller
         $clientes->proveedor = $request->get('proveedor');
         $clientes->save();
 
-        $lastid=$clientes->id;   ///es aca
+
+
+
 
 
         return redirect()->route('equipos.index')
