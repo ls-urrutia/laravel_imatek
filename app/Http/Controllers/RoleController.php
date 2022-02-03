@@ -15,6 +15,16 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         //
@@ -48,7 +58,7 @@ class RoleController extends Controller
             'name'=> 'required'
         ]);
         $role = Role::create(['name' => $request->name]);
-        
+
         $role->permissions()->sync($request->permissions);
         return redirect()->route('roles.edit', $role)->with('info', 'El rol se creo con exito');
     }

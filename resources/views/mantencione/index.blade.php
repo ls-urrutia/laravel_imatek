@@ -38,11 +38,13 @@
                                     <tr>
 
 										<th>Id Mantencion</th>
-										<th>Cod Mantencion</th>
-										<th>N Despacho</th>
+									
 										<th>Fecha Mantencion</th>
 										<th>Descripcion</th>
 										<th>Validacion</th>
+                                        <th>Imagen1</th>
+                                        <th>imagen2</th>
+                                        <th>Imagen3</th>
 										<th>Usuario</th>
 										<th>Código Equipo</th>
 
@@ -53,13 +55,18 @@
                                     @foreach ($mantenciones as $mantencione)
                                         <tr>
 											<td>{{ $mantencione->id_mantencion }}</td>
-											<td>{{ $mantencione->cod_mantencion }}</td>
-											<td>{{ $mantencione->n_despacho }}</td>
+										
 											<td>{{ $mantencione->fecha_mantencion }}</td>
 											<td>{{ $mantencione->descripcion }}</td>
 											<td>{{ $mantencione->validacion }}</td>
+                                            <td>
+                                                <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
+                                            <td><img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px"></td>
+                                            <td><img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px"></td>
+
 											<td>{{ $mantencione->user->name}}</td>
 											<td>{{ $mantencione->equipo->cod_equipo}}
+
 
                                             <td>
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">

@@ -1,15 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('cod_mantencion') }}
-            {{ Form::text('cod_mantencion', $mantencione->cod_mantencion, ['class' => 'form-control' . ($errors->has('cod_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Cod Mantencion']) }}
-            {!! $errors->first('cod_mantencion', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('n_despacho') }}
-            {{ Form::text('n_despacho', $mantencione->n_despacho, ['class' => 'form-control' . ($errors->has('n_despacho') ? ' is-invalid' : ''), 'placeholder' => 'N Despacho']) }}
-            {!! $errors->first('n_despacho', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+
         <div class="form-group">
             {{ Form::label('fecha_mantencion') }}
             {{ Form::text('fecha_mantencion', $mantencione->fecha_mantencion, ['class' => 'form-control' . ($errors->has('fecha_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Mantencion']) }}
@@ -25,16 +16,30 @@
             {{ Form::text('validacion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('validacion') ? ' is-invalid' : ''), 'placeholder' => 'Validacion']) }}
             {!! $errors->first('validacion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+
+
         <div class="form-group">
             {{ Form::label('Codigo_Equipo') }}
             {{ Form::select('id_equipo', $equipos, $mantencione->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
             {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('imagen') }}
-            {{ Form::file('imagen', $imagen, $mantencione->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo', 'multiple']) }}
-            {!! $errors->first('imagen', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('imagen1') }}
+            {{ Form::file('imagen1',$mantencione->imagen1, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
+            {!! $errors->first('imagen1', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('imagen2') }}
+            {{ Form::file('imagen2',  $mantencione->imagen2, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
+            {!! $errors->first('imagen2', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('imagen3') }}
+            {{ Form::file('imagen3', $mantencione->imagen3, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
+            {!! $errors->first('imagen3', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+
 
     </div>
     <div class="box-footer mt20">

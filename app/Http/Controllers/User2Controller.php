@@ -15,6 +15,13 @@ class User2Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -47,7 +54,7 @@ class User2Controller extends Controller
         $user2->name = $request->get('nombreu');
         $user2->email = $request->get('correo');
         $user2->password = bcrypt($request->get('passw'));
-        
+
         $user2->save();
 
         return redirect('/users2');
