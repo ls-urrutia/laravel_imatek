@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <title>Multiple data send</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -7,9 +6,6 @@
 </script>
 
 
-=======
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
->>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
@@ -36,27 +32,22 @@
             {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''), 'placeholder' => 'Modelo']) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-<<<<<<< HEAD
         <div class="form-group">
             {{ Form::label('ciclos') }}
             {{ Form::text('ciclos', $equipo->ciclos, ['class' => 'form-control' . ($errors->has('ciclos') ? ' is-invalid' : ''), 'placeholder' => 'ciclos']) }}
             {!! $errors->first('ciclos', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-=======
-        
->>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910
         <div class="form-group">
             {{ Form::label('descripcion') }}
             {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        
+
         <div class="form-group">
             {{ Form::label('estado') }}
             {!! Form::select('estado', [null => 'Seleccionar estado'] + ['Operativa' => 'Operativa','Dado de baja'=>'Dado de baja','En mantenimiento'=>'En mantenimiento'], $equipo->estado, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'estado', 'id'=>'estado', 'onchange'=>'verificar(this)']) !!}
             {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-<<<<<<< HEAD
         <div class="form-group">
             {{ Form::label('fecha_ingreso') }}
             {{ Form::text('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra']) }}
@@ -65,31 +56,10 @@
         <div class="form-group">
             {{ Form::label('proveedor') }}
             {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
-=======
-        <div class="form-group" id="ubicacion">
-            {{ Form::label('ubicacion') }}
-            {!! Form::select('ubicacion', [null => 'Seleccionar ubicación'] + ['Oficina' => 'Oficina','En centro'=>'En centro'], $equipo->estado, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''),'placeholder' => 'estado', 'onchange'=>'verificar(this)']) !!}
-            {!! $errors->first('ubicacion', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group" id="id_centro">
-            {{ Form::label('id_centro') }}
-            {{ Form::select('id_centro', $centros, $equipo->id_centro, ['class' => 'form-control' . ($errors->has('id_centro') ? 'is-invalid' : ''),'placeholder' => 'Lista Clientes']) }}
-            {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</p>') !!}
-          </div>
-        <div class="form-group">
-            {{ Form::label('fecha_compra') }}
-            {{ Form::date('fecha_compra', $equipo->fecha_compra, ['class' => 'form-control' . ($errors->has('fecha_compra') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra']) }}
-            {!! $errors->first('fecha_compra', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('proveedor') }}
-            {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor','id'=>'proveedor']) }}
->>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910
             {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
 
         </div>
 
-<<<<<<< HEAD
 
         <div class="box box-info padding-1">
             <form>
@@ -160,31 +130,3 @@
     </div>
 
 
-=======
-
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
-<script type="text/javascript">
-$("#ubicacion").hide();
-$("#id_centro").hide();
-function verificar(valor){
-     if($('#estado option:selected').text() === 'Operativa'){
-
-       
-          $("#ubicacion").show();
-          if($("#ubicacion  option:selected").text()==='En centro'){
-            $("#id_centro").show();
-          }
-    }  
-        
-
-}
-     
-
-
-   
-</script>
->>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910

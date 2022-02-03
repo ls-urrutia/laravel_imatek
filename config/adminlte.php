@@ -318,7 +318,6 @@ return [
                 ],
             ],
 
-<<<<<<< HEAD
                 [
 
                     'text'    => 'Gestión Mantenciones',
@@ -338,28 +337,6 @@ return [
             ],
 
 
-=======
-
-
-        ],
-        ],
-        [
-            'text'    => 'Mantenciones',
-            'url'     => '#',
-            'icon'    => 'none',
-            'submenu' => [
-        [
-            'text'    => 'Lista Mantenciones',
-            'url'     => '/mantenciones',
-            'icon'    => 'none',
-        ],
-        [
-            'text'    => 'Agregar a mantención',
-            'url'     => '/mantenciones/create',
-            'icon'    => 'none',
-        ],
-    ],
->>>>>>> 882022d1a8ee2f6e34913991bde12f1fa06ef910
 
 
 ],
