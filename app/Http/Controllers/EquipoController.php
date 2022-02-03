@@ -76,11 +76,11 @@ class EquipoController extends Controller
  */
 
 
-        $lastid=Equipo::create($data)->id;   ///es aca
+        $lastid=Equipo::create($data)->id_equipo;   ///es aca
         if(count($request->cod_equipo) > 0) ///es aca
         {
             foreach($request->cod_equipo as $movimiento=>$v){
-                $data2=array(
+                $data2[]=array(
                     'id_equipo'=>$lastid,
                     'tipo_movimiento'=>$request->tipo_movimiento = "Compra",
                     'fecha_movimiento'=>$request->fecha_ingreso[$movimiento],

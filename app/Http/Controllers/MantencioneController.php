@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipo;
 use App\Models\Mantencione;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+
 
 /**
  * Class MantencioneController
@@ -72,7 +74,7 @@ class MantencioneController extends Controller
         if($request->hasFile('imagen2')){
             $image2= $request->file('imagen2');
             $extension2 = $image2->getClientOriginalExtension();
-            $imagename2 = time().'.'.$extension2;
+            $imagename2 = date('YmdHis').'.'.$extension2;
             $image2->move('imagenes/fmantenciones',$imagename2);
             $mantenciones->imagen2 = $imagename2;
 
@@ -80,7 +82,7 @@ class MantencioneController extends Controller
         if($request->hasFile('imagen3')){
             $image3= $request->file('imagen3');
             $extension3 = $image3->getClientOriginalExtension();
-            $imagename3 = time().'.'.$extension3;
+            $imagename3 = date('YmdH').'.'.$extension3;
             $image3->move('imagenes/fmantenciones/',$imagename3);
             $mantenciones->imagen3 = $imagename3;
 
@@ -116,7 +118,7 @@ class MantencioneController extends Controller
     {
         $mantencione = Mantencione::find($id);
 
-        $equipos = Equipo::pluck('cod_equipo ','id_equipo');
+        $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
         return view('mantencione.edit', compact('mantencione','equipos'));
     }
@@ -128,14 +130,59 @@ class MantencioneController extends Controller
      * @param  Mantencione $mantencione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mantencione $mantencione)
+    public function update(Request $request, $id)
     {
         request()->validate(Mantencione::$rules);
+        $mantenciones=Mantencione::find($id);
+        $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
+        $mantenciones->descripcion = $request->get('descripcion');
+        $mantenciones->validacion= $request->get('validacion');
+        if($request->hasFile('imagen1')){
+            $destino = 'imagenes/fmantenciones/'.$mantenciones->imagen1;
+            if(File::exists($destino)){
+                File::delete($destino);
+            }
+            $image1= $request->file('imagen1');
+            $extension = $image1->getClientOriginalExtension();
+            $imagename = time().'.'.$extension;
+            $image1->move('imagenes/fmantenciones',$imagename);
+            $mantenciones->imagen1 = $imagename;
 
-        $mantencione->update($request->all());
+        }
+        if($request->hasFile('imagen2')){
+            $destino = 'imagenes/fmantenciones/'.$mantenciones->imagen2;
+            if(File::exists($destino)){
+                File::delete($destino);
+            }
+            $image2= $request->file('imagen2');
+            $extension2 = $image2->getClientOriginalExtension();
+            $imagename2 = date('YmdHis').'.'.$extension2;
+            $image2->move('imagenes/fmantenciones',$imagename2);
+            $mantenciones->imagen2 = $imagename2;
 
+        }
+        if($request->hasFile('imagen3')){
+            $destino = 'imagenes/fmantenciones/'.$mantenciones->imagen3;
+            if(File::exists($destino)){
+                File::delete($destino);
+            }
+            $image3= $request->file('imagen3');
+            $extension3 = $image3->getClientOriginalExtension();
+            $imagename3 = date('YmdH').'.'.$extension3;
+            $image3->move('imagenes/fmantenciones/',$imagename3);
+            $mantenciones->imagen3 = $imagename3;
+
+        }
+        $mantenciones->id_usuario =  $request->user()->id;
+        $mantenciones->id_equipo = $request->get('id_equipo');
+        $mantenciones->update();
+
+
+
+        /* $mantencione->update($request->all());
+ */
         return redirect()->route('mantenciones.index')
-            ->with('success', 'Mantencione updated successfully');
+            ->with('success', 'Se ha actualizado exitosamente');
     }
 
     /**
