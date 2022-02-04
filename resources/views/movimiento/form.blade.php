@@ -1,10 +1,9 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
         <div class="form-group">
-            {{ Form::label('id_movimiento') }}
-            {{ Form::text('id_movimiento', $movimiento->id_movimiento, ['class' => 'form-control' . ($errors->has('id_movimiento') ? ' is-invalid' : ''), 'placeholder' => 'Id Movimiento']) }}
-            {!! $errors->first('id_movimiento', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('Código Equipo') }}
+            {{ Form::select('id_equipo', $equipos, $movimiento->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Código Equipo']) }}
+            {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('tipo_movimiento') }}
@@ -27,11 +26,10 @@
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('id_equipo') }}
-            {{ Form::text('id_equipo', $movimiento->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
-            {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('Centro') }}
+            {{ Form::select('id_centro', $centros, $movimiento->id_centro, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Centros']) }}
+            {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
