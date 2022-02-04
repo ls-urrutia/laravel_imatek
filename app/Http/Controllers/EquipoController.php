@@ -97,7 +97,7 @@ class EquipoController extends Controller
                     'fecha_movimiento' => $fecha_ingreso,
                     'tipo_documento' => $tipo_documento,
                     'n_documento' =>  $n_documento,
-
+                    'id_centro' => 'Oficina'
                     ];
                 DB::table('movimientos')->insert($data2);
           }

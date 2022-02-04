@@ -36,14 +36,18 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
 Route::resource('centros',CentroController::class);
 
 Route::resource('equipos',EquipoController::class);
 
 Route::resource('mantenciones',MantencioneController::class);
 
-
-Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 
 Route::resource('users',UserController::class);
 
@@ -54,10 +58,6 @@ Route::resource('roles', roleController::class);
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
 
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 
 

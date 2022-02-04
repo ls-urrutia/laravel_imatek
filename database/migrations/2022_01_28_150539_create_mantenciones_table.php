@@ -15,14 +15,15 @@ class CreateMantencionesTable extends Migration
     {
         Schema::create('mantenciones', function (Blueprint $table) {
             $table->id('id_mantencion');
-            
-            
+
+
             $table->date('fecha_mantencion');
             $table->string('descripcion');
             $table->string('validacion');
-            $table->string('imagen1');
-            $table->string('imagen2');
-            $table->string('imagen3');
+            $table->string('estado_mantencion');
+            $table->string('imagen1')->nullable();
+            $table->string('imagen2')->nullable();
+            $table->string('imagen3')->nullable();
             $table->bigInteger('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->bigInteger('id_equipo')->unsigned();

@@ -43,8 +43,8 @@
 										<th>Descripcion</th>
 										<th>Validacion</th>
                                         <th>Imagen1</th>
-                                        <th>imagen2</th>
-                                        <th>Imagen3</th>
+                                        {{-- <th>imagen2</th>
+                                        <th>Imagen3</th> --}}
 										<th>Usuario</th>
 										<th>Código Equipo</th>
 
@@ -60,9 +60,19 @@
 											<td>{{ $mantencione->descripcion }}</td>
 											<td>{{ $mantencione->validacion }}</td>
                                             <td>
-                                                <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
-                                            <td><img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px"></td>
-                                            <td><img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px"></td>
+                                                @if(isset($mantencione->imagen1))
+                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">  
+                                                @endif
+                                            {{-- <td>
+                                                @if(isset($mantencione->imagen2))
+                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">  
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(isset($mantencione->imagen2))
+                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">  
+                                                @endif
+                                            </td> --}}
 
 											<td>{{ $mantencione->user->name}}</td>
 											<td>{{ $mantencione->equipo->cod_equipo}}
