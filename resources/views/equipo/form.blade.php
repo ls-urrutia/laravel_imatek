@@ -68,7 +68,7 @@
                             <tbody>
                 <tr>
                 <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a href="#" class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
+                <td><a  class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
                 </tr>
                                 </tr>
                             </tbody>
@@ -93,7 +93,7 @@
            {
                var tr='<tr>'+
                '<td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>'+
-               '<td><a href="" class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
+               '<td><a  class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
                '</tr>';
                $('tbody').append(tr);
            };

@@ -205,8 +205,14 @@ class MantencioneController extends Controller
      */
     public function destroy($id)
     {
-        $mantencione = Mantencione::find($id)->delete();
-
+        $mantencione = Mantencione::find($id);
+        $destino = 'imagenes/fmantenciones/'.$mantencione->imagen1;
+        if(File::exists($destino)){
+            File::delete($destino);
+        }
+        $mantencione->delete();
+       /*  $mantencione = Mantencione::find($id)->delete();
+ */
         return redirect()->route('mantenciones.index')
             ->with('success', 'Mantencione deleted successfully');
     }
