@@ -21,6 +21,7 @@ class CreateMovimientosTable extends Migration
             $table->integer('n_documento');
             $table->bigInteger('id_equipo')->unsigned();
             $table->foreign('id_equipo')->references('id_equipo')->on('equipos');
+            $table->string('id_centro');
             $table->timestamps();
         });
     }

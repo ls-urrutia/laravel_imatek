@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Movimiento
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Movimientos</h1>
+@stop
 
 @section('content')
     <div class="container-fluid">
@@ -34,14 +36,13 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-                                        
 										<th>Id Movimiento</th>
 										<th>Tipo Movimiento</th>
 										<th>Fecha Movimiento</th>
 										<th>Tipo Documento</th>
 										<th>N Documento</th>
-										<th>Id Equipo</th>
+										<th>Código Equipo</th>
+                                        <th>Centro</th>
 
                                         <th></th>
                                     </tr>
@@ -49,19 +50,21 @@
                                 <tbody>
                                     @foreach ($movimientos as $movimiento)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
 											<td>{{ $movimiento->id_movimiento }}</td>
 											<td>{{ $movimiento->tipo_movimiento }}</td>
 											<td>{{ $movimiento->fecha_movimiento }}</td>
 											<td>{{ $movimiento->tipo_documento }}</td>
 											<td>{{ $movimiento->n_documento }}</td>
-											<td>{{ $movimiento->id_equipo }}</td>
-
                                             <td>
-                                                <form action="{{ route('movimientos.destroy',$movimiento->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                {{ $movimiento->equipo->cod_equipo}}
+                                            </td>
+                                            <td>
+                                                {{ $movimiento->id_centro}}
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Movimiento extends Model
 {
-    
+
     static $rules = [
-		'id_movimiento' => 'required',
+        'id_centro' => 'required',
 		'tipo_movimiento' => 'required',
 		'fecha_movimiento' => 'required',
 		'tipo_documento' => 'required',
@@ -34,12 +34,14 @@ class Movimiento extends Model
 
     protected $perPage = 20;
 
+    protected $primaryKey = 'id_movimiento';
+
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['id_movimiento','tipo_movimiento','fecha_movimiento','tipo_documento','n_documento','id_equipo'];
+    protected $fillable = ['id_centro','id_movimiento','tipo_movimiento','fecha_movimiento','tipo_documento','n_documento','id_equipo'];
 
 
     /**
@@ -49,6 +51,6 @@ class Movimiento extends Model
     {
         return $this->hasOne('App\Models\Equipo', 'id_equipo', 'id_equipo');
     }
-    
+
 
 }

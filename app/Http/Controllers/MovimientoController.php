@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centro;
 use App\Models\Movimiento;
+use App\Models\Equipo;
 use Illuminate\Http\Request;
 
 /**
@@ -16,11 +18,18 @@ class MovimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $movimientos = Movimiento::paginate();
 
-        return view('movimiento.index', compact('movimientos'))
+            return view('movimiento.index', compact('movimientos'))
             ->with('i', (request()->input('page', 1) - 1) * $movimientos->perPage());
     }
 
@@ -32,7 +41,12 @@ class MovimientoController extends Controller
     public function create()
     {
         $movimiento = new Movimiento();
-        return view('movimiento.create', compact('movimiento'));
+
+        $centros = Centro::pluck('nombre_centro','id_centro');
+
+        $equipos = Equipo::pluck('cod_equipo','id_equipo');
+
+        return view('movimiento.create', compact('movimiento','equipos','centros'));
     }
 
     /**
@@ -45,10 +59,34 @@ class MovimientoController extends Controller
     {
         request()->validate(Movimiento::$rules);
 
-        $movimiento = Movimiento::create($request->all());
+
+
+        $centro_n = Centro::find($request->get('id_centro'));
+
+
+        $movimientos = new Movimiento();
+        $movimientos->tipo_movimiento = $request->get('tipo_movimiento');
+        $movimientos->fecha_movimiento = $request->get('fecha_movimiento');
+        $movimientos->tipo_documento = $request->get('tipo_documento');
+        $movimientos->n_documento = $request->get('n_documento');
+        $movimientos->id_equipo = $request->get('id_equipo');
+        $movimientos->id_centro = $centro_n->nombre_centro;
+        $movimientos->save();
+
+
+
+        $equipo = Equipo::find($request->get('id_equipo'));
+        /*    $equipo->centro->nombre_centro = $request-> get('nombre_centro'); */
+        $equipo->id_centro = $request->get('id_centro');
+        $equipo->save();
+
+
 
         return redirect()->route('movimientos.index')
             ->with('success', 'Movimiento created successfully.');
+
+
+
     }
 
     /**
@@ -73,6 +111,8 @@ class MovimientoController extends Controller
     public function edit($id)
     {
         $movimiento = Movimiento::find($id);
+
+        $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
         return view('movimiento.edit', compact('movimiento'));
     }

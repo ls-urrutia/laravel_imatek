@@ -44,6 +44,8 @@ class EquipoController extends Controller
     {
         $equipo = new Equipo();
 
+
+
         $centros = Centro::pluck('nombre_centro','id_centro');
 
         return view('equipo.create', compact('equipo', 'centros'));
@@ -87,7 +89,7 @@ class EquipoController extends Controller
                 );
 
                 DB::table('equipos')->insert($data);
-            /*     $id = DB::select('SELECT id_equipo FROM equipos ORDER BY id_equipo DESC LIMIT 1');   // */
+
                 $id = DB::getPdo()->lastInsertId();
                 $data2= [
                     'id_equipo' => $id,
@@ -95,11 +97,9 @@ class EquipoController extends Controller
                     'fecha_movimiento' => $fecha_ingreso,
                     'tipo_documento' => $tipo_documento,
                     'n_documento' =>  $n_documento,
+
                     ];
                 DB::table('movimientos')->insert($data2);
-
-
-
           }
 
 

@@ -1,8 +1,11 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Create Movimiento
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Crear movimiento</h1>
+@stop
+
 
 @section('content')
     <section class="content container-fluid">
