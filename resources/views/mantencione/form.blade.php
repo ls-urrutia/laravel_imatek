@@ -16,12 +16,17 @@
             {{ Form::text('validacion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('validacion') ? ' is-invalid' : ''), 'placeholder' => 'Validacion']) }}
             {!! $errors->first('validacion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('estado_mantencion') }}
+            {{ Form::text('estado_mantencion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('estado_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Estado Mantención']) }}
+            {!! $errors->first('estado_mantencion', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
 
 
         <div class="form-group">
             {{ Form::label('Codigo_Equipo') }}
             {{ Form::select('id_equipo', $equipos, $mantencione->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo']) }}
-            {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
+            {!! $errors->first('id_equipo', '<div class="inval id-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('imagen1') }}

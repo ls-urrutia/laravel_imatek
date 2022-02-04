@@ -6,6 +6,7 @@ use App\Models\Equipo;
 use App\Models\Centro;
 use App\Models\Movimiento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EquipoController
@@ -56,40 +57,51 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Equipo::$rules);
+/*         request()->validate(Equipo::$rules);
 
+  */
 
-        $data=$request->all();
+        $tipo_equipo = $request->get('tipo_equipo');
+        $cod_equipo = $request->get('cod_equipo');
+        $tipo_documento = $request->get('tipo_documento');
+        $n_documento= $request->get('n_documento');
+        $modelo = $request->get('modelo');
+        $ciclos = $request->get('ciclos');
+        $descripcion= $request->get('descripcion');
+        $estado = $request->get('estado');
+        $fecha_ingreso = $request->get('fecha_ingreso');
+        $proveedor = $request->get('proveedor');
 
-/*      $clientes = new Equipo();
-        $clientes->cod_equipo = $request->get('cod_equipo');
-        $clientes->tipo_documento = $request->get('tipo_documento');
-        $clientes->n_documento= $request->get('n_documento');
-        $clientes->tipo_equipo = $request->get('tipo_equipo');
-        $clientes->modelo = $request->get('modelo');
-        $clientes->ciclos = $request->get('ciclos');
-        $clientes->descripcion= $request->get('descripcion');
-        $clientes->estado = $request->get('estado');
-        $clientes->fecha_ingreso = $request->get('fecha_ingreso');
-        $clientes->proveedor = $request->get('proveedor');
-        $clientes->save();
- */
-
-
-        $lastid=Equipo::create($data)->id_equipo;   ///es aca
-        if(count($request->cod_equipo) > 0) ///es aca
-        {
-            foreach($request->cod_equipo as $movimiento=>$v){
-                $data2[]=array(
-                    'id_equipo'=>$lastid,
-                    'tipo_movimiento'=>$request->tipo_movimiento = "Compra",
-                    'fecha_movimiento'=>$request->fecha_ingreso[$movimiento],
-                    'tipo_documento'=>$request->tipo_documento[$movimiento],
-                    'n_documento'=>$request->n_documento[$movimiento],
+            for ($i=0; $i < count($cod_equipo); $i++){
+                $data=array(
+                'cod_equipo' =>   $cod_equipo[$i],                      //
+                'tipo_equipo' =>   $tipo_equipo,
+                'tipo_documento'=> $tipo_documento,
+                'n_documento' =>  $n_documento,
+                'modelo'  =>  $modelo,
+                'ciclos' =>   $ciclos,
+                'descripcion' =>  $descripcion,
+                'estado' =>    $estado ,
+                'fecha_ingreso' =>    $fecha_ingreso ,
+                'proveedor' =>  $proveedor,
                 );
-            Movimiento::insert($data2[]);
+
+                DB::table('equipos')->insert($data);
+            /*     $id = DB::select('SELECT id_equipo FROM equipos ORDER BY id_equipo DESC LIMIT 1');   // */
+                $id = DB::getPdo()->lastInsertId();
+                $data2= [
+                    'id_equipo' => $id,
+                    'tipo_movimiento' => 'Compra',
+                    'fecha_movimiento' => $fecha_ingreso,
+                    'tipo_documento' => $tipo_documento,
+                    'n_documento' =>  $n_documento,
+                    ];
+                DB::table('movimientos')->insert($data2);
+
+
+
           }
-            }
+
 
 
         return redirect()->route('equipos.index')
@@ -132,7 +144,7 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
-        request()->validate(Equipo::$rules);
+        /* request()->validate(Equipo::$rules); */
 
         $equipo->update($request->all());
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CentroController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\MovimientoController;
 
 
 
@@ -45,6 +46,8 @@ Route::resource('mantenciones',MantencioneController::class);
 Route::resource('articulos','\App\Http\Controllers\ArticuloController');
 
 Route::resource('users',UserController::class);
+
+Route::resource('movimientos',MovimientoController::class);
 
 Route::resource('users2',User2Controller::class);
 Route::resource('roles', roleController::class);

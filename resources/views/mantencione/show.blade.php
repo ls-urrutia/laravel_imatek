@@ -40,16 +40,23 @@
                     </div>
                     <div class="form-group">
                         <strong>Id Usuario:</strong>
-                        {{ $mantencione->id_usuario}}
+                        {{ $mantencione->user->name}}
                     </div>
                     <div class="form-group">
                         <strong>Id Equipo:</strong>
                         {{ $mantencione->id_equipo }}
                     </div>
                     <div id="pelicula">
-                    <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="170px" height="170px">
-                    <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="170px" height="170px">
-                    <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="170px" height="170px">
+                        @if(isset($mantencione->imagen1))
+                             <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">  
+                        @endif
+                        @if(isset($mantencione->imagen2))
+                            <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">  
+                        @endif
+                        @if(isset($mantencione->imagen3))
+                           <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">  
+                        @endif
+
                     </div>
 
 

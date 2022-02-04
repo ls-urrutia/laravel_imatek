@@ -2,12 +2,53 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Movimiento
+ *
+ * @property $id_movimiento
+ * @property $tipo_movimiento
+ * @property $fecha_movimiento
+ * @property $tipo_documento
+ * @property $n_documento
+ * @property $id_equipo
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Equipo $equipo
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class Movimiento extends Model
 {
-    use HasFactory;
+    
+    static $rules = [
+		'id_movimiento' => 'required',
+		'tipo_movimiento' => 'required',
+		'fecha_movimiento' => 'required',
+		'tipo_documento' => 'required',
+		'n_documento' => 'required',
+		'id_equipo' => 'required',
+    ];
 
-    protected $fillable=['id_equipo','tipo_movimiento','fecha_movimiento','tipo_documento','n_documento'];
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id_movimiento','tipo_movimiento','fecha_movimiento','tipo_documento','n_documento','id_equipo'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function equipo()
+    {
+        return $this->hasOne('App\Models\Equipo', 'id_equipo', 'id_equipo');
+    }
+    
+
 }
