@@ -240,7 +240,7 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'Buscar',
         ],
-        [
+/*         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
@@ -252,7 +252,8 @@ return [
             'label'       => 4,
             'label_color' => 'success',
             'can'         =>'Crear articulos'
-        ],
+        ], */
+
         [
             'text'    => 'Gestión de usuarios',
             'icon'    => 'none',
@@ -295,6 +296,12 @@ return [
                 ],
 
                 ],
+            'can'=>'Ver lista de usuarios',
+            'can'=> 'Crear usuarios',
+            'can'=>'Editar usuarios',
+            'can'=>'Eliminar usuarios'
+            
+
 
 
 
@@ -305,17 +312,23 @@ return [
                     'url'     => '#',
                     'icon'    => 'none',
                     'submenu' => [
-                [
-                    'text'    => 'Lista Equipos',
-                    'url'     => '/equipos/',
-                    'icon'    => 'none',
-                ],
-                [
-                    'text'    => 'Agregar Equipo',
-                    'url'     => '/equipos/create',
-                    'icon'    => 'none',
-                ],
-                ],
+                        [
+                            'text'    => 'Lista Equipos',
+                            'url'     => '/equipos/',
+                            'icon'    => 'none',
+                        ],
+                        [
+                            'text'    => 'Agregar Equipo',
+                            'url'     => '/equipos/create',
+                            'icon'    => 'none',
+                        ],
+                        ],
+                    'can'=> 'Ver lista de equipos',   
+                    'can'=> 'Ver equipo', 
+                    'can'=> 'Crear equipos', 
+                    'can'=> 'Editar equipos', 
+                    'can'=> 'Eliminar equipos', 
+
             ],
 
                 [
@@ -324,17 +337,26 @@ return [
                     'url'     => '#',
                     'icon'    => 'none',
                     'submenu' => [
-                [
-                    'text'    => 'Lista Mantenciones',
-                    'url'     => '/mantenciones',
-                    'icon'    => 'none',
-                ],
-                [
-                    'text'    => 'Agregar a mantención',
-                    'url'     => '/mantenciones/create',
-                    'icon'    => 'none',
-                ],
-            ],
+                            [
+                                'text'    => 'Lista Mantenciones',
+                                'url'     => '/mantenciones',
+                                'icon'    => 'none',
+                            ],
+                            [
+                                'text'    => 'Agregar a mantención',
+                                'url'     => '/mantenciones/create',
+                                'icon'    => 'none',
+                            ],
+                            
+
+
+                        ],
+                    'can'=> 'Ver lista de mantenciones',   
+                    'can'=> 'Ver mantención', 
+                    'can'=> 'Crear mantención', 
+                    'can'=> 'Editar mantención', 
+                    'can'=> 'Eliminar mantención',      
+
 
 
 
@@ -361,6 +383,11 @@ return [
        ],
 
     ],
+    'can'=> 'Ver lista de centros',   
+    'can'=> 'Ver centro', 
+    'can'=> 'Crear centros', 
+    'can'=> 'Editar centros', 
+    'can'=> 'Eliminar centros', 
 ],
 [
     'text'    => 'Gestión Clientes',
@@ -383,6 +410,11 @@ return [
        ],
 
     ],
+    'can'=> 'Ver lista de clientes',   
+    'can'=> 'Ver cliente', 
+    'can'=> 'Crear cliente', 
+    'can'=> 'Editar cliente', 
+    'can'=> 'Eliminar cliente', 
 ],
 
         ['header' => 'Configuración de la cuenta'],

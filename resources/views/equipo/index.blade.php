@@ -17,12 +17,14 @@
                             <span id="card_title">
                                 {{ __('Equipo') }}
                             </span>
+                            @can('Crear equipos')
 
                              <div class="float-right">
                                 <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear equipo') }}
                                 </a>
                               </div>
+                            @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,6 +37,7 @@
                         <div class="table-responsive">
                             <table id="equipos" class="table table-striped table-hover">
                                 <thead class="thead">
+                                    
                                     <tr>
 
 										<th>Id Equipo</th>
@@ -78,11 +81,17 @@
 
                                             <td>
                                                 <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    @can('Ver equipo')
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    @endcan
+                                                    @can('Editar equipos')
+                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    @endcan
+                                                
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                   
                                                 </form>
                                             </td>
                                         </tr>

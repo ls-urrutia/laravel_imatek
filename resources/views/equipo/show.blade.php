@@ -7,7 +7,9 @@
 @stop
 
 @section('content')
-
+@php
+use Illuminate\Support\Carbon;
+@endphp
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -57,7 +59,8 @@
                     </div>
                     <div class="form-group">
                         <strong>Fecha Compra:</strong>
-                        {{ $equipo->fecha_compra }}
+                        {{ $equipo->fecha_ingreso }}
+                        
                     </div>
                     <div class="form-group">
                         <strong>Proveedor:</strong>
@@ -67,6 +70,50 @@
                         <strong>Id Centro:</strong>
                         {{ $equipo->id_centro }}
                     </div>
+                    {{$fechas
+                    }}
+                     {{-- <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead">
+                                <tr>
+
+                                    <th>Id Mantencion</th>
+                                
+                                    <th>Fecha Mantencion</th>
+                                    <th>Descripcion</th>
+                                    <th>Validacion</th>
+                                    <th>Imagen1</th>
+                                    {{-- <th>imagen2</th>
+                                    <th>Imagen3</th> --}}{{--
+                                   <th>Usuario</th>
+                                    <th>Código Equipo</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $mantencione)
+                                    <tr>
+                                       
+                                    
+                                        <td>{{ $mantencione->n_documento}}</td>
+                                        <td>{{ $mantencione->descripcion }}</td>
+                                        <td>{{ $mantencione->validacion }}</td>
+                                        <td>
+                                            
+
+                                        <td>{{ $mantencione->user->name}}</td>
+                                        <td>{{ $mantencione->equipo->cod_equipo}}
+
+
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>  --}}
 
                 </div>
             </div>

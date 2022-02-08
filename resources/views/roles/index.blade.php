@@ -26,14 +26,18 @@
                             <td>{{$role->id}}</td>
                             <td>{{$role->name}}</td>
                             <td width="10px">
+                                @can('Editar roles')
                                 <a href="{{route('roles.edit', $role)}}" class="btn btn-sm btn-primary">Editar</a>
+                                @endcan
                             </td>
                             <td width="10px">
+                                @can('Eliminar roles')
                                 <form action="{{route('roles.destroy', $role)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

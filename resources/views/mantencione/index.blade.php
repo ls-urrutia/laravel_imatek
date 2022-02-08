@@ -17,12 +17,13 @@
                             <span id="card_title">
                                 {{ __('Mantencione') }}
                             </span>
-
+                             @can('Crear mantenciones')
                              <div class="float-right">
                                 <a href="{{ route('mantenciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
+                            @endcan 
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -80,8 +81,12 @@
 
                                             <td>
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    @can('Ver mantención')
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                    @endcan
+                                                    @can('Editar mantenciones')
+                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    @endcan
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

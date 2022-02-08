@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipo;
 use App\Models\Centro;
-use App\Models\Movimiento;
+use App\Models\Mantencione;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class EquipoController
@@ -29,9 +32,11 @@ class EquipoController extends Controller
 
     public function index()
     {
+        $rawQsl = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
+        
         $equipos = Equipo::paginate();
 
-        return view('equipo.index', compact('equipos'))
+        return view('equipo.index', compact('equipos','rawQsl'))
             ->with('i', (request()->input('page', 1) - 1) * $equipos->perPage());
     }
 
@@ -118,8 +123,17 @@ class EquipoController extends Controller
     public function show($id)
     {
         $equipo = Equipo::find($id);
+    
+        /* $records['mantenciones'] = DB::table('equipos')
+                         ->join('mantenciones', 'mantenciones.id_equipo', '=', 'equipos.id_equipo')
+                         ->where('equipos.id_equipo', $equipo->id)
+                         ->paginate(5); */
+       /*  $equipos2= DB::select("SELECT * FROM mantenciones INNER JOIN equipos ON mantenciones.$id=equipos.$id"); */
+       /*  $prop =  Equipo::findOrFail($id)->mantenciones(); */
+        /* $contar = Equipo::withCount(['mantenciones'])->get(); */
+        $fechas = DB::select('SELECT fecha_movimiento from movimientos where id_equipo={$id}');
 
-        return view('equipo.show', compact('equipo'));
+        return view('equipo.show', compact('equipo','$fechas'));
     }
 
     /**

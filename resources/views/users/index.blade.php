@@ -53,7 +53,9 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td width="10px">
-                                                <a class="btn btn-primary" href="{{route('users.edit',$user)}}">Editar</a>
+                                                @can('Asignar roles')
+                                                <a class="btn btn-primary" href="{{route('users.edit',$user)}}">Asignar</a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

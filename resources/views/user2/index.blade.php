@@ -7,9 +7,10 @@
 @stop
 
 @section('content')
-    <p>Datatable.</p>
+    <p>Usuarios</p>
+   @can('Crear usuarios')
     <a href="users2/create" class="btn btn-primary mb-3">CREAR</a>
-
+   @endcan 
 <table id="users2" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>
@@ -30,11 +31,15 @@
 
               <td>
                 <form action="{{ route('users2.destroy',$user->id) }}" method="POST">
-                    <a href="/users2/{{$user->id}}/edit" class="btn btn-info">Editar</a>
-                        @csrf
-                        @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                   </form>
+                    @can('Editar usuarios')
+                        <a href="/users2/{{$user->id}}/edit" class="btn btn-info">Editar</a>
+                    @endcan
+                    @can('Eliminar usuarios')
+                            @csrf
+                            @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    @endcan
+                </form>
              </td> 
         </tr>
         @endforeach
