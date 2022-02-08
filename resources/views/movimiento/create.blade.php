@@ -29,5 +29,10 @@
                 </div>
             </div>
         </div>
+
+
+{{--         @foreach($ultimomov as $ult)
+        {{$ult->tipo_movimiento}}
+        @endforeach --}}
     </section>
 @endsection

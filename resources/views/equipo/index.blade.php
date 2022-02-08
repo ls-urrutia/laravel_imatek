@@ -49,8 +49,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($equipos as $equipo)
-                                        @foreach($fechas as $fecha)
                                         <tr>
 
 											<td>{{ $equipo->id_equipo }}</td>
@@ -68,12 +66,25 @@
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
                                             </td>
                                             <td>
-                                                @php $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[$equipo->id_equipo]);
+  {{--                                               @php
+                                                $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[$equipo->id_equipo]);
+                                                $i = 0;
+                                                $resultado = 0;
+                                                $suma = 0;
+                                                foreach($fechas as $data_fecha) {
+                                                $entrada = $data_fecha->fecha_movimiento;
+                                                /* $suma  = \Carbon\Carbon::parse($data_fecha->fecha_movimiento)->diffInDays(\Carbon\Carbon::parse($salida)); */
+                                                $i += 1;
+                                                if ( $i % 2 == 0) {
+                                                $suma  = \Carbon\Carbon::parse($salida)->diffInDays(\Carbon\Carbon::parse($entrada));
+                                                $resultado += $suma;
+                                                }
+                                                $salida = data_fecha->fecha_movimiento;
+                                                }
                                                 @endphp
-                                                @foreach($fechas as $data_fecha)
-                                                {{$data_fecha->fecha_movimiento}}
-                                                @endforeach
+                                                {{$resultado}}
 
+ --}}
 
 {{--                                                 @foreach($fechas as $data_fecha)
                                                 {{$data_fecha->fecha_movimiento}}
@@ -101,8 +112,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
-                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -113,7 +123,7 @@
         </div>
     </div>
 
-{{$diff}}
+
 
 
 

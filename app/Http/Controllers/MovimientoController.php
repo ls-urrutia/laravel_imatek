@@ -6,6 +6,7 @@ use App\Models\Centro;
 use App\Models\Movimiento;
 use App\Models\Equipo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class MovimientoController
@@ -46,7 +47,12 @@ class MovimientoController extends Controller
 
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
-        return view('movimiento.create', compact('movimiento','equipos','centros'));
+
+        $ultimomov =
+        DB::select("SELECT tipo_movimiento
+        FROM `prueba`.`movimientos`where id_equipo= 8 ORDER BY created_at DESC LIMIT 1;");
+
+        return view('movimiento.create', compact('movimiento','equipos','centros','ultimomov'));
     }
 
     /**
@@ -71,8 +77,28 @@ class MovimientoController extends Controller
         $movimientos->n_documento = $request->get('n_documento');
         $movimientos->id_equipo = $request->get('id_equipo');
         $movimientos->id_centro = $centro_n->nombre_centro;
-        $movimientos->save();
 
+        $tipomov = $request->get('tipo_movimiento');
+
+        $ultimomov = DB::select("SELECT tipo_movimiento
+        FROM `prueba`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
+
+
+
+/*
+        DB::table('`prueba`.`movimientos`where id_equipo = 8')
+        ->select("tipo_movimiento")
+        ->limit(1)
+        ->orderBy("created_at","desc")
+        ->get(); */
+
+         if($ultimomov[0]->tipo_movimiento == $tipomov ){
+
+      ///////poner algo
+
+        } else {
+            $movimientos->save();
+        }
 
 
         $equipo = Equipo::find($request->get('id_equipo'));

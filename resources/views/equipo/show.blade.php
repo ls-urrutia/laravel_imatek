@@ -69,9 +69,7 @@
                     </div>
 
                 </div>
-                @foreach($fechas as $data_fecha)
-                {{$data_fecha->fecha_movimiento}}
-                @endforeach
+
 
             </div>
 

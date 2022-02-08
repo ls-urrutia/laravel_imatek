@@ -35,23 +35,24 @@ class EquipoController extends Controller
     {
 
         $equipos = Equipo::paginate();
+
 /*
         $date = Carbon::parse('2016-09-17 11:00:00');
         $now = Carbon::now(); */
-
+/*
         $date = Carbon::parse('2020-01-19');
         $date2 = '2020-01-14';
         $diff = $date->diffInDays($date2);
 
 
          $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]);
-
+ */
 /*
         $fechas = DB::table('movimientos')->where([
             ['id_equipo', '=', '1'],
         ])->get(); */
 
-        return view('equipo.index', compact('equipos', 'diff','fechas'));
+        return view('equipo.index', compact('equipos'));
 
 
 
@@ -67,11 +68,16 @@ class EquipoController extends Controller
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
+        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Camara')->count();
+        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Lampara')->count();
 
-        $ncamaras = $rawsQs2;
-        $nlamparas = $rawsQs1;
 
-        return view('dashboard',compact('ncamaras','nlamparas','users2'));
+        $ncamaras = $rawsQs1;
+        $nlamparas = $rawsQs2;
+        $ncamarasrep = $rawsQs3;
+        $nlamparasrep = $rawsQs4;
+
+        return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
     }
 
     /**
@@ -130,6 +136,7 @@ class EquipoController extends Controller
                 DB::table('equipos')->insert($data);
 
                 $id = DB::getPdo()->lastInsertId();
+
                 $data2= [
                     'id_equipo' => $id,
                     'tipo_movimiento' => 'Compra',
