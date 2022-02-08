@@ -1,4 +1,5 @@
 
+
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -19,12 +20,19 @@
                 <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Cámaras</span>
-                  <span class="info-box-number">
-                    10
-                    <small>%</small>
-                  </span>
+                  <span class="info-box-text">Lámparas</span>
+                  <span class="info-box-numbipo_equipoer">
+                    {{$nlamparas}}
+                   </span>
                 </div>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">En mantención</span>
+                    <span class="info-box-number">
+
+                      <small>%</small>
+                    </span>
+                  </div>
                 <!-- /.info-box-content -->
               </div>
               <!-- /.info-box -->
@@ -35,9 +43,13 @@
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Lámparas</span>
-                  <span class="info-box-number">41,410</span>
+                  <span class="info-box-text">Cámaras</span>
+                  <span class="info-box-number"> {{$ncamaras}}</span>
                 </div>
+                <div class="info-box-content">
+                    <span class="info-box-text">En mantención</span>
+                    <span class="info-box-number">41,410</span>
+                  </div>
                 <!-- /.info-box-content -->
               </div>
               <!-- /.info-box -->
@@ -48,28 +60,11 @@
             <div class="clearfix hidden-md-up"></div>
 
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Cámaras En Mantención</span>
-                  <span class="info-box-number">760</span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-                <div class="info-box-content">
-                  <span class="info-box-text"> Lámparas En Mantención</span>
-                  <span class="info-box-number">2,000</span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
@@ -80,104 +75,63 @@
 
 
 
- <!-- TABLE: LATEST ORDERS -->
- <div class="card">
-    <div class="card-header border-transparent">
-      <h3 class="card-title">Latest Orders</h3>
+ <!-- TABLA: Usuarios-->
+ <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+                        <span id="card_title">
+                            {{ __('Usuario') }}
+                        </span>
+                    </div>
+                </div>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="users2ub" class="table table-striped table-hover">
+                            <thead class="thead">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Ubicación</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users2 as $usuario)
+                                    <tr>
+
+                                        <td>{{ $usuario->id}}</td>
+                                        <td>{{ $usuario->name}}</td>
+                                        <td>{{ $usuario->email }}</td>
+                                        <td>{{ $usuario->estado}}</td>
+
+
+                                        <td>
+
+                                      <a href="/users2/{{$usuario->id}}/ubicacion" class="btn btn-info">Editar</a>
+                                      <a class="btn btn-sm btn-success" href="{{ route('users2.ubicacion',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <!-- /.card-header -->
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table m-0">
-          <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Item</th>
-            <th>Status</th>
-            <th>Popularity</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-            <td>Call of Duty IV</td>
-            <td><span class="badge badge-success">Shipped</span></td>
-            <td>
-              <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-            <td>Samsung Smart TV</td>
-            <td><span class="badge badge-warning">Pending</span></td>
-            <td>
-              <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-            <td>iPhone 6 Plus</td>
-            <td><span class="badge badge-danger">Delivered</span></td>
-            <td>
-              <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-            <td>Samsung Smart TV</td>
-            <td><span class="badge badge-info">Processing</span></td>
-            <td>
-              <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-            <td>Samsung Smart TV</td>
-            <td><span class="badge badge-warning">Pending</span></td>
-            <td>
-              <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-            <td>iPhone 6 Plus</td>
-            <td><span class="badge badge-danger">Delivered</span></td>
-            <td>
-              <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-            <td>Call of Duty IV</td>
-            <td><span class="badge badge-success">Shipped</span></td>
-            <td>
-              <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- /.table-responsive -->
-    </div>
-    <!-- /.card-body -->
-    <div class="card-footer clearfix">
-      <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-      <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-    </div>
-    <!-- /.card-footer -->
-  </div>
-  <!-- /.card -->
 </div>
-<!-- /.col -->
 
 
 
@@ -188,5 +142,27 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+
+
+
+<script>
+
+$(document).ready(function() {
+    $('#users2ub').DataTable({
+        "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+        "language": {
+        "lengthMenu": "Mostrar _MENU_ registros por pagina",
+        "zeroRecords": "Ningun registro encontrado",
+        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+        "infoEmpty": "Sin registros",
+        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+        'search':'Buscar:'
+    }
+
+    });
+} );
+
+</script>
 @stop

@@ -30,6 +30,10 @@ class User2Controller extends Controller
 
     }
 
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,8 +61,12 @@ class User2Controller extends Controller
 
         $user2->save();
 
-        return redirect('/users2');
+        return redirect('/users2')
+            ->with('success', 'Usuario creado exitosamente.');
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -84,6 +92,16 @@ class User2Controller extends Controller
         return view('user2.edit')->with('user2',$user2);
     }
 
+    public function ubicacion($id)
+    {
+        //
+        $user2 = User::find($id);
+        return view('user2.ubicacion')->with('user2',$user2);
+    }
+
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -99,12 +117,14 @@ class User2Controller extends Controller
         $user2->name = $request->get('nombreu');
         $user2->email = $request->get('correo');
         $user2->password = bcrypt($request->get('passw'));
-        
+
 
         $user2->save();
 
-        return redirect('/users2');
+        return redirect('/users2')
+            ->with('success', 'Usuario actualizado exitosamente');;
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -118,6 +138,7 @@ class User2Controller extends Controller
         $user2 = User::find($id);
         $user2->delete();
 
-        return redirect('/users2');
+        return redirect('/users2')
+            ->with('success', 'Usuario eliminado exitosamente');;
     }
 }

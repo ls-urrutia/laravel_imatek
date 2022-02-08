@@ -57,6 +57,18 @@ Route::resource('users2',User2Controller::class);
 Route::resource('roles', roleController::class);
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
+Route::get('dashboard',[EquipoController::class,'mostrar']);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

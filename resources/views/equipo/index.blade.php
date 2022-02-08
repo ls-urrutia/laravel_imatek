@@ -1,11 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>Equipos</h1>
-@stop
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -49,12 +43,14 @@
 										<th>Fecha Compra</th>
 										<th>Proveedor</th>
 										<th>Id Centro</th>
+                                        <th>Tiempo de uso</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($equipos as $equipo)
+                                        @foreach($fechas as $fecha)
                                         <tr>
 
 											<td>{{ $equipo->id_equipo }}</td>
@@ -70,10 +66,29 @@
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
+                                            </td>
+                                            <td>
+                                                @php $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[$equipo->id_equipo]);
+                                                @endphp
+                                                @foreach($fechas as $data_fecha)
+                                                {{$data_fecha->fecha_movimiento}}
+                                                @endforeach
 
 
+{{--                                                 @foreach($fechas as $data_fecha)
+                                                {{$data_fecha->fecha_movimiento}}
+                                                @endforeach
 
+ --}}
+              {{--                               @php
+                                                var_dump($fechas['fecha_movimiento'] );
+                                            @endphp
+ --}}
 
+{{--                                             @foreach($fechas->fecha_movimiento as $fecha)
+                                                <a href="#" class="category">#{{ $tag->name }}</a>
+                                            @endforeach
+ --}}
                                             </td>
 
                                             <td>
@@ -86,6 +101,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
@@ -96,7 +112,18 @@
             </div>
         </div>
     </div>
+
+{{$diff}}
+
+
+
+
 @endsection
+
+
+
+
+
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -122,4 +149,6 @@
         });
     } );
     </script>
+
+
 @stop

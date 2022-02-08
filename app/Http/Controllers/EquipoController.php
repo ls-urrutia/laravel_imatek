@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\Centro;
 use App\Models\Movimiento;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,12 +29,49 @@ class EquipoController extends Controller
     }
 
 
+
+
     public function index()
     {
-        $equipos = Equipo::paginate();
 
-        return view('equipo.index', compact('equipos'))
-            ->with('i', (request()->input('page', 1) - 1) * $equipos->perPage());
+        $equipos = Equipo::paginate();
+/*
+        $date = Carbon::parse('2016-09-17 11:00:00');
+        $now = Carbon::now(); */
+
+        $date = Carbon::parse('2020-01-19');
+        $date2 = '2020-01-14';
+        $diff = $date->diffInDays($date2);
+
+
+         $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]);
+
+/*
+        $fechas = DB::table('movimientos')->where([
+            ['id_equipo', '=', '1'],
+        ])->get(); */
+
+        return view('equipo.index', compact('equipos', 'diff','fechas'));
+
+
+
+    }
+
+
+
+    public function mostrar() {
+
+        $equipos = Equipo::paginate(); //1 page with 10 products
+        $users2 = User::all();
+
+
+        $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
+        $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
+
+        $ncamaras = $rawsQs2;
+        $nlamparas = $rawsQs1;
+
+        return view('dashboard',compact('ncamaras','nlamparas','users2'));
     }
 
     /**
