@@ -118,11 +118,7 @@
                                         <td>
 
                                       <a href="/users2/{{$usuario->id}}/ubicacion" class="btn btn-info">Editar</a>
-<<<<<<< HEAD
-                                     {{--  <a class="btn btn-sm btn-success" href="{{ route('',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a> --}}
-=======
                                       <a class="btn btn-sm btn-success" href="{{ route('users2.index',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
->>>>>>> luis01
                                         </td>
                                     </tr>
                                 @endforeach
