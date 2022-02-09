@@ -1,11 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>Equipos</h1>
-@stop
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -52,12 +46,14 @@
 										<th>Fecha Compra</th>
 										<th>Proveedor</th>
 										<th>Id Centro</th>
+                                        <th>Tiempo de uso</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($equipos as $equipo)
+                                        
                                         <tr>
 
 											<td>{{ $equipo->id_equipo }}</td>
@@ -73,10 +69,55 @@
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
+                                            </td>
+                                            <td>
+                                                {{-- {{$resultado}} --}}
+                                              
+                                               {{--  @php $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento FROM movimientos where id_equipo=?',[$equipo->id_equipo]);
+                                                $bool = 0;
+                                                $fechaarray = [];
+                                                  foreach ($fechas as $fech) {
+                                                     
+                                                      
+                                                      if($fech->tipo_movimiento == "Salida" && $bool == 0 && $centro!='Oficina'){
+                                                          
+                                                          array_push($fechaarray,$fech->fecha_movimiento);
+                                                          $bool=1;
+                                                      }
+                                                      if($fech->tipo_movimiento == "Entrada" && $bool == 1 && $centro == 'Oficina'){
+                                                          
+                                                          array_push($fechaarray,$fech->fecha_movimiento);
+                                                          $bool=0;
+                                                      }
+                                                      
+
+                                                      
+                                                      
+                                                      
+                                                  }
+                                                       
+                                                
+                                                @endphp
+                                               
+                                
+                                                @foreach($fechaarray as $data_fecha)
+                                                 
+                                                {{$data_fecha}}
+                                                @endforeach 
+ --}}
+
+                                               
 
 
+              {{--                               @php
+                                                var_dump($fechas['fecha_movimiento'] );
+                                            @endphp
+ --}}
 
-
+{{--                                             @foreach($fechas->fecha_movimiento as $fecha)
+                                                <a href="#" class="category">#{{ $tag->name }}</a>
+                                            @endforeach
+ --}}
                                             </td>
 
                                             <td>
@@ -90,11 +131,13 @@
                                                 
                                                     @csrf
                                                     @method('DELETE')
+                                                    @can('Eliminar equipos')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                   
+                                                    @endcan
                                                 </form>
                                             </td>
                                         </tr>
+                                       
                                     @endforeach
                                 </tbody>
                             </table>
@@ -105,7 +148,18 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
 @endsection
+
+
+
+
+
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -131,4 +185,6 @@
         });
     } );
     </script>
+
+
 @stop

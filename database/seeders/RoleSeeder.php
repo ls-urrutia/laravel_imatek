@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 
 class RoleSeeder extends Seeder
 {
@@ -16,9 +18,20 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+
         //crear roles
         $role1 = Role::create(['name'=>'Administrador']);
         $role2 = Role::create(['name'=>'Tecnico']);
+
+        User::create([
+            'name' => 'Super Administrador',
+            'email' => 'admin@admin.cl',
+            'password' => bcrypt('administrador')
+
+        ])->assignRole('Administrador');
+
+        
+       
 
         //crear permisos
         Permission::create(['name'=>'Ver dashboard'])->syncRoles([$role1, $role2]);

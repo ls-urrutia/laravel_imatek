@@ -77,6 +77,9 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles'));
     }
 
+
+
+
     /**
      * Update the specified resource in storage.
      *

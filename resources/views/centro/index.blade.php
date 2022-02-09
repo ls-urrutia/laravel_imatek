@@ -19,9 +19,11 @@
                             </span>
 
                              <div class="float-right">
+                                 @can('Crear centros')
                                 <a href="{{ route('centros.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
+                                @endcan
                               </div>
                         </div>
                     </div>
@@ -58,11 +60,17 @@
 
                                             <td>
                                                 <form action="{{ route('centros.destroy',$centro->id_centro) }}" method="POST">
+                                                    @can('Ver centro')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('centros.show',$centro->id_centro) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    @endcan
+                                                    @can('Editar centros')
                                                     <a class="btn btn-sm btn-success" href="{{ route('centros.edit',$centro->id_centro) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    @endcan
                                                     @csrf
                                                     @method('DELETE')
+                                                    @can('Eliminar centros')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    @endcan
                                                 </form>
                                             </td>
                                         </tr>

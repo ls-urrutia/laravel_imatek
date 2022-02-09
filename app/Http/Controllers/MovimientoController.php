@@ -59,10 +59,10 @@ class MovimientoController extends Controller
     {
         request()->validate(Movimiento::$rules);
 
-
+       
 
         $centro_n = Centro::find($request->get('id_centro'));
-
+        
 
         $movimientos = new Movimiento();
         $movimientos->tipo_movimiento = $request->get('tipo_movimiento');

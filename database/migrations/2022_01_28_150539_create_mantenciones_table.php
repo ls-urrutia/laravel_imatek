@@ -15,8 +15,8 @@ class CreateMantencionesTable extends Migration
     {
         Schema::create('mantenciones', function (Blueprint $table) {
             $table->id('id_mantencion');
-            
-            
+
+
             $table->date('fecha_mantencion');
             $table->string('descripcion');
             $table->string('validacion');

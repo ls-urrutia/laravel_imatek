@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\Centro;
 use App\Models\Mantencione;
+use App\Models\Movimiento;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -30,14 +32,48 @@ class EquipoController extends Controller
     }
 
 
+
+
     public function index()
     {
-        $rawQsl = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
-        
         $equipos = Equipo::paginate();
+/*
+        $date = Carbon::parse('2016-09-17 11:00:00');
+        $now = Carbon::now(); */
 
-        return view('equipo.index', compact('equipos','rawQsl'))
-            ->with('i', (request()->input('page', 1) - 1) * $equipos->perPage());
+        $date = Carbon::parse('2020-01-19');
+        $date2 = '2020-01-14';
+        $diff = $date->diffInDays($date2);
+
+        
+       /*  $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]); */
+
+/*
+        $fechas = DB::table('movimientos')->where([
+            ['id_equipo', '=', '1'],
+        ])->get(); */
+
+        return view('equipo.index', compact('equipos'));
+
+
+
+    }
+
+
+
+    public function mostrar() {
+
+        $equipos = Equipo::paginate(); //1 page with 10 products
+        $users2 = User::all();
+
+
+        $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
+        $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
+
+        $ncamaras = $rawsQs2;
+        $nlamparas = $rawsQs1;
+
+        return view('dashboard',compact('ncamaras','nlamparas','users2'));
     }
 
     /**
@@ -103,7 +139,6 @@ class EquipoController extends Controller
                     'tipo_documento' => $tipo_documento,
                     'n_documento' =>  $n_documento,
                     'id_centro' => 'Oficina'
-
                     ];
                 DB::table('movimientos')->insert($data2);
           }
@@ -131,9 +166,75 @@ class EquipoController extends Controller
        /*  $equipos2= DB::select("SELECT * FROM mantenciones INNER JOIN equipos ON mantenciones.$id=equipos.$id"); */
        /*  $prop =  Equipo::findOrFail($id)->mantenciones(); */
         /* $contar = Equipo::withCount(['mantenciones'])->get(); */
-        $fechas = DB::select('SELECT fecha_movimiento from movimientos where id_equipo={$id}');
+        
+        $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento, id_centro FROM movimientos where id_equipo=?',[$id]);
+       
+        
+            $bool = 0;
+            $fechaarray = [];
+            /*ordena el array */
+                foreach ($fechas as $fech) {
+                    if($fech->tipo_movimiento == "Compra" ){
+                       
+                        
+                        
+                    }elseif($fech->tipo_movimiento == "Salida" && $bool == 0 ){
+                        array_push($fechaarray,$fech->fecha_movimiento);
+                        
+                        $bool=1;
+                    }
+                    elseif($fech->tipo_movimiento == "Entrada" && $bool == 1 ){
+                        
+                        array_push($fechaarray,$fech->fecha_movimiento);
+                        $bool=0;
+                    }
+                    else{
+                        "error";
+                    }
+                   
+                }
+                /**agrega la fecha de hoy en caso de estar afuera*/
+                $dateh = Carbon::now();
+                $dateh = $dateh->format('Y-m-d');
+                
+                if(count($fechaarray)%2!=0){
+                    array_push($fechaarray,$dateh);
+                }
 
-        return view('equipo.show', compact('equipo','$fechas'));
+
+                /*diferencia entre fechas*/
+                $i= 0;
+                $resultado = 0;
+                $suma= 0;
+                $entrada = null;
+                foreach($fechaarray as $fechan){
+                    $salida= $fechan;
+                    $i+=1;
+                    if($i%2==0)
+                    {
+                        $suma = \Carbon\Carbon::parse($entrada)->diffInDays( \Carbon\Carbon::parse($salida));
+                        $resultado  += $suma;
+                    }
+                    $entrada = $fechan;
+
+                }
+ 
+    
+                /*conversión diferencia de fechas en meses y dias*/   
+                $resultado= $resultado/30;
+                $dias = $resultado%30;
+                intval($resultado);
+
+
+                /*Muestra las mantenciones de cada equipo */
+                $equipos = Mantencione::paginate();
+                $mantencionequipo = DB::select('SELECT * FROM mantenciones where id_equipo=?',[$id]);
+
+
+
+                                                
+
+        return view('equipo.show', compact('equipo','fechaarray','resultado','dias','mantencionequipo'));
     }
 
     /**

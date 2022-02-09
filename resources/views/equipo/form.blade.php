@@ -2,7 +2,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-
+@php
+use Illuminate\Support\Carbon;
+$dateho = Carbon::now();
+$dateho = $dateho->format('Y-m-d');
+@endphp
 
 <div class="box box-info padding-1">
     <div class="box-body">
@@ -43,7 +47,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('fecha_ingreso') }}
-            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra']) }}
+            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra','value'=> $dateho]) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -68,7 +72,7 @@
                             <tbody>
                 <tr>
                 <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a  class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
+                <td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
                 </tr>
                                 </tr>
                             </tbody>
@@ -93,7 +97,7 @@
            {
                var tr='<tr>'+
                '<td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>'+
-               '<td><a  class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
+               '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
                '</tr>';
                $('tbody').append(tr);
            };

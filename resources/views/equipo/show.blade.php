@@ -9,21 +9,24 @@
 @section('content')
 @php
 use Illuminate\Support\Carbon;
+$dateh = Carbon::now();
+$dateh = $dateh->format('Y-m-d');
 @endphp
+
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Show Equipo</span>
+                        <span class="card-title">Especificaciones Equipo</span>
                     </div>
                     <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('equipos.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('equipos.index') }}"> Volver</a>
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body tab table-responsive">
 
                     <div class="form-group">
                         <strong>Id Equipo:</strong>
@@ -70,8 +73,62 @@ use Illuminate\Support\Carbon;
                         <strong>Id Centro:</strong>
                         {{ $equipo->id_centro }}
                     </div>
-                    {{$fechas
-                    }}
+
+                    <table class="tab">
+                        <tbody>
+                            <tr>
+                                <td class="tex">Codigo Equipo</td>
+                                <td>{{ $equipo->cod_equipo }}</td>
+                            
+                            </tr>
+                         
+                            <tr>
+                                <td class="tex">Numero documento</td>
+                                <td> {{ $equipo->n_documento }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Equipo:</td>
+                                <td> {{ $equipo->tipo_equipo }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Modelo:</td>
+                                <td> {{ $equipo->modelo }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Ciclos:</td>
+                                <td>{{ $equipo->ciclos }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Descripciòn:</td>
+                                <td> {{ $equipo->descripcion }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Estado Equipo:</td>
+                                <td>{{ $equipo->estado }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Fecha Compra:</td>
+                                <td>{{ $equipo->fecha_ingreso }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Proveedor:</td>
+                                <td>{{ $equipo->proveedor }}</td>
+                            </tr> 
+                            <tr>
+                                <td class="tex">Centro:</td>
+                                <td>{{ $equipo->id_centro }}</td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                    
+
+                   {{--  @foreach($fechaarray as $data_fecha)
+                    {{$data_fecha}}
+                    @endforeach --}}
+                    <br>
+                   
+
+                    El equipo Ha estado operativo aproximadamente un total de:{{intval($resultado)}} Meses y {{$dias}} Dias
                      {{-- <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
@@ -115,15 +172,109 @@ use Illuminate\Support\Carbon;
                         </table>
                     </div>  --}}
 
+               
+                {{-- @foreach($fechas as $data_fecha)
+                {{$data_fecha->fecha_movimiento}}
+                @endforeach --}}
+
+            
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+<h2>Mantenciones realizadas</h2>
+<br>
+<br>
+@php
+$i = 1;
+@endphp
+@foreach ($mantencionequipo as $em)
+
+   <h3> Mantención {{$i}}</h3>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body ordenar" >
+
+                        <table class="tab">
+                            <tbody>
+                                <tr>
+                                    <td class="tex">Fecha Mantención:</td>
+                                    <td>{{$em->fecha_mantencion}}</td>
+                                
+                                </tr>
+                             
+                                <tr>
+                                    <td class="tex">Descripción:</td>
+                                    <td>{{ $em->descripcion }}</td>
+                                </tr> 
+                                <tr>
+                                    <td class="tex">Validación:</td>
+                                    <td>{{ $em->validacion}}</td>
+                                </tr> 
+                                <tr>
+                                    <td class="tex">Mantencíon realizada por:</td>
+                                    <td>{{ $em->id_usuario }}</td>
+                                </tr> 
+                                <tr>
+                                    <td class="tex">Codigo equipo</td>
+                                    <td>{{ $em->id_equipo }}</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+
+                        {{-- <div class="form-group">
+                            <strong >Fecha Mantención:</strong>
+                            {{ $em->fecha_mantencion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Descripción:</strong>
+                            {{ $em->descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Validación:</strong>
+                            {{ $em->validacion}}
+                        </div>
+                        <div class="form-group">
+                            <strong>Mantencíon realizada por:</strong>
+                            {{ $em->id_usuario }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Codigo equipo</strong>
+                            {{ $em->id_equipo }}
+                        </div> --}}
+                    </div> 
+                </div>           
+            </div>
+        </div>    
+            
+    </section>
+    @php
+    $i += 1;
+@endphp
+    
+@endforeach
+
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+         .ordenar{
+              
+         }
+         .tab{
+             
+            
+         }
+         .tex{
+            padding: 5px;
+         }
+
+    </style>
 @stop
 
 
