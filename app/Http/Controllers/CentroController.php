@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Centro;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\CentrosExport;
 
 /**
  * Class CentroController
@@ -23,6 +26,7 @@ class CentroController extends Controller
     {
         $this->middleware('auth');
     }
+
 
 
     public function index()
@@ -124,4 +128,6 @@ class CentroController extends Controller
         return redirect()->route('centros.index')
             ->with('success', 'Centro deleted successfully');
     }
+
+
 }

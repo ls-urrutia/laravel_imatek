@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -22,6 +23,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
 
 
 
@@ -76,8 +78,6 @@ class UserController extends Controller
         $roles = Role::all();
         return view('users.edit', compact('user', 'roles'));
     }
-
-
 
 
     /**
