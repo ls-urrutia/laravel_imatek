@@ -20,7 +20,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('movimientos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear nuevo movimiento') }}
                                 </a>
                               </div>
                         </div>
@@ -33,7 +33,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table id="movimientos" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
 										<th>Id Movimiento</th>
@@ -77,8 +77,39 @@
                         </div>
                     </div>
                 </div>
-                {!! $movimientos->links() !!}
+
             </div>
         </div>
     </div>
 @endsection
+
+
+
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#movimientos').DataTable({
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "Ningun registro encontrado",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "Sin registros",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            'search':'Buscar:'
+        }
+
+        });
+    } );
+    </script>
+
+
+@stop

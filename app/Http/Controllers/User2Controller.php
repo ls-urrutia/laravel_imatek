@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\User2;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class User2Controller extends Controller
 {
@@ -29,7 +30,6 @@ class User2Controller extends Controller
         return view('user2.index')->with('users2',$users2);
 
     }
-
 
 
 

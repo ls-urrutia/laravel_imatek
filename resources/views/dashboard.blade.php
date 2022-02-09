@@ -30,7 +30,7 @@
                     <span class="info-box-text">En mantención</span>
                     <span class="info-box-number">
 
-                      <small>%</small>
+                      <small>{{$nlamparasrep}}</small>
                     </span>
                   </div>
                 <!-- /.info-box-content -->
@@ -48,7 +48,7 @@
                 </div>
                 <div class="info-box-content">
                     <span class="info-box-text">En mantención</span>
-                    <span class="info-box-number">41,410</span>
+                    <span class="info-box-number"{{$ncamarasrep}}</span>
                   </div>
                 <!-- /.info-box-content -->
               </div>
@@ -115,11 +115,14 @@
                                         <td>{{ $usuario->email }}</td>
                                         <td>{{ $usuario->estado}}</td>
 
-
                                         <td>
 
                                       <a href="/users2/{{$usuario->id}}/ubicacion" class="btn btn-info">Editar</a>
+<<<<<<< HEAD
                                      {{--  <a class="btn btn-sm btn-success" href="{{ route('',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a> --}}
+=======
+                                      <a class="btn btn-sm btn-success" href="{{ route('users2.index',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
+>>>>>>> luis01
                                         </td>
                                     </tr>
                                 @endforeach

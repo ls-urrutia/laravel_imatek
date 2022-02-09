@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -32,6 +34,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -88,17 +91,98 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+
+
+
+
+}
+<style>
+table th {
+    background-color: #337ab7 !important;
+    color: white;
+}
+
+/*para alinear los botones y cuadro de busqueda*/
+.dt-buttons {
+
+    margin:0 auto;
+}
+
+.paginate_button {
+    color:#337ab7;
+    margin: 1%;
+    margin:0 auto;
+
+
+}
+
+
+</style>
+
 @stop
 
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
 
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
+
+
+
+
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#centros').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast":"Último",
+                        "sNext":"Siguiente",
+                        "sPrevious": "Anterior"
+                     },
+                     "sProcessing":"Procesando...",
+                },
+            //para usar los botones
+            responsive: "true",
+            dom: 'Bfrtilp',
+            buttons:[
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fas fa-file-excel"></i> ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fas fa-file-pdf"></i> ',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend:    'print',
+                    text:      '<i class="fa fa-print"></i> ',
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-info'
+                },
+            ]
         });
-    } );
+    });
     </script>
+
 @stop

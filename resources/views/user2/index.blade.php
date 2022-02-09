@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Creación</h1>
+    <h1>Módulo Usuarios</h1>
 @stop
 
 @section('content')
@@ -60,7 +60,7 @@
 
                          <div class="float-right">
                             <a href="{{ route('users2.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                              {{ __('Create New') }}
+                              {{ __('Crear nuevo usuario') }}
                             </a>
                           </div>
                     </div>
@@ -70,7 +70,6 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="users2" class="table table-striped table-hover">

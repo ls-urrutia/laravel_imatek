@@ -74,6 +74,7 @@ $dateh = $dateh->format('Y-m-d');
                         {{ $equipo->id_centro }}
                     </div>
 
+<<<<<<< HEAD
                     <table class="tab">
                         <tbody>
                             <tr>
@@ -176,6 +177,10 @@ $dateh = $dateh->format('Y-m-d');
                 {{-- @foreach($fechas as $data_fecha)
                 {{$data_fecha->fecha_movimiento}}
                 @endforeach --}}
+=======
+                </div>
+
+>>>>>>> luis01
 
             
 
