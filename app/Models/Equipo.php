@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 /**
  * Class Equipo
  *
@@ -32,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  class Equipo extends Model
 {
 
+
+    use Loggable;
 
     static $rules = [
 		'cod_equipo' => 'required',

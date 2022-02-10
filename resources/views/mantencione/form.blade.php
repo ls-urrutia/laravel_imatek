@@ -12,11 +12,6 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('validacion') }}
-            {{ Form::text('validacion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('validacion') ? ' is-invalid' : ''), 'placeholder' => 'Validacion']) }}
-            {!! $errors->first('validacion', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
             {{ Form::label('estado_mantencion') }}
             {{ Form::text('estado_mantencion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('estado_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Estado Mantención']) }}
             {!! $errors->first('estado_mantencion', '<div class="invalid-feedback">:message</p>') !!}

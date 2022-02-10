@@ -31,7 +31,7 @@
                         <div class="table-responsive">
                             <table id="equipos" class="table table-striped table-hover">
                                 <thead class="thead">
-                                    
+
                                     <tr>
 
 										<th>Id Equipo</th>
@@ -40,20 +40,18 @@
 										<th>N° Documento</th>
 										<th>Tipo Equipo</th>
 										<th>Modelo</th>
-										<th>Ciclos</th>
 										<th>Descripcion</th>
 										<th>Estado</th>
 										<th>Fecha Compra</th>
 										<th>Proveedor</th>
 										<th>Id Centro</th>
-                                        <th>Tiempo de uso</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($equipos as $equipo)
-                                        
+
                                         <tr>
 
 											<td>{{ $equipo->id_equipo }}</td>
@@ -62,62 +60,12 @@
 											<td>{{ $equipo->n_documento }}</td>
 											<td>{{ $equipo->tipo_equipo }}</td>
 											<td>{{ $equipo->modelo }}</td>
-											<td>{{ $equipo->ciclos}}</td>
 											<td>{{ $equipo->descripcion }}</td>
 											<td>{{ $equipo->estado }}</td>
                                             <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
-                                            </td>
-                                            <td>
-                                                {{-- {{$resultado}} --}}
-                                              
-                                               {{--  @php $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento FROM movimientos where id_equipo=?',[$equipo->id_equipo]);
-                                                $bool = 0;
-                                                $fechaarray = [];
-                                                  foreach ($fechas as $fech) {
-                                                     
-                                                      
-                                                      if($fech->tipo_movimiento == "Salida" && $bool == 0 && $centro!='Oficina'){
-                                                          
-                                                          array_push($fechaarray,$fech->fecha_movimiento);
-                                                          $bool=1;
-                                                      }
-                                                      if($fech->tipo_movimiento == "Entrada" && $bool == 1 && $centro == 'Oficina'){
-                                                          
-                                                          array_push($fechaarray,$fech->fecha_movimiento);
-                                                          $bool=0;
-                                                      }
-                                                      
-
-                                                      
-                                                      
-                                                      
-                                                  }
-                                                       
-                                                
-                                                @endphp
-                                               
-                                
-                                                @foreach($fechaarray as $data_fecha)
-                                                 
-                                                {{$data_fecha}}
-                                                @endforeach 
- --}}
-
-                                               
-
-
-              {{--                               @php
-                                                var_dump($fechas['fecha_movimiento'] );
-                                            @endphp
- --}}
-
-{{--                                             @foreach($fechas->fecha_movimiento as $fecha)
-                                                <a href="#" class="category">#{{ $tag->name }}</a>
-                                            @endforeach
- --}}
                                             </td>
 
                                             <td>
@@ -128,7 +76,7 @@
                                                     @can('Editar equipos')
                                                     <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @endcan
-                                                
+
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('Eliminar equipos')
@@ -137,7 +85,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                       
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -163,28 +111,117 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
+
+<style>
+table th {
+    background-color: #337ab7 !important;
+    color: white;
+}
+
+.dt-buttons {
+
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.paginate_button {
+
+    color:aliceblue;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
+
+
+}
+
+.paginate_button.current {
+
+    color:aliceblue;
+    padding: 1%;
+    text-shadow: 0 0 2px #fff;
+    text-align: justify;
+    font-weight: 900;
+
+
+}
+
+.dataTables_info {
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.dataTables_length {
+    font-weight: normal;
+}
+
+
+
+</style>
+@stop
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
 
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
+
+
+
+
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#equipos').DataTable({
             "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
-            "language": {
-            "lengthMenu": "Mostrar _MENU_ registros por pagina",
-            "zeroRecords": "Ningun registro encontrado",
-            "info": "Mostrando pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "Sin registros",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            'search':'Buscar:'
-        }
-
+            language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast":"Último",
+                        "sNext":"Siguiente",
+                        "sPrevious": "Anterior"
+                     },
+                     "sProcessing":"Procesando...",
+                },
+            //para usar los botones
+            responsive: "true",
+            dom: 'Bfrtilp',
+            buttons:[
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fas fa-file-excel"></i> ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fas fa-file-pdf"></i> ',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend:    'print',
+                    text:      '<i class="fa fa-print"></i> ',
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-info'
+                },
+            ]
         });
-    } );
+    });
     </script>
-
 
 @stop

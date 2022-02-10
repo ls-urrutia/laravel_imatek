@@ -46,7 +46,7 @@ class EquipoController extends Controller
         $date2 = '2020-01-14';
         $diff = $date->diffInDays($date2);
 
-        
+
        /*  $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]); */
 
 /*
@@ -115,7 +115,6 @@ class EquipoController extends Controller
         $tipo_documento = $request->get('tipo_documento');
         $n_documento= $request->get('n_documento');
         $modelo = $request->get('modelo');
-        $ciclos = $request->get('ciclos');
         $descripcion= $request->get('descripcion');
         $estado = $request->get('estado');
         $fecha_ingreso = $request->get('fecha_ingreso');
@@ -128,9 +127,8 @@ class EquipoController extends Controller
                 'tipo_documento'=> $tipo_documento,
                 'n_documento' =>  $n_documento,
                 'modelo'  =>  $modelo,
-                'ciclos' =>   $ciclos,
                 'descripcion' =>  $descripcion,
-                'estado' =>    $estado ,
+                'estado' =>    'Operativa' ,
                 'fecha_ingreso' =>    $fecha_ingreso ,
                 'proveedor' =>  $proveedor,
                 );
@@ -165,7 +163,7 @@ class EquipoController extends Controller
     public function show($id)
     {
         $equipo = Equipo::find($id);
-    
+
         /* $records['mantenciones'] = DB::table('equipos')
                          ->join('mantenciones', 'mantenciones.id_equipo', '=', 'equipos.id_equipo')
                          ->where('equipos.id_equipo', $equipo->id)
@@ -173,37 +171,37 @@ class EquipoController extends Controller
        /*  $equipos2= DB::select("SELECT * FROM mantenciones INNER JOIN equipos ON mantenciones.$id=equipos.$id"); */
        /*  $prop =  Equipo::findOrFail($id)->mantenciones(); */
         /* $contar = Equipo::withCount(['mantenciones'])->get(); */
-        
+
         $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento, id_centro FROM movimientos where id_equipo=?',[$id]);
-       
-        
+
+
             $bool = 0;
             $fechaarray = [];
             /*ordena el array */
                 foreach ($fechas as $fech) {
                     if($fech->tipo_movimiento == "Compra" ){
-                       
-                        
-                        
+
+
+
                     }elseif($fech->tipo_movimiento == "Salida" && $bool == 0 ){
                         array_push($fechaarray,$fech->fecha_movimiento);
-                        
+
                         $bool=1;
                     }
                     elseif($fech->tipo_movimiento == "Entrada" && $bool == 1 ){
-                        
+
                         array_push($fechaarray,$fech->fecha_movimiento);
                         $bool=0;
                     }
                     else{
                         "error";
                     }
-                   
+
                 }
                 /**agrega la fecha de hoy en caso de estar afuera*/
                 $dateh = Carbon::now();
                 $dateh = $dateh->format('Y-m-d');
-                
+
                 if(count($fechaarray)%2!=0){
                     array_push($fechaarray,$dateh);
                 }
@@ -225,9 +223,9 @@ class EquipoController extends Controller
                     $entrada = $fechan;
 
                 }
- 
-    
-                /*conversión diferencia de fechas en meses y dias*/   
+
+
+                /*conversión diferencia de fechas en meses y dias*/
                 $resultado= $resultado/30;
                 $dias = $resultado%30;
                 intval($resultado);
@@ -239,7 +237,7 @@ class EquipoController extends Controller
 
 
 
-                                                
+
 
         return view('equipo.show', compact('equipo','fechaarray','resultado','dias','mantencionequipo'));
     }

@@ -7,8 +7,6 @@
 @stop
 
 @section('content')
-
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -64,15 +62,15 @@
                                             <td>
                                                 <form action="{{ route('centros.destroy',$centro->id_centro) }}" method="POST">
                                                     @can('Ver centro')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('centros.show',$centro->id_centro) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('centros.show',$centro->id_centro) }}"><i class="fa fa-fw fa-eye"></i></a>
                                                     @endcan
                                                     @can('Editar centros')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('centros.edit',$centro->id_centro) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('centros.edit',$centro->id_centro) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @endcan
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('Eliminar centros')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                     @endcan
                                                 </form>
                                             </td>
@@ -93,28 +91,49 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 
 
-
-
-}
 <style>
 table th {
     background-color: #337ab7 !important;
     color: white;
 }
 
-/*para alinear los botones y cuadro de busqueda*/
 .dt-buttons {
 
-    margin:0 auto;
+    padding-top:1%;
+    padding-bottom:1%;
+
 }
 
 .paginate_button {
-    color:#337ab7;
-    margin: 1%;
-    margin:0 auto;
+
+    color:aliceblue;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
 
 
 }
+
+.paginate_button.current {
+
+    color:aliceblue;
+    padding: 1%;
+    text-shadow: 0 0 2px #fff;
+    text-align: justify;
+    font-weight: 900;
+
+
+}
+
+.dataTables_info {
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.dataTables_length {
+    font-weight: normal;
+}
+
 
 
 </style>

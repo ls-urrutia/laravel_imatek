@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 /**
  * Class Mantencione
  *
@@ -27,11 +27,12 @@ use Illuminate\Database\Eloquent\Model;
 class Mantencione extends Model
 {
 
+    use Loggable;
+
     static $rules = [
-		
+
 		'fecha_mantencion' => 'required',
 		'descripcion' => 'required',
-		'validacion' => 'required',
         'estado_mantencion' => 'required',
 		'id_equipo' => 'required',
     ];
@@ -45,7 +46,7 @@ class Mantencione extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_mantencion','fecha_mantencion','descripcion','validacion','estado_mantencion','imagen1','imagen2','imagen3','id_usuario','id_equipo'];
+    protected $fillable = ['id_mantencion','fecha_mantencion','descripcion','estado_mantencion','imagen1','imagen2','imagen3','id_usuario','id_equipo'];
 
 
     /**

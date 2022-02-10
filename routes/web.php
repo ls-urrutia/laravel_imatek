@@ -10,6 +10,8 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\HomeController;
+
 
 
 
@@ -65,8 +67,6 @@ Route::get('dashboard',[EquipoController::class,'mostrar']);
 Route::get('add-to-log',[HomeController::class,'add-to-log']);
 Route::get('logActivity',[HomeController::class,'logActivity']);
 /* Route::get('logActivity', 'HomeController@logActivity'); */
-
-
 
 
 

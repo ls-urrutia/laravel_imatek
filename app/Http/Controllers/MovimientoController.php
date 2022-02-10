@@ -48,11 +48,7 @@ class MovimientoController extends Controller
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
 
-        $ultimomov =
-        DB::select("SELECT tipo_movimiento
-        FROM `prueba`.`movimientos`where id_equipo= 8 ORDER BY created_at DESC LIMIT 1;");
-
-        return view('movimiento.create', compact('movimiento','equipos','centros','ultimomov'));
+        return view('movimiento.create', compact('movimiento','equipos','centros'));
     }
 
     /**
@@ -65,10 +61,10 @@ class MovimientoController extends Controller
     {
         request()->validate(Movimiento::$rules);
 
-       
+
 
         $centro_n = Centro::find($request->get('id_centro'));
-        
+
 
         $movimientos = new Movimiento();
         $movimientos->tipo_movimiento = $request->get('tipo_movimiento');
@@ -81,9 +77,7 @@ class MovimientoController extends Controller
         $tipomov = $request->get('tipo_movimiento');
 
         $ultimomov = DB::select("SELECT tipo_movimiento
-        FROM `prueba`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
-
-
+        FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
 
 /*
         DB::table('`prueba`.`movimientos`where id_equipo = 8')
@@ -98,6 +92,13 @@ class MovimientoController extends Controller
 
         } else {
             $movimientos->save();
+        }
+
+        if($request->get('tipo_movimiento') == 'Entrada') {
+
+            $equipo = Equipo::find($request->get('id_equipo'));
+            $equipo->estado = 'En revisión';
+            $equipo->save();
         }
 
 

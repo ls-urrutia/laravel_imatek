@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '468823f41d5d2b3dfebf754807e1b0e8f70dad8b',
+        'reference' => '9481bc946f09f7bb61277d3ba563679cf3a5b0e2',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -228,6 +228,15 @@
             'aliases' => array(),
             'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
             'dev_requirement' => true,
+        ),
+        'haruncpi/laravel-user-activity' => array(
+            'pretty_version' => 'v1.0.5',
+            'version' => '1.0.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../haruncpi/laravel-user-activity',
+            'aliases' => array(),
+            'reference' => '148e034aa92e02886da17c7fd6173ba960cac1af',
+            'dev_requirement' => false,
         ),
         'ibex/crud-generator' => array(
             'pretty_version' => 'v1.3',
@@ -490,7 +499,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '468823f41d5d2b3dfebf754807e1b0e8f70dad8b',
+            'reference' => '9481bc946f09f7bb61277d3ba563679cf3a5b0e2',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

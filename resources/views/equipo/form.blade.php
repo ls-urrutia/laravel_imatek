@@ -11,16 +11,16 @@ $dateho = $dateho->format('Y-m-d');
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('tipo_documento') }}
-            {{ Form::text('tipo_documento', $equipo->tipo_documento, ['class' => 'form-control' . ($errors->has('tipo_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Documento']) }}
-            {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
+           {{ Form::label('tipo_documento') }}
+           {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
+           {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('n_documento') }}
             {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Factura']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-                <div class="form-group">
+        <div class="form-group">
            {{ Form::label('tipo_equipo') }}
            {!!Form::select('tipo_equipo',['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
         </div>
@@ -30,20 +30,9 @@ $dateho = $dateho->format('Y-m-d');
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('ciclos') }}
-            {{ Form::text('ciclos', $equipo->ciclos, ['class' => 'form-control' . ($errors->has('ciclos') ? ' is-invalid' : ''), 'placeholder' => 'ciclos']) }}
-            {!! $errors->first('ciclos', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
             {{ Form::label('descripcion') }}
             {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-
-        <div class="form-group">
-            {{ Form::label('estado') }}
-            {!! Form::select('estado', [null => 'Seleccionar estado'] + ['Operativa' => 'Operativa','Dado de baja'=>'Dado de baja','En mantenimiento'=>'En mantenimiento'], $equipo->estado, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'estado', 'id'=>'estado', 'onchange'=>'verificar(this)']) !!}
-            {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('fecha_ingreso') }}
@@ -66,7 +55,7 @@ $dateho = $dateho->format('Y-m-d');
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th><a class="addRow"> <i class="bi bi-plus-circle"></i></a></th>
+                                    <th><a class="addRow"> <i class="bi bi-plus-circle"></i></a> Agregar Equipo Adicional</th>
                                 </tr>
                             </thead>
                             <tbody>
