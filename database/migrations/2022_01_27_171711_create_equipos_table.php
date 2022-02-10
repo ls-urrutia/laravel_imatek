@@ -22,7 +22,7 @@ class CreateEquiposTable extends Migration
             $table->string('tipo_equipo');
             $table->string('modelo');
             $table->string('descripcion');
-            $table->string('estado');
+            $table->string('estado')->default('Operativa');
             $table->date('fecha_ingreso');
             $table->string('proveedor');
             $table->bigInteger('id_centro')->unsigned()->default('1');

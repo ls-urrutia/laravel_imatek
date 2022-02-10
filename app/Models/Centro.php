@@ -24,6 +24,8 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 class Centro extends Model
 {
 
+
+
     use Loggable;
 
 

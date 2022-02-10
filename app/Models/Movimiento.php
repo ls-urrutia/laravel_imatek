@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
 
 /**
  * Class Movimiento
@@ -22,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Movimiento extends Model
 {
+
+    use Loggable;
 
     static $rules = [
         'id_centro' => 'required',

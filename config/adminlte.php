@@ -300,7 +300,7 @@ return [
             'can'=> 'Crear usuarios',
             'can'=>'Editar usuarios',
             'can'=>'Eliminar usuarios'
-            
+
 
 
 
@@ -323,11 +323,11 @@ return [
                             'icon'    => 'none',
                         ],
                         ],
-                    'can'=> 'Ver lista de equipos',   
-                    'can'=> 'Ver equipo', 
-                    'can'=> 'Crear equipos', 
-                    'can'=> 'Editar equipos', 
-                    'can'=> 'Eliminar equipos', 
+                    'can'=> 'Ver lista de equipos',
+                    'can'=> 'Ver equipo',
+                    'can'=> 'Crear equipos',
+                    'can'=> 'Editar equipos',
+                    'can'=> 'Eliminar equipos',
 
             ],
 
@@ -347,15 +347,15 @@ return [
                                 'url'     => '/mantenciones/create',
                                 'icon'    => 'none',
                             ],
-                            
+
 
 
                         ],
-                    'can'=> 'Ver lista de mantenciones',   
-                    'can'=> 'Ver mantención', 
-                    'can'=> 'Crear mantención', 
-                    'can'=> 'Editar mantención', 
-                    'can'=> 'Eliminar mantención',      
+                    'can'=> 'Ver lista de mantenciones',
+                    'can'=> 'Ver mantención',
+                    'can'=> 'Crear mantención',
+                    'can'=> 'Editar mantención',
+                    'can'=> 'Eliminar mantención',
 
 
 
@@ -383,11 +383,11 @@ return [
        ],
 
     ],
-    'can'=> 'Ver lista de centros',   
-    'can'=> 'Ver centro', 
-    'can'=> 'Crear centros', 
-    'can'=> 'Editar centros', 
-    'can'=> 'Eliminar centros', 
+    'can'=> 'Ver lista de centros',
+    'can'=> 'Ver centro',
+    'can'=> 'Crear centros',
+    'can'=> 'Editar centros',
+    'can'=> 'Eliminar centros',
 ],
 [
     'text'    => 'Gestión Clientes',
@@ -410,12 +410,19 @@ return [
        ],
 
     ],
-    'can'=> 'Ver lista de clientes',   
-    'can'=> 'Ver cliente', 
-    'can'=> 'Crear cliente', 
-    'can'=> 'Editar cliente', 
-    'can'=> 'Eliminar cliente', 
+    'can'=> 'Ver lista de clientes',
+    'can'=> 'Ver cliente',
+    'can'=> 'Crear cliente',
+    'can'=> 'Editar cliente',
+    'can'=> 'Eliminar cliente',
 ],
+        [
+            'text'    => 'Registro de actividad',
+            'icon'    => 'none',
+            'url'     => '/admin/user-activity',
+
+        ],
+
 
         ['header' => 'Configuración de la cuenta'],
         [

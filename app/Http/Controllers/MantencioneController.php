@@ -57,12 +57,11 @@ class MantencioneController extends Controller
     public function store(Request $request)
     {
         request()->validate(Mantencione::$rules);
-        
+
 
         $mantenciones = new Mantencione();
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
         $mantenciones->descripcion = $request->get('descripcion');
-        $mantenciones->validacion= $request->get('validacion');
         $mantenciones->estado_mantencion= $request->get('estado_mantencion');
         if($request->hasFile('imagen1')){
             $image1= $request->file('imagen1');
@@ -96,11 +95,11 @@ class MantencioneController extends Controller
         $equipo = Equipo::find($request->get('id_equipo'));
         $equipo->estado = $request->get('estado_mantencion');
         $equipo->save();
-        
+
 
 
         return redirect()->route('mantenciones.index')
-            ->with('success', 'Mantencione created successfully.');
+            ->with('success', 'Mantención creada exitosamente.');
     }
 
     /**
@@ -146,7 +145,7 @@ class MantencioneController extends Controller
         $mantenciones->descripcion = $request->get('descripcion');
         $mantenciones->validacion= $request->get('validacion');
         $mantenciones->estado_mantencion= $request->get('estado_mantencion');
-        
+
         if($request->hasFile('imagen1')){
             $destino = 'imagenes/fmantenciones/'.$mantenciones->imagen1;
             if(File::exists($destino)){
@@ -214,6 +213,6 @@ class MantencioneController extends Controller
        /*  $mantencione = Mantencione::find($id)->delete();
  */
         return redirect()->route('mantenciones.index')
-            ->with('success', 'Mantencione deleted successfully');
+            ->with('success', 'Mantención eliminada exitosamente');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Centro;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -30,8 +32,26 @@ class RoleSeeder extends Seeder
 
         ])->assignRole('Administrador');
 
-        
-       
+
+        Cliente::create([
+            'id_cliente' => '1',
+            'nombre_empresa' => 'Imatek',
+            'rut_empresa' => '7777777-7',
+            'descripcion' => 'Imatek'
+        ]);
+
+
+        Centro::create([
+            'id_centro' => '1',
+            'nombre_centro' => 'Oficina',
+            'telefono_empresa' => '+3234232',
+            'descripcion' => 'centro oficina de Imatek',
+            'id_cliente' => 1
+        ]);
+
+
+
+
 
         //crear permisos
         Permission::create(['name'=>'Ver dashboard'])->syncRoles([$role1, $role2]);
@@ -64,7 +84,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'Crear centros'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Editar centros'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Eliminar centros'])->syncRoles([$role1]);
-        
+
         Permission::create(['name'=>'Ver lista de clientes'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Ver cliente'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Crear cliente'])->syncRoles([$role1, $role2]);
@@ -72,15 +92,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'Eliminar cliente'])->syncRoles([$role1]);
 
         Permission::create(['name'=>'Ver usuario propio'])->syncRoles([$role1, $role2]);
-        
+
 
 
         Permission::create(['name'=>'Crear articulos'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Editar articulos'])->syncRoles([$role1]);
-        
-        
-       
-        
+
+
+
+
 
     }
 }

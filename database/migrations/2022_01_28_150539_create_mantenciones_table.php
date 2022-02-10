@@ -19,7 +19,7 @@ class CreateMantencionesTable extends Migration
 
             $table->date('fecha_mantencion');
             $table->string('descripcion');
-            $table->string('validacion');
+            $table->string('validacion')->default('Pendiente');
             $table->string('estado_mantencion');
             $table->string('imagen1')->nullable();
             $table->string('imagen2')->nullable();
