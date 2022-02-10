@@ -9,6 +9,8 @@ use App\Http\Controllers\CentroController;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\HomeController;
+
 
 
 
@@ -58,8 +60,6 @@ Route::resource('roles', roleController::class);
 Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
 Route::get('dashboard',[EquipoController::class,'mostrar']);
-
-
 
 
 

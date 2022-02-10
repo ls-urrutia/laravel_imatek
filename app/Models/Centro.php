@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
+
+
 
 /**
  * Class Centro
@@ -20,6 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Centro extends Model
 {
+
+    use Loggable;
+
 
     static $rules = [
 		'nombre_centro' => 'required',

@@ -21,7 +21,6 @@ class CreateEquiposTable extends Migration
             $table->integer('n_documento');
             $table->string('tipo_equipo');
             $table->string('modelo');
-            $table->integer('ciclos');
             $table->string('descripcion');
             $table->string('estado');
             $table->date('fecha_ingreso');

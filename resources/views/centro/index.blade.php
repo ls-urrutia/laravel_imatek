@@ -109,9 +109,9 @@ table th {
 }
 
 .paginate_button {
-    color:#337ab7;
+    color:#black;
     margin: 1%;
-    margin:0 auto;
+
 
 
 }
