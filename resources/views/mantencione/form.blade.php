@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('estado_mantencion') }}
-            {{ Form::text('estado_mantencion', $mantencione->validacion, ['class' => 'form-control' . ($errors->has('estado_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Estado Mantención']) }}
+           {!!Form::select('estado_mantencion',['Operativo' => 'Operativo', 'Dado de baja' => 'Dado de baja'], null, [ 'class' => 'form-control'. ($errors->has('estado_mantencion') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
             {!! $errors->first('estado_mantencion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 

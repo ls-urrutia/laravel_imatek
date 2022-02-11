@@ -12,7 +12,7 @@ $dateho = $dateho->format('Y-m-d');
     <div class="box-body">
         <div class="form-group">
            {{ Form::label('tipo_documento') }}
-           {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
+           {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
            {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">

@@ -70,12 +70,16 @@ class EquipoController extends Controller
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
-        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Camara')->count();
-        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Lampara')->count();
 
 
-        $ncamaras = $rawsQs1;
-        $nlamparas = $rawsQs2;
+
+        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Camara')->count();
+        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Lampara')->count();
+
+
+
+        $nlamparas = $rawsQs1;
+        $ncamaras = $rawsQs2;
         $ncamarasrep = $rawsQs3;
         $nlamparasrep = $rawsQs4;
 

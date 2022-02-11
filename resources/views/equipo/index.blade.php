@@ -71,16 +71,15 @@
                                             <td>
                                                 <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
                                                     @can('Ver equipo')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i></a>
                                                     @endcan
                                                     @can('Editar equipos')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @endcan
-
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('Eliminar equipos')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                                     @endcan
                                                 </form>
                                             </td>
@@ -106,16 +105,13 @@
 
 
 
-
-
-
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 
 
 <style>
 table th {
-    background-color: #337ab7 !important;
+    background-color:  #4d4d4d !important;
     color: white;
 }
 

@@ -79,6 +79,16 @@ class MovimientoController extends Controller
         $ultimomov = DB::select("SELECT tipo_movimiento
         FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
 
+        $ultimafecha = DB::select("SELECT fecha_movimiento
+        FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;", [$request->get('id_equipo')]);
+
+       $request->validate([
+
+            'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+        ]);
+
+
+
 /*
         DB::table('`prueba`.`movimientos`where id_equipo = 8')
         ->select("tipo_movimiento")
@@ -86,9 +96,10 @@ class MovimientoController extends Controller
         ->orderBy("created_at","desc")
         ->get(); */
 
-         if($ultimomov[0]->tipo_movimiento == $tipomov ){
+         if($ultimomov[0]->tipo_movimiento == $tipomov || $ultimomov[0]->tipo_movimiento == 'Compra' ){
 
-      ///////poner algo
+            return redirect()->route('movimientos.index')
+                ->with('success', 'Ingreso fallido.');
 
         } else {
             $movimientos->save();

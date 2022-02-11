@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">En mantención</span>
+                    <span class="info-box-text">En Revisión</span>
                     <span class="info-box-number">
 
                       <small>{{$nlamparasrep}}</small>
@@ -38,23 +38,28 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
+           <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Cámaras</span>
-                  <span class="info-box-number"> {{$ncamaras}}</span>
+                  <span class="info-box-numbipo_equipoer">
+                    {{$ncamaras}}
+                   </span>
                 </div>
+
                 <div class="info-box-content">
-                    <span class="info-box-text">En mantención</span>
-                    <span class="info-box-number"{{$ncamarasrep}}</span>
+                    <span class="info-box-text">En Revisión</span>
+                    <span class="info-box-number">
+
+                      <small>{{$ncamarasrep}}</small>
+                    </span>
                   </div>
                 <!-- /.info-box-content -->
               </div>
               <!-- /.info-box -->
             </div>
-            <!-- /.col -->
 
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>

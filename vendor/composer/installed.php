@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '9481bc946f09f7bb61277d3ba563679cf3a5b0e2',
+        'reference' => 'cc0ba5cd91388fc7fbfff052f296a87f89f77889',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -499,7 +499,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '9481bc946f09f7bb61277d3ba563679cf3a5b0e2',
+            'reference' => 'cc0ba5cd91388fc7fbfff052f296a87f89f77889',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -554,6 +554,15 @@
             'install_path' => __DIR__ . '/../laravelcollective/html',
             'aliases' => array(),
             'reference' => '78c3cb516ac9e6d3d76cad9191f81d217302dea6',
+            'dev_requirement' => false,
+        ),
+        'laraveles/spanish' => array(
+            'pretty_version' => '1.5.0',
+            'version' => '1.5.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laraveles/spanish',
+            'aliases' => array(),
+            'reference' => '2224e3db7ec399952523b0769a7677de0b6afd8b',
             'dev_requirement' => false,
         ),
         'league/commonmark' => array(

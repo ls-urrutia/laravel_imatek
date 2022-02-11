@@ -416,6 +416,32 @@ return [
     'can'=> 'Editar cliente',
     'can'=> 'Eliminar cliente',
 ],
+
+        [
+            'text'    => 'Gestión Movimientos',
+            'icon'    => 'none',
+            'submenu' => [
+
+
+                [
+                    'text'    => 'Lista Movimientos',
+                    'url'     => '/movimientos',
+                    'icon'    => 'none',
+                ],
+
+
+                [
+                    'text'    => 'Agregar Movimientos',
+                    'url'     => '/movimientos/create',
+                    'icon'    => 'none',
+
+                ],
+
+            ],
+
+        ],
+
+
         [
             'text'    => 'Registro de actividad',
             'icon'    => 'none',

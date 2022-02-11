@@ -16,7 +16,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Movimiento</span>
+                        <span class="card-title">Crear Movimiento</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('movimientos.store') }}"  role="form" enctype="multipart/form-data">
