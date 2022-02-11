@@ -65,7 +65,7 @@ class EquipoController extends Controller
     public function mostrar() {
 
         $equipos = Equipo::paginate(); //1 page with 10 products
-        $users2 = User::all();
+        $users2 = User::all()->except(1);
 
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
@@ -228,6 +228,10 @@ class EquipoController extends Controller
                 /*conversión diferencia de fechas en meses y dias*/
                 $resultado= $resultado/30;
                 $dias = $resultado%30;
+
+
+    
+               $resultado = $resultado*0.95;
                 intval($resultado);
 
 

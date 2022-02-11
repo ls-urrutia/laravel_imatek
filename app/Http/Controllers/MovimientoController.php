@@ -88,7 +88,7 @@ class MovimientoController extends Controller
 
          if($ultimomov[0]->tipo_movimiento == $tipomov ){
 
-      ///////poner algo
+      ///
 
         } else {
             $movimientos->save();

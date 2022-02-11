@@ -9,7 +9,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Equipo') }}
+                                {{ __('Equipos') }}
                             </span>
                             @can('Crear equipos')
 
@@ -34,17 +34,17 @@
 
                                     <tr>
 
-										<th>Id Equipo</th>
+										{{-- <th>Id Equipo</th> --}}
 										<th>Cod Equipo</th>
                                         <th>Tipo Documento</th>
 										<th>N° Documento</th>
 										<th>Tipo Equipo</th>
 										<th>Modelo</th>
-										<th>Descripcion</th>
+										{{-- <th>Descripcion</th> --}}
 										<th>Estado</th>
 										<th>Fecha Compra</th>
 										<th>Proveedor</th>
-										<th>Id Centro</th>
+										<th> Centro</th>
 
                                         <th></th>
                                     </tr>
@@ -54,13 +54,13 @@
 
                                         <tr>
 
-											<td>{{ $equipo->id_equipo }}</td>
+											{{-- <td>{{ $equipo->id_equipo }}</td> --}}
 											<td>{{ $equipo->cod_equipo }}</td>
                                             <td>{{ $equipo->tipo_documento }}</td>
 											<td>{{ $equipo->n_documento }}</td>
 											<td>{{ $equipo->tipo_equipo }}</td>
 											<td>{{ $equipo->modelo }}</td>
-											<td>{{ $equipo->descripcion }}</td>
+											{{-- <td>{{ $equipo->descripcion }}</td> --}}
 											<td>{{ $equipo->estado }}</td>
                                             <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
 											<td>{{ $equipo->proveedor }}</td>
@@ -71,16 +71,16 @@
                                             <td>
                                                 <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
                                                     @can('Ver equipo')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> </a>
                                                     @endcan
                                                     @can('Editar equipos')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> </a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('Eliminar equipos')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                                     @endcan
                                                 </form>
                                             </td>

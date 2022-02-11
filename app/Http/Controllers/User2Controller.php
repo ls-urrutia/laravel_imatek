@@ -23,10 +23,26 @@ class User2Controller extends Controller
         $this->middleware('auth');
     }
 
+
+    public function prueba($id){
+
+    }
+
+    public function ubicacion($id)
+    {
+        //
+        $user2 = User::find($id);
+        return view('user2.ubicacion')->with('user2',$user2);
+    }
+
     public function index()
     {
         //
-        $users2 = User::all();
+        
+
+        $users2 = User::all()->except(1);
+        
+
         return view('user2.index')->with('users2',$users2);
 
     }
@@ -74,6 +90,10 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
+
+
+
     public function show($id)
     {
         //
@@ -92,13 +112,7 @@ class User2Controller extends Controller
         return view('user2.edit')->with('user2',$user2);
     }
 
-    public function ubicacion($id)
-    {
-        //
-        $user2 = User::find($id);
-        return view('user2.ubicacion')->with('user2',$user2);
-    }
-
+    
 
 
 
@@ -141,4 +155,6 @@ class User2Controller extends Controller
         return redirect('/users2')
             ->with('success', 'Usuario eliminado exitosamente');;
     }
+
+  
 }

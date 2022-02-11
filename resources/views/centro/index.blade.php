@@ -45,7 +45,7 @@
 										<th>Descripcion</th>
 										<th>Empresa</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>

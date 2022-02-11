@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    
 
     <section class="content">
         <div class="container-fluid">
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">En mantención</span>
+                    <span class="info-box-text">En revisión</span>
                     <span class="info-box-number">
 
                       <small>{{$nlamparasrep}}</small>
@@ -47,7 +47,7 @@
                   <span class="info-box-number"> {{$ncamaras}}</span>
                 </div>
                 <div class="info-box-content">
-                    <span class="info-box-text">En mantención</span>
+                    <span class="info-box-text">En revisión</span>
                     <span class="info-box-number"{{$ncamarasrep}}</span>
                   </div>
                 <!-- /.info-box-content -->
@@ -103,7 +103,7 @@
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Ubicación</th>
-                                    <th></th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +117,10 @@
 
                                         <td>
 
-                                      <a href="/users2/{{$usuario->id}}/ubicacion" class="btn btn-info">Editar</a>
+                                      <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+
+                                      
+                                      {{-- <a href="{{ route('users2.prueba', $usuario->id) }}" class="btn btn-info">Editar</a> --}}
                                       <a class="btn btn-sm btn-success" href="{{ route('users2.index',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
                                         </td>
                                     </tr>

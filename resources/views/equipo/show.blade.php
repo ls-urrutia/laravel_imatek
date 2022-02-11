@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    
 @stop
 
 @section('content')
@@ -28,7 +28,7 @@ $dateh = $dateh->format('Y-m-d');
 
                 <div class="card-body tab table-responsive">
 
-                    <div class="form-group">
+                   {{--  <div class="form-group">
                         <strong>Id Equipo:</strong>
                         {{ $equipo->id_equipo }}
                     </div>
@@ -72,19 +72,18 @@ $dateh = $dateh->format('Y-m-d');
                     <div class="form-group">
                         <strong>Id Centro:</strong>
                         {{ $equipo->id_centro }}
-                    </div>
+                    </div> --}}
 
-<<<<<<< HEAD
                     <table class="tab">
                         <tbody>
                             <tr>
-                                <td class="tex">Codigo Equipo</td>
+                                <td class="tex">Codigo Equipo:</td>
                                 <td>{{ $equipo->cod_equipo }}</td>
                             
                             </tr>
                          
                             <tr>
-                                <td class="tex">Numero documento</td>
+                                <td class="tex">Numero documento:</td>
                                 <td> {{ $equipo->n_documento }}</td>
                             </tr> 
                             <tr>
@@ -127,9 +126,11 @@ $dateh = $dateh->format('Y-m-d');
                     {{$data_fecha}}
                     @endforeach --}}
                     <br>
+                    
+                    
                    
 
-                    El equipo Ha estado operativo aproximadamente un total de:{{intval($resultado)}} Meses y {{$dias}} Dias
+                    Tiempo de operación: {{intval($resultado)}} Meses y {{intval($dias)}} Dias
                      {{-- <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
@@ -177,10 +178,6 @@ $dateh = $dateh->format('Y-m-d');
                 {{-- @foreach($fechas as $data_fecha)
                 {{$data_fecha->fecha_movimiento}}
                 @endforeach --}}
-=======
-                </div>
-
->>>>>>> luis01
 
             
 
@@ -189,68 +186,85 @@ $dateh = $dateh->format('Y-m-d');
         </div>
     </div>
 </section>
-<h2>Mantenciones realizadas</h2>
-<br>
-<br>
+<h3>Mantenciones realizadas</h3>
+
+
 @php
 $i = 1;
 @endphp
 @foreach ($mantencionequipo as $em)
 
-   <h3> Mantención {{$i}}</h3>
+   
     <section class="content container-fluid">
+        
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body ordenar" >
+                    <div class="float-left">
+                        <br>
+                        
+                        <span class="card-title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMantención{{$i}}</span><br>
+                    </div>
 
-                        <table class="tab">
-                            <tbody>
-                                <tr>
-                                    <td class="tex">Fecha Mantención:</td>
-                                    <td>{{$em->fecha_mantencion}}</td>
-                                
-                                </tr>
-                             
-                                <tr>
-                                    <td class="tex">Descripción:</td>
-                                    <td>{{ $em->descripcion }}</td>
-                                </tr> 
-                                <tr>
-                                    <td class="tex">Validación:</td>
-                                    <td>{{ $em->validacion}}</td>
-                                </tr> 
-                                <tr>
-                                    <td class="tex">Mantencíon realizada por:</td>
-                                    <td>{{ $em->id_usuario }}</td>
-                                </tr> 
-                                <tr>
-                                    <td class="tex">Codigo equipo</td>
-                                    <td>{{ $em->id_equipo }}</td>
-                                </tr> 
-                            </tbody>
-                        </table>
+                  
+                    
+                    
+                    <div class="card-body" >
+                        <div class="row">
+                                <div class="ordenar2">
 
-                        {{-- <div class="form-group">
-                            <strong >Fecha Mantención:</strong>
-                            {{ $em->fecha_mantencion }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Descripción:</strong>
-                            {{ $em->descripcion }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Validación:</strong>
-                            {{ $em->validacion}}
-                        </div>
-                        <div class="form-group">
-                            <strong>Mantencíon realizada por:</strong>
-                            {{ $em->id_usuario }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Codigo equipo</strong>
-                            {{ $em->id_equipo }}
-                        </div> --}}
+                                    <table class="tab row">
+                                        <tbody>
+                                            <tr>
+                                                <td class="tex">Fecha Mantención:</td>
+                                                <td>{{$em->fecha_mantencion}}</td>
+                                                
+                                            
+                                            </tr>
+                                        
+                                            <tr>
+                                                <td class="tex">Descripción:</td>
+                                                <td>{{ $em->descripcion }}</td>
+                                            </tr> 
+                                            <tr>
+                                                <td class="tex">Validación:</td>
+                                                <td>{{ $em->validacion}}</td>
+                                            </tr> 
+                                            <tr>
+                                                <td class="tex">Mantencíon realizada por:</td>
+                                                <td>{{ $em->id_usuario }}</td>
+                                                
+                                            </tr> 
+                                            {{-- <tr>
+                                                <td class="tex">Codigo equipo:</td>
+                                                <td>{{ $em->id_equipo }}</td>
+                                            </tr>  --}}
+                                            <tr>
+                                            
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+
+                                <div class="ordenar2">    
+
+                                    <div id="ordenar">
+                                        @if(isset($em->imagen1))
+                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen1)}}" alt="" width="70px" height="70px" >  
+                                        @endif
+                                        @if(isset($em->imagen2))
+                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen2)}}" alt="" width="70px" height="70px">  
+                                        @endif
+                                        @if(isset($em->imagen3))
+                                        <img src="{{asset('imagenes/fmantenciones/'.$em->imagen3)}}" alt="" width="70px" height="70px">  
+                                        @endif
+                
+                                    </div>
+                                </div>    
+                            </div>        
+
+ 
                     </div> 
                 </div>           
             </div>
@@ -269,6 +283,7 @@ $i = 1;
     <link rel="stylesheet" href="/css/admin_custom.css">
     <style>
          .ordenar{
+            padding: 50px;
               
          }
          .tab{

@@ -45,6 +45,10 @@
                             <tbody>
                                 @foreach ($users2 as $usuario)
                                     <tr>
+                                     
+
+                                  
+                                       
 
                                         <td>{{ $usuario->id}}</td>
                                         <td>{{ $usuario->name}}</td>
@@ -53,13 +57,14 @@
 
                                         <td>
                                             <form action="{{ route('users2.destroy',$usuario->id) }}" method="POST">
-                                                <a class="btn btn-sm btn-primary " href="{{ route('users2.show',$usuario->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <a class="btn btn-sm btn-primary " href="{{ route('users2.show',$usuario->id) }}"><i class="fa fa-fw fa-eye"></i> </a>
+                                                <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                             </form>
                                         </td>
+                                       
                                     </tr>
                                 @endforeach
                             </tbody>

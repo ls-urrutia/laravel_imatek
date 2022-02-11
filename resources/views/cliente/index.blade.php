@@ -42,7 +42,7 @@
                                     <th>Nombre Empresa</th>
                                     <th>Rut Empresa</th>
                                     <th>Descripción</th>
-                                    <th></th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,15 +56,15 @@
                                         <td>
                                             <form action="{{ route('clientes.destroy',$cliente->id_cliente) }}" method="POST">
                                                 @can('Ver cliente')
-                                                <a class="btn btn-sm btn-primary " href="{{ route('clientes.show',$cliente->id_cliente) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                <a class="btn btn-sm btn-primary " href="{{ route('clientes.show',$cliente->id_cliente) }}"><i class="fa fa-fw fa-eye"></i></a>
                                                 @endcan
                                                 @can('Editar cliente')
-                                                <a class="btn btn-sm btn-success" href="{{ route('clientes.edit',$cliente->id_cliente) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <a class="btn btn-sm btn-success" href="{{ route('clientes.edit',$cliente->id_cliente) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                 @endcan
                                                 @csrf
                                                 @method('DELETE')
                                                 @can('Eliminar cliente')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Borrar</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                                 @endcan
                                             </form>
                                         </td>
