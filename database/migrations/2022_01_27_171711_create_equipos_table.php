@@ -16,7 +16,7 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
 
             $table->id('id_equipo');
-            $table->string('cod_equipo');
+            $table->string('cod_equipo')->unique();
             $table->string('tipo_documento');
             $table->integer('n_documento');
             $table->string('tipo_equipo');

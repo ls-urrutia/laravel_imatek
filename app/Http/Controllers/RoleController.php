@@ -57,10 +57,20 @@ class RoleController extends Controller
         $request->validate([
             'name'=> 'required'
         ]);
-        $role = Role::create(['name' => $request->name]);
+        try{
 
-        $role->permissions()->sync($request->permissions);
-        return redirect()->route('roles.edit', $role)->with('info', 'El rol se creo con exito');
+        
+          
+            $role = Role::create(['name' => $request->name]);
+
+            $role->permissions()->sync($request->permissions);
+
+            return redirect('/roles')->with('success', 'El rol se creo con éxito');
+        }catch(\Exception $exception){
+            return redirect('/roles')
+            ->with('error', 'El rol no pudo ser creado');
+        }
+
     }
 
     /**
@@ -98,12 +108,16 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         //
+        try{
         $request->validate([
             'name'=> 'required'
         ]);
         $role->update($request->all());
         $role->permissions()->sync($request->permissions);
-        return redirect()->route('roles.edit', $role)->with('info', 'El rol se modifico con exito');
+        return redirect()->route('roles.index', $role)->with('success', 'El rol se actualizo con exito');
+        }catch(\Exception $exception){
+            return redirect()->route('roles.index', $role)->with('error', 'No se pudo actualizar el rol');
+        }
     }
 
     /**
@@ -115,5 +129,20 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
-    }
+        try{
+
+        
+        $rol = Role::find($id);
+        $rol->delete();
+
+        return redirect('/roles')
+            ->with('success', 'Rol eliminado exitosamente');
+        
+        }catch(\Exception $exception){
+            return redirect('/roles')
+            ->with('error', 'No se pudo eliminar el rol');
+
+        }
+
+    }        
 }

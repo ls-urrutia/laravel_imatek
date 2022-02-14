@@ -70,14 +70,25 @@ class EquipoController extends Controller
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
-        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Camara')->count();
-        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','en reparación','tipo_equipo','=','Lampara')->count();
 
 
-        $ncamaras = $rawsQs1;
-        $nlamparas = $rawsQs2;
-        $ncamarasrep = $rawsQs3;
-        $nlamparasrep = $rawsQs4;
+
+        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Camara');
+        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Lampara');
+
+        $rawsQs6 = DB::select("SELECT id_equipo
+        FROM equipos where estado='En revisión' and tipo_equipo='Camara';");
+
+        $rawsQs5 = DB::select("SELECT estado
+        FROM equipos where 'estado'='En revisión' and tipo_equipo='Lampara';");
+
+
+
+
+        $nlamparas = $rawsQs1;
+        $ncamaras = $rawsQs2;
+        $ncamarasrep = count($rawsQs6);
+        $nlamparasrep = count($rawsQs5);
 
         return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
     }
@@ -106,9 +117,9 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-/*         request()->validate(Equipo::$rules);
+      request()->validate(Equipo::$rules);
 
-  */
+  
 
         $tipo_equipo = $request->get('tipo_equipo');
         $cod_equipo = $request->get('cod_equipo');
@@ -133,6 +144,7 @@ class EquipoController extends Controller
                 'proveedor' =>  $proveedor,
                 );
 
+
                 DB::table('equipos')->insert($data);
 
                 $id = DB::getPdo()->lastInsertId();
@@ -151,7 +163,7 @@ class EquipoController extends Controller
 
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo created successfully.');
+            ->with('success', 'Equipo creado satisfactoriamente');
     }
 
     /**
@@ -274,7 +286,7 @@ class EquipoController extends Controller
         $equipo->update($request->all());
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo updated successfully');
+            ->with('success', 'Equipo actualizado satisfactoriamente');
     }
 
     /**
@@ -283,11 +295,21 @@ class EquipoController extends Controller
      * @throws \Exception
      */
     public function destroy($id)
-    {
-        $equipo = Equipo::find($id)->delete();
+    {   
+        try{
 
+        
+        $equipo = Equipo::find($id)->delete();
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo deleted successfully');
+        ->with('success', 'Equipo eliminado satisfactoriamente');
+
+        } catch(\Exception $exception){
+            return redirect()->route('equipos.index')
+            ->with('error', 'El equipo no se puede eliminar!');
+
+        }
+
+
     }
 
 

@@ -89,8 +89,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->roles()->sync($request->roles);
-        return redirect()->route('users.edit' ,$user)->with('info','Se asignarón los roles correctamente');
+        try{
+
+        
+            $user->roles()->sync($request->roles);
+            return redirect()->route('users.index' ,$user)->with('success','Se asignarón los roles correctamente');
+        }catch(\Exception $exception){
+            return redirect('users.index' ,$user)->with('error','No se pudieron asignar los roles');
+        }
+
+
+        /* try{
+            $user->roles()->sync($request->roles);
+            return redirect('users.edit' ,$user)->with('success','Se asignarón los roles correctamente');
+        }catch(\Exception $exception){
+            return redirect('users' ,$user)->with('error','No se pudieron asignar los roles');
+        } */
     }
 
     /**

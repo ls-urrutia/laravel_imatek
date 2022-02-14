@@ -3,12 +3,22 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Creación</h1>
+    <h1>Creación Roles</h1>
 @stop
 
 @section('content')
-    <p>Datatable.</p>
+    <p></p>
     <a href="roles/create" class="btn btn-primary mb-3">CREAR</a>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <table class="table table-striped" id="roles">

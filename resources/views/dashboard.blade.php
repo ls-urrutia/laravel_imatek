@@ -5,11 +5,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Sistema de registro</h1>
 @stop
 
 @section('content')
-    
+
 
     <section class="content">
         <div class="container-fluid">
@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-podcast"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Lámparas</span>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">En revisión</span>
+                    <span class="info-box-text">En Revisión</span>
                     <span class="info-box-number">
 
                       <small>{{$nlamparasrep}}</small>
@@ -38,23 +38,28 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+           <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-danger elevation-1"><i class="	fa fa-laptop"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Cámaras</span>
-                  <span class="info-box-number"> {{$ncamaras}}</span>
+                  <span class="info-box-numbipo_equipoer">
+                    {{$ncamaras}}
+                   </span>
                 </div>
+
                 <div class="info-box-content">
-                    <span class="info-box-text">En revisión</span>
-                    <span class="info-box-number"{{$ncamarasrep}}</span>
+                    <span class="info-box-text">En Revisión</span>
+                    <span class="info-box-number">
+
+                      <small>{{$ncamarasrep}}</small>
+                    </span>
                   </div>
                 <!-- /.info-box-content -->
               </div>
               <!-- /.info-box -->
             </div>
-            <!-- /.col -->
 
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>
@@ -100,8 +105,8 @@
                             <thead class="thead">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo electrónico</th>
+                                    <th>Nombre</th>{{-- 
+                                    <th>Correo electrónico</th> --}}
                                     <th>Ubicación</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -112,7 +117,7 @@
 
                                         <td>{{ $usuario->id}}</td>
                                         <td>{{ $usuario->name}}</td>
-                                        <td>{{ $usuario->email }}</td>
+                                        {{-- <td>{{ $usuario->email }}</td> --}}
                                         <td>{{ $usuario->estado}}</td>
 
                                         <td>
@@ -120,7 +125,7 @@
                                       <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
 
                                       
-                                      {{-- <a href="{{ route('users2.prueba', $usuario->id) }}" class="btn btn-info">Editar</a> --}}
+                                     {{--  <a href="{{ route('users2.edit', $usuario->id,$valor=1) }}" class="btn btn-info">Editar</a> --}}
                                       <a class="btn btn-sm btn-success" href="{{ route('users2.index',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
                                         </td>
                                     </tr>

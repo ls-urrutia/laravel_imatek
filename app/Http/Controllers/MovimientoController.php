@@ -59,7 +59,12 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
+        
+       
+   
         request()->validate(Movimiento::$rules);
+        
+        
 
 
 
@@ -77,7 +82,19 @@ class MovimientoController extends Controller
         $tipomov = $request->get('tipo_movimiento');
 
         $ultimomov = DB::select("SELECT tipo_movimiento
-        FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
+        FROM `imatek`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
+
+        $ultimafecha = DB::select("SELECT fecha_movimiento
+        FROM `imatek`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;", [$request->get('id_equipo')]);
+    
+        $request->validate([
+
+                'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+                
+            ]);
+
+
+
 
 /*
         DB::table('`prueba`.`movimientos`where id_equipo = 8')
@@ -86,9 +103,10 @@ class MovimientoController extends Controller
         ->orderBy("created_at","desc")
         ->get(); */
 
-         if($ultimomov[0]->tipo_movimiento == $tipomov ){
+         if($ultimomov[0]->tipo_movimiento == $tipomov || $ultimomov[0]->tipo_movimiento == 'Compra'&& $tipomov == "Entrada" ){
 
-      ///
+            return redirect()->route('movimientos.index')
+                ->with('error', 'Ingreso fallido');
 
         } else {
             $movimientos->save();
@@ -110,7 +128,9 @@ class MovimientoController extends Controller
 
 
         return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento created successfully.');
+            ->with('success', 'Movimiento creado')->with('success','Movimiento creado exitosamente');
+        
+  
 
 
 
@@ -152,13 +172,18 @@ class MovimientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Movimiento $movimiento)
-    {
+    {   
         request()->validate(Movimiento::$rules);
-
+        try{
         $movimiento->update($request->all());
 
         return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento updated successfully');
+            ->with('success', 'Movimiento actualizado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('movimientos.index')
+            ->with('error', 'No se pudo eliminar el movimiento');
+
+        }    
     }
 
     /**
@@ -168,9 +193,16 @@ class MovimientoController extends Controller
      */
     public function destroy($id)
     {
-        $movimiento = Movimiento::find($id)->delete();
+        try{
+            $movimiento = Movimiento::find($id)->delete();
 
-        return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento deleted successfully');
+            return redirect()->route('movimientos.index')
+                ->with('success', 'Movimiento eliminado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('movimientos.index')
+            ->with('error', 'No se pudo eliminar el movimiento');
+
+
+        }
     }
 }

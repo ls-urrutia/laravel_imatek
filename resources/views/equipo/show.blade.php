@@ -27,100 +27,49 @@ $dateh = $dateh->format('Y-m-d');
                 </div>
 
                 <div class="card-body tab table-responsive">
-
-                   {{--  <div class="form-group">
-                        <strong>Id Equipo:</strong>
-                        {{ $equipo->id_equipo }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Cod Equipo:</strong>
-                        {{ $equipo->cod_equipo }}
-                    </div>
-                    <div class="form-group">
-                        <strong>N Documento:</strong>
-                        {{ $equipo->n_documento }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Tipo Equipo:</strong>
-                        {{ $equipo->tipo_equipo }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Modelo:</strong>
-                        {{ $equipo->modelo }}
-                    </div>
-                    <div class="form-group">
-                        <strong>ciclos:</strong>
-                        {{ $equipo->ciclos }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Descripcion:</strong>
-                        {{ $equipo->descripcion }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Estado:</strong>
-                        {{ $equipo->estado }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Fecha Compra:</strong>
-                        {{ $equipo->fecha_ingreso }}
-                        
-                    </div>
-                    <div class="form-group">
-                        <strong>Proveedor:</strong>
-                        {{ $equipo->proveedor }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Id Centro:</strong>
-                        {{ $equipo->id_centro }}
-                    </div> --}}
-
                     <table class="tab">
                         <tbody>
                             <tr>
                                 <td class="tex">Codigo Equipo:</td>
                                 <td>{{ $equipo->cod_equipo }}</td>
-                            
+
                             </tr>
-                         
+
                             <tr>
                                 <td class="tex">Numero documento:</td>
                                 <td> {{ $equipo->n_documento }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Equipo:</td>
                                 <td> {{ $equipo->tipo_equipo }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Modelo:</td>
                                 <td> {{ $equipo->modelo }}</td>
-                            </tr> 
-                            <tr>
-                                <td class="tex">Ciclos:</td>
-                                <td>{{ $equipo->ciclos }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Descripciòn:</td>
                                 <td> {{ $equipo->descripcion }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Estado Equipo:</td>
                                 <td>{{ $equipo->estado }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Fecha Compra:</td>
                                 <td>{{ $equipo->fecha_ingreso }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Proveedor:</td>
                                 <td>{{ $equipo->proveedor }}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td class="tex">Centro:</td>
                                 <td>{{ $equipo->id_centro }}</td>
-                            </tr> 
+                            </tr>
                         </tbody>
                     </table>
-                    
+
 
                    {{--  @foreach($fechaarray as $data_fecha)
                     {{$data_fecha}}
@@ -137,7 +86,7 @@ $dateh = $dateh->format('Y-m-d');
                                 <tr>
 
                                     <th>Id Mantencion</th>
-                                
+
                                     <th>Fecha Mantencion</th>
                                     <th>Descripcion</th>
                                     <th>Validacion</th>
@@ -153,20 +102,20 @@ $dateh = $dateh->format('Y-m-d');
                             <tbody>
                                 @foreach ($records as $mantencione)
                                     <tr>
-                                       
-                                    
+
+
                                         <td>{{ $mantencione->n_documento}}</td>
                                         <td>{{ $mantencione->descripcion }}</td>
                                         <td>{{ $mantencione->validacion }}</td>
                                         <td>
-                                            
+
 
                                         <td>{{ $mantencione->user->name}}</td>
                                         <td>{{ $mantencione->equipo->cod_equipo}}
 
 
                                         <td>
-                                            
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -174,12 +123,12 @@ $dateh = $dateh->format('Y-m-d');
                         </table>
                     </div>  --}}
 
-               
+
                 {{-- @foreach($fechas as $data_fecha)
                 {{$data_fecha->fecha_movimiento}}
                 @endforeach --}}
 
-            
+
 
                 </div>
             </div>
@@ -268,13 +217,13 @@ $i = 1;
                     </div> 
                 </div>           
             </div>
-        </div>    
-            
+        </div>
+
     </section>
     @php
     $i += 1;
 @endphp
-    
+
 @endforeach
 
 @stop
@@ -283,12 +232,13 @@ $i = 1;
     <link rel="stylesheet" href="/css/admin_custom.css">
     <style>
          .ordenar{
-            padding: 50px;
-              
+             padding-top: 5%;
+
+
          }
          .tab{
-             
-            
+
+
          }
          .tex{
             padding: 5px;

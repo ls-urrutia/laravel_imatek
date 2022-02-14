@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Creación</h1>
+    <h1>Lista Clientes</h1>
 @stop
 
 @section('content')
@@ -15,7 +15,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title">
-                            {{ __('Cliente') }}
+                            {{ __('') }}
                         </span>
 
                          <div class="float-right">
@@ -64,7 +64,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 @can('Eliminar cliente')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                 @endcan
                                             </form>
                                         </td>
@@ -80,39 +80,120 @@
 </div>
 @stop
 
+
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
+
+<style>
+table th {
+    background-color: #337ab7 !important;
+    color: white;
+}
+
+.dt-buttons {
+
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.paginate_button {
+
+    color:aliceblue;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
+
+
+}
+
+.paginate_button.current {
+
+    color:aliceblue;
+    padding: 1%;
+    text-shadow: 0 0 2px #fff;
+    text-align: justify;
+    font-weight: 900;
+
+
+}
+
+.dataTables_info {
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.dataTables_length {
+    font-weight: normal;
+}
+
+
+
+</style>
+@stop
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
 
-    <script>
-    $(document).ready(function() {
-        $('#articulos').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
-        });
-    } );
-    </script>
-@stop
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
 
-    <script>
+
+
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#clientes').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]]
+            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
+            language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast":"Último",
+                        "sNext":"Siguiente",
+                        "sPrevious": "Anterior"
+                     },
+                     "sProcessing":"Procesando...",
+                },
+            //para usar los botones
+            responsive: "true",
+            dom: 'Bfrtilp',
+            buttons:[
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fas fa-file-excel"></i> ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fas fa-file-pdf"></i> ',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend:    'print',
+                    text:      '<i class="fa fa-print"></i> ',
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-info'
+                },
+            ]
         });
-    } );
+    });
     </script>
+
 @stop
-
-
-

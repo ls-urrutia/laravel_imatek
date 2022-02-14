@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Activity</title>
+    <title>Actividad de Usuario</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
             crossorigin="anonymous"></script>
@@ -405,7 +405,7 @@
     </script>
 
     <!-- inject:style:css -->
-    <style>body{margin:0;padding:0;background:#f4f4f4;font-family:sans-serif}.btn{text-decoration:none;background:white;padding:5px 12px;border-radius:25px}header{min-height:30px;display:flex;justify-content:space-between;align-items:center;padding:15px;background:#2e2e2f;position:fixed;left:0;right:0;top:0;box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24)}header a{color:#333}header .btn_clear_all{background:#de4f4f;color:#fff}header .name{font-size:25px;font-weight:500;color:white;position:relative}header .name span:nth-child(1){position:absolute;font-size:13px;left:28px;top:-3px}header .name span:nth-child(3){position:absolute;left:28px;top:7px;font-size:22px}.letter_a{background:#FFC107;border-radius:4px;color:#333;padding:0px 3px;margin-right:3px;font-weight:600}.content{margin-top:65px;padding:15px;background:grey;min-height:100px}.content select,.content input,.content button{box-sizing:border-box;min-height:28px;max-height:28px;min-width:120px;border:1px solid #ddd;border-radius:4px;padding:2px 5px}.content input{padding:2px 7px}.top_content{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.top_content .top_content_left{display:flex}.top_content .top_content_left .log_filter{display:flex;align-items:center;margin-left:15px}.top_content .top_content_left .log_filter .log_type_item{margin-right:4px;background:#eae9e9;max-height:20px;font-size:11px;box-sizing:border-box;padding:4px 6px;cursor:pointer}.top_content .top_content_left .log_filter .log_type_item.active{background:#2f2e2f;color:white!important}.top_content .top_content_left .log_filter .log_type_item.clear{background:#607D8B;color:white}.top_content .top_content_right{display:flex}.top_content .top_content_right .user_list_box{position:relative}.top_content .top_content_right .user_list_box #user_list{box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);position:absolute;z-index:10;max-height:200px;border:1px solid #f4f4f4;max-width:100%;min-width:100%;overflow:hidden;box-sizing:border-box;background:white;top:45px;overflow-y:scroll}.top_content .top_content_right .user_list_box #user_list::-webkit-scrollbar{width:3px}.top_content .top_content_right .user_list_box #user_list .single_user{margin-bottom:8px;cursor:pointer;padding:7px}.top_content .top_content_right .user_list_box #user_list .single_user:hover{background:#f4f4f4}.top_content .top_content_right .user_list_box #user_list .single_user p{margin:0}.top_content .top_content_right .user_list_box #user_list .single_user p span{font-size:12px}.top_content .top_content_right .btn_filter{min-width:70px;background:#FFC107;color:#2b2b28;cursor:pointer;border:1px solid #af8300}.top_content .top_content_right .btn_filter_active{background:#F44336;color:#fff;border:1px solid #a51208}.top_content .top_content_right .btn_reset{min-width:70px;cursor:pointer}.top_content .top_content_right .filter_item{margin-right:5px;display:flex;flex-direction:column}.top_content .top_content_right .filter_item label{font-size:13px;margin-bottom:3px;color:#555}.action_column button{min-width:70px;cursor:pointer}.action_column .btn_delete{background:#ef5b50;color:white}.log_data_wrapper{position:relative;min-height:calc(100vh - 205px);overflow-y:auto}.log_data_wrapper::-webkit-scrollbar{width:2px}.log_data_wrapper .loader{position:absolute;z-index:10;top:0;left:0;background:rgba(0,0,0,0.5);width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff}footer{background:#f4f4f4;display:flex;justify-content:space-between;box-sizing:border-box;padding:10px}footer .footer_right .btn{background:#ef5b50;color:white;cursor:pointer}table{border:1px solid #ccc;border-collapse:collapse;margin:0;padding:0;width:100%}table tr{border:1px solid #e8e8e8;padding:5px}table tr:hover{background:#f4f4f4}thead tr td{background:#717171;color:#fff}table th,table td{padding:6px 6px;font-size:15px;color:#666}table th{font-size:14px;letter-spacing:1px;text-transform:uppercase}.lbl_table{margin-top:4px;display:inline-block;margin-left:3px;color:#777}.field_cell{background:#f4f4f4;width:150px}.changed{background:antiquewhite}.edit_badge{width:33px;display:inline-block;text-align:center}@media screen and (max-width:700px){.top_content{flex-direction:column}.top_content .top_content_left{flex-direction:column}.top_content .log_filter{flex-wrap:wrap}.top_content .log_filter .log_type_item{margin-bottom:3px}}.popup_wrapper{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.5)}.popup{width:50%;background:#fff;position:absolute;margin:0 auto;left:0;right:0;top:20%;z-index:200;box-shadow:1px 0 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);max-height:calc(100vh - 35%);overflow-x:hidden;overflow-y:scroll}.popup::-webkit-scrollbar{width:3px}.popup .header{display:flex;background:whitesmoke;justify-content:space-between;height:35px;align-items:center;border-bottom:1px solid #ddd}.popup .header .title{margin-left:15px;font-weight:700}.popup .header .close{width:30px;background:#333;color:#fff;text-align:center;line-height:35px;border-bottom:1px solid #333;cursor:pointer}.popup .popup_content{min-height:100px;width:100%;padding:15px}.popup .popup_content .form-group{margin-bottom:10px}.popup .popup_content label{display:block;color:#777}.popup .popup_content input{border:0;padding:5px;border:1px solid #ddd;width:100%;margin-top:5px}.popup .popup_content input:focus{outline:none;border-bottom:1px solid #666}.popup .footer{padding:0 15px;display:flex;background:whitesmoke;justify-content:space-between;height:40px;align-items:center;border-top:1px solid #ddd}.pagination_wrapper{display:flex;justify-content:flex-end}.pagination_wrapper ul.pagination{display:flex;padding:0;margin-right:5px}.pagination_wrapper ul.pagination li{list-style-type:none}.pagination_wrapper ul.pagination li a{padding:5px 8px;background:#f4f4f4;border:1px solid #ddd;display:inline-block;text-decoration:none;color:#000;margin-right:3px}.pagination_wrapper ul.pagination li a:hover{background:#222;color:#fff}.pagination_wrapper ul.pagination li .active{background:#222;color:#fff}.pagination_wrapper ul.pagination li.active a{background:#222;color:#fff}@media screen and (max-width:600px){.top_content{flex-direction:column-reverse}.top_content_right{flex-wrap:wrap}.top_content_right .filter_item{min-width:48%;margin-bottom:8px}.top_content_right .full_width_param{min-width:98%;max-width:98%}.pagination_wrapper{display:flex;justify-content:flex-start;overflow-x:scroll}.btn{font-size:13px}.dt_box,.selected_date{text-align:center}.responsive_table{max-width:100%;overflow-x:auto}.popup{width:96%!important}.popup .popup_content table{width:93% !important}.popup .popup_content table td{width:96%}table{border:0}table thead{display:none}table tr{border-bottom:2px solid #ddd;display:block;margin-bottom:10px}table td{border-bottom:1px dotted #ccc;display:block;font-size:15px}table td:last-child{border-bottom:0}table td:before{content:attr(data-label);float:left;font-weight:bold;text-transform:uppercase}}.badge{padding:3px 8px;-webkit-border-radius:25px;-moz-border-radius:25px;border-radius:25px;font-size:12px}.badge.primary{background:#4ba4ea;color:white}.badge.info{background:#6bb5b5;color:#fff}.badge.warning{background:#f7be57}.badge.critical{background:#de4f4f;color:#fff}.badge.emergency{background:#ff6060;color:white}.badge.notice{background:bisque}.badge.debug{background:#8e8c8c;color:white}.badge.alert{background:#4ba4ea;color:white}.badge.error{background:#c36a6a;color:white}.text_center{text-align:center}.text_right{text-align:right}.text_left{text-align:left}.text_light{color:#888}.spinner{margin:100px auto 0;width:70px;text-align:center}.spinner>div{width:18px;height:18px;background-color:#fff;border-radius:100%;display:inline-block;-webkit-animation:sk-bouncedelay 1.4s infinite ease-in-out both;animation:sk-bouncedelay 1.4s infinite ease-in-out both}.spinner .bounce1{-webkit-animation-delay:-0.32s;animation-delay:-0.32s}.spinner .bounce2{-webkit-animation-delay:-0.16s;animation-delay:-0.16s}@-webkit-keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0)}40%{-webkit-transform:scale(1)}}@keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}</style>
+    <style>body{margin:0;padding:0;background:#454d55;font-family:sans-serif}.btn{text-decoration:none;background:white;padding:5px 12px;border-radius:25px}header{min-height:30px;display:flex;justify-content:space-between;align-items:center;padding:15px;background:#2e2e2f;position:fixed;left:0;right:0;top:0;box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24)}header a{color:#333}header .btn_clear_all{background:#de4f4f;color:#fff}header .name{font-size:25px;font-weight:500;color:white;position:relative}header .name span:nth-child(1){position:absolute;font-size:13px;left:28px;top:-3px}header .name span:nth-child(3){position:absolute;left:28px;top:7px;font-size:22px}.letter_a{background:#FFC107;border-radius:4px;color:#333;padding:0px 3px;margin-right:3px;font-weight:600}.content{margin-top:65px;padding:15px;background:#454d55;min-height:100px}.content select,.content input,.content button{box-sizing:border-box;min-height:28px;max-height:28px;min-width:120px;border:1px solid #343a40;border-radius:4px;padding:2px 5px}.content input{padding:2px 7px}.top_content{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.top_content .top_content_left{display:flex}.top_content .top_content_left .log_filter{display:flex;align-items:center;margin-left:15px}.top_content .top_content_left .log_filter .log_type_item{margin-right:4px;background:#eae9e9;max-height:20px;font-size:11px;box-sizing:border-box;padding:4px 6px;cursor:pointer}.top_content .top_content_left .log_filter .log_type_item.active{background:#2f2e2f;color:white!important}.top_content .top_content_left .log_filter .log_type_item.clear{background:#607D8B;color:white}.top_content .top_content_right{display:flex}.top_content .top_content_right .user_list_box{position:relative}.top_content .top_content_right .user_list_box #user_list{box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);position:absolute;z-index:10;max-height:200px;border:1px solid #f4f4f4;max-width:100%;min-width:100%;overflow:hidden;box-sizing:border-box;background:white;top:45px;overflow-y:scroll}.top_content .top_content_right .user_list_box #user_list::-webkit-scrollbar{width:3px}.top_content .top_content_right .user_list_box #user_list .single_user{margin-bottom:8px;cursor:pointer;padding:7px}.top_content .top_content_right .user_list_box #user_list .single_user:hover{background:#f4f4f4}.top_content .top_content_right .user_list_box #user_list .single_user p{margin:0}.top_content .top_content_right .user_list_box #user_list .single_user p span{font-size:12px}.top_content .top_content_right .btn_filter{min-width:70px;background:#FFC107;color:#2b2b28;cursor:pointer;border:1px solid #af8300}.top_content .top_content_right .btn_filter_active{background:#F44336;color:#fff;border:1px solid #a51208}.top_content .top_content_right .btn_reset{min-width:70px;cursor:pointer}.top_content .top_content_right .filter_item{margin-right:5px;display:flex;flex-direction:column}.top_content .top_content_right .filter_item label{font-size:13px;margin-bottom:3px;color:#fff}.action_column button{min-width:70px;cursor:pointer}.action_column .btn_delete{background:#ef5b50;color:white}.log_data_wrapper{position:relative;min-height:calc(100vh - 205px);overflow-y:auto}.log_data_wrapper::-webkit-scrollbar{width:2px}.log_data_wrapper .loader{position:absolute;z-index:10;top:0;left:0;background:rgba(0,0,0,0.5);width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff}footer{background:#343a40;display:flex;justify-content:space-between;box-sizing:border-box;padding:10px}footer .footer_right .btn{background:#ef5b50;color:#454d55;cursor:pointer}table{border:1px solid #ccc;border-collapse:collapse;margin:0;padding:0;width:100%}table tr{border:1px solid #e8e8e8;padding:5px}table tr:hover{background:#343a40}thead tr td{background:#343a40;color:#fff}table th,table td{padding:6px 6px;font-size:15px;color:#e8e8e8}table th{font-size:14px;letter-spacing:1px;text-transform:uppercase}.lbl_table{margin-top:4px;display:inline-block;margin-left:3px;color:#777}.field_cell{background:#454d55;width:150px}.changed{background:#454d55}.edit_badge{width:33px;display:inline-block;text-align:center}@media screen and (max-width:700px){.top_content{flex-direction:column}.top_content .top_content_left{flex-direction:column}.top_content .log_filter{flex-wrap:wrap}.top_content .log_filter .log_type_item{margin-bottom:3px}}.popup_wrapper{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.5)}.popup{width:50%;background:#454d55;position:absolute;margin:0 auto;left:0;right:0;top:20%;z-index:200;box-shadow:1px 0 20p    x rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);max-height:calc(100vh - 35%);overflow-x:hidden;overflow-y:scroll}.popup::-webkit-scrollbar{width:3px}.popup .header{display:flex;background:#454d55;justify-content:space-between;height:35px;align-items:center;border-bottom:1px solid #454d55}.popup .header .title{margin-left:15px;font-weight:700}.popup .header .close{width:30px;background:#333;color:#454d55;text-align:center;line-height:35px;border-bottom:1px solid #333;cursor:pointer}.popup .popup_content{min-height:100px;width:100%;padding:15px}.popup .popup_content .form-group{margin-bottom:10px}.popup .popup_content label{display:block;color:#454d55}.popup .popup_content input{border:0;padding:5px;border:1px solid 454d55;width:100%;margin-top:5px}.popup .popup_content input:focus{outline:none;border-bottom:1px solid #666}.popup .footer{padding:0 15px;display:flex;background:#454d55;justify-content:space-between;height:40px;align-items:center;border-top:1px solid #454d55}.pagination_wrapper{display:flex;justify-content:flex-end}.pagination_wrapper ul.pagination{display:flex;padding:0;margin-right:5px}.pagination_wrapper ul.pagination li{list-style-type:none}.pagination_wrapper ul.pagination li a{padding:5px 8px;background:#454d55;border:1px solid #ddd;display:inline-block;text-decoration:none;color:#fff;margin-right:3px}.pagination_wrapper ul.pagination li a:hover{background:#222;color:#fff}.pagination_wrapper ul.pagination li .active{background:#222;color:#fff}.pagination_wrapper ul.pagination li.active a{background:#222;color:#fff}@media screen and (max-width:600px){.top_content{flex-direction:column-reverse}.top_content_right{flex-wrap:wrap}.top_content_right .filter_item{min-width:48%;margin-bottom:8px}.top_content_right .full_width_param{min-width:98%;max-width:98%}.pagination_wrapper{display:flex;justify-content:flex-start;overflow-x:scroll}.btn{font-size:13px}.dt_box,.selected_date{text-align:center}.responsive_table{max-width:100%;overflow-x:auto}.popup{width:96%!important}.popup .popup_content table{width:93% !important}.popup .popup_content table td{width:96%}table{border:0}table thead{display:none}table tr{border-bottom:2px solid #ddd;display:block;margin-bottom:10px}table td{border-bottom:1px dotted #ccc;display:block;font-size:15px}table td:last-child{border-bottom:0}table td:before{content:attr(data-label);float:left;font-weight:bold;text-transform:uppercase}}.badge{padding:3px 8px;-webkit-border-radius:25px;-moz-border-radius:25px;border-radius:25px;font-size:12px}.badge.primary{background:#4ba4ea;color:white}.badge.info{background:#6bb5b5;color:#fff}.badge.warning{background:#f7be57}.badge.critical{background:#de4f4f;color:#fff}.badge.emergency{background:#ff6060;color:white}.badge.notice{background:bisque}.badge.debug{background:#8e8c8c;color:white}.badge.alert{background:#4ba4ea;color:white}.badge.error{background:#c36a6a;color:white}.text_center{text-align:center}.text_right{text-align:right}.text_left{text-align:left}.text_light{color:#fff}.spinner{margin:100px auto 0;width:70px;text-align:center}.spinner>div{width:18px;height:18px;background-color:#fff;border-radius:100%;display:inline-block;-webkit-animation:sk-bouncedelay 1.4s infinite ease-in-out both;animation:sk-bouncedelay 1.4s infinite ease-in-out both}.spinner .bounce1{-webkit-animation-delay:-0.32s;animation-delay:-0.32s}.spinner .bounce2{-webkit-animation-delay:-0.16s;animation-delay:-0.16s}@-webkit-keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0)}40%{-webkit-transform:scale(1)}}@keyframes sk-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}</style>
     <!-- endinject -->
 </head>
 <body ng-controller="LogCtrl">
@@ -415,19 +415,19 @@
         <span class="letter_a">A</span> <span>ctivity</span>
     </div>
     <div class="actions">
-        <a class="btn" href="{{url(config('user-activity.admin_panel_path'))}}">Goto Admin Panel</a>
+        <a class="btn" href="{{url(config('user-activity.admin_panel_path'))}}">Ir al panel de ADM</a>
         <a class="btn" href="https://laravelarticle.com/laravel-user-activity" title="Laravel User Activity">Doc</a>
     </div>
 </header>
 <section class="content">
     <div class="top_content">
         <div class="top_content_left">
-            <p class="text_light">Showing @{{response.from}} to @{{response.to}} of @{{response.total}} records</p>
+            <p class="text_light">Mostrando @{{response.from}} a @{{response.to}} de @{{response.total}} registros</p>
         </div>
 
         <div class="top_content_right">
             <div class="filter_item full_width_param user_list_box">
-                <label>USER</label>
+                <label>Usuario</label>
                 <input type="text"
                        ng-model="filter.user_id"
                        ng-model-options="{debounce:500}"
@@ -455,7 +455,7 @@
                 </select>
             </div>
             <div class="filter_item">
-                <label>TABLE</label>
+                <label>Tabla</label>
                 <select ng-model="filter.table">
                     @foreach($tables as $table)
                         <option value="{{ $table}}">{{ $table}}</option>
@@ -463,19 +463,19 @@
                 </select>
             </div>
             <div class="filter_item">
-                <label>FROM DATE</label>
+                <label>Desde fecha</label>
                 <date-input ng-model="filter.from_date"></date-input>
             </div>
             <div class="filter_item">
-                <label>TO DATE</label>
+                <label>Hasta fecha</label>
                 <date-input ng-model="filter.to_date"></date-input>
             </div>
             <div class="filter_item" style="justify-content: flex-end;">
-                <button class="btn_reset" ng-show="activeFilter" ng-click="resetParam()">RESET</button>
+                <button class="btn_reset" ng-show="activeFilter" ng-click="resetParam()">Reiniciar</button>
             </div>
             <div class="filter_item" style="justify-content: flex-end;">
                 <button class="btn_filter" ng-class="{btn_filter_active : activeFilter == true}"
-                        ng-click="filterData(filter)">FILTER
+                        ng-click="filterData(filter)">Filtro
                 </button>
             </div>
         </div>
@@ -494,10 +494,10 @@
                 <thead>
                 <tr>
                     <td width="30">ID</td>
-                    <td width="260">DATE</td>
-                    <td width="170">LOG TYPE</td>
-                    <td>DONE BY</td>
-                    <td class="text_right" style="padding-right: 10px;">ACTION</td>
+                    <td width="260">Fecha</td>
+                    <td width="170">Tipo de Log</td>
+                    <td>Hecho por</td>
+                    <td class="text_right" style="padding-right: 10px;">Acción</td>
                 </tr>
                 </thead>
 
@@ -525,7 +525,7 @@
                         <span class="text_light">@{{ log.user.email }}</span>
                     </td>
                     <td class="action_column text_right">
-                        <button class="btn_show" ng-click="showPopup(log)">SHOW</button>
+                        <button class="btn_show" ng-click="showPopup(log)">Mostrar</button>
                     </td>
                 </tr>
             </table>
@@ -548,7 +548,7 @@
     <footer>
         <div></div>
         <div class="footer_right">
-          <span class="text_light">Delete data older than {{ config('user-activity.delete_limit') }} days</span>
+          <span class="text_light">Eliminar datos mas antiguos que {{ config('user-activity.delete_limit') }} días</span>
             <button class="btn" ng-click="deleteLog()">DELETE</button>
         </div>
     </footer>
@@ -556,18 +556,18 @@
     <div class="popup_wrapper" ng-show="popup">
         <div class="popup" style="width: 60%">
             <div class="header">
-                <div class="title">Log Preview</div>
+                <div class="title">Vista del log</div>
                 <div class="close" ng-click="popup=false">x</div>
             </div>
             <div class="popup_content">
                 <table style="width: 96%;">
                     <thead>
                     <tr>
-                        <td colspan="2">INFO</td>
+                        <td colspan="2">Información</td>
                     </tr>
                     </thead>
                     <tr>
-                        <td class="field_cell">Type</td>
+                        <td class="field_cell">Tipo</td>
                         <td ng-switch="selected.log_type">
                             <span ng-switch-when="delete|lockout"
                                   ng-switch-when-separator="|" class="badge emergency">@{{selected.log_type}}</span>
@@ -578,15 +578,15 @@
                         </td>
                     </tr>
                     <tr ng-show="['create','edit','delete'].includes(selected.log_type)">
-                        <td class="field_cell">Table</td>
+                        <td class="field_cell">Tabla</td>
                         <td>@{{ selected.table_name }}</td>
                     </tr>
                     <tr>
-                        <td class="field_cell">Time</td>
+                        <td class="field_cell">Tiempo</td>
                         <td>@{{ selected.dateHumanize }} - @{{ selected.log_date }}</td>
                     </tr>
                     <tr>
-                        <td class="field_cell">Done by</td>
+                        <td class="field_cell">Hecho por</td>
                         <td>@{{ selected.user.name }} - <span class="text_light">@{{ selected.user.email }}</span></td>
                     </tr>
                 </table>
@@ -600,7 +600,7 @@
                         <tr>
                             <td>@{{ ['edit','delete'].includes(selected.log_type)?'FIELD':'' }}</td>
                             <td>@{{ selected.log_type==='edit'?'PREVIOUS':'DATA' }}</td>
-                            <td ng-show="selected.log_type==='edit'">CURRENT</td>
+                            <td ng-show="selected.log_type==='edit'">Actual</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -622,9 +622,9 @@
                     <table style="width: 96%;">
                         <thead>
                         <tr>
-                            <td>Time</td>
-                            <td>Edit By</td>
-                            <td>Data</td>
+                            <td>Tiempo</td>
+                            <td>Editado por</td>
+                            <td>Datos</td>
                         </tr>
                         </thead>
                         <tbody>

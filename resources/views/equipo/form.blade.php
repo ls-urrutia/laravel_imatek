@@ -11,36 +11,36 @@ $dateho = $dateho->format('Y-m-d');
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-           {{ Form::label('tipo_documento') }}
-           {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
+           {{ Form::label('tipo_documento:') }}
+           {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
            {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('n_documento') }}
+            {{ Form::label('n°_documento:') }}
             {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Factura']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-           {{ Form::label('tipo_equipo') }}
+           {{ Form::label('tipo_equipo:') }}
            {!!Form::select('tipo_equipo',['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
         </div>
         <div class="form-group">
-            {{ Form::label('modelo') }}
+            {{ Form::label('modelo:') }}
             {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''), 'placeholder' => 'Modelo']) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('descripcion') }}
+            {{ Form::label('descripción:') }}
             {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('fecha_ingreso') }}
+            {{ Form::label('fecha_ingreso:') }}
             {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra','value'=> $dateho]) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('proveedor') }}
+            {{ Form::label('proveedor:') }}
             {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
             {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
 
@@ -55,13 +55,13 @@ $dateho = $dateho->format('Y-m-d');
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th><a class="addRow"> <i class="bi bi-plus-circle"></i></a> Agregar Equipo Adicional</th>
+                                    <th><a class="addRow"> <i class="bi bi-plus-circle-fill"></i></a> Agregar Equipo Adicional</th>
                                 </tr>
                             </thead>
                             <tbody>
                 <tr>
                 <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
+                <td><a class="btn btn-danger remove"><i class="bi bi-x-circle-fill"></i></a></td>
                 </tr>
                                 </tr>
                             </tbody>

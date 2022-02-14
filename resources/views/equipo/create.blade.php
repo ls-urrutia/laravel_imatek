@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1></h1>
+    <h1>Crear equipo</h1>
 @stop
 
 @section('content')
@@ -14,9 +14,9 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                    {{-- <div class="card-header">
                         <span class="card-title">Crear Equipos</span>
-                    </div>
+                    </div> --}}
                     <div class="card-body">
                         <form method="POST" action="{{ route('equipos.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf

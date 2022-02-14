@@ -51,7 +51,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('auth',[AuthController::class,'register'])->middleware('can:ecolecua');
+/* Route::get('auth',[AuthController::class,'register'])->middleware('can:ecolecua'); */
 
 Route::resource('centros',CentroController::class);
 
@@ -78,7 +78,13 @@ Route::get('logActivity',[HomeController::class,'logActivity']);
 /* Route::get('logActivity', 'HomeController@logActivity'); */
 
 
-
+Route::group([
+    'namespace' => '\Haruncpi\LaravelUserActivity\Controllers',
+    'middleware' => config('user-activity.middleware')
+], function () {
+    Route::get(config('user-activity.route_path'), 'ActivityController@getIndex');
+    Route::post(config('user-activity.route_path'), 'ActivityController@handlePostRequest');
+});
 
 
 

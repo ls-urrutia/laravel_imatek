@@ -108,12 +108,19 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
-        request()->validate(Centro::$rules);
+        
 
+        
+        request()->validate(Centro::$rules);
+        try{
         $centro->update($request->all());
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro updated successfully');
+            ->with('success', 'Centro actualizado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('centros.index')
+            ->with('success', 'No se pudo actualizar el centro');
+        }
     }
 
     /**
@@ -123,10 +130,15 @@ class CentroController extends Controller
      */
     public function destroy($id)
     {
+        try{
         $centro = Centro::find($id)->delete();
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro deleted successfully');
+            ->with('success', 'Centro eliminado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('centros.index')
+            ->with('success', 'No se pudo eliminar el centroS');
+        }
     }
 
 

@@ -15,7 +15,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title">
-                            {{ __('Usuario') }}
+                            {{ __('Usuarios') }}
                         </span>
 
                          <div class="float-right">
@@ -30,6 +30,11 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <p>{{ $message }}</p>
+                    </div>
+                 @endif
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="users2" class="table table-striped table-hover">
@@ -39,7 +44,7 @@
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
-                                    <th></th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,7 +104,7 @@
             "zeroRecords": "Ningun registro encontrado",
             "info": "Mostrando pagina _PAGE_ de _PAGES_",
             "infoEmpty": "Sin registros",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "infoFiltered": "",
             'search':'Buscar:'
         }
 
