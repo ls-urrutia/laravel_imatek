@@ -61,6 +61,12 @@ Route::resource('clientes','\App\Http\Controllers\ClienteController');
 
 Route::get('dashboard',[EquipoController::class,'mostrar']);
 
+Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
+
+
+
+
+
 
 Route::group([
     'namespace' => '\Haruncpi\LaravelUserActivity\Controllers',

@@ -73,15 +73,15 @@ class EquipoController extends Controller
 
 
 
-        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Camara')->count();
-        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Lampara')->count();
+        $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
+        $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
 
 
 
         $nlamparas = $rawsQs1;
         $ncamaras = $rawsQs2;
-        $ncamarasrep = $rawsQs3;
-        $nlamparasrep = $rawsQs4;
+        $ncamarasrep = count($rawsQs3);
+        $nlamparasrep = count($rawsQs4);
 
         return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
     }
@@ -155,7 +155,7 @@ class EquipoController extends Controller
 
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo created successfully.');
+            ->with('success', 'Equipo creado exitosamente.');
     }
 
     /**

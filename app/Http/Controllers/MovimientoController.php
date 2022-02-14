@@ -77,10 +77,10 @@ class MovimientoController extends Controller
         $tipomov = $request->get('tipo_movimiento');
 
         $ultimomov = DB::select("SELECT tipo_movimiento
-        FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
+        FROM `movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
 
         $ultimafecha = DB::select("SELECT fecha_movimiento
-        FROM `imatek_cp`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;", [$request->get('id_equipo')]);
+        FROM `movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;", [$request->get('id_equipo')]);
 
        $request->validate([
 
@@ -96,10 +96,10 @@ class MovimientoController extends Controller
         ->orderBy("created_at","desc")
         ->get(); */
 
-         if($ultimomov[0]->tipo_movimiento == $tipomov || $ultimomov[0]->tipo_movimiento == 'Compra' ){
+         if($ultimomov[0]->tipo_movimiento == $tipomov || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipomov == 'Entrada')){
 
             return redirect()->route('movimientos.index')
-                ->with('success', 'Ingreso fallido.');
+                ->with('fail', 'Ingreso fallido. Movimiento no permitido');
 
         } else {
             $movimientos->save();

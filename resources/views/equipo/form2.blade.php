@@ -10,17 +10,19 @@ $dateho = $dateho->format('Y-m-d');
 
 
 
-
-
          <!-- Preloader -->
- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+          </div>
 
 
 <div class="box box-info padding-1">
     <div class="box-body">
+        <div class="form-group">
+            {{ Form::label('cod_equipo') }}
+            {{ Form::text('cod_equipo', $equipo->cod_equipo, ['class' => 'form-control' . ($errors->has('od_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Código Equipo']) }}
+            {!! $errors->first('cod_equipo', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
         <div class="form-group">
            {{ Form::label('tipo_documento') }}
            {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
@@ -56,63 +58,8 @@ $dateho = $dateho->format('Y-m-d');
             {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
 
         </div>
-
-
-        <div class="box box-info padding-1">
-            <form>
-                <section>
-                    <div class="form-group" >
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th><a class="addRow"> <i class="bi bi-plus-circle"></i></a> Agregar Equipo Adicional</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                <tr>
-                <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
-                </tr>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="border: none"></td>
-                                    <td style="border: none"></td>
-                                    <td style="border: none"></td>
-                                    <td><input type="submit" name="" value="Submit" class="btn btn-success"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </section>
-            </form>
-       </div>
-       <script type="text/javascript">
-           $('.addRow').on('click',function(){
-               addRow();
-           });
-           function addRow()
-           {
-               var tr='<tr>'+
-               '<td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>'+
-               '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
-               '</tr>';
-               $('tbody').append(tr);
-           };
-           $('.remove').live('click',function(){
-               var last=$('tbody tr').length;
-               if(last==1){
-                   alert("No esta permitido remover la última fila");
-               }
-               else{
-                    $(this).parent().parent().remove();
-               }
-
-           });
-       </script>
-
     </div>
-
-
+    <div class="box-footer mt20">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</div>

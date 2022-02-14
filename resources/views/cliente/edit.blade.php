@@ -1,13 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Clientes')
 
 @section('content_header')
-    <h1>Edicion</h1>
+    <h1>Clientes</h1>
 @stop
 
 @section('content')
-<h2>EDITAR REGISTROS</h2>
+
+
+         <!-- Preloader -->
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+          </div>
+
+<h2>Editar Cliente</h2>
+
+
+
 
 <form action="/clientes/{{$cliente->id_cliente}}" method="POST">
     @csrf

@@ -8,6 +8,13 @@
 
 @section('content')
 
+
+         <!-- Preloader -->
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+          </div>
+
+
 <form action="/clientes" method="POST">
     @csrf
   <div class="mb-3">

@@ -63,6 +63,7 @@ class MantencioneController extends Controller
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
         $mantenciones->descripcion = $request->get('descripcion');
         $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+        $mantenciones->validacion = 'Pendiente';
         if($request->hasFile('imagen1')){
             $image1= $request->file('imagen1');
             $extension = $image1->getClientOriginalExtension();

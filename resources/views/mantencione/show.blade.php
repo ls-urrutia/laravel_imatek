@@ -7,6 +7,13 @@
     <h1>Mantenciones</h1>
 @stop
 @section('content')
+
+
+         <!-- Preloader -->
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+          </div>
+
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +28,7 @@
                 </div>
 
                 <div class="card-body">
-                    
+
                     <div class="form-group">
                         <strong>Id Mantencion:</strong>
                         {{ $mantencione->id_mantencion }}
@@ -48,13 +55,13 @@
                     </div>
                     <div id="pelicula">
                         @if(isset($mantencione->imagen1))
-                             <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">  
+                             <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
                         @endif
                         @if(isset($mantencione->imagen2))
-                            <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">  
+                            <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
                         @endif
                         @if(isset($mantencione->imagen3))
-                           <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">  
+                           <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">
                         @endif
 
                     </div>
@@ -63,11 +70,11 @@
 
                 </div>
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
 </section>
 @section('js')
     <script>  </script>
