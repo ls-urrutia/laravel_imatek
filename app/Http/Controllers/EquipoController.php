@@ -19,6 +19,18 @@ use Illuminate\Support\Facades\DB;
  */
 class EquipoController extends Controller
 {
+
+    public function byEquipo($id)
+    {
+       /*  return Equipo::where('id_equipo', $id)->get(); */
+
+
+        return Movimiento::where('tipo_movimiento',$id)->get();
+/*
+       return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
+    }
+
+
     /**
      * Display a listing of the resource.
      *
