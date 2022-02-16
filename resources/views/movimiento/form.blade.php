@@ -88,6 +88,8 @@ $(function() {
     $('#select-movimiento').on('change', onSelectMovimientoChange);
     $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
     $('#div_centro').hide();
+    numero_row = 0;
+
 });
 
 
@@ -140,11 +142,17 @@ if ($(this).val() == 'Salida') {
            addRow();
            onSelectMovimientoChange2();
         });
+
        function addRow()
        {
+
+        numero_row += 1;
+
            var tr='<tr>'+
-           '<td><div class="form-group"><select name="id_equipo[]" class="form-control select-e" id="select-equipo" required><option value="" >Seleccione Equipo</option>                    </select>  </div> </td>'+
+           '<td><div class="form-group"><select name="id_equipo[]" class="form-control select-e" id="select-equipo'+numero_row+'" required><option value="" >Seleccione Equipo</option>                    </select>  </div> </td>'+
            '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td></tr>';
+
+
            $('tbody').append(tr);
        };
 
@@ -160,7 +168,9 @@ if ($(this).val() == 'Salida') {
         var html_select = '<option value="">Seleccione Equipo</option>';
         for (var i=0; i<data.length; ++i)
             html_select += '<option value="'+data[i].id_equipo+'">'+data[i].cod_equipo+'</option>';
-            $('.select-e').html(html_select);
+
+
+            $('select#select-equipo'+numero_row).html(html_select);
     });
 
 
