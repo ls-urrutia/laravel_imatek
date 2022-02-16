@@ -6,7 +6,7 @@ use App\Models\Equipo;
 use App\Models\Mantencione;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class MantencioneController
@@ -88,14 +88,34 @@ class MantencioneController extends Controller
             $mantenciones->imagen3 = $imagename3;
 
         }
+
+
+
+
         $mantenciones->id_usuario =  $request->user()->id;
         $mantenciones->id_equipo = $request->get('id_equipo');
+
+        $asdf = $request->get('id_equipo');
+
+        $ultimafecha = DB::select("SELECT fecha_movimiento
+        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$asdf]);
+
+
+
+        $request->validate([
+
+            'fecha_mantencion' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+        ]);
+
+
         $mantenciones->save();
 
 
         $equipo = Equipo::find($request->get('id_equipo'));
         $equipo->estado = $request->get('estado_mantencion');
         $equipo->save();
+
+
 
 
 

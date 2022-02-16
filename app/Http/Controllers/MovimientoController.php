@@ -70,7 +70,7 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //* request()->validate(Movimiento::$rules); */
+        /* request()->validate(Movimiento::$rules); */
 
 
 
@@ -83,6 +83,8 @@ class MovimientoController extends Controller
         $id_centro = $centro_n->nombre_centro;
 
        /*  $tipomov = $request->get('tipo_movimiento'); */
+
+       $vld = true;
 
 
        $long_arreglo_eq = count($id_equipo);
@@ -115,7 +117,28 @@ class MovimientoController extends Controller
         ]);
 
 
-        if($ultimomov[0]->tipo_movimiento == $request->get('tipo_movimiento') || ($ultimomov[0]->tipo_movimiento == 'Compra' && $request->get('tipo_movimiento') == 'Entrada')){
+
+        if($vld == true) {
+        switch ($tipo_movimiento) {
+            case 'Compra':
+                $tipo_movimiento = 'Salida';
+                $vld = false;
+                break;
+
+            case 'Entrada':
+                $tipo_movimiento = 'Salida';
+                $vld = false;
+                break;
+
+            case 'Salida':
+                $tipo_movimiento = 'Entrada';
+                $vld = false;
+                break;
+        }
+    }
+
+
+        if($ultimomov[0]->tipo_movimiento == $tipo_movimiento || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipo_movimiento == 'Entrada')){
 
             return redirect()->route('movimientos.index')
                 ->with('error', 'Ingreso fallido. Movimiento no permitido');
@@ -153,7 +176,7 @@ class MovimientoController extends Controller
 
 
                 return redirect()->route('movimientos.index')
-                    ->with('success', 'Movimiento created successfully.');
+                ->with('success', 'Movimiento created successfully.');
 
             }
 

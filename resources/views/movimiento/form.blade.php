@@ -13,10 +13,11 @@
 
         <div class="form-group">
             {{ Form::label('tipo_movimiento') }}
-            <select name="" class="form-control" id="select-movimiento">
+            <select name="tipo_movimiento" class="form-control" id="select-movimiento">
                 <option value="">Seleccione Movimiento</option>
-                <option value ="Salida">Salida</option>
-                <option value ="Entrada">Entrada</option>
+                <option value ="Salida">Entrada</option>
+                <option value ="Entrada">Salida</option>
+                <option value ="Compra">Salida Nuevos</option>
             </select>
         </th>
 
@@ -30,9 +31,9 @@
             {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N Documento']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        <div class="form-group">
+        <div class="form-group" id="div_centro">
             {{ Form::label('Centro') }}
-            {{ Form::select('id_centro', $centros, $movimiento->id_centro, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Centros']) }}
+            {{ Form::select('id_centro', $centros, $movimiento->id_centro, ['id' => 'ids_centro','class' => 'form-control' . ($errors->has('id_centro') ? ' is-invalid' : ''), 'placeholder' => 'Centros']) }}
             {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</p>') !!}
         </div>
     </div>
@@ -52,7 +53,7 @@
             <tr>
             <td>
                 <div class="form-group">
-                    <select name="" class="form-control" id="select-equipo">
+                    <select name="id_equipo[]" class="form-control select-e" id="select-equipo" required>
                         <option value="">Seleccione Equipo</option>
                     </select>
                 </div>
@@ -85,24 +86,46 @@ $(function() {
 
 
     $('#select-movimiento').on('change', onSelectMovimientoChange);
+    $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
+    $('#div_centro').hide();
 });
 
 
 function onSelectMovimientoChange() {
     var tipo_movimiento = $(this).val();
 
+
+
     // AJAX
     $.get('/movimiento/'+tipo_movimiento+'/equipos', function (data) {
 
     var html_select = '<option value="">Seleccione Equipo</option>';
     for (var i=0; i<data.length; ++i)
-        html_select += '<option value="'+data[i].id_equipo+'">'+data[i].id_equipo+'</option>';
-        $('#select-equipo').html(html_select);
+        html_select += '<option value="'+data[i].id_equipo+'">'+data[i].cod_equipo+'</option>';
+        $('.select-e').html(html_select);
+
 
 });
 
 
 }
+
+function onSelectMovimientoChangeHide() {
+
+if ($(this).val() == 'Salida') {
+
+    $('#div_centro').hide();
+    $("select#ids_centro option[value='1']").show();
+    $("select#ids_centro").val("1");
+
+
+    } else{
+        $('#div_centro').show();
+        $("select#ids_centro option[value='1']").hide();
+        $("select#ids_centro").val("2");
+    }
+}
+
 
 
 
@@ -115,14 +138,34 @@ function onSelectMovimientoChange() {
    <script type="text/javascript">
        $('.addRow').on('click',function(){
            addRow();
-       });
+           onSelectMovimientoChange2();
+        });
        function addRow()
        {
            var tr='<tr>'+
-           '<td><div class="form-group"><select name="" class="form-control" id="select-equipo"><option value="">Seleccione Equipo</option>                    </select>  </div> </td>'+
-           '</tr>';
+           '<td><div class="form-group"><select name="id_equipo[]" class="form-control select-e" id="select-equipo" required><option value="" >Seleccione Equipo</option>                    </select>  </div> </td>'+
+           '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td></tr>';
            $('tbody').append(tr);
        };
+
+
+
+       function onSelectMovimientoChange2() {
+
+        var tipo_movimiento = $( "select#select-movimiento option:checked" ).val();
+
+        // AJAX
+        $.get('/movimiento/'+tipo_movimiento+'/equipos', function (data) {
+
+        var html_select = '<option value="">Seleccione Equipo</option>';
+        for (var i=0; i<data.length; ++i)
+            html_select += '<option value="'+data[i].id_equipo+'">'+data[i].cod_equipo+'</option>';
+            $('.select-e').html(html_select);
+    });
+
+
+    }
+
        $('.remove').live('click',function(){
            var last=$('tbody tr').length;
            if(last==1){

@@ -65,7 +65,7 @@ Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
 
 
 
-Route::get('/movimiento/{id}/equipos','App\Http\Controllers\EquipoController@byEquipo');
+Route::get('/movimiento/{tipo_m}/equipos','App\Http\Controllers\EquipoController@byEquipo');
 
 
 Route::group([
