@@ -13,6 +13,15 @@ $dateh = Carbon::now();
 $dateh = $dateh->format('Y-m-d');
 @endphp
 
+
+
+
+         <!-- Preloader -->
+         <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+          </div>
+
+<br>
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -69,17 +78,22 @@ $dateh = $dateh->format('Y-m-d');
                             </tr>
                         </tbody>
                     </table>
+                    Tiempo de operación: {{$mes}} Meses y {{intval($resultado)}} Dias
+                    
+                    <br>
+                  
 
 
-                   {{--  @foreach($fechaarray as $data_fecha)
-                    {{$data_fecha}}
-                    @endforeach --}}
+                    @foreach($fechaarray as $data_fecha)
+                    {{$data_fecha}} <br>
+    
+                    @endforeach
                     <br>
                     
                     
                    
 
-                    Tiempo de operación: {{intval($resultado)}} Meses y {{intval($dias)}} Dias
+                    
                      {{-- <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
@@ -124,18 +138,134 @@ $dateh = $dateh->format('Y-m-d');
                     </div>  --}}
 
 
-                {{-- @foreach($fechas as $data_fecha)
-                {{$data_fecha->fecha_movimiento}}
-                @endforeach --}}
+               
+                <ul class="nav nav-tabs">
+                    
+                    <li><a role="presentation" class="nav-link active" data-toggle="tab" href="#menu1" aria-controls="menu1" role="tab">Mantenciones</a></li>
+                    <li><a role="presentation" class="nav-link" data-toggle="tab" href="#menu2" aria-controls="menu2" role="tab">Movimientos</a></li>
+                  </ul>
+                  
+                  <div class="tab-content">
+                    
+                    <div id="menu1" class="tab-pane active ">
+                      
+                      
+                      <div class="card-body">
+                        <div class="table-responsive">
+                            <table id ="mantenciones" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+
+										{{-- <th>Id Mantencion</th> --}}
+
+										<th>Fecha Mantención</th>
+										<th>Descripción</th>
+										<th>Validación</th>
+										<th>Usuario</th>
+										<th>Código Equipo</th>
+
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($mantencionequipo as $mantencione)
+                                        <tr>
+											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
+
+											<td>{{ $mantencione->fecha_mantencion }}</td>
+											<td>{{ $mantencione->descripcion }}</td>
+											<td>{{ $mantencione->validacion }}</td>
+                                            
+
+											<td>{{ $mantencione->id_usuario}}</td>
+											<td>{{ $mantencione->id_equipo}}
+
+
+                                            <td>
+                                                <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
+                                                    @can('Ver mantención')
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    @endcan
+                                                    @can('Editar mantenciones')
+                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @endcan
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    @can('Eliminar mantención')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                    @endcan
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="menu2" class="tab-pane">
+                     
+                      <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="movimientos" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+										{{-- <th>Id Movimiento</th> --}}
+										<th>Tipo Movimiento</th>
+										<th>Fecha Movimiento</th>
+										<th>Tipo Documento</th>
+										<th>N° Documento</th>
+										<th>Código Equipo</th>
+                                        <th>Centro</th>
+
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($movimientoequipo as $movimiento)
+                                        <tr>
+											{{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
+											<td>{{ $movimiento->tipo_movimiento }}</td>
+											<td>{{ $movimiento->fecha_movimiento }}</td>
+											<td>{{ $movimiento->tipo_documento }}</td>
+											<td>{{ $movimiento->n_documento }}</td>
+                                            <td>
+                                                {{ $movimiento->id_equipo}}
+                                            </td>
+                                            <td>
+                                                {{ $movimiento->id_centro}}
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
 
 
 
                 </div>
+                   
+                  
             </div>
+            
         </div>
+        
     </div>
+    
 </section>
-<h3>Mantenciones realizadas</h3>
+{{-- <h3>Mantenciones realizadas</h3>
 
 
 @php
@@ -145,8 +275,8 @@ $i = 1;
 
    
     <section class="content container-fluid">
-        
-        <div class="row">
+         --}}
+       {{--  <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="float-left">
@@ -188,7 +318,7 @@ $i = 1;
                                                 <td class="tex">Codigo equipo:</td>
                                                 <td>{{ $em->id_equipo }}</td>
                                             </tr>  --}}
-                                            <tr>
+                                            {{-- <tr>
                                             
                                             </tr>
                                         </tbody>
@@ -217,14 +347,16 @@ $i = 1;
                     </div> 
                 </div>           
             </div>
-        </div>
+        </div> --}}
+
 
     </section>
     @php
-    $i += 1;
+    /* $i += 1; */
+    
 @endphp
 
-@endforeach
+{{-- @endforeach --}}
 
 @stop
 

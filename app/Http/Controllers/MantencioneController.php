@@ -6,6 +6,9 @@ use App\Models\Equipo;
 use App\Models\Mantencione;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 /**
@@ -43,9 +46,12 @@ class MantencioneController extends Controller
     {
         $mantencione = new Mantencione();
 
-        $equipos = Equipo::pluck('cod_equipo','id_equipo');
+        $equipos = Equipo::where('estado','=','En revisión')->pluck('cod_equipo','id_equipo');
 
-        return view('mantencione.create', compact('mantencione', 'equipos'));
+        $equipos2 = DB::select('SELECT id_equipo, cod_equipo FROM equipos where estado="En revisión" ');
+        
+
+        return view('mantencione.create', compact('mantencione', 'equipos','equipos2'));
     }
 
     /**
@@ -63,6 +69,7 @@ class MantencioneController extends Controller
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
         $mantenciones->descripcion = $request->get('descripcion');
         $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+        $mantenciones->validacion = 'Pendiente';
         if($request->hasFile('imagen1')){
             $image1= $request->file('imagen1');
             $extension = $image1->getClientOriginalExtension();

@@ -28,12 +28,7 @@ class User2Controller extends Controller
 
     }
 
-    public function ubicacion($id)
-    {
-        //
-        /* $user2 = User::find($id);
-        return view('user2.ubicacion')->with('user2',$user2); */
-    }
+
 
     public function index()
     {
@@ -120,8 +115,23 @@ class User2Controller extends Controller
         return view('user2.edit')->with('user2',$user2);
     }
 
-    
+    public function ubicacion(Request $request,$id)
+    {
 
+
+        $usuario = User::find($id);
+
+/*         $user2->name = $request->get('nombreu');
+        $user2->email = $request->get('correo');
+        $user2->password = bcrypt($request->get('passw')); */
+        $usuario->estado= $request->get('estado');
+
+
+        $usuario->save();
+
+        return redirect('dashboard')
+            ->with('success', 'Usuario actualizado exitosamente');;
+    }
 
 
     /**
@@ -140,7 +150,6 @@ class User2Controller extends Controller
             $user2->name = $request->get('nombreu');
             $user2->email = $request->get('correo');
             $user2->password = bcrypt($request->get('passw'));
-
 
             $user2->save();
 

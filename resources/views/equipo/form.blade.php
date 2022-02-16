@@ -8,6 +8,17 @@ $dateho = Carbon::now();
 $dateho = $dateho->format('Y-m-d');
 @endphp
 
+
+
+
+
+         <!-- Preloader -->
+ <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+
+
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">

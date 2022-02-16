@@ -67,8 +67,17 @@
 											<td>{{ $equipo->tipo_equipo }}</td>
 											<td>{{ $equipo->modelo }}</td>
 											{{-- <td>{{ $equipo->descripcion }}</td> --}}
-											<td>{{ $equipo->estado }}</td>
-                                            {{-- <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td> --}}
+											<td>@if($equipo->estado=='Operativo')
+                                                <span class="badge bg-success">{{ $equipo->estado }}</span></td>
+                                            @elseif($equipo->estado == 'En revisión')
+                                                <span class="badge bg-warning text-dark">{{ $equipo->estado }}</span></td>
+
+                                            @elseif($equipo->estado == 'Dado de baja')
+                                                <span class="badge bg-danger">{{ $equipo->estado }}</span></td>
+                                            @else
+                                                Error
+                                            @endif
+                                           
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}

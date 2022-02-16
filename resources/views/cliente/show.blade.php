@@ -3,7 +3,7 @@
 @section('title', 'Centros')
 
 @section('content_header')
-    <h1>Centros</h1>
+    <h1>Clientes</h1>
 @stop
 
 @section('content')
@@ -22,34 +22,30 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <span class="card-title">Vista Centro</span>
+                        <span class="card-title">Vista cliente</span>
                     </div>
                     <div class="float-right">
-                        <a class="btn btn-primary" href="{{ route('centros.index') }}"> Atrás</a>
+                        <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Atrás</a>
                     </div>
                 </div>
 
                 <div class="card-body">
 
                     <div class="form-group">
-                        <strong>Id Centro:</strong>
-                        {{ $centro->id_centro }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Nombre Centro:</strong>
-                        {{ $centro->nombre_centro }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Telefono Empresa:</strong>
-                        {{ $centro->telefono_empresa }}
-                    </div>
-                    <div class="form-group">
-                        <strong>Descripcion:</strong>
-                        {{ $centro->descripcion }}
-                    </div>
-                    <div class="form-group">
                         <strong>Id Cliente:</strong>
-                        {{ $centro->id_cliente }}
+                        {{ $cliente->id_cliente }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Nombre Empresa:</strong>
+                        {{ $cliente->nombre_empresa }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Rut Empresa:</strong>
+                        {{ $cliente->rut_empresa }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Descripción:</strong>
+                        {{ $cliente->descripcion }}
                     </div>
 
                 </div>

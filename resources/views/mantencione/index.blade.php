@@ -40,9 +40,9 @@
 
 										{{-- <th>Id Mantencion</th> --}}
 
-										<th>Fecha Mantencion</th>
-										<th>Descripcion</th>
-										<th>Validacion</th>
+										<th>Fecha Mantención</th>
+										<th>Descripción</th>
+										<th>Validación</th>
                                         {{-- <th>Imagen1</th> --}}
                                         {{-- <th>imagen2</th>
                                         <th>Imagen3</th> --}}

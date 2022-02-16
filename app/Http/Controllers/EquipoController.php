@@ -73,22 +73,15 @@ class EquipoController extends Controller
 
 
 
-        $rawsQs3 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Camara');
-        $rawsQs4 = DB::table('equipos')->get()->where('estado','=','En revisión','and','tipo_equipo','=','Lampara');
-
-        $rawsQs6 = DB::select("SELECT id_equipo
-        FROM equipos where estado='En revisión' and tipo_equipo='Camara';");
-
-        $rawsQs5 = DB::select("SELECT estado
-        FROM equipos where 'estado'='En revisión' and tipo_equipo='Lampara';");
-
+        $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
+        $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
 
 
 
         $nlamparas = $rawsQs1;
         $ncamaras = $rawsQs2;
-        $ncamarasrep = count($rawsQs6);
-        $nlamparasrep = count($rawsQs5);
+        $ncamarasrep = count($rawsQs3);
+        $nlamparasrep = count($rawsQs4);
 
         return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
     }
@@ -139,7 +132,7 @@ class EquipoController extends Controller
                 'n_documento' =>  $n_documento,
                 'modelo'  =>  $modelo,
                 'descripcion' =>  $descripcion,
-                'estado' =>    'Operativa' ,
+                'estado' =>    'Operativo',
                 'fecha_ingreso' =>    $fecha_ingreso ,
                 'proveedor' =>  $proveedor,
                 );
@@ -163,7 +156,7 @@ class EquipoController extends Controller
 
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo creado satisfactoriamente');
+            ->with('success', 'Equipo creado exitosamente.');
     }
 
     /**
@@ -214,7 +207,8 @@ class EquipoController extends Controller
                 $dateh = Carbon::now();
                 $dateh = $dateh->format('Y-m-d');
 
-                if(count($fechaarray)%2!=0){
+
+                if(count($fechaarray)%2!=0 && end($fechaarray)!=$dateh){
                     array_push($fechaarray,$dateh);
                 }
 
@@ -235,27 +229,43 @@ class EquipoController extends Controller
                     $entrada = $fechan;
 
                 }
+                
 
 
                 /*conversión diferencia de fechas en meses y dias*/
-                $resultado= $resultado/30;
-                $dias = $resultado%30;
+                /* $resultado = $resultado+1;
+                
+                
+                $resultado1= $resultado/30;
+                $dias = round($resultado%30); */
+                $resultado = $resultado*0.95;
+                
+
+
+                $mes = $resultado/30;
+                list($mes,$resultado) = explode(".",$mes);
+                $resultado = "0.".$resultado;
+                $resultado=$resultado*30;
+
+                
 
 
     
-               $resultado = $resultado*0.95;
-                intval($resultado);
+               
+                
 
 
                 /*Muestra las mantenciones de cada equipo */
                 $equipos = Mantencione::paginate();
                 $mantencionequipo = DB::select('SELECT * FROM mantenciones where id_equipo=?',[$id]);
+                 /*Muestra las movimientos de cada equipo */
+                $movimientoequipo = DB::select('SELECT * FROM movimientos where id_equipo=?',[$id]);
 
 
 
 
 
-        return view('equipo.show', compact('equipo','fechaarray','resultado','dias','mantencionequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','mes','resultado','mantencionequipo','movimientoequipo'));
     }
 
     /**

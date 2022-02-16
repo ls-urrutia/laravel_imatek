@@ -108,26 +108,40 @@
                                     <th>Nombre</th>{{-- 
                                     <th>Correo electrónico</th> --}}
                                     <th>Ubicación</th>
-                                    <th>Acciones</th>
+                                    <th>Actualizar Ubicación</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users2 as $usuario)
-                                    <tr>
-
-                                        <td>{{ $usuario->id}}</td>
+                                <tr>
+                                <form method="POST"  action="{{ action('App\Http\Controllers\User2Controller@ubicacion' , $usuario->id )}}"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <th scope="row">{{ $usuario->id}}</th>
                                         <td>{{ $usuario->name}}</td>
-                                        {{-- <td>{{ $usuario->email }}</td> --}}
-                                        <td>{{ $usuario->estado}}</td>
+                                        <td>
+                                            {{ $usuario->email }}
+                                        </td>
+                                        <td> {{ $usuario->estado }}
+                                        </td>
 
                                         <td>
+                                             <div class="form-group">
 
-                                      <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        {{ Form::text('estado', $usuario->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Ubicación']) }}
+                                                        {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
+                                                    </div>
 
-                                      
-                                     {{--  <a href="{{ route('users2.edit', $usuario->id,$valor=1) }}" class="btn btn-info">Editar</a> --}}
-                                      <a class="btn btn-sm btn-success" href="{{ route('users2.index',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> Actualizar</a>
+
+                                                </td>
+                                        <td>
+                                            @can('Editar Usuarios')
+                                            <input type="submit" value="Confirmar" class="btn btn-sm btn-success">
+                                            @endcan
                                         </td>
+
+                                    </form>
                                     </tr>
                                 @endforeach
                             </tbody>

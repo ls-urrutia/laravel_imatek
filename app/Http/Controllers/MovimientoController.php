@@ -103,10 +103,10 @@ class MovimientoController extends Controller
         ->orderBy("created_at","desc")
         ->get(); */
 
-         if($ultimomov[0]->tipo_movimiento == $tipomov || $ultimomov[0]->tipo_movimiento == 'Compra'&& $tipomov == "Entrada" ){
+         if($ultimomov[0]->tipo_movimiento == $tipomov || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipomov == 'Entrada')){
 
             return redirect()->route('movimientos.index')
-                ->with('error', 'Ingreso fallido');
+                ->with('error', 'Ingreso fallido. Movimiento no permitido');
 
         } else {
             $movimientos->save();
@@ -128,7 +128,7 @@ class MovimientoController extends Controller
 
 
         return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento creado')->with('success','Movimiento creado exitosamente');
+            ->with('success','Movimiento creado exitosamente');
         
   
 
