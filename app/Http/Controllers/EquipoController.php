@@ -33,7 +33,7 @@ class EquipoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado = 'Operativa';",[$tipo_m]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado = 'Operativo';",[$tipo_m]);
 /*
        return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
     }
@@ -85,7 +85,7 @@ class EquipoController extends Controller
     public function mostrar() {
 
         $equipos = Equipo::paginate(); //1 page with 10 products
-        $users2 = User::all();
+        $users2 = User::all()->except(1);
 
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
@@ -130,9 +130,9 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-/*         request()->validate(Equipo::$rules);
+      request()->validate(Equipo::$rules);
 
-  */
+
 
         $tipo_equipo = $request->get('tipo_equipo');
         $cod_equipo = $request->get('cod_equipo');
@@ -152,10 +152,11 @@ class EquipoController extends Controller
                 'n_documento' =>  $n_documento,
                 'modelo'  =>  $modelo,
                 'descripcion' =>  $descripcion,
-                'estado' =>    'Operativa' ,
+                'estado' =>    'Operativo',
                 'fecha_ingreso' =>    $fecha_ingreso ,
                 'proveedor' =>  $proveedor,
                 );
+
 
                 DB::table('equipos')->insert($data);
 
@@ -226,7 +227,8 @@ class EquipoController extends Controller
                 $dateh = Carbon::now();
                 $dateh = $dateh->format('Y-m-d');
 
-                if(count($fechaarray)%2!=0){
+
+                if(count($fechaarray)%2!=0 && end($fechaarray)!=$dateh){
                     array_push($fechaarray,$dateh);
                 }
 
@@ -249,21 +251,41 @@ class EquipoController extends Controller
                 }
 
 
+
                 /*conversión diferencia de fechas en meses y dias*/
-                $resultado= $resultado/30;
-                $dias = $resultado%30;
-                intval($resultado);
+                /* $resultado = $resultado+1;
+
+
+                $resultado1= $resultado/30;
+                $dias = round($resultado%30); */
+                $resultado = $resultado*0.95;
+
+
+
+                $mes = $resultado/30;
+                list($mes,$resultado) = explode(".",$mes);
+                $resultado = "0.".$resultado;
+                $resultado=$resultado*30;
+
+
+
+
+
+
+
 
 
                 /*Muestra las mantenciones de cada equipo */
                 $equipos = Mantencione::paginate();
                 $mantencionequipo = DB::select('SELECT * FROM mantenciones where id_equipo=?',[$id]);
+                 /*Muestra las movimientos de cada equipo */
+                $movimientoequipo = DB::select('SELECT * FROM movimientos where id_equipo=?',[$id]);
 
 
 
 
 
-        return view('equipo.show', compact('equipo','fechaarray','resultado','dias','mantencionequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','mes','resultado','mantencionequipo','movimientoequipo'));
     }
 
     /**
@@ -294,7 +316,7 @@ class EquipoController extends Controller
         $equipo->update($request->all());
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo updated successfully');
+            ->with('success', 'Equipo actualizado satisfactoriamente');
     }
 
     /**
@@ -304,10 +326,20 @@ class EquipoController extends Controller
      */
     public function destroy($id)
     {
-        $equipo = Equipo::find($id)->delete();
+        try{
 
+
+        $equipo = Equipo::find($id)->delete();
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo deleted successfully');
+        ->with('success', 'Equipo eliminado satisfactoriamente');
+
+        } catch(\Exception $exception){
+            return redirect()->route('equipos.index')
+            ->with('error', 'El equipo no se puede eliminar!');
+
+        }
+
+
     }
 
 

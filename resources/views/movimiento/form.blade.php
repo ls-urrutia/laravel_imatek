@@ -22,7 +22,7 @@
         </th>
 
         <div class="form-group">
-            {{ Form::label('fecha_movimiento') }}
+            {{ Form::label('fecha_movimiento:') }}
             {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Movimiento']) }}
             {!! $errors->first('fecha_movimiento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -79,6 +79,9 @@
         </form>
    </div>
 
+
+   <div id="log"></div>
+
    <script type="text/javascript">
 
 
@@ -89,11 +92,162 @@ $(function() {
     $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
     $('#div_centro').hide();
     numero_row = 0;
+    dupl = [];
+
+
+
+
+    var previous;
+
+    console.log(dupl);
+
+    $('.select-e').focus(function () {
+
+        previous = this.value;
+
+    console.log(previous);
+
+    var myIndex = dupl.indexOf(previous);
+
+    if (myIndex !== -1) {
+    dupl.splice(myIndex, 1);
+    }
+
+    }).change(function() {
+
+        var chg = this.value;
+
+        if (dupl.includes(chg)) {
+        alert("Ha repetido equipos"); } else
+        { dupl.push(chg)
+    }
+        document.getElementById("log").innerHTML = "<b>Previous: </b>"+previous;
+        console.log(dupl);
+
+
+
+    });
+
+
 
 });
 
 
+/* function onSelectMovimientoDuplicate() {
+
+
+var seleccion = $(event.target).val()
+
+var myIndex = myArray.indexOf('previous');
+if (myIndex !== -1) {
+myArray.splice(myIndex, 1);
+}
+
+    if (dupl.includes(seleccion)) {
+    alert("Ha repetido equipos"); } else
+    { dupl.push(seleccion)
+
+}
+
+
+agrega 1, agrega 2, [1,2], cambia el 1 por el 3, [1,2,3]
+
+console.log(dupl);
+
+const noDups = new Set(dupl);
+return dupl.length !== noDups.size;
+
+
+
+} */
+
+
+
+
+
+/* function onSelectMovimientoDuplicate() {
+
+
+var seleccion = $(event.target).val()
+
+
+
+}
+
+    if (dupl.includes(seleccion)) {
+    alert("Ha repetido equipos"); } else
+    { dupl.push(seleccion)
+
+}
+
+
+agrega 1, agrega 2, [1,2], cambia el 1 por el 3, [1,2,3]
+
+console.log(dupl);
+
+const noDups = new Set(dupl);
+return dupl.length !== noDups.size;
+
+
+
+}
+ */
+
+/*  (function () {
+    var previous;
+
+    $("select[name=test]").each(function (focus) {
+        // Store the current value on focus, before it changes
+        previous = this.value;
+    }).change(function() {
+        // Do soomething with the previous value after the change
+        document.getElementById("log").innerHTML = "<b>Previous: </b>"+previous;
+
+        previous = this.value;
+    });
+})();
+ */
+/*
+    function valueSelect() {
+
+    var previous;
+
+    console.log(dupl);
+
+    $('.select-e').focus(function () {
+
+    previous = this.value;
+
+    console.log(previous);
+
+    var myIndex = dupl.indexOf('previous');
+    if (myIndex !== -1) {
+    dupl.splice(myIndex, 1);
+    }
+
+    }).change(function() {
+
+        var chg = this.value;
+
+        if (dupl.includes(chg)) {
+        alert("Ha repetido equipos"); } else
+        { dupl.push(chg)
+    }
+        document.getElementById("log").innerHTML = "<b>Previous: </b>"+previous;
+        console.log(dupl);
+
+        previous = this.value;
+
+    });
+
+
+}
+
+ */
+
+
 function onSelectMovimientoChange() {
+
     var tipo_movimiento = $(this).val();
 
 
@@ -127,10 +281,6 @@ if ($(this).val() == 'Salida') {
         $("select#ids_centro").val("2");
     }
 }
-
-
-
-
 
 
 
@@ -186,6 +336,46 @@ if ($(this).val() == 'Salida') {
            }
 
        });
+
+
+
+/*        function valueSelect() {
+
+        var seleccion_actual = $(event.target).val()
+
+       }
+ */
+
+       /* function onSelectMovimientoDuplicate() {
+
+
+
+
+        var seleccion = $(event.target).val()
+
+        var myIndex = myArray.indexOf('previous');
+        if (myIndex !== -1) {
+        myArray.splice(myIndex, 1);
+        }
+
+            if (dupl.includes(seleccion)) {
+            alert("Ha repetido equipos"); } else
+            { dupl.push(seleccion)
+        }
+
+        agrega 1, agrega 2, el 1 selecciona 3, queda 2-3
+
+
+        console.log(dupl);
+
+        const noDups = new Set(dupl);
+        return dupl.length !== noDups.size;
+
+
+
+       } */
+
+
    </script>
 
 </div>

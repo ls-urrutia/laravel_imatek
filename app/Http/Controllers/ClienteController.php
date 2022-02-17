@@ -90,6 +90,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id_cliente)
     {
+        try{
         $cliente = cliente::find($id_cliente);
 
         $cliente->nombre_empresa = $request->get('nombre_empresa');
@@ -99,6 +100,9 @@ class ClienteController extends Controller
         $cliente->save();
 
         return redirect('/clientes');
+        }catch(\Exception $exception){
+            return redirect('/clientes')->with('error','No se pudo actualizar al cliente');
+        }
     }
 
     /**
@@ -109,9 +113,13 @@ class ClienteController extends Controller
      */
     public function destroy($id_cliente)
     {
+        try{
         $cliente = Cliente::find($id_cliente);
         $cliente->delete();
 
-        return redirect('/clientes');
+        return redirect('/clientes')->with('success','Cliente eliminado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect('/clientes')->with('error','No se pudo eliminar al cliente');
+        }
     }
 }

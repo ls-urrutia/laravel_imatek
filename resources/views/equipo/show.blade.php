@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@ $dateh = $dateh->format('Y-m-d');
             <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
           </div>
 
-
+<br>
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -39,13 +39,13 @@ $dateh = $dateh->format('Y-m-d');
                     <table class="tab">
                         <tbody>
                             <tr>
-                                <td class="tex">Codigo Equipo</td>
+                                <td class="tex">Codigo Equipo:</td>
                                 <td>{{ $equipo->cod_equipo }}</td>
 
                             </tr>
 
                             <tr>
-                                <td class="tex">Numero documento</td>
+                                <td class="tex">Numero documento:</td>
                                 <td> {{ $equipo->n_documento }}</td>
                             </tr>
                             <tr>
@@ -78,15 +78,22 @@ $dateh = $dateh->format('Y-m-d');
                             </tr>
                         </tbody>
                     </table>
-
-
-                   {{--  @foreach($fechaarray as $data_fecha)
-                    {{$data_fecha}}
-                    @endforeach --}}
+                    Tiempo de operación: {{$mes}} Meses y {{intval($resultado)}} Dias
+                    
                     <br>
+                  
 
 
-                    El equipo Ha estado operativo aproximadamente un total de:{{intval($resultado)}} Meses y {{$dias}} Dias
+                    @foreach($fechaarray as $data_fecha)
+                    {{$data_fecha}} <br>
+    
+                    @endforeach
+                    <br>
+                    
+                    
+                   
+
+                    
                      {{-- <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="thead">
@@ -131,94 +138,225 @@ $dateh = $dateh->format('Y-m-d');
                     </div>  --}}
 
 
-                {{-- @foreach($fechas as $data_fecha)
-                {{$data_fecha->fecha_movimiento}}
-                @endforeach --}}
+               
+                <ul class="nav nav-tabs">
+                    
+                    <li><a role="presentation" class="nav-link active" data-toggle="tab" href="#menu1" aria-controls="menu1" role="tab">Mantenciones</a></li>
+                    <li><a role="presentation" class="nav-link" data-toggle="tab" href="#menu2" aria-controls="menu2" role="tab">Movimientos</a></li>
+                  </ul>
+                  
+                  <div class="tab-content">
+                    
+                    <div id="menu1" class="tab-pane active ">
+                      
+                      
+                      <div class="card-body">
+                        <div class="table-responsive">
+                            <table id ="mantenciones" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
 
+										{{-- <th>Id Mantencion</th> --}}
+
+										<th>Fecha Mantención</th>
+										<th>Descripción</th>
+										<th>Validación</th>
+										<th>Usuario</th>
+										<th>Código Equipo</th>
+
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($mantencionequipo as $mantencione)
+                                        <tr>
+											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
+
+											<td>{{ $mantencione->fecha_mantencion }}</td>
+											<td>{{ $mantencione->descripcion }}</td>
+											<td>{{ $mantencione->validacion }}</td>
+                                            
+
+											<td>{{ $mantencione->id_usuario}}</td>
+											<td>{{ $mantencione->id_equipo}}
+
+
+                                            <td>
+                                                <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
+                                                    @can('Ver mantención')
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    @endcan
+                                                    @can('Editar mantenciones')
+                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @endcan
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    @can('Eliminar mantención')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                    @endcan
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="menu2" class="tab-pane">
+                     
+                      <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="movimientos" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+										{{-- <th>Id Movimiento</th> --}}
+										<th>Tipo Movimiento</th>
+										<th>Fecha Movimiento</th>
+										<th>Tipo Documento</th>
+										<th>N° Documento</th>
+										<th>Código Equipo</th>
+                                        <th>Centro</th>
+
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($movimientoequipo as $movimiento)
+                                        <tr>
+											{{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
+											<td>{{ $movimiento->tipo_movimiento }}</td>
+											<td>{{ $movimiento->fecha_movimiento }}</td>
+											<td>{{ $movimiento->tipo_documento }}</td>
+											<td>{{ $movimiento->n_documento }}</td>
+                                            <td>
+                                                {{ $movimiento->id_equipo}}
+                                            </td>
+                                            <td>
+                                                {{ $movimiento->id_centro}}
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
 
 
 
                 </div>
+                   
+                  
             </div>
+            
         </div>
+        
     </div>
+    
 </section>
-<h2>Mantenciones realizadas</h2>
-<br>
-<br>
+{{-- <h3>Mantenciones realizadas</h3>
+
+
 @php
 $i = 1;
 @endphp
 @foreach ($mantencionequipo as $em)
 
-   <h3> Mantención {{$i}}</h3>
+   
     <section class="content container-fluid">
-        <div class="row">
+         --}}
+       {{--  <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="row">
-                    <div class="col container">
-                        <table class="tab ">
-                            <tbody>
-                                <tr>
-                                    <br>
-                                    <td class="tex">Fecha Mantención:</td>
-                                    <td>{{$em->fecha_mantencion}}</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="tex">Descripción:</td>
-                                    <td>{{ $em->descripcion }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tex">Validación:</td>
-                                    <td>{{ $em->validacion}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tex">Mantencíon realizada por:</td>
-                                    <td>{{ $em->id_usuario }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tex">Codigo equipo</td>
-                                    <td>{{ $em->id_equipo }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                            </div>
-
-                             <div class="col container ordenar">
-
-                                        @if(isset($em->imagen1))
-
-                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen1)}}" alt="" width="70px" height="70px" >
-
-                                        @endif
-
-                                        @if(isset($em->imagen2))
-
-                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen2)}}" alt="" width="70px" height="70px">
-
-                                        @endif
-
-                                        @if(isset($em->imagen3))
-
-                                        <img src="{{asset('imagenes/fmantenciones/'.$em->imagen3)}}" alt="" width="70px" height="70px">
-
-                                        @endif
-                                 </div>
-                            </div>
+                    <div class="float-left">
+                        <br>
+                        
+                        <span class="card-title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMantención{{$i}}</span><br>
                     </div>
+
+                  
+                    
+                    
+                    <div class="card-body" >
+                        <div class="row">
+                                <div class="ordenar2">
+
+                                    <table class="tab row">
+                                        <tbody>
+                                            <tr>
+                                                <td class="tex">Fecha Mantención:</td>
+                                                <td>{{$em->fecha_mantencion}}</td>
+                                                
+                                            
+                                            </tr>
+                                        
+                                            <tr>
+                                                <td class="tex">Descripción:</td>
+                                                <td>{{ $em->descripcion }}</td>
+                                            </tr> 
+                                            <tr>
+                                                <td class="tex">Validación:</td>
+                                                <td>{{ $em->validacion}}</td>
+                                            </tr> 
+                                            <tr>
+                                                <td class="tex">Mantencíon realizada por:</td>
+                                                <td>{{ $em->id_usuario }}</td>
+                                                
+                                            </tr> 
+                                            {{-- <tr>
+                                                <td class="tex">Codigo equipo:</td>
+                                                <td>{{ $em->id_equipo }}</td>
+                                            </tr>  --}}
+                                            {{-- <tr>
+                                            
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+
+                                <div class="ordenar2">    
+
+                                    <div id="ordenar">
+                                        @if(isset($em->imagen1))
+                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen1)}}" alt="" width="70px" height="70px" >  
+                                        @endif
+                                        @if(isset($em->imagen2))
+                                            <img src="{{asset('imagenes/fmantenciones/'.$em->imagen2)}}" alt="" width="70px" height="70px">  
+                                        @endif
+                                        @if(isset($em->imagen3))
+                                        <img src="{{asset('imagenes/fmantenciones/'.$em->imagen3)}}" alt="" width="70px" height="70px">  
+                                        @endif
+                
+                                    </div>
+                                </div>    
+                            </div>        
+
+ 
+                    </div> 
+                </div>           
             </div>
-        </div>
+        </div> --}}
+
 
     </section>
     @php
-    $i += 1;
+    /* $i += 1; */
+    
 @endphp
 
-@endforeach
+{{-- @endforeach --}}
 
 @stop
 

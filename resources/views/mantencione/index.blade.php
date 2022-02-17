@@ -38,32 +38,32 @@
                                 <thead class="thead">
                                     <tr>
 
-										<th>Id Mantencion</th>
+										{{-- <th>Id Mantencion</th> --}}
 
-										<th>Fecha Mantencion</th>
-										<th>Descripcion</th>
-										<th>Validacion</th>
-                                        <th>Imagen1</th>
+										<th>Fecha Mantención</th>
+										<th>Descripción</th>
+										<th>Validación</th>
+                                        {{-- <th>Imagen1</th> --}}
                                         {{-- <th>imagen2</th>
                                         <th>Imagen3</th> --}}
 										<th>Usuario</th>
 										<th>Código Equipo</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($mantenciones as $mantencione)
                                         <tr>
-											<td>{{ $mantencione->id_mantencion }}</td>
+											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
 											<td>{{ $mantencione->fecha_mantencion }}</td>
 											<td>{{ $mantencione->descripcion }}</td>
 											<td>{{ $mantencione->validacion }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 @if(isset($mantencione->imagen1))
                                                   <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
-                                                @endif
+                                                @endif --}}
                                             {{-- <td>
                                                 @if(isset($mantencione->imagen2))
                                                   <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
@@ -82,15 +82,15 @@
                                             <td>
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
                                                     @can('Ver mantención')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>
                                                     @endcan
                                                     @can('Editar mantenciones')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i></a>
                                                     @endcan
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('Eliminar mantención')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                                     @endcan
                                                 </form>
                                             </td>
@@ -178,7 +178,7 @@ table th {
 
 
 
-
+  {{--   "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros", --}}
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -187,8 +187,8 @@ table th {
             language: {
                     "lengthMenu": "Mostrar _MENU_ registros",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "info": "",
+                    "infoEmpty": "",
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "sSearch": "Buscar:",
                     "oPaginate": {

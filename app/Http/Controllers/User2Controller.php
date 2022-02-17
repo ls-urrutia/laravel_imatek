@@ -23,10 +23,21 @@ class User2Controller extends Controller
         $this->middleware('auth');
     }
 
+
+    public function prueba($id){
+
+    }
+
+
+
     public function index()
     {
         //
-        $users2 = User::all();
+        
+
+        $users2 = User::all()->except(1);
+        
+
         return view('user2.index')->with('users2',$users2);
 
     }
@@ -54,6 +65,7 @@ class User2Controller extends Controller
     public function store(Request $request)
     {
         //
+        
         $user2 = new User();
         $user2->name = $request->get('nombreu');
         $user2->email = $request->get('correo');
@@ -63,6 +75,9 @@ class User2Controller extends Controller
 
         return redirect('/users2')
             ->with('success', 'Usuario creado exitosamente.');
+       
+
+        
     }
 
 
@@ -74,9 +89,17 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
+
+
+
     public function show($id)
     {
         //
+
+        $user2 = User::find($id);
+
+        return view('user2.show', compact('user2'));
     }
 
     /**
@@ -120,18 +143,22 @@ class User2Controller extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
+        try{
+            $user2 = User::find($id);
 
+            $user2->name = $request->get('nombreu');
+            $user2->email = $request->get('correo');
+            $user2->password = bcrypt($request->get('passw'));
 
-        $user2 = User::find($id);
+            $user2->save();
 
-        $user2->name = $request->get('nombreu');
-        $user2->email = $request->get('correo');
-        $user2->password = bcrypt($request->get('passw'));
-
-        $user2->save();
-
-        return redirect('/users2')
-            ->with('success', 'Usuario actualizado exitosamente');;
+            return redirect('/users2')
+                ->with('success', 'Usuario actualizado exitosamente');
+        }catch(\Exception $exception){
+            return redirect('/users2')
+            ->with('error', 'No se pudo actualizar el usuario');
+        }    
     }
 
 
@@ -144,10 +171,18 @@ class User2Controller extends Controller
     public function destroy($id)
     {
         //
-        $user2 = User::find($id);
-        $user2->delete();
+        try{
+            $user2 = User::find($id);
+            $user2->delete();
 
-        return redirect('/users2')
-            ->with('success', 'Usuario eliminado exitosamente');;
+            return redirect('/users2')
+                ->with('success', 'Usuario eliminado exitosamente');
+        }catch(\Exception $exception){
+            return redirect('/users2')
+            ->with('error', 'No se pudo eliminar el usuario');
+
+        }    
     }
+
+  
 }

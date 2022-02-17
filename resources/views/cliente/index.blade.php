@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Creación</h1>
+    <h1>Lista Clientes</h1>
 @stop
 
 @section('content')
@@ -15,7 +15,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title">
-                            {{ __('Cliente') }}
+                            {{ __('') }}
                         </span>
 
                          <div class="float-right">
@@ -42,7 +42,7 @@
                                     <th>Nombre Empresa</th>
                                     <th>Rut Empresa</th>
                                     <th>Descripción</th>
-                                    <th></th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,9 +157,9 @@ table th {
             language: {
                     "lengthMenu": "Mostrar _MENU_ registros",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
                     "sSearch": "Buscar:",
                     "oPaginate": {
                         "sFirst": "Primero",

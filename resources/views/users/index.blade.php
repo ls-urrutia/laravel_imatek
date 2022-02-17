@@ -4,7 +4,7 @@
 
 
 @section('content_header')
-    <h1>Asignar permisos</h1>
+    <h1>Asignar Rol</h1>
 @stop
 
 @section('content')
@@ -19,7 +19,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Equipo') }}
+                                
                             </span>
 
                              <div class="float-right">
@@ -30,7 +30,12 @@
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
                             <p>{{ $message }}</p>
                         </div>
                     @endif

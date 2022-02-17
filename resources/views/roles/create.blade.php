@@ -3,16 +3,26 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Crear Rol</h1>
 @stop
 
 @section('content')
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+@if ($message = Session::get('error'))
+    <div class="alert alert-danger">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 
 <div class="card">
     <div class="card-body">
         {!! Form::open(['route'=> 'roles.store']) !!}
             <div class="form group">
-                {!! Form::label('name', 'Nombre') !!}
+                {!! Form::label('name', 'Nombre del rol:') !!}
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
                 @error('name')
                 <small class="text-danger">

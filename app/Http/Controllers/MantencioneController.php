@@ -43,9 +43,12 @@ class MantencioneController extends Controller
     {
         $mantencione = new Mantencione();
 
-        $equipos = Equipo::pluck('cod_equipo','id_equipo');
+        $equipos = Equipo::where('estado','=','En revisión')->pluck('cod_equipo','id_equipo');
 
-        return view('mantencione.create', compact('mantencione', 'equipos'));
+        $equipos2 = DB::select('SELECT id_equipo, cod_equipo FROM equipos where estado="En revisión" ');
+
+
+        return view('mantencione.create', compact('mantencione', 'equipos','equipos2'));
     }
 
     /**
@@ -144,11 +147,15 @@ class MantencioneController extends Controller
      */
     public function edit($id)
     {
+        try{
         $mantencione = Mantencione::find($id);
 
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
-        return view('mantencione.edit', compact('mantencione','equipos'));
+        return view('mantencione.edit', compact('mantencione','equipos'))->with('success','Mantención actualizada exitosamente');
+        }catch(\Exception $exception){
+            return view('mantencione.edit', compact('mantencione','equipos'))->with('error','No se pudo editar la mantención');
+        }
     }
 
     /**
@@ -161,6 +168,7 @@ class MantencioneController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate(Mantencione::$rules);
+        try{
         $mantenciones=Mantencione::find($id);
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
         $mantenciones->descripcion = $request->get('descripcion');
@@ -216,6 +224,11 @@ class MantencioneController extends Controller
  */
         return redirect()->route('mantenciones.index')
             ->with('success', 'Se ha actualizado exitosamente');
+        }catch(\Exception $exception){
+            return redirect()->route('mantenciones.index')
+            ->with('success', 'No se pudo actualizar');
+        }
+
     }
 
     /**
@@ -225,6 +238,7 @@ class MantencioneController extends Controller
      */
     public function destroy($id)
     {
+        try{
         $mantencione = Mantencione::find($id);
         $destino = 'imagenes/fmantenciones/'.$mantencione->imagen1;
         if(File::exists($destino)){
@@ -235,5 +249,11 @@ class MantencioneController extends Controller
  */
         return redirect()->route('mantenciones.index')
             ->with('success', 'Mantención eliminada exitosamente');
+        }catch(\Exception $exception){
+            return redirect()->route('mantenciones.index')
+            ->with('success', 'No se pudo eliminar la mantención');
+        }
+
+
     }
 }

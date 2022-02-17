@@ -19,6 +19,10 @@
         <input id="correo" name="correo" type="text" class="form-control" tabindex="2" value="{{$user2->email}}">
     </div>
     <div class="mb-3">
+        <label for="" class="form-label">Ubicación</label>
+        <input id="correo" name="correo" type="text" class="form-control" tabindex="2" value="{{$user2->ubicacion}}">
+    </div>
+    <div class="mb-3">
         <label for="" class="form-label">Contraseña</label>
         <input id="passw" name="passw" type="password" class="form-control" tabindex="3" >
     </div>

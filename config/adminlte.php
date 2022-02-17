@@ -258,25 +258,21 @@ return [
             'text'    => 'Gestión de usuarios',
             'icon'    => 'none',
             'submenu' => [
-                [
-                    'text'    => 'Usuarios',
-                    'url'     => '#',
-                    'icon'    => 'none',
-                    'submenu' => [
-                        [
-                            'text' => 'Lista Usuarios',
-                            'url'  => '/users2',
-                            'icon'    => 'none',
-                        ],
-                        [
-                            'text' => 'Crear Usuarios',
-                            'url'  => '/users2/create',
-                            'icon'    => 'none',
-                        ],
-                        ],
-                    ],
-
+                
+                    
                     [
+                        'text' => 'Lista Usuarios',
+                        'url'  => '/users2',
+                        'icon'    => 'none',
+                    ],
+                    [
+                        'text' => 'Crear Usuarios',
+                        'url'  => '/users2/create',
+                        'icon'    => 'none',
+                    ],
+                    
+
+/*                     [
                         'text'    => 'Roles',
                         'url'     => '#',
                         'icon'    => 'none',
@@ -293,7 +289,41 @@ return [
                         ],
                     ],
 
+                ], */
+
                 ],
+            'can'=>'Ver lista de usuarios',
+            'can'=> 'Crear usuarios',
+            'can'=>'Editar usuarios',
+            'can'=>'Eliminar usuarios'
+
+
+
+
+
+        ],
+        [
+            'text'    => 'Gestión de roles',
+            'icon'    => 'none',
+            'submenu' => [
+             
+                
+                    [
+                        'text' => 'Lista Roles',
+                        'url'  => '/roles',
+                        'icon'    => 'none',
+                    ],
+                    [
+                        'text' => 'Asignar Roles',
+                        'url'  => '/users',
+                        'icon'    => 'none',
+                    ],
+                    [
+                        'text' => 'Crear Roles',
+                        'url'  => '/roles/create',
+                        'icon'    => 'none',
+                    ],
+                    
 
                 ],
             'can'=>'Ver lista de usuarios',

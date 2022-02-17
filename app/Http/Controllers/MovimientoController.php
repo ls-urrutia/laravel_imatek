@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Centro;
 use App\Models\Movimiento;
 use App\Models\Equipo;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JeroenNoten\LaravelAdminLte\View\Components\Widget\Alert;
+use PhpParser\Node\Stmt\Break_;
 
 /**
  * Class MovimientoController
@@ -14,15 +17,6 @@ use Illuminate\Support\Facades\DB;
  */
 class MovimientoController extends Controller
 {
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -70,7 +64,7 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        /* request()->validate(Movimiento::$rules); */
+         request()->validate(Movimiento::$rules);
 
 
 
@@ -94,10 +88,10 @@ class MovimientoController extends Controller
 
        if( $long_arreglo_eq >  $long_arreglo_unico ) {
 
-        return redirect()->route('movimientos.index')
-        ->with('error', 'Ingreso fallido. Ha repetido equipos');
+/*      echo '<script type="text/javascript">alert("Esta repitiendo equipos!");</script>'; */
 
        }
+
 
         for ($i=0; $i < count($id_equipo); $i++){
 
@@ -113,8 +107,10 @@ class MovimientoController extends Controller
 
         $request->validate([
 
-            'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+        'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+
         ]);
+
 
 
 
@@ -183,8 +179,29 @@ class MovimientoController extends Controller
 
         }
 
+        if($request->get('tipo_movimiento') == 'Entrada') {
+
+            $equipo = Equipo::find($request->get('id_equipo'));
+            $equipo->estado = 'En revisión';
+            $equipo->save();
+        }
+
+
+        $equipo = Equipo::find($request->get('id_equipo'));
+        /*    $equipo->centro->nombre_centro = $request-> get('nombre_centro'); */
+        $equipo->id_centro = $request->get('id_centro');
+        $equipo->save();
+
+
+
+        return redirect()->route('movimientos.index')
+            ->with('success','Movimiento creado exitosamente');
+
+
+
 
     }
+
 
     /**
      * Display the specified resource.
@@ -224,11 +241,16 @@ class MovimientoController extends Controller
     public function update(Request $request, Movimiento $movimiento)
     {
         request()->validate(Movimiento::$rules);
-
+        try{
         $movimiento->update($request->all());
 
         return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento updated successfully');
+            ->with('success', 'Movimiento actualizado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('movimientos.index')
+            ->with('error', 'No se pudo eliminar el movimiento');
+
+        }
     }
 
     /**
@@ -238,9 +260,16 @@ class MovimientoController extends Controller
      */
     public function destroy($id)
     {
-        $movimiento = Movimiento::find($id)->delete();
+        try{
+            $movimiento = Movimiento::find($id)->delete();
 
-        return redirect()->route('movimientos.index')
-            ->with('success', 'Movimiento deleted successfully');
+            return redirect()->route('movimientos.index')
+                ->with('success', 'Movimiento eliminado satisfactoriamente');
+        }catch(\Exception $exception){
+            return redirect()->route('movimientos.index')
+            ->with('error', 'No se pudo eliminar el movimiento');
+
+
+        }
     }
 }

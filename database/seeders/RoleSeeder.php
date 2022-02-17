@@ -61,6 +61,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'Editar usuarios'])->syncRoles([$role1]);
         Permission::create(['name'=>'Eliminar usuarios'])->syncRoles([$role1]);
 
+        Permission::create(['name'=>'Ver lista de movimientos'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Crear movimiento'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Editar movimientos'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Eliminar movimientos'])->syncRoles([$role1]);
+
         Permission::create(['name'=>'Ver roles'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Asignar roles'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'Crear roles'])->syncRoles([$role1, $role2]);

@@ -5,11 +5,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Sistema de registro</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+
 
     <section class="content">
         <div class="container-fluid">
@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-podcast"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Lámparas</span>
@@ -40,7 +40,7 @@
             <!-- /.col -->
            <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <span class="info-box-icon bg-danger elevation-1"><i class="	fa fa-laptop"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Cámaras</span>
@@ -105,8 +105,8 @@
                             <thead class="thead">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo electrónico</th>
+                                    <th>Nombre</th>{{-- 
+                                    <th>Correo electrónico</th> --}}
                                     <th>Ubicación</th>
                                     <th>Actualizar Ubicación</th>
                                 </tr>

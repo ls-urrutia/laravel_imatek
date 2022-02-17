@@ -9,9 +9,10 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Equipo') }}
+                                {{ __('Equipos') }}
                             </span>
                             @can('Crear equipos')
+                           
 
                              <div class="float-right">
                                 <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
@@ -26,6 +27,11 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -34,17 +40,17 @@
 
                                     <tr>
 
-										<th>Id Equipo</th>
+										{{-- <th>Id Equipo</th> --}}
 										<th>Cod Equipo</th>
-                                        <th>Tipo Documento</th>
+                                        {{-- <th>Tipo Documento</th> --}}
 										<th>N° Documento</th>
 										<th>Tipo Equipo</th>
 										<th>Modelo</th>
-										<th>Descripcion</th>
+										{{-- <th>Descripcion</th> --}}
 										<th>Estado</th>
-										<th>Fecha Compra</th>
+										{{-- <th>Fecha Compra</th> --}}
 										<th>Proveedor</th>
-										<th>Id Centro</th>
+										<th> Centro</th>
 
                                         <th></th>
                                     </tr>
@@ -54,15 +60,24 @@
 
                                         <tr>
 
-											<td>{{ $equipo->id_equipo }}</td>
+											{{-- <td>{{ $equipo->id_equipo }}</td> --}}
 											<td>{{ $equipo->cod_equipo }}</td>
-                                            <td>{{ $equipo->tipo_documento }}</td>
+                                           {{--  <td>{{ $equipo->tipo_documento }}</td> --}}
 											<td>{{ $equipo->n_documento }}</td>
 											<td>{{ $equipo->tipo_equipo }}</td>
 											<td>{{ $equipo->modelo }}</td>
-											<td>{{ $equipo->descripcion }}</td>
-											<td>{{ $equipo->estado }}</td>
-                                            <td>{{ Carbon\Carbon::parse($equipo->fecha_compra)->format('d-m-Y') }}</td>
+											{{-- <td>{{ $equipo->descripcion }}</td> --}}
+											<td>@if($equipo->estado=='Operativo')
+                                                <span class="badge bg-success">{{ $equipo->estado }}</span></td>
+                                            @elseif($equipo->estado == 'En revisión')
+                                                <span class="badge bg-warning text-dark">{{ $equipo->estado }}</span></td>
+
+                                            @elseif($equipo->estado == 'Dado de baja')
+                                                <span class="badge bg-danger">{{ $equipo->estado }}</span></td>
+                                            @else
+                                                Error
+                                            @endif
+                                           
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
@@ -71,10 +86,10 @@
                                             <td>
                                                 <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
                                                     @can('Ver equipo')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> </a>
                                                     @endcan
                                                     @can('Editar equipos')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> </a>
                                                     @endcan
                                                     @csrf
                                                     @method('DELETE')
@@ -181,9 +196,9 @@ table th {
             language: {
                     "lengthMenu": "Mostrar _MENU_ registros",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
                     "sSearch": "Buscar:",
                     "oPaginate": {
                         "sFirst": "Primero",

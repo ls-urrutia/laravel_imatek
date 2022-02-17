@@ -31,7 +31,7 @@ $dateho = $dateho->format('Y-m-d');
             {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
          </div>
         <div class="form-group">
-            {{ Form::label('n_documento') }}
+            {{ Form::label('n°_documento:') }}
             {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Factura']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -41,17 +41,17 @@ $dateho = $dateho->format('Y-m-d');
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('descripcion') }}
+            {{ Form::label('descripción:') }}
             {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('fecha_ingreso') }}
+            {{ Form::label('fecha_ingreso:') }}
             {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra','value'=> $dateho]) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('proveedor') }}
+            {{ Form::label('proveedor:') }}
             {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
             {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
 
@@ -66,13 +66,13 @@ $dateho = $dateho->format('Y-m-d');
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th><a class="addRow"> <i class="bi bi-plus-circle"></i></a> Agregar Equipo Adicional</th>
+                                    <th><a class="addRow"> <i class="bi bi-plus-circle-fill"></i></a> Agregar Equipo Adicional</th>
                                 </tr>
                             </thead>
                             <tbody>
                 <tr>
                 <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
+                <td><a class="btn btn-danger remove"><i class="bi bi-x-circle-fill"></i></a></td>
                 </tr>
                                 </tr>
                             </tbody>

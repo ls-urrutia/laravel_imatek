@@ -15,7 +15,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Movimiento') }}
+                                {{ __('') }}
                             </span>
 
                              <div class="float-right">
@@ -25,37 +25,31 @@
                               </div>
                         </div>
                     </div>
-                    @if ($message = Session::get('error'))
+{{--                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger">
                             <p>{{ $message }}</p>
                         </div>
-                    @endif
-                                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
+                    @endif --}}
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="movimientos" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-										<th>Id Movimiento</th>
+										{{-- <th>Id Movimiento</th> --}}
 										<th>Tipo Movimiento</th>
 										<th>Fecha Movimiento</th>
 										<th>Tipo Documento</th>
-										<th>N Documento</th>
+										<th>N° Documento</th>
 										<th>Código Equipo</th>
                                         <th>Centro</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($movimientos as $movimiento)
                                         <tr>
-											<td>{{ $movimiento->id_movimiento }}</td>
+											{{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
 											<td>{{ $movimiento->tipo_movimiento }}</td>
 											<td>{{ $movimiento->fecha_movimiento }}</td>
 											<td>{{ $movimiento->tipo_documento }}</td>
@@ -168,9 +162,9 @@ table th {
             language: {
                     "lengthMenu": "Mostrar _MENU_ registros",
                     "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
                     "sSearch": "Buscar:",
                     "oPaginate": {
                         "sFirst": "Primero",

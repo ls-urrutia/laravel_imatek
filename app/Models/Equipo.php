@@ -37,13 +37,11 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
     use Loggable;
 
     static $rules = [
-		'cod_equipo' => 'required',
+		'cod_equipo' => 'required|unique:equipos',
         'tipo_documento' => 'required',
         'n_documento' => 'required',
 		'tipo_equipo' => 'required',
 		'modelo' => 'required',
-        'ciclos' => 'required',
-        'estado' => 'required',
 		'descripcion' => 'required',
 		'fecha_ingreso' => 'required',
 		'proveedor' => 'required',

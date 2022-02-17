@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Movimiento</span>
+                            <span class="card-title">Movimiento</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('movimientos.index') }}"> Back</a>
