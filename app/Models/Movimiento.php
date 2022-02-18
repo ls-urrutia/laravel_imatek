@@ -32,7 +32,12 @@ class Movimiento extends Model
 		'fecha_movimiento' => 'required',
 		'n_documento' => 'required',
 		'id_equipo' => 'required',
+
     ];
+
+
+
+
 
     protected $perPage = 20;
 

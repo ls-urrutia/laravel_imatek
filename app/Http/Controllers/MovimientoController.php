@@ -81,16 +81,7 @@ class MovimientoController extends Controller
        $vld = true;
 
 
-       $long_arreglo_eq = count($id_equipo);
-       $unico = array_unique($id_equipo);
 
-       $long_arreglo_unico = count($unico);
-
-       if( $long_arreglo_eq >  $long_arreglo_unico ) {
-
-/*      echo '<script type="text/javascript">alert("Esta repitiendo equipos!");</script>'; */
-
-       }
 
 
         for ($i=0; $i < count($id_equipo); $i++){
@@ -171,31 +162,12 @@ class MovimientoController extends Controller
 
 
 
-                return redirect()->route('movimientos.index')
-                ->with('success', 'Movimiento created successfully.');
-
             }
 
 
         }
 
-        if($request->get('tipo_movimiento') == 'Entrada') {
 
-            $equipo = Equipo::find($request->get('id_equipo'));
-            $equipo->estado = 'En revisión';
-            $equipo->save();
-        }
-
-
-        $equipo = Equipo::find($request->get('id_equipo'));
-        /*    $equipo->centro->nombre_centro = $request-> get('nombre_centro'); */
-        $equipo->id_centro = $request->get('id_centro');
-        $equipo->save();
-
-
-
-        return redirect()->route('movimientos.index')
-            ->with('success','Movimiento creado exitosamente');
 
 
 
