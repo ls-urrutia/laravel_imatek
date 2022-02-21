@@ -26,7 +26,8 @@ class ActivityController extends Controller
             'log_type'  => 'sometimes|string',
             'table'     => 'sometimes|string',
             'from_date' => 'sometimes|date_format:Y-m-d',
-            'to_date'   => 'sometimes|date_format:Y-m-d'
+            'to_date'   => 'sometimes|date_format:Y-m-d',
+            
         ]);
 
         $data = Log::with('user')->orderBy('id', 'desc');

@@ -17,7 +17,7 @@ class CreateMovimientosTable extends Migration
             $table->id('id_movimiento');
             $table->string('tipo_movimiento');
             $table->date('fecha_movimiento');
-            $table->string('tipo_documento');
+            $table->string('tipo_documento')->default('Guía de Despacho');
             $table->integer('n_documento');
             $table->bigInteger('id_equipo')->unsigned();
             $table->foreign('id_equipo')->references('id_equipo')->on('equipos');

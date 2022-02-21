@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\DB;
  */
 class MovimientoController extends Controller
 {
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -59,79 +70,120 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        
-       
-   
-        request()->validate(Movimiento::$rules);
-        
-        
+        /* request()->validate(Movimiento::$rules); */
 
 
 
         $centro_n = Centro::find($request->get('id_centro'));
 
+        $tipo_movimiento = $request->get('tipo_movimiento');
+        $fecha_movimiento = $request->get('fecha_movimiento');
+        $n_documento = $request->get('n_documento');
+        $id_equipo = $request->get('id_equipo');
+        $id_centro = $centro_n->nombre_centro;
 
-        $movimientos = new Movimiento();
-        $movimientos->tipo_movimiento = $request->get('tipo_movimiento');
-        $movimientos->fecha_movimiento = $request->get('fecha_movimiento');
-        $movimientos->tipo_documento = $request->get('tipo_documento');
-        $movimientos->n_documento = $request->get('n_documento');
-        $movimientos->id_equipo = $request->get('id_equipo');
-        $movimientos->id_centro = $centro_n->nombre_centro;
+       /*  $tipomov = $request->get('tipo_movimiento'); */
 
-        $tipomov = $request->get('tipo_movimiento');
+       $vld = true;
+
+
+       $long_arreglo_eq = count($id_equipo);
+       $unico = array_unique($id_equipo);
+
+       $long_arreglo_unico = count($unico);
+
+       if( $long_arreglo_eq >  $long_arreglo_unico ) {
+
+        return redirect()->route('movimientos.index')
+        ->with('error', 'Ingreso fallido. Ha repetido equipos');
+
+       }
+
+        for ($i=0; $i < count($id_equipo); $i++){
+
+
 
         $ultimomov = DB::select("SELECT tipo_movimiento
-        FROM `imatek`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;",[$request->get('id_equipo')]);
+        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$id_equipo[$i]]);
 
         $ultimafecha = DB::select("SELECT fecha_movimiento
-        FROM `imatek`.`movimientos`where id_equipo= ? ORDER BY created_at DESC LIMIT 1;", [$request->get('id_equipo')]);
-    
+        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$id_equipo[$i]]);
+
+
+
         $request->validate([
 
-                'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
-                
-            ]);
+            'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+            
+        ]);
 
 
 
 
-/*
-        DB::table('`prueba`.`movimientos`where id_equipo = 8')
-        ->select("tipo_movimiento")
-        ->limit(1)
-        ->orderBy("created_at","desc")
-        ->get(); */
+        if($vld == true) {
+        switch ($tipo_movimiento) {
+            case 'Compra':
+                $tipo_movimiento = 'Salida';
+                $vld = false;
+                break;
 
-         if($ultimomov[0]->tipo_movimiento == $tipomov || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipomov == 'Entrada')){
+            case 'Entrada':
+                $tipo_movimiento = 'Salida';
+                $vld = false;
+                break;
+
+            case 'Salida':
+                $tipo_movimiento = 'Entrada';
+                $vld = false;
+                break;
+                }
+            }
+
+
+        if($ultimomov[0]->tipo_movimiento == $tipo_movimiento || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipo_movimiento == 'Entrada')){
 
             return redirect()->route('movimientos.index')
                 ->with('error', 'Ingreso fallido. Movimiento no permitido');
 
         } else {
-            $movimientos->save();
+
+              $data=array(
+
+                'tipo_movimiento' => $tipo_movimiento,
+                'fecha_movimiento' => $fecha_movimiento,
+                'n_documento' => $n_documento,
+                'id_equipo' =>  $id_equipo[$i],
+                'id_centro' => $id_centro
+
+                );
+
+                DB::table('movimientos')->insert($data);
+
+
+                if($tipo_movimiento == 'Entrada') {
+
+                    $equipo = Equipo::find($id_equipo[$i]);
+                    $equipo->estado = 'En revisión';
+                    $equipo->save();
+                }
+
+
+
+
+                $equipo = Equipo::find($id_equipo[$i]);
+                /*    $equipo->centro->nombre_centro = $request-> get('nombre_centro'); */
+                $equipo->id_centro =  $request->get('id_centro');
+                $equipo->save();
+
+
+
+                return redirect()->route('movimientos.index')
+                ->with('success', 'Movimiento created successfully.');
+
+            }
+
+
         }
-
-        if($request->get('tipo_movimiento') == 'Entrada') {
-
-            $equipo = Equipo::find($request->get('id_equipo'));
-            $equipo->estado = 'En revisión';
-            $equipo->save();
-        }
-
-
-        $equipo = Equipo::find($request->get('id_equipo'));
-        /*    $equipo->centro->nombre_centro = $request-> get('nombre_centro'); */
-        $equipo->id_centro = $request->get('id_centro');
-        $equipo->save();
-
-
-
-        return redirect()->route('movimientos.index')
-            ->with('success','Movimiento creado exitosamente');
-        
-  
-
 
 
     }

@@ -51,7 +51,7 @@
   
                             <tr>
                                 <td class="tex">Id Usuario:</td>
-                                <td>{{ $mantencione->user->name}}</td>
+                                <td>{{ $mantencione->id_usuario}}</td>
                             </tr>
                             <tr>
                                 <td class="tex">Id Equipo:</td>

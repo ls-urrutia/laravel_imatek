@@ -19,6 +19,26 @@ use Illuminate\Support\Facades\DB;
  */
 class EquipoController extends Controller
 {
+
+    public function byEquipo($tipo_m)
+    {
+       /*  return Equipo::where('id_equipo', $id)->get(); */
+
+
+        return DB::select("SELECT m.id_movimiento,m.fecha_movimiento, m.tipo_movimiento, equipos.cod_equipo, m.id_equipo, equipos.estado
+        FROM movimientos m
+        INNER JOIN equipos ON m.id_equipo = equipos.id_equipo
+        INNER JOIN
+            (SELECT id_equipo, MAX(fecha_movimiento) AS MaxDateTime
+            FROM movimientos
+            GROUP BY id_equipo) groupedtt
+        ON m.id_equipo = groupedtt.id_equipo
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado = 'Operativo';",[$tipo_m]);
+/*
+       return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
+    }
+
+
     /**
      * Display a listing of the resource.
      *

@@ -8,6 +8,11 @@
 
 <div class="box box-info padding-1">
     <div class="box-body">
+        <div class="form-group">
+            {{ Form::label('diagnostico:') }}
+            {{ Form::text('diagnostico', $mantencione->diagnostico, ['class' => 'form-control' . ($errors->has('diagnostico') ? ' is-invalid' : ''), 'placeholder' => 'Diagnostico']) }}
+            {!! $errors->first('diagnostico', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
 
         <div class="form-group">
             {{ Form::label('fecha_mantención:') }}

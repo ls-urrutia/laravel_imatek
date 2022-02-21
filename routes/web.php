@@ -10,6 +10,7 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovimientoController;
+use Haruncpi\LaravelUserActivity\Controllers\ActivityController;
 
 
 
@@ -43,7 +44,9 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('auth.login');
+    /* return view('/dashboard'); */
 });
+
 /* Route::get('register',[HomeController::class,'register']); */
 
 
@@ -51,7 +54,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-/* Route::get('auth',[AuthController::class,'register'])->middleware('can:ecolecua'); */
 
 Route::resource('centros',CentroController::class);
 
@@ -63,7 +65,8 @@ Route::resource('users2',User2Controller::class)->middleware('can:Ver lista de u
 Route::resource('users',UserController::class)->middleware('can:Ver lista de usuarios');
 
 Route::resource('movimientos',MovimientoController::class)->middleware('can:Ver lista de movimientos');
-
+Route::get(config('user-activity.route_path'), 'ActivityController@getIndex')->middleware('can:Ver lista de eq');
+/* Route::get('/perro',[ActivityController::class,'user-activity']); */
 
 /* Route::get('users2',[User2Controller::class,'ubicacion']); */
 
@@ -81,15 +84,15 @@ Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
 
 
 
-
+Route::get('/movimiento/{tipo_m}/equipos','App\Http\Controllers\EquipoController@byEquipo');
 
 
 Route::group([
     'namespace' => '\Haruncpi\LaravelUserActivity\Controllers',
     'middleware' => config('user-activity.middleware')
 ], function () {
-    Route::get(config('user-activity.route_path'), 'ActivityController@getIndex');
-    Route::post(config('user-activity.route_path'), 'ActivityController@handlePostRequest');
+    Route::get(config('user-activity.route_path'), 'ActivityController@getIndex')->middleware('can:Ver actividad de usuario');
+    Route::post(config('user-activity.route_path'), 'ActivityController@handlePostRequest')->middleware('can:Ver actividad de usuario');
 });
 
 

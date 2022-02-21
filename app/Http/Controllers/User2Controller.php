@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\User2;
 use Illuminate\Http\Request;
+
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class User2Controller extends Controller
 {
@@ -65,13 +67,56 @@ class User2Controller extends Controller
     public function store(Request $request)
     {
         //
+        /* $request->validate([
+            'name'=>'required|string|max:255',
+            'name'=>'required',
+            ['name.required' => 'El campo no puede estar vacio'],
+            'email'=>'required|unique:users',
+            'password' => ['required', 'string', 'min:4','confirmed'],
+            
+
+        ]);
+         */
+        /* request()->validate(User::$rules); */
+    
         
+       
+        $data =request()->validate([
+            'name' => 'required| string| max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+            
+        
+        [
+            'name.required'=>'El campo nombre es obligatorio',
+            'email.required'=>'El email es requerido',
+        ],[
+            'email.unique:users'=>'El email no es unico',
+            
+        ],[
+            
+            
+        ],[
+            'password.confirmed'=>'Las contraseñas no coinciden',
+            
+        ],[
+            'password.min'=>'La contraseña debe ser mayor a 8 caracteres'
+        ]
+       
+
+        
+    
+        );
+
         $user2 = new User();
-        $user2->name = $request->get('nombreu');
-        $user2->email = $request->get('correo');
-        $user2->password = bcrypt($request->get('passw'));
+        $user2->name = $request->get('name');
+        $user2->email = $request->get('email');
+        $user2->password = bcrypt($request->get('password'));
+        
 
         $user2->save();
+        
 
         return redirect('/users2')
             ->with('success', 'Usuario creado exitosamente.');
