@@ -256,10 +256,10 @@ return [
 
         [
             'text'    => 'Gestión de usuarios',
-            'icon'    => 'none',
+            'icon'    => 'fas fa-circle fa-1x',
             'submenu' => [
-                
-                    
+
+
                     [
                         'text' => 'Lista Usuarios',
                         'url'  => '/users2',
@@ -270,7 +270,7 @@ return [
                         'url'  => '/users2/create',
                         'icon'    => 'none',
                     ],
-                    
+
 
 /*                     [
                         'text'    => 'Roles',
@@ -306,8 +306,8 @@ return [
             'text'    => 'Gestión de roles',
             'icon'    => 'none',
             'submenu' => [
-             
-                
+
+
                     [
                         'text' => 'Lista Roles',
                         'url'  => '/roles',
@@ -323,7 +323,7 @@ return [
                         'url'  => '/roles/create',
                         'icon'    => 'none',
                     ],
-                    
+
 
                 ],
             'can'=>'Ver lista de usuarios',

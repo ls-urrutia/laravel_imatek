@@ -55,7 +55,7 @@
             <tr>
             <td>
                 <div  class="form-group">
-                    <select name="id_equipo[]" class="form-control select-e" onclick="btnClick()" id="select-equipo0" required>
+                    <select name="id_equipo[]" class="form-control select-e"  id="select-equipo0" required>
                         <option value="">Seleccione Equipo</option>
                     </select>
                 </div>
@@ -86,27 +86,48 @@
    <script type="text/javascript">
 
 
+var	stored	=	[];
+var permitir_repeticion = false;
+var contador = 0;
+
 $(document).ready(function(){
+        $('.btn-success').click(function(e) {
 
-$('.btn').click(function(e) {
+            var	inputs	=	$('.select-e');
+            e.preventDefault();
+            console.log(stored);
+            console.log(inputs);
+            $.each(inputs,function(k,v){
+                var getVal	=	$(v).val();
+                if(stored.indexOf(getVal) != -1){
+                    if (permitir_repeticion == true) {
+                        permitir_repeticion = false;
+                    }else{
+                    contador += 1;
+                    $(this).parent().parent().parent().remove();
+                    console.log(stored);
+                    console.log(inputs);
+                }
+                }else{
+                    stored.push($(v).val());
+                }
+            });
+            if(contador => 1) {
+                alert('Ha repetido un equipo');}
+        permitir_repeticion = true;
+        return permitir_repeticion;
+        return stored;
 
-e.preventDefault();
-    var	stored	=	[];
-    var	inputs	=	$('.select-e');
-    $.each(inputs,function(k,v){
-        var getVal	=	$(v).val();
-        if(stored.indexOf(getVal) != -1)
-    $(v).fadeOut();
+        var compareArray = new Array();
 
-        else
-    stored.push($(v).val());
-            $('.btn').unbind("click");
+            for (i = 0;i < stored.length;i++) {
+                if (compareArray.indexOf(stored[i]) == -1) {
+                    $('.btn-success').unbind("click");
+                }
+            }
+
+        });
     });
-
-
-});
-});
-
 
 
 
@@ -213,7 +234,7 @@ if ($(this).val() == 'Salida') {
        $('.addRow').on('click',function(){
            addRow();
            onSelectMovimientoChange2();
-           lala();
+
         });
 
        function addRow()

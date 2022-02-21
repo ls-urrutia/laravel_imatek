@@ -33,7 +33,7 @@ class EquipoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado = 'Operativo';",[$tipo_m]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? ;",[$tipo_m]);
 /*
        return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
     }
