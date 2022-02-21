@@ -25,8 +25,10 @@
                     {{$nlamparas}}
                    </span>
                 </div>
+                
 
                 <div class="info-box-content">
+                  
                     <span class="info-box-text">En Revisión</span>
                     <span class="info-box-number">
 
@@ -136,7 +138,7 @@
 
                                                 </td>
                                         <td>
-                                            @can('Editar Usuarios')
+                                            @can('Editar usuarios')
                                             <input type="submit" value="Confirmar" class="btn btn-sm btn-success">
                                             @endcan
                                         </td>

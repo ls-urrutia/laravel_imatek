@@ -121,8 +121,8 @@ class MovimientoController extends Controller
                 $tipo_movimiento = 'Entrada';
                 $vld = false;
                 break;
-        }
-    }
+                }
+            }
 
 
         if($ultimomov[0]->tipo_movimiento == $tipo_movimiento || ($ultimomov[0]->tipo_movimiento == 'Compra' && $tipo_movimiento == 'Entrada')){
@@ -145,7 +145,7 @@ class MovimientoController extends Controller
                 DB::table('movimientos')->insert($data);
 
 
-                if($request->get('tipo_movimiento') == 'Entrada') {
+                if($tipo_movimiento == 'Entrada') {
 
                     $equipo = Equipo::find($id_equipo[$i]);
                     $equipo->estado = 'En revisión';

@@ -75,7 +75,7 @@
                                                 @endif
                                             </td> --}}
 
-											<td>{{ $mantencione->user->name}}</td>
+											<td>{{ isset($mantencione->user->name)}}</td>
 											<td>{{ $mantencione->equipo->cod_equipo}}
 
 
