@@ -132,7 +132,7 @@ class EquipoController extends Controller
     {
       request()->validate(Equipo::$rules);
 
-  
+
 
         $tipo_equipo = $request->get('tipo_equipo');
         $cod_equipo = $request->get('cod_equipo');
@@ -249,17 +249,17 @@ class EquipoController extends Controller
                     $entrada = $fechan;
 
                 }
-                
+
 
 
                 /*conversión diferencia de fechas en meses y dias*/
                 /* $resultado = $resultado+1;
-                
-                
+
+
                 $resultado1= $resultado/30;
                 $dias = round($resultado%30); */
                 $resultado = $resultado*0.95;
-                
+
 
 
                 $mes = $resultado/30;
@@ -267,12 +267,12 @@ class EquipoController extends Controller
                 $resultado = "0.".$resultado;
                 $resultado=$resultado*30;
 
-                
 
 
-    
-               
-                
+
+
+
+
 
 
                 /*Muestra las mantenciones de cada equipo */
@@ -325,10 +325,10 @@ class EquipoController extends Controller
      * @throws \Exception
      */
     public function destroy($id)
-    {   
+    {
         try{
 
-        
+
         $equipo = Equipo::find($id)->delete();
         return redirect()->route('equipos.index')
         ->with('success', 'Equipo eliminado satisfactoriamente');

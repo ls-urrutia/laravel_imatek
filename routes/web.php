@@ -12,18 +12,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovimientoController;
 use Haruncpi\LaravelUserActivity\Controllers\ActivityController;
 
-
-
-
-
-
-
-
-
-
-
-
-
 use App\Http\Controllers\MantencioneController;
 use Illuminate\Http\Request;
 
@@ -89,11 +77,12 @@ Route::get('/movimiento/{tipo_m}/equipos','App\Http\Controllers\EquipoController
 
 Route::group([
     'namespace' => '\Haruncpi\LaravelUserActivity\Controllers',
-    'middleware' => config('user-activity.middleware')
+    'middleware' => config('user-activity.middleware'),
 ], function () {
     Route::get(config('user-activity.route_path'), 'ActivityController@getIndex')->middleware('can:Ver actividad de usuario');
     Route::post(config('user-activity.route_path'), 'ActivityController@handlePostRequest')->middleware('can:Ver actividad de usuario');
 });
+
 
 
 

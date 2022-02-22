@@ -7,7 +7,7 @@ use App\Models\Mantencione;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Carbon;
 
 
 
@@ -49,7 +49,7 @@ class MantencioneController extends Controller
         $equipos = Equipo::where('estado','=','En revisión')->pluck('cod_equipo','id_equipo');
 
         $equipos2 = DB::select('SELECT id_equipo, cod_equipo FROM equipos where estado="En revisión" ');
-        
+
 
         return view('mantencione.create', compact('mantencione', 'equipos','equipos2'));
     }
@@ -110,10 +110,10 @@ class MantencioneController extends Controller
         
         $mantenciones->id_equipo = $request->get('id_equipo');
 
-        $asdf = $request->get('id_equipo');
+        $idequipo = $request->get('id_equipo');
 
         $ultimafecha = DB::select("SELECT fecha_movimiento
-        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$asdf]);
+        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$idequipo]);
 
 
 
@@ -121,6 +121,12 @@ class MantencioneController extends Controller
 
             'fecha_mantencion' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
         ]);
+        $fechahoy == Carbon::now();
+
+        $request->validate([
+             'fecha_mantencion' => 'date|before:'.$fechahoy
+        ]);
+
 
 
         $mantenciones->save();
@@ -255,7 +261,7 @@ class MantencioneController extends Controller
         }catch(\Exception $exception){
             return redirect()->route('mantenciones.index')
             ->with('success', 'No se pudo actualizar');
-        }    
+        }
 
     }
 
@@ -280,7 +286,7 @@ class MantencioneController extends Controller
         }catch(\Exception $exception){
             return redirect()->route('mantenciones.index')
             ->with('success', 'No se pudo eliminar la mantención');
-        }    
+        }
 
 
     }

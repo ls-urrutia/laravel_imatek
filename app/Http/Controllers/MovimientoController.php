@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Centro;
 use App\Models\Movimiento;
 use App\Models\Equipo;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JeroenNoten\LaravelAdminLte\View\Components\Widget\Alert;
+use PhpParser\Node\Stmt\Break_;
 
 /**
  * Class MovimientoController
@@ -14,15 +17,6 @@ use Illuminate\Support\Facades\DB;
  */
 class MovimientoController extends Controller
 {
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -70,7 +64,7 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        /* request()->validate(Movimiento::$rules); */
+         request()->validate(Movimiento::$rules);
 
 
 
@@ -87,17 +81,8 @@ class MovimientoController extends Controller
        $vld = true;
 
 
-       $long_arreglo_eq = count($id_equipo);
-       $unico = array_unique($id_equipo);
 
-       $long_arreglo_unico = count($unico);
 
-       if( $long_arreglo_eq >  $long_arreglo_unico ) {
-
-        return redirect()->route('movimientos.index')
-        ->with('error', 'Ingreso fallido. Ha repetido equipos');
-
-       }
 
         for ($i=0; $i < count($id_equipo); $i++){
 
@@ -113,9 +98,10 @@ class MovimientoController extends Controller
 
         $request->validate([
 
-            'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
-            
+        'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
+
         ]);
+        $ultimafechaman= DB::select("SELECT fecha_mantencion FROM mantenciones where id_equipo= ? ORDER BY fecha_mantencion DESC LIMIT 1;",[$id_equipo[$i]]);
 
 
 
@@ -177,16 +163,18 @@ class MovimientoController extends Controller
 
 
 
-                return redirect()->route('movimientos.index')
-                ->with('success', 'Movimiento created successfully.');
-
             }
 
 
         }
 
 
+
+
+
+
     }
+
 
     /**
      * Display the specified resource.
@@ -224,7 +212,7 @@ class MovimientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Movimiento $movimiento)
-    {   
+    {
         request()->validate(Movimiento::$rules);
         try{
         $movimiento->update($request->all());
@@ -235,7 +223,7 @@ class MovimientoController extends Controller
             return redirect()->route('movimientos.index')
             ->with('error', 'No se pudo eliminar el movimiento');
 
-        }    
+        }
     }
 
     /**

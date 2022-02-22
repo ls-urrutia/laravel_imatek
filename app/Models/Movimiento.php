@@ -30,10 +30,14 @@ class Movimiento extends Model
         'id_centro' => 'required',
 		'tipo_movimiento' => 'required',
 		'fecha_movimiento' => 'required',
-		'tipo_documento' => 'required',
 		'n_documento' => 'required',
 		'id_equipo' => 'required',
+
     ];
+
+
+
+
 
     protected $perPage = 20;
 

@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => true,
 
@@ -126,8 +126,8 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-grey elevation-4',
-    'classes_sidebar_nav' => 'sidebar-dark-grey elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar_nav' => 'sidebar-dark-danger elevation-4',
     'classes_topnav' => 'navbar-dark navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -263,12 +263,12 @@ return [
                     [
                         'text' => 'Lista Usuarios',
                         'url'  => '/users2',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     [
                         'text' => 'Crear Usuarios',
                         'url'  => '/users2/create',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     
 
@@ -311,17 +311,17 @@ return [
                     [
                         'text' => 'Lista Roles',
                         'url'  => '/roles',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     [
                         'text' => 'Asignar Roles',
                         'url'  => '/users',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     [
                         'text' => 'Crear Roles',
                         'url'  => '/roles/create',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     
 
@@ -345,12 +345,12 @@ return [
                         [
                             'text'    => 'Lista Equipos',
                             'url'     => '/equipos/',
-                            'icon'    => 'none',
+                            'icon'    => 'fa fa-angle-right',
                         ],
                         [
                             'text'    => 'Agregar Equipo',
                             'url'     => '/equipos/create',
-                            'icon'    => 'none',
+                            'icon'    => 'fa fa-angle-right',
                         ],
                         ],
                     'can'=> 'Ver lista de equipos',
@@ -370,12 +370,12 @@ return [
                             [
                                 'text'    => 'Lista Mantenciones',
                                 'url'     => '/mantenciones',
-                                'icon'    => 'none',
+                                'icon'    => 'fa fa-angle-right',
                             ],
                             [
                                 'text'    => 'Agregar a mantención',
                                 'url'     => '/mantenciones/create',
-                                'icon'    => 'none',
+                                'icon'    => 'fa fa-angle-right',
                             ],
 
 
@@ -401,14 +401,14 @@ return [
         [
             'text'    => 'Lista Centros',
             'url'     => '/centros',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
         ],
 
 
         [
             'text'    => 'Agregar Centro',
             'url'     => '/centros/create',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
 
        ],
 
@@ -428,14 +428,14 @@ return [
         [
             'text'    => 'Lista Clientes',
             'url'     => '/clientes',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
         ],
 
 
         [
             'text'    => 'Agregar Cliente',
             'url'     => '/clientes/create',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
 
        ],
 
@@ -456,14 +456,14 @@ return [
                 [
                     'text'    => 'Lista Movimientos',
                     'url'     => '/movimientos',
-                    'icon'    => 'none',
+                    'icon'    => 'fa fa-angle-right',
                 ],
 
 
                 [
                     'text'    => 'Agregar Movimientos',
                     'url'     => '/movimientos/create',
-                    'icon'    => 'none',
+                    'icon'    => 'fa fa-angle-right',
 
                 ],
 
