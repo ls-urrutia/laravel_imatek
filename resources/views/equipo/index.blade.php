@@ -51,8 +51,9 @@
 										{{-- <th>Fecha Compra</th> --}}
 										<th>Proveedor</th>
 										<th> Centro</th>
+                                        
 
-                                        <th></th>
+                                        <th align="right"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,7 +84,7 @@
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
                                             </td>
 
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
                                                     @can('Ver equipo')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> </a>

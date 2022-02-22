@@ -17,14 +17,23 @@
                             <span id="card_title">
                                 {{ __('') }}
                             </span>
+                            @can('Crear movimiento')
 
                              <div class="float-right">
                                 <a href="{{ route('movimientos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo movimiento') }}
                                 </a>
                               </div>
+                            @endcan
                         </div>
                     </div>
+
+{{--                     @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif --}}
+
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger">
                             <p>{{ $message }}</p>
@@ -35,6 +44,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -49,7 +59,7 @@
 										<th>Código Equipo</th>
                                         <th>Centro</th>
 
-                                        <th>Acciones</th>
+                                        <th align="right"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,13 +76,19 @@
                                             <td>
                                                 {{ $movimiento->id_centro}}
                                             </td>
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                                    @can('Ver movimiento')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    @endcan
+                                                    @can('Editar movimientos')
                                                     <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @endcan
                                                     @csrf
                                                     @method('DELETE')
+                                                    @can('Eliminar movimientos')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                    @endcan
                                                 </form>
                                             </td>
                                         </tr>

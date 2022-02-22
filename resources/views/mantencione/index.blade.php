@@ -17,10 +17,10 @@
                             <span id="card_title">
                                 {{ __('Lista de mantenciones') }}
                             </span>
-                             @can('Crear mantenciones')
+                             @can('Crear mantención')
                              <div class="float-right">
                                 <a href="{{ route('mantenciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear mantención') }}
                                 </a>
                               </div>
                             @endcan
@@ -48,8 +48,9 @@
                                         <th>Imagen3</th> --}}
 										<th>Usuario</th>
 										<th>Código Equipo</th>
+                                       
 
-                                        <th>Acciones</th>
+                                        <th align="right"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,9 +78,8 @@
 
 											<td>{{ isset($mantencione->user->name)}}</td>
 											<td>{{ $mantencione->equipo->cod_equipo}}
-
-
-                                            <td>
+                                             
+                                            <td align="right">
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
                                                     @can('Ver mantención')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>

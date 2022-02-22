@@ -13,12 +13,12 @@
   @endforeach
 @endif   --}}
 
-<div class="p-5 bg-blue rounded shadow-lg">
+<div class="p-5 card card-default shadow-lg">
 
 <form action="/users2" method="POST">
     @csrf
   <div class="mb-3">
-    <label for="" class="form-label">Nombre:</label>
+    <label for="" class="form-label">Nombre:*</label>
     <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" tabindex="1" value="{{old('name')}}">
     @error('name')
         <span class="invalid-feedback">
@@ -27,61 +27,61 @@
         </span>
     @enderror
    {{--  @if($errors->has('name'))
-       
+
        <h6 style="color: red">{{$errors->first('name')}}</h6>
     @endif --}}
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Correo:</label>
-    <input id="email" name="email" type="text" class="form-control @error('name') is-invalid @enderror" tabindex="2" value="{{old('email')}}">
+    <label for="" class="form-label">Correo:*</label>
+    <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" tabindex="2" value="{{old('email')}}">
     @error('email')
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
 
       </span>
     @enderror
-  
+
   </div>
-  
 
 
 
-  
-    <label for="" class="form-label">Contraseña:</label>
+
+
+    <label for="" class="form-label">Contraseña: <span style="color: red">*</span></label>
     <div class="form-row">
             <div class="col-11">
-              <input id="password" name="password" type="password" class="form-control @error('name') is-invalid @enderror" tabindex="9">
+              <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
             </div>
-          
-          <div class="col-1">
-            
-              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena()"><i class="fa fa-eye-slash"></i></button>
-            
-          </div>
-         
 
-    </div> 
-    <label for="" class="form-label">Confirma la Contraseña:</label>
+          <div class="col-1">
+
+              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena()"><i class="fa fa-eye-slash"></i></button>
+
+          </div>
+
+
+    </div>
+    <label for="" class="form-label">Confirma la Contraseña:*</label>
     <div class="form-row">
             <div class="col-11">
-              <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('name') is-invalid @enderror" tabindex="9">
+              <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
               @error('password')
                   <span class="invalid-feedback">
                     <strong>{{$message}}</strong>
-          
+
                   </span>
               @enderror
             </div>
-          
-          <div class="col-1">
-            
-              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena2()"><i class="fa fa-eye-slash"></i></button>
-            
-          </div>
-          
-          
 
-    </div> 
+          <div class="col-1">
+
+              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena2()"><i class="fa fa-eye-slash"></i></button>
+
+          </div>
+
+
+
+    </div>
     <br>
 
 

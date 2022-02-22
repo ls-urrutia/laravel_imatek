@@ -35,10 +35,10 @@ class User2Controller extends Controller
     public function index()
     {
         //
-        
+
 
         $users2 = User::all()->except(1);
-        
+
 
         return view('user2.index')->with('users2',$users2);
 
@@ -73,56 +73,57 @@ class User2Controller extends Controller
             ['name.required' => 'El campo no puede estar vacio'],
             'email'=>'required|unique:users',
             'password' => ['required', 'string', 'min:4','confirmed'],
-            
+
 
         ]);
          */
         /* request()->validate(User::$rules); */
-    
-        
-       
-        $data =request()->validate([
+
+
+
+        request()->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'name' => 'required| string| max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+
         ],
-            
-        
+
+
         [
             'name.required'=>'El campo nombre es obligatorio',
             'email.required'=>'El email es requerido',
         ],[
             'email.unique:users'=>'El email no es unico',
-            
+
         ],[
-            
-            
+
+
         ],[
             'password.confirmed'=>'Las contraseñas no coinciden',
-            
+
         ],[
             'password.min'=>'La contraseña debe ser mayor a 8 caracteres'
         ]
-       
 
-        
-    
+
+
+
         );
 
         $user2 = new User();
         $user2->name = $request->get('name');
         $user2->email = $request->get('email');
         $user2->password = bcrypt($request->get('password'));
-        
+
 
         $user2->save();
-        
+
 
         return redirect('/users2')
             ->with('success', 'Usuario creado exitosamente.');
-       
 
-        
+
+
     }
 
 
@@ -134,7 +135,7 @@ class User2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
 
 
 
@@ -203,7 +204,7 @@ class User2Controller extends Controller
         }catch(\Exception $exception){
             return redirect('/users2')
             ->with('error', 'No se pudo actualizar el usuario');
-        }    
+        }
     }
 
 
@@ -226,8 +227,8 @@ class User2Controller extends Controller
             return redirect('/users2')
             ->with('error', 'No se pudo eliminar el usuario');
 
-        }    
+        }
     }
 
-  
+
 }

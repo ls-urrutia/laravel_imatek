@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Lista Clientes</h1>
+    <h1>Listado de Clientes</h1>
 @stop
 
 @section('content')
@@ -15,13 +15,13 @@
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title">
-                            {{ __('') }}
+                            {{ __('Clientes') }}
                         </span>
 
                          <div class="float-right">
                              @can('Crear cliente')
                             <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                              {{ __('Crear nuevo') }}
+                              {{ __('Crear Cliente') }}
                             </a>
                             @endcan
                           </div>
@@ -38,22 +38,22 @@
                         <table id="clientes" class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
-                                    <th>Id Cliente</th>
+                                  {{--   <th>Id Cliente</th> --}}
                                     <th>Nombre Empresa</th>
                                     <th>Rut Empresa</th>
                                     <th>Descripción</th>
-                                    <th>Acciones</th>
+                                    <th align="right"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($clientes as $cliente)
                                     <tr>
 
-                                        <td>{{ $cliente->id_cliente }}</td>
+                                       {{--  <td>{{ $cliente->id_cliente }}</td> --}}
                                         <td>{{ $cliente->nombre_empresa }}</td>
                                         <td>{{ $cliente->rut_empresa }}</td>
                                         <td>{{ $cliente->descripcion }}</td>
-                                        <td>
+                                        <td align="right">
                                             <form action="{{ route('clientes.destroy',$cliente->id_cliente) }}" method="POST">
                                                 @can('Ver cliente')
                                                 <a class="btn btn-sm btn-primary " href="{{ route('clientes.show',$cliente->id_cliente) }}"><i class="fa fa-fw fa-eye"></i></a>
