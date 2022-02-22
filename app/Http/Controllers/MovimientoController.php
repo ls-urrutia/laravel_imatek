@@ -96,6 +96,7 @@ class MovimientoController extends Controller
 
 
 
+
         $request->validate([
 
         'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento

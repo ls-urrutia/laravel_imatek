@@ -7,12 +7,6 @@ use App\Models\Mantencione;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> permisos
 
 /**
  * Class MantencioneController
@@ -110,7 +104,7 @@ class MantencioneController extends Controller
         }
 
 
-        
+
         $mantenciones->id_equipo = $request->get('id_equipo');
 
         $asdf = $request->get('id_equipo');
@@ -232,8 +226,8 @@ class MantencioneController extends Controller
 
 
 
-       
-        
+
+
 
         $equipo = Equipo::find($request->get('id_equipo'));
         if($request->get('estado_mantencion')!==null){

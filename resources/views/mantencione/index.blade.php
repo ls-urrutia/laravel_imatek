@@ -1,11 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>Mantenciones</h1>
-@stop
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -20,7 +14,7 @@
                              @can('Crear mantenciones')
                              <div class="float-right">
                                 <a href="{{ route('mantenciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Create Mantención') }}
                                 </a>
                               </div>
                             @endcan
