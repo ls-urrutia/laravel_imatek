@@ -70,7 +70,7 @@ Route::get('logActivity',[HomeController::class,'logActivity']);
 
 Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
 
-
+Route::get('movimiento/{id_equipo}/fechas','App\Http\Controllers\MovimientoController@fechas');
 
 Route::get('/movimiento/{tipo_m}/equipos','App\Http\Controllers\EquipoController@byEquipo');
 

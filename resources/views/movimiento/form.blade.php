@@ -46,12 +46,12 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
             <div class="form-group">
                 {{ Form::label('fecha_movimiento:') }}
-                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
+                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['id' => 'fecha_movimiento','class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
                 {!! $errors->first('fecha_movimiento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
             <div class="form-group">
                 {{ Form::label('Número de documento') }}
-                {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento']) }}
+                {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento','required' => '']) }}
                 {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
             <div class="form-group" id="div_centro">
@@ -78,7 +78,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                                     <td class="td-select">
                                         <div class="form-group clases2">
                                             <select name="id_equipo[]" class="form-control select-e" id="select-equipo0"
-                                                required>
+                                                onchange="onSelectEquipoChange(this.value)" required>
                                                 <option value="">Seleccione Equipo</option>
                                             </select>
                                         </div>
@@ -109,7 +109,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
         <script type="text/javascript">
             /* var	search_select	=	$('.select-e');
 
-                                                                     */
+                                                                                                     */
 
 
             /*
@@ -125,10 +125,25 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     theme: "classic",
 
                 });
+
+                /*
+
+                                $.ajax({
+                                    url: '/movimiento/fechas',
+                                    method: 'GET',
+                                    data: {
+                                        id: 1
+                                    }
+                                }).done(function(res) {
+                                    alert(res);
+                                }); */
+
+
+
+
+
+
             });
-
-
-
 
 
 
@@ -141,12 +156,17 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 $('#select-movimiento').on('change', onSelectMovimientoChange);
                 $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
 
+
                 $('#div_centro').hide();
                 numero_row = 0;
                 dupl = [];
                 rows = [];
                 unico = true;
                 previous = 0;
+                valid = true;
+
+
+
 
             });
 
@@ -172,101 +192,47 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     store.push($(v).val());
                 });
 
-                if (checkIfArrayIsUnique(store) != true)
-                {
+                if (checkIfArrayIsUnique(store) != true) {
                     alert("Valor repetido");
-                }else {
-                    $(".btn-success").prop('type','submit');
+                } else {
+                    $(".btn-success").prop('type', 'submit');
 
                 }
-               /*  console.log(`${store} is unique : ${checkIfArrayIsUnique(store)}`); */
+                /*  console.log(`${store} is unique : ${checkIfArrayIsUnique(store)}`); */
 
-            }/*
-
-            $('.btn-success').click(function(e) {
-
-
-            e.preventDefault();
-            var stored = [];
+            }
 
 
 
+            function onSelectEquipoChange(val) {
 
-            $.when(
-                $.each(inputs, function(k, v) {
-                    var getVal = $(v).val();
-                    if (stored.indexOf(getVal) != -1) {
-                        $(this).parent().parent().parent().remove();
-                        unico = false;
-                        alert("fuck")
-                    } else {
-                        stored.push($(v).val());
+                $.get('/movimiento/' + val + '/fechas', function(data) {
+
+                    ult_fecha_equipo = data[0].fecha_movimiento;
+
+                    /*            fecha_actual = document.getElementById("fecha_movimiento"); */
+
+                    fecha_actual = document.getElementById("fecha_movimiento").value;
+
+                    if (valid == true){
+                        document.getElementById("fecha_movimiento").setAttribute("min", ult_fecha_equipo);
+                        $('#fecha_movimiento').val(ult_fecha_equipo);
+                        valid = false;
+
+                    }else if(fecha_actual < ult_fecha_equipo) {
+                        document.getElementById("fecha_movimiento").setAttribute("min", ult_fecha_equipo);
+                        $('#fecha_movimiento').val(ult_fecha_equipo);
                     }
-                    console.log("x")
-                })
-            ).then(function() {
 
-                console.log(unico);
+                });
 
-                if (unico == true) {
-                    $('.btn-success').unbind("click");
-                    document.getElementById('submit-btn').click();
-                }
+            };
 
-
-            });
-            }); */
-
-
-
-
-/*
-                        $(document).ready(function() {
-
-                            $('.btn-success').click(function(e) {
-
-
-                                e.preventDefault();
-                                var stored = [];
-                                var inputs = $('.select-e');
-
-                                $.when(
-                                    $.each(inputs, function(k, v) {
-                                        var getVal = $(v).val();
-                                        if (stored.indexOf(getVal) != -1) {
-                                            $(this).parent().parent().parent().remove();
-                                            unico = false;
-                                            alert("fuck")
-                                        } else {
-                                            stored.push($(v).val());
-                                        }
-                                        console.log("x")
-                                    })
-                                ).then(function() {
-
-                                    console.log(unico);
-
-                                    if (unico == true) {
-                                        $('.btn-success').unbind("click");
-                                        document.getElementById('submit-btn').click();
-                                    }
-
-
-                                });
-
-
-
-
-            });
-
-            });
-             */
 
 
             function onSelectMovimientoChange() {
 
                 var tipo_movimiento = $(this).val();
-
 
 
                 // AJAX
@@ -333,7 +299,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
                 var tr = '<tr>' +
-                    '<td  class ="td-select">        <div  class="form-group"><select name="id_equipo[]" class="form-control select-e" id="select-equipo' +
+                    '<td  class ="td-select">        <div  class="form-group"><select onchange="onSelectEquipoChange(this.value)" name="id_equipo[]" class="form-control select-e" id="select-equipo' +
                     numero_row + '" required><option value="">Seleccione Equipo</option></select></div></td>' +
                     '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td></tr>';
 

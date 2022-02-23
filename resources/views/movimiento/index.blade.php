@@ -24,26 +24,18 @@
                                 </a>
                               </div>
                         </div>
-                    </div>
-<<<<<<< HEAD
-{{--                     @if ($message = Session::get('error'))
-                        <div class="alert alert-danger">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif --}}
-=======
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-danger">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
 
->>>>>>> permisos
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="movimientos" class="table table-striped table-hover">

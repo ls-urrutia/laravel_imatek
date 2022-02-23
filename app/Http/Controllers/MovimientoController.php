@@ -31,6 +31,9 @@ class MovimientoController extends Controller
     }
 
 
+
+
+
     public function index()
     {
         $movimientos = Movimiento::paginate();
@@ -38,6 +41,23 @@ class MovimientoController extends Controller
             return view('movimiento.index', compact('movimientos'))
             ->with('i', (request()->input('page', 1) - 1) * $movimientos->perPage());
     }
+
+
+    public function fechas($val)
+    {
+        return DB::SELECT("SELECT m.id_movimiento,m.fecha_movimiento, m.tipo_movimiento, equipos.cod_equipo, m.id_equipo,  equipos.estado
+        FROM movimientos m
+        INNER JOIN equipos ON m.id_equipo = equipos.id_equipo
+        INNER JOIN
+            (SELECT id_equipo, MAX(fecha_movimiento) AS MaxDateTime
+            FROM movimientos
+            GROUP BY id_equipo) groupedtt
+        ON m.id_equipo = groupedtt.id_equipo
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where m.id_equipo=?",[$val]);
+
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -97,12 +117,12 @@ class MovimientoController extends Controller
 
 
 
-        $request->validate([
+       /*  $request->validate([
 
         'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
 
         ]);
-
+ */
 
 
 
@@ -163,15 +183,16 @@ class MovimientoController extends Controller
 
 
 
-            }
 
+
+
+            }
 
         }
 
 
-
-
-
+        return redirect()->route('movimientos.index')
+        ->with('success', 'Movimiento creado exitosamente.');
 
     }
 
@@ -186,7 +207,9 @@ class MovimientoController extends Controller
     {
         $movimiento = Movimiento::find($id);
 
-        return view('movimiento.show', compact('movimiento'));
+        $equipos = Equipo::pluck('cod_equipo','id_equipo');
+
+        return view('movimiento.show', compact('movimiento','equipos'));
     }
 
     /**
@@ -195,6 +218,7 @@ class MovimientoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $movimiento = Movimiento::find($id);
