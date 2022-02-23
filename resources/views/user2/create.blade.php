@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-{{-- @if($errors->any())
-  @foreach($errors->all() as $error)
+    {{-- @if ($errors->any())
+  @foreach ($errors->all() as $error)
   <li>{{$error}}</li>
   @endforeach
-@endif   --}}
+@endif --}}
 
 <div class="p-5 card card-default shadow-lg">
 
@@ -24,9 +24,9 @@
         <span class="invalid-feedback">
           <strong>{{$message}}</strong>
 
-        </span>
-    @enderror
-   {{--  @if($errors->has('name'))
+                    </span>
+                @enderror
+                {{-- @if ($errors->has('name'))
 
        <h6 style="color: red">{{$errors->first('name')}}</h6>
     @endif --}}
@@ -38,10 +38,10 @@
       <span class="invalid-feedback">
         <strong>{{$message}}</strong>
 
-      </span>
-    @enderror
+                    </span>
+                @enderror
 
-  </div>
+            </div>
 
 
 
@@ -53,11 +53,12 @@
               <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
             </div>
 
-          <div class="col-1">
+                <div class="col-1">
 
-              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena()"><i class="fa fa-eye-slash"></i></button>
+                    <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena()"><i
+                            class="fa fa-eye-slash"></i></button>
 
-          </div>
+                </div>
 
 
     </div>
@@ -73,35 +74,44 @@
                   </span>
               @enderror
             </div>
+            
 
-          <div class="col-1">
+                <div class="col-1">
 
-              <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena2()"><i class="fa fa-eye-slash"></i></button>
+                    <button class="btn btn-primary btn-xs" type="button" onclick="mostrarContrasena2()"><i
+                            class="fa fa-eye-slash"></i></button>
 
-          </div>
+                </div>
 
 
+
+            </div>
+            <br>
+
+
+
+            <a href="/users2" class="btn btn-secondary" tabindex="5">Cancelar</a>
+            <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+        </form>
 
     </div>
-    <br>
-
-
-
-  <a href="/users2" class="btn btn-secondary" tabindex="5">Cancelar</a>
-  <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
-</form>
-
-</div>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-   {{--  <link rel="stylesheet" href="{!!asset('css/all.css')!!}"> --}}
+    {{-- <link rel="stylesheet" href="{!!asset('css/all.css')!!}"> --}}
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
    
+
+    <style>
+        .dark-mode .bg-blue {
+            background-color: #343a40 !important;
+        }
+
+    </style>
 
 @stop
 
 @section('js')
-<script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 @stop

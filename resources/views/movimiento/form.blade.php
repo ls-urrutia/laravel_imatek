@@ -32,6 +32,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <div class="box box-info padding-1">
     <div class="box-body">
 
+
+
         <div class="form-group">
             {{ Form::label('tipo_movimiento') }}
             <select name="tipo_movimiento" class="form-control" id="select-movimiento">
@@ -94,7 +96,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                                     <td style="border: none"></td>
                                     <td style="border: none"></td>
                                     <td style="border: none"></td>
-                                    <td><input type="button" name="" value="Guardar" class="btn btn-success"  id="submit"></td>
+                                    <td><input type="button" name="" value="Guardar" class="btn btn-success"
+                                            id="submit-btn" onclick="clickErrores()"></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -105,61 +108,9 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
         <script type="text/javascript">
-            var stored = [];
-            var permitir_repeticion = false;
-            var contador = 0;
-            ////////////////////////////////777
-
-           /*  $(document).ready(function() {
-             
-
-            
-            for(var j=0; j<id_equipo.lenght;j++){
-                for(var l=j+1; l<id_equipo.lenght;l++){
-                    alert('repetido')
-                }
-            }
-       
-            }); */
-            function save(){
-                var selects= document.getElementsByTagName('select');
-                console.log(selects);
-                var values = [];
-                for(i=0;i<selects.length;i++){
-                    var select = selects[i];
-                    if(values.indexOf(select.value)>-1){
-                        alert('repetido');
-                        break;
-                       /*  const transactionForm = document.getElementById('transactionForm');
-                        transactionForm.addEventListener('submit', function (event){
-                            event.preventDefault();
-                            alert('repetido'); */
-                            $('transactionForm').click(function(e){
-                                e.preventDefault();
-                            });
-                            return false;
-
-
-                        
-
-                    }else{
-                        $('.btn-success').unbind("click");
-                    }
-                }
-            }
-            $("#submit").click(function(e){
-                e.preventDefault();
-                
-            })
-
-
-
-            ////////////////////////////////777
-
-
             /* var	search_select	=	$('.select-e');
 
-             */
+                                                                     */
 
 
             /*
@@ -180,45 +131,9 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
 
-            /* $(document).ready(function() {
 
 
-                $('.btn-success').click(function(e) {
 
-                    var inputs = $('.select-e');
-                    e.preventDefault();
-                    $.each(inputs, function(k, v) {
-                        var getVal = $(v).val();
-                        if (stored.indexOf(getVal) != -1) {
-                            if (permitir_repeticion == true) {
-                                permitir_repeticion = false;
-                            } else {
-                                contador += 1;
-                                $(this).parent().parent().parent().remove();
-                            }
-                        } else {
-                            stored.push($(v).val());
-                        }
-                    });
-                    if (contador >= 1) {
-                        alert('Ha repetido un equipo');
-                    }
-                    var compareArray = new Array();
-                    console.log(stored);
-
-                    for (i = 0; i < stored.length; i++) {
-                        if (compareArray.indexOf(stored[i]) == -1) {
-                            $('.btn-success').unbind("click");
-                        }
-                    }
-                    permitir_repeticion = true;
-                    return permitir_repeticion;
-                    return stored;
-
-                   
-
-                });
-            }); */
 
 
 
@@ -232,55 +147,122 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 numero_row = 0;
                 dupl = [];
                 rows = [];
-                valido = false;
+                unico = true;
                 previous = 0;
 
-
-
-
-
             });
 
 
 
 
 
-
-
-            /*
-            function verificador() {
-
-
-            $id = event.target.id
-
-            $(this).each(function (focus) {
-
-            window.myIndex = dupl.indexOf(previous);
-
-            }).change(function() {
-
-            if ( $id == event.target.id)
-            {  dupl.splice(myIndex, 1)} else {
-                console.log('hola')}
-
-                var chg = $(event.target).val();
-
-                if (dupl.includes(chg)) {
-                alert("Ha repetido equipos"); } else
-                { dupl.push(chg)
+            function checkIfArrayIsUnique(myArray) {
+                return myArray.length === new Set(myArray).size;
             }
-                document.getElementById("log").innerHTML = "<b>Previous: </b>"+previous;
 
-                console.log(dupl);
 
-                previous = $(event.target).val();
 
-                $id = event.target.id;
+            function clickErrores() {
+
+                var inputs = $('.select-e');
+                var store = [];
+
+
+                $.each(inputs, function(k, v) {
+
+                    var getVal = $(v).val();
+                    store.push($(v).val());
+                });
+
+                if (checkIfArrayIsUnique(store) != true)
+                {
+                    alert("Valor repetido");
+                }else {
+                    $(".btn-success").prop('type','submit');
+
+                }
+               /*  console.log(`${store} is unique : ${checkIfArrayIsUnique(store)}`); */
+
+            }/*
+
+            $('.btn-success').click(function(e) {
+
+
+            e.preventDefault();
+            var stored = [];
+
+
+
+
+            $.when(
+                $.each(inputs, function(k, v) {
+                    var getVal = $(v).val();
+                    if (stored.indexOf(getVal) != -1) {
+                        $(this).parent().parent().parent().remove();
+                        unico = false;
+                        alert("fuck")
+                    } else {
+                        stored.push($(v).val());
+                    }
+                    console.log("x")
+                })
+            ).then(function() {
+
+                console.log(unico);
+
+                if (unico == true) {
+                    $('.btn-success').unbind("click");
+                    document.getElementById('submit-btn').click();
+                }
+
+
+            });
+            }); */
+
+
+
+
+/*
+                        $(document).ready(function() {
+
+                            $('.btn-success').click(function(e) {
+
+
+                                e.preventDefault();
+                                var stored = [];
+                                var inputs = $('.select-e');
+
+                                $.when(
+                                    $.each(inputs, function(k, v) {
+                                        var getVal = $(v).val();
+                                        if (stored.indexOf(getVal) != -1) {
+                                            $(this).parent().parent().parent().remove();
+                                            unico = false;
+                                            alert("fuck")
+                                        } else {
+                                            stored.push($(v).val());
+                                        }
+                                        console.log("x")
+                                    })
+                                ).then(function() {
+
+                                    console.log(unico);
+
+                                    if (unico == true) {
+                                        $('.btn-success').unbind("click");
+                                        document.getElementById('submit-btn').click();
+                                    }
+
+
+                                });
+
+
+
 
             });
 
-            } */
-
+            });
+             */
 
 
             function onSelectMovimientoChange() {
@@ -294,7 +276,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                     var html_select = '<option value="">Seleccione Equipo</option>';
                     for (var i = 0; i < data.length; ++i)
-                        html_select += '<option value="' + data[i].id_equipo + '">' + data[i].cod_equipo + '</option>';
+                        html_select += '<option value="' + data[i].id_equipo + '">' + data[i].cod_equipo +
+                        '</option>';
                     $('.select-e').html(html_select);
 
 
@@ -325,9 +308,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             $('.addRow').on('click', function() {
                 addRow();
                 onSelectMovimientoChange2();
-                $('.select-e').select2({
-                    containerCssClass: "bg_color "
-                });
+                $('.select-e').select2({});
 
 
             });
@@ -391,44 +372,6 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 }
 
             });
-
-
-
-            /*        function valueSelect() {
-
-                    var seleccion_actual = $(event.target).val()
-
-                   }
-             */
-
-            /* function onSelectMovimientoDuplicate() {
-
-
-
-
-             var seleccion = $(event.target).val()
-
-             var myIndex = myArray.indexOf('previous');
-             if (myIndex !== -1) {
-             myArray.splice(myIndex, 1);
-             }
-
-                 if (dupl.includes(seleccion)) {
-                 alert("Ha repetido equipos"); } else
-                 { dupl.push(seleccion)
-             }
-
-             agrega 1, agrega 2, el 1 selecciona 3, queda 2-3
-
-
-             console.log(dupl);
-
-             const noDups = new Set(dupl);
-             return dupl.length !== noDups.size;
-
-
-
-            } */
         </script>
 
 
@@ -445,18 +388,28 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             .select2-container--default .select2-selection--single .select2-selection__rendered {
                 display: block;
                 text-overflow: ellipsis;
-                background-color: black: text-align-last:center !important;
+                background-color: transparent: text-align-last:center !important;
                 line-height: 15px;
+                color: white;
 
             }
 
-            .select2-results { background-color: #343a40; }
+            .select2-results {
+                background-color: #343a40;
+            }
 
 
             .select2-selection__rendered[title] {
+                background-color: #343a40;
+                text-align: center;
+                color: white !important;
 
-        text-align: center;
-        }
+            }
+
+            .select2-container--default .select2-selection--single {
+                background-color: transparent
+            }
+
         </style>
 
     </div>

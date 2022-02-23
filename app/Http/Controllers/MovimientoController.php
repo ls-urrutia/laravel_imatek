@@ -96,11 +96,12 @@ class MovimientoController extends Controller
 
 
 
-        $request->validate([
+
+        /* $request->validate([
 
         'fecha_movimiento' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
 
-        ]);
+        ]); */
         $ultimafechaman= DB::select("SELECT fecha_mantencion FROM mantenciones where id_equipo= ? ORDER BY fecha_mantencion DESC LIMIT 1;",[$id_equipo[$i]]);
 
 

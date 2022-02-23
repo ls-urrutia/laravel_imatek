@@ -17,11 +17,21 @@ class CreateMantencionesTable extends Migration
             $table->id('id_mantencion');
 
 
-            $table->date('fecha_mantencion');
-            $table->string('diagnostico');
-            $table->string('descripcion')->nullable();
+            $table->date('fecha_mantencion')->nullable();
+            $table->date('fecha_diagnostico')->nullable();
+            $table->date('fecha_dado_baja')->nullable();
+            $table->string('descripcion_diagnostico')->nullable();;
+            $table->string('descripcion_mantencion')->nullable();
+            $table->string('descripcion_dado_baja')->nullable();
+
             $table->string('validacion')->default('Pendiente');
+
+            $table->string('componentes_mantencion')->nullable();
+            $table->string('diagnostico_corriente')->nullable();
+
+
             $table->string('estado_mantencion')->nullable();
+            
             $table->string('imagen1')->nullable();
             $table->string('imagen2')->nullable();
             $table->string('imagen3')->nullable();
@@ -29,6 +39,9 @@ class CreateMantencionesTable extends Migration
             $table->foreign('id_usuario0')->references('id')->on('users');
             $table->bigInteger('id_usuario')->nullable()->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users');
+
+            $table->bigInteger('id_usuario2')->nullable()->unsigned();
+            $table->foreign('id_usuario2')->references('id')->on('users');
 
            
             

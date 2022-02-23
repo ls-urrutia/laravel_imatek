@@ -12,8 +12,6 @@
                                 {{ __('Equipos') }}
                             </span>
                             @can('Crear equipos')
-                           
-
                              <div class="float-right">
                                 <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear equipo') }}
@@ -78,7 +76,7 @@
                                             @else
                                                 Error
                                             @endif
-                                           
+
 											<td>{{ $equipo->proveedor }}</td>
 											<td>
                                                 {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
@@ -127,7 +125,7 @@
 
 <style>
 table th {
-    background-color:  #4d4d4d !important;
+
     color: white;
 }
 
