@@ -110,9 +110,11 @@
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Ubicación</th>
-                                    @can('ver usuario')
-                                    <th>Actualizar Ubicación</th>
-                                    @endcan
+                                
+                                    <th>@can('Ver usuario')Actualizar Ubicación @endcan</th>
+                                 
+                                    <th></th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>

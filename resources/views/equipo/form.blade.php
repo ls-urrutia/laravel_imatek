@@ -22,32 +22,32 @@ $dateho = $dateho->format('Y-m-d');
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('tipo_equipo') }}
+            {{ Form::label('tipo_equipo:') }}
             {!!Form::select('tipo_equipo',['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
          </div>
         <div class="form-group">
-            {{ Form::label('tipo_documento') }}
+            {{ Form::label('tipo_documento:') }}
             {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
             {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
          </div>
         <div class="form-group">
             {{ Form::label('n°_documento:') }}
-            {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Factura']) }}
+            {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Documento']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('modelo') }}
+            {{ Form::label('modelo:') }}
             {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''), 'placeholder' => 'Modelo']) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('descripción:') }}
-            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
+            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripción']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('fecha_ingreso:') }}
-            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra','value'=> $dateho]) }}
+            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso,['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra']) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">

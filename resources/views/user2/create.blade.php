@@ -18,7 +18,7 @@
 <form action="/users2" method="POST">
     @csrf
   <div class="mb-3">
-    <label for="" class="form-label">Nombre:*</label>
+    <label for="" class="form-label">Nombre: <span class="form-span">*</span></label>
     <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" tabindex="1" value="{{old('name')}}">
     @error('name')
         <span class="invalid-feedback">
@@ -32,7 +32,7 @@
     @endif --}}
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Correo:*</label>
+    <label for="" class="form-label">Correo: <span class="form-span">*</span></label>
     <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" tabindex="2" value="{{old('email')}}">
     @error('email')
       <span class="invalid-feedback">
@@ -47,8 +47,8 @@
 
 
 
-    <label for="" class="form-label">Contraseña: <span style="color: red">*</span></label>
-    <div class="form-row">
+    <label for="" class="form-label">Contraseña: <span class="form-span">*</span></label>
+    <div class="form-row space">
             <div class="col-11">
               <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
             </div>
@@ -61,7 +61,8 @@
 
 
     </div>
-    <label for="" class="form-label">Confirma la Contraseña:*</label>
+  
+    <label for="" class="form-label ">Confirma la Contraseña: <span class="form-span">*</span></label>
     <div class="form-row">
             <div class="col-11">
               <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
@@ -97,6 +98,7 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
    {{--  <link rel="stylesheet" href="{!!asset('css/all.css')!!}"> --}}
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+   
 
 @stop
 

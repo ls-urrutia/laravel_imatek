@@ -23,6 +23,7 @@
         {!! Form::open(['route'=> 'roles.store']) !!}
             <div class="form group">
                 {!! Form::label('name', 'Nombre del rol:') !!}
+                <span class="form-span">*</span>
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
                 @error('name')
                 <small class="text-danger">
@@ -54,6 +55,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 @stop
 
 @section('js')

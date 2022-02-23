@@ -256,7 +256,7 @@ return [
 
         [
             'text'    => 'Gestión de usuarios',
-            'icon'    => 'fas fa-circle fa-1x',
+            'icon'    => 'none',
             'submenu' => [
 
 
