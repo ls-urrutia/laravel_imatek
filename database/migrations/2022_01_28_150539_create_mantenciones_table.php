@@ -35,8 +35,9 @@ class CreateMantencionesTable extends Migration
             $table->string('imagen1')->nullable();
             $table->string('imagen2')->nullable();
             $table->string('imagen3')->nullable();
-            $table->bigInteger('id_usuario0')->unsigned();
+            $table->bigInteger('id_usuario0')->nullable()->unsigned();
             $table->foreign('id_usuario0')->references('id')->on('users');
+
             $table->bigInteger('id_usuario')->nullable()->unsigned();
             $table->foreign('id_usuario')->references('id')->on('users');
 

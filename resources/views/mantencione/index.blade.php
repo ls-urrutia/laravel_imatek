@@ -26,22 +26,26 @@
                         </div>
                     @endif
 
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id ="mantenciones" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
 
-										{{-- <th>Id Mantencion</th> --}}
 
-										<th>Fecha Mantención</th>
-										<th>Descripción</th>
-										<th>Validación</th>
-                                        {{-- <th>Imagen1</th> --}}
-                                        {{-- <th>imagen2</th>
-                                        <th>Imagen3</th> --}}
-										<th>Usuario</th>
-										<th>Código Equipo</th>
+
+										<th>Codigo equipo</th>
+
+										<th>Fecha</th>
+
+
+
+
+
+
+
+										<th>Estado Mantencion</th>
 
 
                                         <th align="right"></th>
@@ -52,26 +56,26 @@
                                         <tr>
 											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
-											<td>{{ $mantencione->fecha_mantencion }}</td>
-											<td>{{ $mantencione->descripcion }}</td>
-											<td>{{ $mantencione->validacion }}</td>
-                                            {{-- <td>
-                                                @if(isset($mantencione->imagen1))
-                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
-                                                @endif --}}
-                                            {{-- <td>
-                                                @if(isset($mantencione->imagen2))
-                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
+											<td>{{ $mantencione->equipo->cod_equipo }}</td>
+											<td>@if(isset($mantencione->descripcion_diagnostico))
+                                                {{ $mantencione->descripcion_diagnostico}}
+                                                @else
+                                                En proceso
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if(isset($mantencione->imagen2))
-                                                  <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
-                                                @endif
-                                            </td> --}}
+											<td>
+                                                @if(isset($mantencione->estado_mantencion))
+                                                {{ $mantencione->estado_mantencion}}
+                                                @else
+                                                En proceso
 
-											<td>{{ isset($mantencione->user->name)}}</td>
-											<td>{{ $mantencione->equipo->cod_equipo}}
+                                                @endif
+
+                                            </td>
+
+
+
+
 
                                             <td align="right">
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">

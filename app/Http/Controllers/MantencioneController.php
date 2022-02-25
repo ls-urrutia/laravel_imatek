@@ -75,10 +75,41 @@ class MantencioneController extends Controller
         $mantenciones->descripcion_mantencion = $request->get('descripcion_mantencion');
         $mantenciones->descripcion_dado_baja = $request->get('descripcion_dado_baja');
         $mantenciones->validacion = 'Pendiente';
-        $mantenciones->componentes_mantencion = $request->get('componentes_mantencion');
+        //////////////////////
+        //Recepción de componentes
+        if($request->get('componente1')!==null){
+            $placa = $request->get('componente1');
+        }else{
+            $placa = 0;
+        }
+        if($request->get('componente2')!==null){
+            $acrilico = $request->get('componente2');
+        }else{
+            $acrilico = 0;
+        }
+        if($request->get('componente3')!==null){
+            $tapas = $request->get('componente3');
+        }else{
+            $tapas = "0";
+        }
+        if($request->get('componente4')!==null){
+            $enchufe = $request->get('componente4');
+        }else{
+            $enchufe = "0";
+        }
+        if($request->get('componente5')!==null){
+            $cable = $request->get('componente5');
+        }else{
+            $cable = "0";
+        }
+
+        $mantenciones->componentes_mantencion = $placa.$acrilico.$tapas.$enchufe.$cable;
+
+
+
         $mantenciones->diagnostico_corriente = $request->get('diagnostico_corriente');
 
-        $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+        /* $mantenciones->estado_mantencion= $request->get('estado_mantencion'); */
 
 
 
@@ -107,18 +138,27 @@ class MantencioneController extends Controller
             $mantenciones->imagen3 = $imagename3;
 
         }
-        $mantenciones->id_usuario0 =  $request->user()->id;
+
 
 
        /*  $mantenciones->id_usuario =  $request->user()->id; */
-        if($request->get('descripcion')!==null&&$request->get('estado_mantencion')!==null){
-            $mantenciones->id_usuario =  $request->user()->id;
-        }elseif($request->get('descripcion')==null&&$request->get('estado_mantencion')==null){
+        if($request->get('Operacion')=='Diagnostico'&&$request->get('fecha_diagnostico')!==null&&$request->get('descripcion_diagnostico')!==null&&$request->get('diagnostico_corriente')!==null){
+            $mantenciones->id_usuario0 =  $request->user()->id;
+            $mantenciones->estado_mantencion = 'A mantención';
+        }/* elseif($request->get('descripcion')==null&&$request->get('estado_mantencion')==null){
 
             $mantenciones->id_usuario =  null;
-        }
+        } */
         //cambiar..esta automatico
-        $mantenciones->id_usuario2 =  $request->user()->id;
+        if($request->get('Operacion')=='Mantención'&&$request->get('fecha_mantencion')!==null&&$request->get('descripcion_mantencion')!==null){
+            $mantenciones->id_usuario =  $request->user()->id;
+            $mantenciones->estado_mantencion = 'Reparada';
+        }
+        if($request->get('Operacion')=='Dar de baja'&&$request->get('fecha_dado_baja')!==null&&$request->get('descripcion_dado_baja')!==null){
+            $mantenciones->id_usuario2 =  $request->user()->id;
+            $mantenciones->estado_mantencion = 'Dada de baja';
+        }
+
 
 
 
@@ -130,7 +170,7 @@ class MantencioneController extends Controller
         FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$idequipo]);
 
 
-
+/*
         $request->validate([
 
             'fecha_mantencion' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
@@ -139,16 +179,21 @@ class MantencioneController extends Controller
 
         $request->validate([
              'fecha_mantencion' => 'date|before:'.$fechahoy
-        ]);
+        ]); */
 
 
 
         $mantenciones->save();
 
 
+
+
         $equipo = Equipo::find($request->get('id_equipo'));
-        if($request->get('estado_mantencion')!==null){
-        $equipo->estado = $request->get('estado_mantencion');}
+        if($request->get('estado_mantencion')=='Reparada'){
+        $equipo->estado = 'Operativo';
+        }else if($request->get('estado_mantencion')=='Dada de baja'){
+            $equipo->estado = 'Dado de baja';
+        }
         $equipo->save();
 
 
@@ -168,8 +213,24 @@ class MantencioneController extends Controller
     public function show($id)
     {
         $mantencione = Mantencione::find($id);
+        $cadena = $mantencione->componentes_mantencion;
 
-        return view('mantencione.show', compact('mantencione'));
+        $arr = [];
+
+        // Recorremos cada carácter de la cadena
+        for($i=0;$i<strlen($cadena);$i++)
+        {
+            // Mostramos cada uno de los caracteres...
+            // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
+
+            array_push($arr,$cadena[$i]);
+        }
+        $array2 =['Placa','Acrilico','Tapas','Enchufe','Cable'];
+
+
+
+
+        return view('mantencione.show', compact('mantencione','arr','array2'));
     }
 
     /**
@@ -220,9 +281,43 @@ class MantencioneController extends Controller
         try{
         $mantenciones=Mantencione::find($id);
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
-        $mantenciones->descripcion = $request->get('descripcion');
-        $mantenciones->validacion= $request->get('validacion');
-        $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+        $mantenciones->fecha_diagnostico = $request->get('fecha_diagnostico');
+        $mantenciones->fecha_dado_baja = $request->get('fecha_dado_baja');
+        $mantenciones->descripcion_diagnostico = $request->get('descripcion_diagnostico');
+        $mantenciones->descripcion_mantencion = $request->get('descripcion_mantencion');
+        $mantenciones->descripcion_dado_baja = $request->get('descripcion_dado_baja');
+        $mantenciones->validacion = $request->get('validacion');
+        //Recepción de componentes
+        if($request->get('componente1')!==null){
+            $placa = $request->get('componente1');
+        }else{
+            $placa = 0;
+        }
+        if($request->get('componente2')!==null){
+            $acrilico = $request->get('componente2');
+        }else{
+            $acrilico = 0;
+        }
+        if($request->get('componente3')!==null){
+            $tapas = $request->get('componente3');
+        }else{
+            $tapas = "0";
+        }
+        if($request->get('componente4')!==null){
+            $enchufe = $request->get('componente4');
+        }else{
+            $enchufe = "0";
+        }
+        if($request->get('componente5')!==null){
+            $cable = $request->get('componente5');
+        }else{
+            $cable = "0";
+        }
+
+        $mantenciones->componentes_mantencion = $placa.$acrilico.$tapas.$enchufe.$cable;
+        $mantenciones->diagnostico_corriente = $request->get('diagnostico_corriente');
+
+       /*  $mantenciones->estado_mantencion= $request->get('estado_mantencion'); */
 
         if($request->hasFile('imagen1')){
             $destino = 'imagenes/fmantenciones/'.$mantenciones->imagen1;
@@ -262,9 +357,27 @@ class MantencioneController extends Controller
         }
        /*  $mantenciones->id_usuario =  $request->user()->id; */
 
+       /* */
+       $mantenciones->id_usuario0 =  $request->get('id');
+       $mantenciones->id_usuario = $request->get('id');
+       $mantenciones->id_usuario2 =  $request->get('id');
 
+       if($request->get('Operacion')=='Diagnostico'&&$request->get('fecha_diagnostico')!==null&&$request->get('descripcion_diagnostico')!==null&&$request->get('corriente_diagnostico')!==null){
+        $mantenciones->id_usuario0 =  $request->user()->id;
+        $mantenciones->estado_mantencion = 'A mantención';
+        }/* elseif($request->get('descripcion')==null&&$request->get('estado_mantencion')==null){
 
-
+            $mantenciones->id_usuario =  null;
+        } */
+        //cambiar..esta automatico
+        if($request->get('Operacion')=='Mantención'&&$request->get('fecha_mantencion')!==null&&$request->get('descripcion_mantencion')!==null){
+            $mantenciones->id_usuario =  $request->user()->id;
+            $mantenciones->estado_mantencion = 'Reparada';
+        }
+        if($request->get('Operacion')=='Dar de baja'&&$request->get('fecha_dado_baja')!==null&&$request->get('descripcion_dado_baja')!==null){
+            $mantenciones->id_usuario2 =  $request->user()->id;
+            $mantenciones->estado_mantencion = 'Dada de baja';
+        }
 
 
 
@@ -277,6 +390,15 @@ class MantencioneController extends Controller
 
 
         $mantenciones->update();
+
+        $equipo = Equipo::find($request->get('id_equipo'));
+        if($request->get('estado_mantencion')=='Reparada'){
+        $equipo->estado = 'Operativo';
+        }else if($request->get('estado_mantencion')=='Dada de baja'){
+            $equipo->estado = 'Dado de baja';
+        }
+        $equipo->save();
+
 
 
 
