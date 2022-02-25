@@ -53,7 +53,7 @@ class ClienteController extends Controller
         $clientes->descripcion = $request->get('descripcion');
         $clientes->save();
 
-        return redirect('/clientes');
+        return redirect('/clientes')->with('success','Cliente creado exitosamente');
     }
 
     /**

@@ -26,41 +26,220 @@
                         <a class="btn btn-primary" href="{{ route('mantenciones.index') }}">Volver</a>
                     </div>
                 </div>
+                
 
                 <div class="card-body">
                     <table class="tab">
+                        <h3 class="space">Diagnostico</h3>
                         <tbody>
                             <tr>
                                 <td class="tex">Id Mantención:</td>
-                                <td>{{ $mantencione->id_mantencion  }}</td>
+                                <td class="padd">{{ $mantencione->id_mantencion  }}</td>
 
                             </tr>
 
                             <tr>
-                                <td class="tex">Fecha Mantención:</td>
-                                <td> {{ $mantencione->fecha_mantencion }}</td>
+                                <td class="tex">Fecha Diagnostico:</td>
+                                @if(isset($mantencione->fecha_diagnostico))
+                                <td class="padd"> {{ $mantencione->fecha_diagnostico }}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td class="tex">Descripción:</td>
-                                <td> {{ $mantencione->descripcion }}</td>
+                                <td class="tex">Descripción diagnostico:</td>
+                                @if(isset($mantencione->descripcion_diagnostico))
+                                <td class="padd"> {{ $mantencione->descripcion_diagnostico }}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td class="tex">Validación:</td>
-                                <td> {{ $mantencione->validacion }}</td>
+                                <td class="tex">Corriente:</td>
+                                @if(isset( $mantencione->diagnostico_corriente))
+                                <td class="padd"> {{ $mantencione->diagnostico_corriente }}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
                             </tr>
-  
                             <tr>
-                                <td class="tex">Id Usuario:</td>
-                                <td>{{ $mantencione->id_usuario}}</td>
+                                <td class="tex">Usuario Diagnostico:</td>
+                                @if(isset($mantencione->id_usuario0))
+                                <td class="padd">{{ $mantencione->id_usuario0}}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                
+                                @endif
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                  <br><br>
+                    
+                    <table class="tab">
+                        <h3 class="space">Mantenimiento</h3>
+                        
+                        <tbody> 
+                            <tr>
+                               
+                                <td class="tex">Fecha mantención:</td>
+                                @if(isset($mantencione->fecha_mantencion))
+                                <td class="padd"> {{ $mantencione->fecha_mantencion }}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
                             </tr>
                             <tr>
-                                <td class="tex">Id Equipo:</td>
-                                <td>{{ $mantencione->id_equipo }}</td>
+                                <td class="tex">Descripción mantención:</td>
+                                @if(isset($mantencione->descripcion_mantencion))
+                                <td class="padd"> {{ $mantencione->descripcion_mantencion }}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
                             </tr>
+                            <tr>
+                                <td class="tex">Usuario Mantención:</td>
+                                @if(isset($mantencione->id_usuario))
+                                <td class="padd">{{ $mantencione->id_usuario}}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
+                            </tr>
+                           
+
+                            
 
                         </tbody>
                     </table>
+                    
+                   
+                    <table class="tab">
+                        <tbody>
+                                <tr>
+                                    @if(isset($arr[0]))
+                                        <td class="tex2">Placa</td>
+                                        @if($arr[0]==0 )
+                                        <td class="tex2">:Mala</td>
+                                        @else
+                                        <td class="tex2">:Buena</td>
+                                        @endif
+                                    @else
+                                    <td class="font-italic grey">No aplica</td>
+                                    @endif    
 
+    
+                                </tr>
+    
+                                <tr>
+                                    @if(isset($arr[1]))
+                                        <td class="tex2">Acrilico</td>
+                                        @if($arr[1]==0 )
+                                        <td class="tex2">:Mala</td>
+                                        @else
+                                        <td class="tex2">:Buena</td>
+                                        @endif
+                                    @else
+                                    <td class="font-italic grey">No aplica</td>
+                                    @endif    
+    
+                                </tr>
+                                <tr>
+                                    @if(isset($arr[2]))
+                                        <td class="tex2">Tapas</td>
+                                        @if($arr[2]==0 )
+                                        <td class="tex2">:Mala</td>
+                                        @else
+                                        <td class="tex2">:Buena</td>
+                                        @endif
+                                    @else
+                                    <td class="font-italic grey">No aplica</td>
+                                    @endif    
+                                </tr>
+                                <tr>
+                                    @if(isset($arr[3]))
+                                        <td class="tex2">Enchufe</td>
+                                        @if($arr[3]==0 )
+                                        <td class="tex2">:Mala</td>
+                                        @else
+                                        <td class="tex2">:Buena</td>
+                                        @endif
+                                    @else
+                                    <td class="font-italic grey">No aplica</td>
+                                    @endif
+                                </tr>
+    
+                                <tr>
+                                    @if(isset($arr[4]))
+                                        <td class="tex2">Cable</td>
+                                        @if($arr[4]==0 )
+                                        <td class="tex2">:Mala</td>
+                                        @else
+                                        <td class="tex2">:Buena</td>
+                                        @endif
+                                    @else
+                                    <td class="font-italic grey">No aplica</td>
+                                    @endif    
+                                </tr>
+                        
+
+                        </tbody>
+                    </table>
+                          
+
+<br><br>
+                    <table>
+                        <h3 class="">De baja</h3>
+                        <body>       
+        
+                            <tr>
+                                <td class="tex">Fecha dado de baja:</td>
+                                @if(isset($mantencione->fecha_dado_baja))
+                                <td class="padd">{{ $mantencione->fecha_dado_baja}}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
+                            </tr>
+                            <tr>
+                                <td class="tex">Descripción dado de baja:</td>
+                                @if(isset($mantencione->descripcion_dado_baja))
+                                <td class="padd">{{ $mantencione->descripcion_dado_baja}}</td>
+                                @else
+                                <td class="font-italic grey">No aplica</td>
+                                @endif
+                            </tr>
+        
+        
+        
+                            
+                            
+                            <tr>
+                                <td class="tex">Usuario dado baja:</td>
+                                @if(isset($mantencione->id_usuario2))
+                                <td class="padd">{{ $mantencione->id_usuario2}}</td>
+                                @else
+                                <td class="grey">No aplica</td>
+                                @endif
+
+                            </tr>
+                            <tr>
+                                <td class="tex">Id Equipo:</td>
+                                @if(isset($mantencione->id_equipo))
+                                <td class="padd">{{ $mantencione->id_equipo }}</td>
+                                @else
+                                <td class="grey">No aplica</td>
+                                @endif
+                            </tr>
+                            
+                        </body>
+                    </table>
+
+                   
+                    <br><br>
+                    
+
+                   
+
+                   
                     {{-- div class="form-group">
                         <strong>Id Mantencion:</strong>
                         {{ $mantencione->id_mantencion }}
@@ -87,21 +266,27 @@
                     </div> --}}
                     <div class="container">
                         <div class="image-container">
-                                <div class="image">
                                 @if(isset($mantencione->imagen1))
+                                <div class="image">
+                                
                                     <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
-                                @endif
+                                
                                 </div>
-                                <div class="image">
+                                @endif
                                 @if(isset($mantencione->imagen2))
-                                    <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
-                                @endif
-                                </div>
                                 <div class="image">
-                                @if(isset($mantencione->imagen3))
-                                <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">
-                                @endif
+                                
+                                    <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
                                 </div>
+                                @endif
+                                @if(isset($mantencione->imagen3))
+                               
+                                <div class="image">
+                               
+                                <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">
+                                
+                                </div>
+                                @endif
 
                         </div> 
                         <div class="popup-image">
@@ -143,6 +328,10 @@ document.querySelector('.popup-image span').onclick = () =>{
 @stop
 @section('css')
     <style>
+        .reduc{
+            padding-top: 83px; 
+        
+        }
         /* #pelicula{
             display: grid;
             grid-template-columns: repeat(3,1fr);
@@ -167,6 +356,25 @@ document.querySelector('.popup-image span').onclick = () =>{
         .container{
             position: relative;
             min-height: 30vh;
+            
+        }
+        .padd{
+            padding-left: 15px;
+
+        }
+        .grey{
+            color: rgb(145, 139, 130);
+            font-size: 15px;
+            display: inline-block;
+            padding-left: 15px;
+            
+        }
+        .paddw{
+            padding-bottom: 1px;
+            margin: 0;
+        }
+        .space{
+           
             
         }
         .container .image-container{
@@ -241,7 +449,12 @@ document.querySelector('.popup-image span').onclick = () =>{
 
          }
          .tex{
-            padding: 5px;
+            padding: 0.5px;
+            
+         }
+         .tex2{
+            padding: 0.5px;
+            font-size: 12px;
          }
 
     
