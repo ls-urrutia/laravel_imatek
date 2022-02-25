@@ -84,7 +84,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tex">Centro:</td>
-                                    <td>{{ $equipo->id_centro }}</td>
+                                    <td>   {{$equipo->centro->nombre_centro ?? 'Sin centro'}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -190,7 +190,6 @@
 
                                                     <th>Centro</th>
 
-                                                    <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -201,9 +200,6 @@
                                                         <td>{{ $movimiento->fecha_movimiento }}</td>
                                                         <td>{{ $movimiento->tipo_documento }}</td>
                                                         <td>{{ $movimiento->n_documento }}</td>
-                                                        <td>
-                                                            {{ $movimiento->id_equipo }}
-                                                        </td>
                                                         <td>
                                                             {{ $movimiento->id_centro }}
                                                         </td>

@@ -136,76 +136,22 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             $(function() {
 
 
-                    $('#select-movimiento').on('change', onSelectMovimientoChange);
-                    $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
-                    $('#clientes').on('change', onSelectClienteChange);
+                $('#select-movimiento').on('change', onSelectMovimientoChange);
+                $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
+                $('#clientes').on('change', onSelectClienteChange);
 
 
-                    $('#div_centro').hide();
-                    $('#div_cliente').hide();
+                $('#div_centro').hide();
+                $('#div_cliente').hide();
 
-                    numero_row = 0;
-                    dupl = [];
-                    rows = [];
-                    unico = true;
-                    previous = 0;
-                    valid = true;
-  /*                   id = {{ request()->id }}; */
+                numero_row = 0;
+                dupl = [];
+                rows = [];
+                unico = true;
+                previous = 0;
+                valid = true;
 
-/*
-
-                    $.get('/movimiento/Entrada/equipos', function(data) {
-
-                        for (var i = 0; i < data.length; ++i) {
-
-                            if (id == data[i].id_equipo) {
-
-                                $("#select-movimiento").val('Entrada').change();
-
-
-                            }
-                        }
-
-                    });
-
-
-                    $.get('/movimiento/Salida/equipos', function(data) {
-
-                        for (var i = 0; i < data.length; ++i) {
-
-                            if (id == data[i].id_equipo) {
-
-
-
-                                $("#select-movimiento").val('Salida').change();
-
-
-                            }
-                        }
-
-                    });
-
-
-                    $.get('/movimiento/Compra/equipos', function(data) {
-
-                        for (var i = 0; i < data.length; ++i) {
-
-                            if (id == data[i].id_equipo) {
-
-
-
-                                $("#select-movimiento").val('Compra').change();
-
-
-                            }
-                        }
-
-                    });
- */
-
-                });
-
-
+            });
 
 
 
@@ -334,11 +280,14 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
 
+
+
                 } else {
                     $('#div_centro').show();
                     $('#div_cliente').show();
                     $("select#id_centro option[value='1']").hide();
                     $("select#id_centro").val("2");
+                    $('select[name*="clientes"] option[value="1"]').remove();
 
 
                 }
