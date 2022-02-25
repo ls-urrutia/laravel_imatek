@@ -13,17 +13,16 @@
   @endforeach
 @endif --}}
 
-    <div class="p-5 bg-blue rounded shadow-lg">
+<div class="p-5 card card-default shadow-lg">
 
-        <form action="/users2" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="" class="form-label">Nombre:</label>
-                <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                    tabindex="1" value="{{ old('name') }}">
-                @error('name')
-                    <span class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
+<form action="/users2" method="POST">
+    @csrf
+  <div class="mb-3">
+    <label for="" class="form-label">Nombre: <span class="form-span">*</span></label>
+    <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" tabindex="1" value="{{old('name')}}">
+    @error('name')
+        <span class="invalid-feedback">
+          <strong>{{$message}}</strong>
 
                     </span>
                 @enderror
@@ -31,14 +30,13 @@
 
        <h6 style="color: red">{{$errors->first('name')}}</h6>
     @endif --}}
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Correo:</label>
-                <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                    tabindex="2" value="{{ old('email') }}">
-                @error('email')
-                    <span class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
+  </div>
+  <div class="mb-3">
+    <label for="" class="form-label">Correo: <span class="form-span">*</span></label>
+    <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" tabindex="2" value="{{old('email')}}">
+    @error('email')
+      <span class="invalid-feedback">
+        <strong>{{$message}}</strong>
 
                     </span>
                 @enderror
@@ -49,12 +47,11 @@
 
 
 
-            <label for="" class="form-label">Contraseña:</label>
-            <div class="form-row">
-                <div class="col-11">
-                    <input id="password" name="password" type="password"
-                        class="form-control @error('password') is-invalid @enderror" tabindex="9">
-                </div>
+    <label for="" class="form-label">Contraseña: <span class="form-span">*</span></label>
+    <div class="form-row space">
+            <div class="col-11">
+              <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
+            </div>
 
                 <div class="col-1">
 
@@ -64,19 +61,20 @@
                 </div>
 
 
-            </div>
-            <label for="" class="form-label">Confirma la Contraseña:</label>
-            <div class="form-row">
-                <div class="col-11">
-                    <input id="password_confirmation" name="password_confirmation" type="password"
-                        class="form-control @error('password') is-invalid @enderror" tabindex="9">
-                    @error('password')
-                        <span class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
+    </div>
+  
+    <label for="" class="form-label ">Confirma la Contraseña: <span class="form-span">*</span></label>
+    <div class="form-row">
+            <div class="col-11">
+              <input id="password_confirmation" name="password_confirmation" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="9">
+              @error('password')
+                  <span class="invalid-feedback">
+                    <strong>{{$message}}</strong>
 
-                        </span>
-                    @enderror
-                </div>
+                  </span>
+              @enderror
+            </div>
+            
 
                 <div class="col-1">
 
@@ -103,6 +101,7 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
     {{-- <link rel="stylesheet" href="{!!asset('css/all.css')!!}"> --}}
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+   
 
     <style>
         .dark-mode .bg-blue {

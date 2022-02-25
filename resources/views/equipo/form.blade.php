@@ -12,48 +12,53 @@ $dateho = $dateho->format('Y-m-d');
 
 
 
-         <!-- Preloader -->
- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+<!-- Preloader -->
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60"
+        width="60">
+</div>
 
 
 
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('tipo_equipo') }}
-            {!!Form::select('tipo_equipo',['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','id'=>'tipoequipo']) !!}
-         </div>
+            {{ Form::label('tipo_equipo:') }}
+            {!! Form::select('tipo_equipo', ['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección', 'id' => 'tipoequipo']) !!}
+        </div>
         <div class="form-group">
-            {{ Form::label('tipo_documento') }}
-            {!!Form::select('tipo_documento',['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
+            {{ Form::label('tipo_documento:') }}
+            {!! Form::select('tipo_documento', ['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
             {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
-         </div>
+        </div>
         <div class="form-group">
             {{ Form::label('n°_documento:') }}
-            {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N° Factura']) }}
+            {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N° Documento']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('modelo') }}
-            {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''), 'placeholder' => 'Modelo']) }}
+            {{ Form::label('modelo:') }}
+            {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''),'placeholder' => 'Modelo']) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('descripción:') }}
-            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
+            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''),'placeholder' => 'Descripción']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('fecha_ingreso:') }}
-            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Compra','value'=> $dateho]) }}
+            {{ Form::label('Fecha_ingreso:') }}
+            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''),'placeholder' => 'Fecha Compra']) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('proveedor:') }}
-            {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
-            {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('Proveedor:') }}
+            <select class="form-control" id="proveedor" name="proveedor">
+                <option disabled selected value>Seleccione Proveedor</option>
+                @foreach ($proveedores as $proveedor)
+                    <option value="{{ $proveedor->nombre_proveedor }}">{{ $proveedor->nombre_proveedor }}</option>
+                @endforeach
+            </select>
 
         </div>
 
@@ -61,19 +66,21 @@ $dateho = $dateho->format('Y-m-d');
         <div class="box box-info padding-1">
             <form>
                 <section>
-                    <div class="form-group" >
+                    <div class="form-group">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Código</th>
-                                    <th><a class="addRow"> <i class="bi bi-plus-circle-fill"></i></a> Agregar Equipo Adicional</th>
+                                    <th>Cantidad Equipos (Ingresar código de fábrica)</th>
+                                    <th><a class="addRow"> <i class="bi bi-plus-circle-fill"></i></a> Agregar
+                                        Equipo Adicional</th>
                                 </tr>
                             </thead>
                             <tbody>
-                <tr>
-                <td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>
-                <td><a class="btn btn-danger remove"><i class="bi bi-x-circle-fill"></i></a></td>
-                </tr>
+                                <tr>
+                                    <td>Equipos: 1<input type="text" name="cod_fabrica[]" class="form-control" required="">
+                                    </td>
+                                    <td><a class="btn btn-danger remove"><i class="bi bi-x-circle-fill"></i></a></td>
+                                </tr>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -88,31 +95,37 @@ $dateho = $dateho->format('Y-m-d');
                     </div>
                 </section>
             </form>
-       </div>
-       <script type="text/javascript">
-           $('.addRow').on('click',function(){
-               addRow();
-           });
-           function addRow()
-           {
-               var tr='<tr>'+
-               '<td><input type="text" name="cod_equipo[]" class="form-control" required=""></td>'+
-               '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>'+
-               '</tr>';
-               $('tbody').append(tr);
-           };
-           $('.remove').live('click',function(){
-               var last=$('tbody tr').length;
-               if(last==1){
-                   alert("No esta permitido remover la última fila");
-               }
-               else{
-                    $(this).parent().parent().remove();
-               }
+        </div>
+        <script type="text/javascript">
 
-           });
-       </script>
+            var num = 1;
+
+
+
+            $('.addRow').on('click', function() {
+                addRow();
+            });
+
+            function addRow() {
+                num += 1;
+                var tr = '<tr>' +
+                    '<td>Equipos: ' + num + '<input type="text" name="cod_fabrica[]" class="form-control" required=""></td>' +
+                    '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>' +
+                    '</tr>';
+                $('tbody').append(tr);
+
+            };
+            $('.remove').live('click', function() {
+
+                var last = $('tbody tr').length;
+                if (last == 1) {
+                    alert("No esta permitido remover la última fila");
+                } else {
+                    $(this).parent().parent().remove();
+                    num -= 1;
+                }
+
+            });
+        </script>
 
     </div>
-
-

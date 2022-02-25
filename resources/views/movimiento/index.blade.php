@@ -17,12 +17,14 @@
                             <span id="card_title">
                                 {{ __('') }}
                             </span>
+                            @can('Crear movimiento')
 
                              <div class="float-right">
                                 <a href="{{ route('movimientos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nuevo movimiento') }}
                                 </a>
                               </div>
+                            @endcan
                         </div>
                         @if ($message = Session::get('success'))
                         <div class="alert alert-success">
@@ -49,7 +51,7 @@
 										<th>Código Equipo</th>
                                         <th>Centro</th>
 
-                                        <th>Acciones</th>
+                                        <th align="right"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,13 +68,19 @@
                                             <td>
                                                 {{ $movimiento->id_centro}}
                                             </td>
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                                    @can('Ver movimiento')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                                    @endcan
+                                                    @can('Editar movimientos')
                                                     <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                                    @endcan
                                                     @csrf
                                                     @method('DELETE')
+                                                    @can('Eliminar movimientos')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                                    @endcan
                                                 </form>
                                             </td>
                                         </tr>
@@ -96,16 +104,12 @@
 
 
 <style>
-table th {
-    background-color: #337ab7 !important;
-    color: white;
-}
 
 .dt-buttons {
 
     padding-top:1%;
     padding-bottom:1%;
-
+    justify-content: center;
 }
 
 .paginate_button {
@@ -114,6 +118,8 @@ table th {
     padding: 1%;
     text-shadow: 0 0 2px black;
     font-weight: bold;
+    justify-content: center !important;
+    aling-items: center !important;
 
 
 }
@@ -125,6 +131,8 @@ table th {
     text-shadow: 0 0 2px #fff;
     text-align: justify;
     font-weight: 900;
+    justify-content: center !important;
+    aling-items: center !important;
 
 
 }
@@ -132,11 +140,17 @@ table th {
 .dataTables_info {
     padding-top:1%;
     padding-bottom:1%;
+    justify-content: center !important;
+    display:inline-block
 
 }
 
 .dataTables_length {
     font-weight: normal;
+    justify-content: center !important;
+    padding-left: 40%;
+    display:inline-block  !important;;
+    text-align:center !important;
 }
 
 

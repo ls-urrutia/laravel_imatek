@@ -107,10 +107,14 @@
                             <thead class="thead">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>{{-- 
-                                    <th>Correo electrónico</th> --}}
+                                    <th>Nombre</th>
+                                    <th>Correo electrónico</th>
                                     <th>Ubicación</th>
-                                    <th>Actualizar Ubicación</th>
+                                
+                                    <th>@can('Ver usuario')Actualizar Ubicación @endcan</th>
+                                 
+                                    <th></th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,6 +131,8 @@
                                         </td>
                                         <td> {{ $usuario->estado }}
                                         </td>
+                                        @can('Editar usuarios')
+
 
                                         <td>
                                              <div class="form-group">
@@ -138,10 +144,11 @@
 
                                                 </td>
                                         <td>
-                                            @can('Editar usuarios')
+                                            
                                             <input type="submit" value="Confirmar" class="btn btn-sm btn-success">
-                                            @endcan
+                                            
                                         </td>
+                                        @endcan
 
                                     </form>
                                     </tr>

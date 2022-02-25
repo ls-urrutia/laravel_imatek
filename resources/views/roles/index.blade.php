@@ -3,12 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Creación Roles</h1>
+    <h1>Listado de Roles</h1>
 @stop
 
 @section('content')
     <p></p>
-    <a href="roles/create" class="btn btn-primary mb-3">CREAR</a>
+    @can('Crear roles')
+    <a href="roles/create" class="btn btn-primary mb-3">Crear Rol</a>
+    @endcan
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -26,7 +28,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Role</th>
-                        <th colspan="2"></th>
+                        @can('Editar roles')
+                        <th></th>
+                        @endcan
                     </tr>
 
                 </thead>
@@ -37,15 +41,16 @@
                             <td>{{$role->name}}</td>
                             <td width="10px">
                                 @can('Editar roles')
-                                <a href="{{route('roles.edit', $role)}}" class="btn btn-sm btn-primary">Editar</a>
+                                <a href="{{route('roles.edit', $role)}}" class="btn btn-sm btn-success"><i class="fa fa-fw fa-edit"></i></a>
                                 @endcan
                             </td>
                             <td width="10px">
                                 @can('Eliminar roles')
                                 <form action="{{route('roles.destroy', $role)}}" method="POST">
+                                   
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                    <button type="submit" class="class=btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                                 </form>
                                 @endcan
                             </td>

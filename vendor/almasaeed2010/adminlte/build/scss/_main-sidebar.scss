@@ -302,6 +302,7 @@
     > .nav-item {
       > .nav-link {
         color: $sidebar-light-submenu-color;
+        margin-left: 30px;
 
         &:hover,
         &:focus {
@@ -384,6 +385,7 @@
       // border-left: 3px solid transparent;
       &:active {
         color: $sidebar-dark-color;
+        margin-left: 30px;
       }
     }
 
@@ -406,6 +408,7 @@
     // First Level Submenu
     > .nav-treeview {
       background-color: $sidebar-dark-submenu-bg;
+      margin-left: 30px;
     }
   }
 
@@ -419,6 +422,7 @@
   .sidebar {
     a {
       color: $sidebar-dark-color;
+      margin-left: 30px;
 
       &:hover,
       &:focus {
@@ -432,12 +436,14 @@
     > .nav-item {
       > .nav-link {
         color: $sidebar-dark-submenu-color;
+        margin-left: 30px;
 
         &:hover,
         &:focus {
           background-color: $sidebar-dark-submenu-hover-bg;
           color: $sidebar-dark-submenu-hover-color;
         }
+        
       }
 
       > .nav-link.active {
@@ -446,6 +452,7 @@
         &:focus {
           background-color: $sidebar-dark-submenu-active-bg;
           color: $sidebar-dark-submenu-active-color;
+          
         }
       }
     }

@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => true,
 
@@ -126,8 +126,8 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-grey elevation-4',
-    'classes_sidebar_nav' => 'sidebar-dark-grey elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar_nav' => 'sidebar-dark-danger elevation-4',
     'classes_topnav' => 'navbar-dark navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -256,19 +256,20 @@ return [
 
         [
             'text'    => 'Gestión de usuarios',
-            'icon'    => 'fas fa-circle fa-1x',
+            'icon'    => 'none',
             'submenu' => [
 
 
                     [
                         'text' => 'Lista Usuarios',
                         'url'  => '/users2',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
                     ],
                     [
                         'text' => 'Crear Usuarios',
                         'url'  => '/users2/create',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
+                        'can'=> 'Crear usuarios'
                     ],
 
 
@@ -293,9 +294,9 @@ return [
 
                 ],
             'can'=>'Ver lista de usuarios',
-            'can'=> 'Crear usuarios',
+            /* ,
             'can'=>'Editar usuarios',
-            'can'=>'Eliminar usuarios'
+            'can'=>'Eliminar usuarios' */
 
 
 
@@ -311,25 +312,26 @@ return [
                     [
                         'text' => 'Lista Roles',
                         'url'  => '/roles',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
+                        'can'  =>'Ver roles',
                     ],
                     [
                         'text' => 'Asignar Roles',
                         'url'  => '/users',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
+                        'can'  =>'Asignar roles',
                     ],
                     [
                         'text' => 'Crear Roles',
                         'url'  => '/roles/create',
-                        'icon'    => 'none',
+                        'icon'    => 'fa fa-angle-right',
+                        'can'  => 'Crear roles',
                     ],
 
 
                 ],
-            'can'=>'Ver lista de usuarios',
-            'can'=> 'Crear usuarios',
-            'can'=>'Editar usuarios',
-            'can'=>'Eliminar usuarios'
+            'can'=>'Ver roles',
+
 
 
 
@@ -345,19 +347,18 @@ return [
                         [
                             'text'    => 'Lista Equipos',
                             'url'     => '/equipos/',
-                            'icon'    => 'none',
+                            'icon'    => 'fa fa-angle-right',
+                            'can'     =>'Ver lista de equipos',
                         ],
                         [
                             'text'    => 'Agregar Equipo',
                             'url'     => '/equipos/create',
-                            'icon'    => 'none',
+                            'icon'    => 'fa fa-angle-right',
+                            'can'     => 'Crear equipos',
                         ],
                         ],
                     'can'=> 'Ver lista de equipos',
-                    'can'=> 'Ver equipo',
-                    'can'=> 'Crear equipos',
-                    'can'=> 'Editar equipos',
-                    'can'=> 'Eliminar equipos',
+
 
             ],
 
@@ -370,28 +371,54 @@ return [
                             [
                                 'text'    => 'Lista Mantenciones',
                                 'url'     => '/mantenciones',
-                                'icon'    => 'none',
+                                'icon'    => 'fa fa-angle-right',
+                                'can'     => 'Ver lista de mantenciones',
                             ],
                             [
                                 'text'    => 'Agregar a mantención',
                                 'url'     => '/mantenciones/create',
-                                'icon'    => 'none',
+                                'icon'    => 'fa fa-angle-right',
+                                'can'     => 'Crear mantención',
                             ],
 
 
 
                         ],
                     'can'=> 'Ver lista de mantenciones',
-                    'can'=> 'Ver mantención',
-                    'can'=> 'Crear mantención',
-                    'can'=> 'Editar mantención',
-                    'can'=> 'Eliminar mantención',
+],
 
 
+[
+    'text'    => 'Gestión Movimientos',
+    'icon'    => 'none',
+    'submenu' => [
 
 
+        [
+            'text'    => 'Lista Movimientos',
+            'url'     => '/movimientos',
+            'icon'    => 'fa fa-angle-right',
+            'can'     =>   'Ver lista de movimientos',
+        ],
+
+
+        [
+            'text'    => 'Agregar Movimientos',
+            'url'     => '/movimientos/create',
+            'icon'    => 'fa fa-angle-right',
+            'can'     => 'Crear movimiento'
+
+        ],
+
+    ],
+    'can'=>'Ver lista de movimientos',
 
 ],
+
+
+
+
+
 [
     'text'    => 'Gestión Centros',
     'icon'    => 'none',
@@ -401,23 +428,22 @@ return [
         [
             'text'    => 'Lista Centros',
             'url'     => '/centros',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
+            'can'     => 'Ver lista de centros'
         ],
 
 
         [
             'text'    => 'Agregar Centro',
             'url'     => '/centros/create',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
+            'can'     => 'Crear centros'
 
        ],
 
     ],
     'can'=> 'Ver lista de centros',
-    'can'=> 'Ver centro',
-    'can'=> 'Crear centros',
-    'can'=> 'Editar centros',
-    'can'=> 'Eliminar centros',
+
 ],
 [
     'text'    => 'Gestión Clientes',
@@ -428,54 +454,58 @@ return [
         [
             'text'    => 'Lista Clientes',
             'url'     => '/clientes',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
+            'can'=> 'Ver lista de clientes',
         ],
 
 
         [
             'text'    => 'Agregar Cliente',
             'url'     => '/clientes/create',
-            'icon'    => 'none',
+            'icon'    => 'fa fa-angle-right',
+            'can'=> 'Crear cliente',
 
        ],
 
     ],
     'can'=> 'Ver lista de clientes',
-    'can'=> 'Ver cliente',
-    'can'=> 'Crear cliente',
-    'can'=> 'Editar cliente',
-    'can'=> 'Eliminar cliente',
+
 ],
 
+[
+    'text'    => 'Gestión Proveedores',
+    'icon'    => 'none',
+    'submenu' => [
+
+
         [
-            'text'    => 'Gestión Movimientos',
-            'icon'    => 'none',
-            'submenu' => [
-
-
-                [
-                    'text'    => 'Lista Movimientos',
-                    'url'     => '/movimientos',
-                    'icon'    => 'none',
-                ],
-
-
-                [
-                    'text'    => 'Agregar Movimientos',
-                    'url'     => '/movimientos/create',
-                    'icon'    => 'none',
-
-                ],
-
-            ],
+            'text'    => 'Lista Proveedores',
+            'url'     => '/proveedores',
+            'icon'    => 'fa fa-angle-right',
 
         ],
+
+
+        [
+            'text'    => 'Agregar Proveedores',
+            'url'     => '/proveedores/create',
+            'icon'    => 'fa fa-angle-right',
+
+
+        ],
+
+    ],
+
+
+],
+
 
 
         [
             'text'    => 'Registro de actividad',
             'icon'    => 'none',
             'url'     => '/admin/user-activity',
+            'can'     => 'Ver actividad de usuario'
 
         ],
 

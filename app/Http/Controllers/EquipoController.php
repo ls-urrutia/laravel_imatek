@@ -6,6 +6,7 @@ use App\Models\Equipo;
 use App\Models\Centro;
 use App\Models\Mantencione;
 use App\Models\Movimiento;
+use App\Models\Proveedore;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -58,21 +59,6 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::paginate();
 
-/*
-        $date = Carbon::parse('2016-09-17 11:00:00');
-        $now = Carbon::now(); */
-/*
-        $date = Carbon::parse('2020-01-19');
-        $date2 = '2020-01-14';
-        $diff = $date->diffInDays($date2);
-
-
-       /*  $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]); */
-
-/*
-        $fechas = DB::table('movimientos')->where([
-            ['id_equipo', '=', '1'],
-        ])->get(); */
 
         return view('equipo.index', compact('equipos'));
 
@@ -115,11 +101,11 @@ class EquipoController extends Controller
     {
         $equipo = new Equipo();
 
-
-
         $centros = Centro::pluck('nombre_centro','id_centro');
 
-        return view('equipo.create', compact('equipo', 'centros'));
+        $proveedores = Proveedore::all();
+
+        return view('equipo.create', compact('equipo', 'centros','proveedores'));
     }
 
     /**
@@ -135,7 +121,7 @@ class EquipoController extends Controller
 
 
         $tipo_equipo = $request->get('tipo_equipo');
-        $cod_equipo = $request->get('cod_equipo');
+        $cod_fabrica = $request->get('cod_fabrica');
         $tipo_documento = $request->get('tipo_documento');
         $n_documento= $request->get('n_documento');
         $modelo = $request->get('modelo');
@@ -144,9 +130,9 @@ class EquipoController extends Controller
         $fecha_ingreso = $request->get('fecha_ingreso');
         $proveedor = $request->get('proveedor');
 
-            for ($i=0; $i < count($cod_equipo); $i++){
+            for ($i=0; $i < count($cod_fabrica); $i++){
                 $data=array(
-                'cod_equipo' =>   $cod_equipo[$i],                      //
+                'cod_fabrica' =>   $cod_fabrica[$i],                      //
                 'tipo_equipo' =>   $tipo_equipo,
                 'tipo_documento'=> $tipo_documento,
                 'n_documento' =>  $n_documento,
@@ -187,15 +173,8 @@ class EquipoController extends Controller
      */
     public function show($id)
     {
-        $equipo = Equipo::find($id);
 
-        /* $records['mantenciones'] = DB::table('equipos')
-                         ->join('mantenciones', 'mantenciones.id_equipo', '=', 'equipos.id_equipo')
-                         ->where('equipos.id_equipo', $equipo->id)
-                         ->paginate(5); */
-       /*  $equipos2= DB::select("SELECT * FROM mantenciones INNER JOIN equipos ON mantenciones.$id=equipos.$id"); */
-       /*  $prop =  Equipo::findOrFail($id)->mantenciones(); */
-        /* $contar = Equipo::withCount(['mantenciones'])->get(); */
+        $equipo = Equipo::find($id);
 
         $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento, id_centro FROM movimientos where id_equipo=?',[$id]);
 
@@ -251,28 +230,21 @@ class EquipoController extends Controller
                 }
 
 
-
                 /*conversión diferencia de fechas en meses y dias*/
                 /* $resultado = $resultado+1;
 
 
                 $resultado1= $resultado/30;
                 $dias = round($resultado%30); */
+
+
+
                 $resultado = $resultado*0.95;
 
 
+                $mes = round($resultado/30);
 
-                $mes = $resultado/30;
-                list($mes,$resultado) = explode(".",$mes);
-                $resultado = "0.".$resultado;
-                $resultado=$resultado*30;
-
-
-
-
-
-
-
+                $resultado=$resultado%30;
 
 
                 /*Muestra las mantenciones de cada equipo */
@@ -296,10 +268,12 @@ class EquipoController extends Controller
      */
     public function edit($id)
     {
+
+        $proveedores = Proveedore::all();
         $equipo = Equipo::find($id);
         $centros = Centro::pluck('nombre_centro','id_centro');
 
-        return view('equipo.edit', compact('equipo','centros'));
+        return view('equipo.edit', compact('equipo','centros','proveedores'));
     }
 
     /**

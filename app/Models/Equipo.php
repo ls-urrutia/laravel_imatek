@@ -37,7 +37,7 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
     use Loggable;
 
     static $rules = [
-		'cod_equipo' => 'required|unique:equipos',
+		'cod_fabrica' => 'required',
         'tipo_documento' => 'required',
         'n_documento' => 'required',
 		'tipo_equipo' => 'required',
@@ -58,7 +58,7 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
      *
      * @var array
      */
-    protected $fillable = ['id_equipo','cod_equipo','tipo_documento','n_documento','tipo_equipo','modelo','ciclos','descripcion','estado','fecha_ingreso','proveedor','id_centro'];
+    protected $fillable = ['id_equipo','cod_fabrica','tipo_documento','n_documento','tipo_equipo','modelo','ciclos','descripcion','estado','fecha_ingreso','proveedor','id_centro'];
 
 
     /**

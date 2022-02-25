@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Centros</h1>
+    <h1>Listado de Centros</h1>
 @stop
 
 @section('content')
@@ -15,13 +15,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Centro') }}
+                                {{ __('Centros') }}
                             </span>
 
                              <div class="float-right">
                                  @can('Crear centros')
                                 <a href="{{ route('centros.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Centro') }}
                                 </a>
                                 @endcan
                               </div>
@@ -39,19 +39,19 @@
                             <table id="centros" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-										<th>Id Centro</th>
+										{{-- <th>Id Centro</th> --}}
 										<th>Nombre Centro</th>
 										<th>Telefono Empresa</th>
-										<th>Descripcion</th>
+										<th>Descripción</th>
 										<th>Empresa</th>
 
-                                        <th>Acciones</th>
+                                        <th align="right"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($centros as $centro)
                                         <tr>
-											<td>{{ $centro->id_centro }}</td>
+											{{-- <td>{{ $centro->id_centro }}</td> --}}
 											<td>{{ $centro->nombre_centro }}</td>
 											<td>{{ $centro->telefono_empresa }}</td>
 											<td>{{ $centro->descripcion }}</td>
@@ -59,7 +59,7 @@
                                                 {{ $centro->cliente->nombre_empresa}}
                                             </td>
 
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('centros.destroy',$centro->id_centro) }}" method="POST">
                                                     @can('Ver centro')
                                                     <a class="btn btn-sm btn-primary " href="{{ route('centros.show',$centro->id_centro) }}"><i class="fa fa-fw fa-eye"></i></a>

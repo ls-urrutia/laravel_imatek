@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Carbon;
+
+
+
+
 /**
  * Class MantencioneController
  * @package App\Http\Controllers
@@ -64,10 +69,20 @@ class MantencioneController extends Controller
 
         $mantenciones = new Mantencione();
         $mantenciones->fecha_mantencion = $request->get('fecha_mantencion');
-        $mantenciones->diagnostico = $request->get('diagnostico');
-        $mantenciones->descripcion = $request->get('descripcion');
-        $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+        $mantenciones->fecha_diagnostico = $request->get('fecha_diagnostico');
+        $mantenciones->fecha_dado_baja = $request->get('fecha_dado_baja');
+        $mantenciones->descripcion_diagnostico = $request->get('descripcion_diagnostico');
+        $mantenciones->descripcion_mantencion = $request->get('descripcion_mantencion');
+        $mantenciones->descripcion_dado_baja = $request->get('descripcion_dado_baja');
         $mantenciones->validacion = 'Pendiente';
+        $mantenciones->componentes_mantencion = $request->get('componentes_mantencion');
+        $mantenciones->diagnostico_corriente = $request->get('diagnostico_corriente');
+
+        $mantenciones->estado_mantencion= $request->get('estado_mantencion');
+
+
+
+
         if($request->hasFile('imagen1')){
             $image1= $request->file('imagen1');
             $extension = $image1->getClientOriginalExtension();
@@ -102,15 +117,17 @@ class MantencioneController extends Controller
 
             $mantenciones->id_usuario =  null;
         }
+        //cambiar..esta automatico
+        $mantenciones->id_usuario2 =  $request->user()->id;
 
 
 
         $mantenciones->id_equipo = $request->get('id_equipo');
 
-        $asdf = $request->get('id_equipo');
+        $idequipo = $request->get('id_equipo');
 
         $ultimafecha = DB::select("SELECT fecha_movimiento
-        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$asdf]);
+        FROM `movimientos`where id_equipo= ? ORDER BY fecha_movimiento DESC LIMIT 1;",[$idequipo]);
 
 
 
@@ -118,6 +135,12 @@ class MantencioneController extends Controller
 
             'fecha_mantencion' => 'date|after:'.$ultimafecha[0]->fecha_movimiento
         ]);
+        $fechahoy = Carbon::now();
+
+        $request->validate([
+             'fecha_mantencion' => 'date|before:'.$fechahoy
+        ]);
+
 
 
         $mantenciones->save();
@@ -167,6 +190,22 @@ class MantencioneController extends Controller
             return view('mantencione.edit', compact('mantencione','equipos'))->with('error','No se pudo editar la mantención');
         }
     }
+
+
+    public function create2($id)
+    {
+
+
+
+        $equipo = Equipo::find($id);
+
+        $equipos = Equipo::pluck('cod_equipo','id_equipo');
+
+        return view('mantencione.create', compact('equipo','equipos'))->with('success','Mantención actualizada exitosamente');
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.

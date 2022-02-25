@@ -1,5 +1,11 @@
 @extends('adminlte::page')
 
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Movimientos</h1>
+@stop
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -9,15 +15,14 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Equipos') }}
+                                {{ __('Proveedore') }}
                             </span>
-                            @can('Crear equipos')
+
                              <div class="float-right">
-                                <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear equipo') }}
+                                <a href="{{ route('proveedores.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
-                            @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -25,109 +30,54 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-danger">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="equipos" class="table table-striped table-hover">
+                            <table id = "proveedores" class="table table-striped table-hover">
                                 <thead class="thead">
-
                                     <tr>
 
-										{{-- <th>Id Equipo</th> --}}
-										<th>Cod Equipo</th>
-                                        {{-- <th>Tipo Documento</th> --}}
-										<th>N° Documento</th>
-										<th>Tipo Equipo</th>
-										<th>Modelo</th>
-										{{-- <th>Descripcion</th> --}}
-										<th>Estado</th>
-										{{-- <th>Fecha Compra</th> --}}
 										<th>Proveedor</th>
-										<th> Centro</th>
 
-
-                                        <th align="right"></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($equipos as $equipo)
-
+                                    @foreach ($proveedores as $proveedore)
                                         <tr>
+  											<td>{{ $proveedore->nombre_proveedor }}</td>
 
-											{{-- <td>{{ $equipo->id_equipo }}</td> --}}
-											<td>{{ $equipo->cod_equipo }}{{ $equipo->id_equipo }}</td>
-                                           {{--  <td>{{ $equipo->tipo_documento }}</td> --}}
-											<td>{{ $equipo->n_documento }}</td>
-											<td>{{ $equipo->tipo_equipo }}</td>
-											<td>{{ $equipo->modelo }}</td>
-											{{-- <td>{{ $equipo->descripcion }}</td> --}}
-											<td>@if($equipo->estado=='Operativo')
-                                                <span class="badge bg-success">{{ $equipo->estado }}</span></td>
-                                            @elseif($equipo->estado == 'En revisión')
-                                                <span class="badge bg-warning text-dark">{{ $equipo->estado }}</span></td>
-
-                                            @elseif($equipo->estado == 'Dado de baja')
-                                                <span class="badge bg-danger">{{ $equipo->estado }}</span></td>
-                                            @else
-                                                Error
-                                            @endif
-
-											<td>{{ $equipo->proveedor }}</td>
-											<td>
-                                                {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
-                                            </td>
-
-                                            <td align="right">
-                                                <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
-                                                    @can('Ver equipo')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> </a>
-                                                    @endcan
-                                                    @can('Editar equipos')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> </a>
-                                                    @endcan
+                                            <td>
+                                                <form action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('Eliminar equipos')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
-                                                    @endcan
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
-
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                {!! $equipos->links() !!}
+                {!! $proveedores->links() !!}
             </div>
         </div>
     </div>
-
-
-
-
-
-
 @endsection
 
 
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
+<link rel="stylesheet" href="/css/admin_custom.css">
 
 
 <style>
-table th {
 
-    color: white;
-}
+
+
 
 .dt-buttons {
 
@@ -139,6 +89,7 @@ table th {
 .paginate_button {
 
     color:aliceblue;
+    padding: 1%;
     text-shadow: 0 0 2px black;
     font-weight: bold;
 
@@ -169,7 +120,9 @@ table th {
 
 
 </style>
+
 @stop
+
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
@@ -186,11 +139,9 @@ table th {
 
 
 
-
-
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#equipos').DataTable({
+        $('#proveedores').DataTable({
             "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
             language: {
                     "lengthMenu": "Mostrar _MENU_ registros",

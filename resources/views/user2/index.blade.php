@@ -17,12 +17,14 @@
                         <span id="card_title">
                             {{ __('Usuarios') }}
                         </span>
+                        @can('Crear usuarios')
 
                          <div class="float-right">
                             <a href="{{ route('users2.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                               {{ __('Crear nuevo usuario') }}
                             </a>
                           </div>
+                          @endcan
                     </div>
                 </div>
                 @if ($message = Session::get('success'))
@@ -44,7 +46,12 @@
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
-                                    <th>Acciones</th>
+                                   
+                                    
+
+                                    <th></th>
+                                    
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,16 +66,24 @@
                                         <td>{{ $usuario->name}}</td>
                                         <td>{{ $usuario->email }}</td>
                                         </td>
+                                        @can('Editar usuarios')
 
-                                        <td>
+                                        <td align="right">
                                             <form action="{{ route('users2.destroy',$usuario->id) }}" method="POST">
+                                                @can('Ver usuario')
                                                 <a class="btn btn-sm btn-primary " href="{{ route('users2.show',$usuario->id) }}"><i class="fa fa-fw fa-eye"></i> </a>
+                                                @endcan
+                                                @can('Crear usuarios')
                                                 <a class="btn btn-sm btn-success" href="{{ route('users2.edit',$usuario->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
+                                                @endcan
                                                 @csrf
                                                 @method('DELETE')
+                                                @can('Eliminar usuarios')
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
+                                                @endcan
                                             </form>
                                         </td>
+                                        @endcan
                                        
                                     </tr>
                                 @endforeach
