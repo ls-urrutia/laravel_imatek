@@ -12,7 +12,7 @@
     <div class="box-body">
         <div class="form-group">
             {{ Form::label('Codigo_Equipo:') }}
-            {{ Form::select('id_equipo', $equipos,$mantencione->id_equipo,['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione']) }}
+            {{ Form::select('id_equipo',$equipos,$mantencione->id_equipo,['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione']) }}
             {!! $errors->first('id_equipo', '<div class="inval id-feedback">:message</p>') !!}
                 
                 

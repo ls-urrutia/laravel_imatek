@@ -258,6 +258,7 @@ class EquipoController extends Controller
 
                 $resultado1= $resultado/30;
                 $dias = round($resultado%30); */
+                if($resultado!=null){
                 $resultado = $resultado*0.95;
 
 
@@ -266,6 +267,13 @@ class EquipoController extends Controller
                 list($mes,$resultado) = explode(".",$mes);
                 $resultado = "0.".$resultado;
                 $resultado=$resultado*30;
+                }
+                $result = array(144);
+
+/* $sub_struct_month = ($result[0] / 30) ;
+$sub_struct_month = floor($sub_struct_month); 
+$sub_struct_days = ($result[0] % 30); // the rest of days
+$sub_struct = $sub_struct_month."m ".$sub_struct_days."d"; */
 
 
 
@@ -283,9 +291,9 @@ class EquipoController extends Controller
 
 
 
+         ///mess falta//
 
-
-        return view('equipo.show', compact('equipo','fechaarray','mes','resultado','mantencionequipo','movimientoequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','movimientoequipo'));
     }
 
     /**

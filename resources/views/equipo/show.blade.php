@@ -36,7 +36,7 @@ $dateh = $dateh->format('Y-m-d');
                 </div>
 
                 <div class="card-body tab table-responsive">
-                    <table class="tab">
+                    {{-- <table class="tab">
                         <tbody>
                             <tr>
                                 <td class="tex">Codigo Equipo:</td>
@@ -77,18 +77,20 @@ $dateh = $dateh->format('Y-m-d');
                                 <td>{{ $equipo->id_centro }}</td>
                             </tr>
                         </tbody>
-                    </table>
-                    Tiempo de operación: {{$mes}} Meses y {{intval($resultado)}} Dias
+                    </table> --}}
+                    
+                    Tiempo de operación: @if(isset($mes)) {{$mes}} @endif Meses y {{intval($resultado)}} Dias
                     
                     <br>
                   
 
 
-                    @foreach($fechaarray as $data_fecha)
+                    {{-- @foreach($fechaarray as $data_fecha)
                     {{$data_fecha}} <br>
     
-                    @endforeach
+                    @endforeach --}}
                     <br>
+
                     
                     
                    
@@ -136,6 +138,164 @@ $dateh = $dateh->format('Y-m-d');
                             </tbody>
                         </table>
                     </div>  --}}
+                    <div class="container ml-0 ">
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Codigo Equipo:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p"> {{ $equipo->cod_equipo }}</p>
+                            </div>
+                          
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Numero documento:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->n_documento }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Equipo:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->tipo_equipo }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Modelo:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->modelo }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Descripciòn:</p>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <p class="p" >{{ $equipo->descripcion }}</p>
+                            </div>
+                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Estado Equipo:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->estado }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Fecha Compra:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->fecha_ingreso }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Proveedor:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->proveedor }}</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Centro:</p>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $equipo->id_centro }}</p>
+                            </div>
+                           
+                        </div>
+                       
+                        
+
+
+
+
+
+                        {{-- <div class="row">
+                            <div class="min">
+                                <td class="">Equipo:</td>
+                            </div>
+                            <div class="">
+                                <td> {{ $equipo->tipo_equipo }}</td>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="min">
+                                <td class="">Modelo:</td>
+                            </div>
+                            <div class="">
+                                <td> {{ $equipo->modelo }}</td>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="min2">
+                                <td class="">Descripciòn:</td>
+                            </div>
+                            <div class="col-6 ">
+                                <td>  {{ $equipo->descripcion }}</td>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="min">
+                                <td class="">Estado Equipo:</td>
+                            </div>
+                            <div class="">
+                                <td>{{ $equipo->estado }}</td>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="min">
+                                <td class="">Fecha Compra:</td>
+                            </div>
+                            <div class="">
+                                <td> {{ $equipo->fecha_ingreso }}</td>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                      
+                      <td class="tex w-25">Codigo Equipo:</td>
+                      <td>{{ $equipo->cod_equipo }}</td> --}}
+                      <style>
+                          .mr-5{
+                              min-width:50px ;
+                          }
+          /*                 .row{
+                            min-width:50px ;
+                          } */
+                          .min{
+                              min-width: 20%;
+                          }
+                          .min2{
+                              margin-top:0 ;
+                          }
+                          .p{
+                              
+                              margin:5px;
+                              margin-left: 0;
+
+                          }
+                         
+                      </style>
 
 
                
