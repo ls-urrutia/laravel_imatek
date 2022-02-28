@@ -24,8 +24,7 @@ class CreateEquiposTable extends Migration
             $table->string('descripcion');
             $table->string('cod_fabrica');
             $table->string('estado')->default('Operativo');
-            $table->string('estado_mantencion_equipo')->default('Operativa');
-
+            $table->string('estado_mantencion_equipo')->default('Validado');
             $table->date('fecha_ingreso');
             $table->string('proveedor');
             $table->bigInteger('id_centro')->unsigned()->default('1');

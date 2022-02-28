@@ -284,7 +284,7 @@ class MantencioneController extends Controller
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
         return view('mantencione.edit', compact('mantencione','equipos'))->with('success','Mantención actualizada exitosamente');
-        }catch(\Exception $exception){
+        }catch(\Exception $exception){  
             return view('mantencione.edit', compact('mantencione','equipos'))->with('error','No se pudo editar la mantención');
         }
     }

@@ -256,9 +256,9 @@ class EquipoController extends Controller
 
 
 
+         ///mess falta//
 
-
-        return view('equipo.show', compact('equipo','fechaarray','mes','resultado','mantencionequipo','movimientoequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','movimientoequipo','mes'));
     }
 
     /**
