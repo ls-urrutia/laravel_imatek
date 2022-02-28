@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Movimiento
+    Actualizar Movimiento
 @endsection
 
 @section('content')

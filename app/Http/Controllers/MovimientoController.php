@@ -52,7 +52,7 @@ class MovimientoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where m.id_equipo = ? ; ", [$id_equipo]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where m.id_equipo = ? ;", [$id_equipo]);
     }
 
 

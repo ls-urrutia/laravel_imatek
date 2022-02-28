@@ -72,7 +72,7 @@ Route::get('add-to-log',[HomeController::class,'add-to-log']);
 Route::get('logActivity',[HomeController::class,'logActivity']);
 /* Route::get('logActivity', 'HomeController@logActivity'); */
 
-Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
+Route::put('dashboard/{validacion}/validar/{id_equipo}', [MantencioneController::class,'validacion']);
 
 Route::get('movimiento/{id_equipo}/fechas','App\Http\Controllers\MovimientoController@fechas');
 

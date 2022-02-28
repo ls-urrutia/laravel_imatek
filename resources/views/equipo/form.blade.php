@@ -33,7 +33,7 @@ $dateho = $dateho->format('Y-m-d');
         </div>
         <div class="form-group">
             {{ Form::label('n°_documento:') }}
-            {{ Form::text('n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N° Documento']) }}
+            {{ Form::input('number','n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N° Documento']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">

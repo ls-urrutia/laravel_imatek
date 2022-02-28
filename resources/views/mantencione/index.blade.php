@@ -33,20 +33,11 @@
                                 <thead class="thead">
                                     <tr>
 
-
-
 										<th>Codigo equipo</th>
 
 										<th>Fecha</th>
 
-
-
-
-
-
-
 										<th>Estado Mantencion</th>
-
 
                                         <th align="right"></th>
                                     </tr>
@@ -56,7 +47,7 @@
                                         <tr>
 											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
-											<td>{{ $mantencione->equipo->cod_equipo }}</td>
+											<td>{{ $mantencione->equipo->cod_equipo }}{{$mantencione->equipo->id_equipo}}</td>
 											<td>@if(isset($mantencione->descripcion_diagnostico))
                                                 {{ $mantencione->descripcion_diagnostico}}
                                                 @else
@@ -72,11 +63,6 @@
                                                 @endif
 
                                             </td>
-
-
-
-
-
                                             <td align="right">
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
                                                     @can('Ver mantención')

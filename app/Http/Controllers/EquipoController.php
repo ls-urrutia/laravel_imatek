@@ -34,7 +34,7 @@ class EquipoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? ;",[$tipo_m]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado_mantencion_equipo='Validado' ;",[$tipo_m]);
 /*
        return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
     }
@@ -71,17 +71,18 @@ class EquipoController extends Controller
     public function mostrar() {
 
         $equipos = Equipo::paginate(); //1 page with 10 products
-        $users2 = User::all()->except(1);
+
+
+        $mantenciones = Mantencione::all();
 
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
 
 
-
         $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
         $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
-
+        $mantenciones2 = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and estado_mantencion='Reparada' or estado_mantencion='Dada de baja';" );
 
 
         $nlamparas = $rawsQs1;
@@ -89,7 +90,7 @@ class EquipoController extends Controller
         $ncamarasrep = count($rawsQs3);
         $nlamparasrep = count($rawsQs4);
 
-        return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
+        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2'));
     }
 
     /**
