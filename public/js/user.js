@@ -16,3 +16,20 @@ function mostrarContrasena2(){
         tipo.type = "password";
     }
 }
+
+
+$('.btn-danger').on('click', weafacil);
+
+
+
+function confirmacionDelete() {
+
+    var result = confirm("¿¿Seguro que quieres eliminarlo??");
+
+    if (result) {
+        alert("Eliminado con éxito")
+    }else {
+        return false;
+    }
+
+};

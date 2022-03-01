@@ -4,7 +4,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-   
+
 @stop
 @section('content')
 
@@ -26,7 +26,7 @@
                         <a class="btn btn-primary" href="{{ route('mantenciones.index') }}">Volver</a>
                     </div>
                 </div>
-                
+
 
                 <div class="card-body">
                     <table class="tab">
@@ -68,20 +68,20 @@
                                 <td class="padd">{{ $mantencione->id_usuario0}}</td>
                                 @else
                                 <td class="font-italic grey">No aplica</td>
-                                
+
                                 @endif
                             </tr>
                         </tbody>
-                        
+
                     </table>
                   <br><br>
-                    
+
                     <table class="tab">
                         <h3 class="space">Mantenimiento</h3>
-                        
-                        <tbody> 
+
+                        <tbody>
                             <tr>
-                               
+
                                 <td class="tex">Fecha mantención:</td>
                                 @if(isset($mantencione->fecha_mantencion))
                                 <td class="padd"> {{ $mantencione->fecha_mantencion }}</td>
@@ -105,14 +105,14 @@
                                 <td class="font-italic grey">No aplica</td>
                                 @endif
                             </tr>
-                           
 
-                            
+
+
 
                         </tbody>
                     </table>
-                    
-                   
+
+
                     <table class="tab">
                         <tbody>
                                 <tr>
@@ -125,11 +125,11 @@
                                         @endif
                                     @else
                                     <td class="font-italic grey">No aplica</td>
-                                    @endif    
+                                    @endif
 
-    
+
                                 </tr>
-    
+
                                 <tr>
                                     @if(isset($arr[1]))
                                         <td class="tex2">Acrilico</td>
@@ -140,8 +140,8 @@
                                         @endif
                                     @else
                                     <td class="font-italic grey">No aplica</td>
-                                    @endif    
-    
+                                    @endif
+
                                 </tr>
                                 <tr>
                                     @if(isset($arr[2]))
@@ -153,7 +153,7 @@
                                         @endif
                                     @else
                                     <td class="font-italic grey">No aplica</td>
-                                    @endif    
+                                    @endif
                                 </tr>
                                 <tr>
                                     @if(isset($arr[3]))
@@ -167,7 +167,7 @@
                                     <td class="font-italic grey">No aplica</td>
                                     @endif
                                 </tr>
-    
+
                                 <tr>
                                     @if(isset($arr[4]))
                                         <td class="tex2">Cable</td>
@@ -178,19 +178,19 @@
                                         @endif
                                     @else
                                     <td class="font-italic grey">No aplica</td>
-                                    @endif    
+                                    @endif
                                 </tr>
-                        
+
 
                         </tbody>
                     </table>
-                          
+
 
 <br><br>
                     <table>
                         <h3 class="">De baja</h3>
-                        <body>       
-        
+                        <body>
+
                             <tr>
                                 <td class="tex">Fecha dado de baja:</td>
                                 @if(isset($mantencione->fecha_dado_baja))
@@ -207,11 +207,11 @@
                                 <td class="font-italic grey">No aplica</td>
                                 @endif
                             </tr>
-        
-        
-        
-                            
-                            
+
+
+
+
+
                             <tr>
                                 <td class="tex">Usuario dado baja:</td>
                                 @if(isset($mantencione->id_usuario2))
@@ -229,17 +229,17 @@
                                 <td class="grey">No aplica</td>
                                 @endif
                             </tr>
-                            
+
                         </body>
                     </table>
 
-                   
+
                     <br><br>
-                    
 
-                   
 
-                   
+
+
+
                     {{-- div class="form-group">
                         <strong>Id Mantencion:</strong>
                         {{ $mantencione->id_mantencion }}
@@ -268,36 +268,36 @@
                         <div class="image-container">
                                 @if(isset($mantencione->imagen1))
                                 <div class="image">
-                                
+
                                     <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
-                                
+
                                 </div>
                                 @endif
                                 @if(isset($mantencione->imagen2))
                                 <div class="image">
-                                
+
                                     <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen2)}}" alt="" width="70px" height="70px">
                                 </div>
                                 @endif
                                 @if(isset($mantencione->imagen3))
-                               
+
                                 <div class="image">
-                               
+
                                 <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen3)}}" alt="" width="70px" height="70px">
-                                
+
                                 </div>
                                 @endif
 
-                        </div> 
+                        </div>
                         <div class="popup-image">
                             @if(isset($mantencione->imagen1))
-                                <span>&times;</span> 
+                                <span>&times;</span>
                                 <img src="{{asset('imagenes/fmantenciones/'.$mantencione->imagen1)}}" alt="" width="70px" height="70px">
                             @endif
-                        </div>       
+                        </div>
 
                     </div>
-                    
+
 
 
 
@@ -317,7 +317,7 @@ document.querySelectorAll('.image-container img').forEach(image=>{
         document.querySelector('.popup-image').style.display = 'block';
         document.querySelector('.popup-image img').src =image.getAttribute('src');
     }
-    
+
 });
 document.querySelector('.popup-image span').onclick = () =>{
     document.querySelector('.popup-image').style.display = 'none';
@@ -329,8 +329,8 @@ document.querySelector('.popup-image span').onclick = () =>{
 @section('css')
     <style>
         .reduc{
-            padding-top: 83px; 
-        
+            padding-top: 83px;
+
         }
         /* #pelicula{
             display: grid;
@@ -356,7 +356,7 @@ document.querySelector('.popup-image span').onclick = () =>{
         .container{
             position: relative;
             min-height: 30vh;
-            
+
         }
         .padd{
             padding-left: 15px;
@@ -367,15 +367,15 @@ document.querySelector('.popup-image span').onclick = () =>{
             font-size: 15px;
             display: inline-block;
             padding-left: 15px;
-            
+
         }
         .paddw{
             padding-bottom: 1px;
             margin: 0;
         }
         .space{
-           
-            
+
+
         }
         .container .image-container{
             display: flex;
@@ -418,7 +418,7 @@ document.querySelector('.popup-image span').onclick = () =>{
             font-weight: bolder;
             color: rgb(255, 255, 255);
             cursor: pointer;
-           
+
         }
         .container .popup-image img{
             position: absolute;
@@ -428,7 +428,7 @@ document.querySelector('.popup-image span').onclick = () =>{
             border-radius: 5px;
             width: 750px;
             object-fit: cover;
-        }    
+        }
         @media(max-width:768px){
             .container .popup-image img{
                 width: 95%;
@@ -438,7 +438,7 @@ document.querySelector('.popup-image span').onclick = () =>{
 
 
 
-        
+
          .ordenar{
              padding-top: 5%;
 
@@ -450,14 +450,14 @@ document.querySelector('.popup-image span').onclick = () =>{
          }
          .tex{
             padding: 0.5px;
-            
+
          }
          .tex2{
             padding: 0.5px;
             font-size: 12px;
          }
 
-    
+
 
 
     </style>

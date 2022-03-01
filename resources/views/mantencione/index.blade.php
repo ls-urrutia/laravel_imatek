@@ -161,7 +161,7 @@ table th {
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
 
-
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
   {{--   "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros", --}}
 
     <script type="text/javascript">

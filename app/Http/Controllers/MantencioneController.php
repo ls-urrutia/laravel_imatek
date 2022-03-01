@@ -35,24 +35,35 @@ class MantencioneController extends Controller
     public function validacion($id, $id_equipo)
     {
 
-
         $mantencion = Mantencione::find($id);
 
         $mantencion->validacion= 'Validado';
 
 
+
+
+        if($mantencion->estado_mantencion== "Reparada"){
+
+
         $equipo = Equipo::find($id_equipo);
+
         $equipo->estado_mantencion_equipo = 'Validado';
         $equipo->estado = 'Operativo';
-
         $equipo->save();
+       }elseif($mantencion->estado_mantencion== "Dada de baja"){
+        $equipo = Equipo::find($id_equipo);
 
-
-        $mantencion->save();
+        $equipo->estado_mantencion_equipo = 'Validado';
+        $equipo->estado = 'Dado de baja';
+        $equipo->save();
+       }
+       $mantencion->save();
 
         return redirect('dashboard')
             ->with('success', 'Equipo validado exitosamente');;
     }
+
+
 
     public function index()
     {
@@ -284,7 +295,7 @@ class MantencioneController extends Controller
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
         return view('mantencione.edit', compact('mantencione','equipos'))->with('success','Mantención actualizada exitosamente');
-        }catch(\Exception $exception){  
+        }catch(\Exception $exception){
             return view('mantencione.edit', compact('mantencione','equipos'))->with('error','No se pudo editar la mantención');
         }
     }
@@ -395,9 +406,9 @@ class MantencioneController extends Controller
        /*  $mantenciones->id_usuario =  $request->user()->id; */
 
        /* */
-       $mantenciones->id_usuario0 =  $request->get('id');
+      /*  $mantenciones->id_usuario0 =  $request->get('id');
        $mantenciones->id_usuario = $request->get('id');
-       $mantenciones->id_usuario2 =  $request->get('id');
+       $mantenciones->id_usuario2 =  $request->get('id'); */
 
        if($request->get('Operacion')=='Diagnostico'&&$request->get('fecha_diagnostico')!==null&&$request->get('descripcion_diagnostico')!==null&&$request->get('corriente_diagnostico')!==null){
         $mantenciones->id_usuario0 =  $request->user()->id;

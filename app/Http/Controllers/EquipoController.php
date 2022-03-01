@@ -34,7 +34,7 @@ class EquipoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado_mantencion_equipo='Validado' ;",[$tipo_m]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado='Operativo' ;",[$tipo_m]);
 /*
        return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
     }
@@ -82,15 +82,23 @@ class EquipoController extends Controller
 
         $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
         $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
-        $mantenciones2 = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and estado_mantencion='Reparada' or estado_mantencion='Dada de baja';" );
 
+        $mantenciones2 = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and (estado_mantencion='Reparada' or estado_mantencion='Dada de baja');" );
+
+        $mantenciones3 = DB::select("SELECT * FROM mantenciones where validacion='Validado' and (estado_mantencion='Reparada' or estado_mantencion='Dada de baja');" );
+
+        $enrevision = DB::select("SELECT * FROM equipos where estado='En revisión';" );
+
+        $dadadebaja = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and estado_mantencion='Dada de baja';" );
+
+        $diagnosticos = DB::select("SELECT * FROM mantenciones where estado_mantencion = 'A mantención';" );
 
         $nlamparas = $rawsQs1;
         $ncamaras = $rawsQs2;
         $ncamarasrep = count($rawsQs3);
         $nlamparasrep = count($rawsQs4);
 
-        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2'));
+        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2','enrevision','dadadebaja','diagnosticos','mantenciones3'));
     }
 
     /**
@@ -229,16 +237,6 @@ class EquipoController extends Controller
                     $entrada = $fechan;
 
                 }
-
-
-                /*conversión diferencia de fechas en meses y dias*/
-                /* $resultado = $resultado+1;
-
-
-                $resultado1= $resultado/30;
-                $dias = round($resultado%30); */
-
-
 
                 $resultado = $resultado*0.95;
 
