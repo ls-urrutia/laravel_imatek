@@ -42,23 +42,41 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 <option value="Entrada">Salida</option>
                 <option value="Compra">Salida Nuevos</option>
             </select>
-            </th>
+
 
             <div class="form-group">
                 {{ Form::label('fecha_movimiento:') }}
-                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
+                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['id' => 'fecha_movimiento','class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
                 {!! $errors->first('fecha_movimiento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
+
             <div class="form-group">
+
                 {{ Form::label('Número de documento') }}
-                {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento']) }}
+                {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento','required' => '']) }}
                 {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
+
+
+
+            <div class="form-group" id="div_cliente">
+                {{ Form::label('Cliente') }}
+                <select class="form-control" id="clientes" name="clientes">
+                    <option value="">Seleccione Cliente</option>
+                    @foreach ($clientes as $cliente)
+                        <option value="{{ $cliente->id_cliente }}">{{ $cliente->nombre_empresa }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group" id="div_centro">
                 {{ Form::label('Centro') }}
-                {{ Form::select('id_centro', $centros, $movimiento->id_centro, ['id' => 'ids_centro','class' => 'form-control' . ($errors->has('id_centro') ? ' is-invalid' : ''),'placeholder' => 'Centros']) }}
-                {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</p>') !!}
+                <select class="form-control" id="id_centro" name="id_centro" required>
+                    <option value="">Seleccione Centro</option>
+                </select>
+
             </div>
+
         </div>
 
         <div class="box box-info padding-1">
@@ -77,14 +95,11 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                                 <tr>
                                     <td class="td-select">
                                         <div class="form-group clases2">
-                                            <select name="id_equipo[]" class="form-control select-e" id="select-equipo0" 
-
-                                                required>
+                                            <select name="id_equipo[]" class="form-control select-e" id="select-equipo0"
+                                                onchange="onSelectEquipoChange(this.value)" required>
                                                 <option value="">Seleccione Equipo</option>
                                             </select>
                                         </div>
-
-                                        {{-- <input type="text" name="cod_equipo[]" class="form-control" required=""> --}}
 
                                     </td>
                                     <td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>
@@ -108,32 +123,13 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
         <script type="text/javascript">
-            /* var	search_select	=	$('.select-e');
-
-                                                                     */
-
-
-            /*
-            jQuery(document).ready(function($){
-                $(document).ready(function() {
-                    $('.select-e').select2();
-                });
-            });           */
-
-
             $(document).ready(function() {
                 $('.select-e').select2({
                     theme: "classic",
 
                 });
+
             });
-            
-
-
-
-
-
-
 
 
 
@@ -142,13 +138,18 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                 $('#select-movimiento').on('change', onSelectMovimientoChange);
                 $('#select-movimiento').on('change', onSelectMovimientoChangeHide);
+                $('#clientes').on('change', onSelectClienteChange);
+
 
                 $('#div_centro').hide();
+                $('#div_cliente').hide();
+
                 numero_row = 0;
                 dupl = [];
                 rows = [];
                 unico = true;
                 previous = 0;
+                valid = true;
 
             });
 
@@ -172,103 +173,75 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                     var getVal = $(v).val();
                     store.push($(v).val());
+
+                    key = $(this).find('option:selected').text();
+
+                    if (checkIfArrayIsUnique(store) != true) {
+                        alert("Equipo " + key + " repetido")
+
+                    }
+
+
                 });
 
-                if (checkIfArrayIsUnique(store) != true)
-                {
-                    alert("Valor repetido");
-                }else {
-                    $(".btn-success").prop('type','submit');
+                if (checkIfArrayIsUnique(store) != true) {
+
+                } else {
+                    $(".btn-success").prop('type', 'submit');
 
                 }
-               /*  console.log(`${store} is unique : ${checkIfArrayIsUnique(store)}`); */
+                /*  console.log(`${store} is unique : ${checkIfArrayIsUnique(store)}`); */
 
-            }/*
-
-            $('.btn-success').click(function(e) {
+            }
 
 
-            e.preventDefault();
-            var stored = [];
+            function onSelectEquipoChange(val) {
+
+                $.get('/movimiento/' + val + '/fechas', function(data) {
+
+                    ult_fecha_equipo = data[0].fecha_movimiento;
 
 
 
+                    fecha_actual = document.getElementById("fecha_movimiento").value;
 
-            $.when(
-                $.each(inputs, function(k, v) {
-                    var getVal = $(v).val();
-                    if (stored.indexOf(getVal) != -1) {
-                        $(this).parent().parent().parent().remove();
-                        unico = false;
-                        alert("fuck")
-                    } else {
-                        stored.push($(v).val());
+                    if (fecha_actual < ult_fecha_equipo) {
+                        document.getElementById("fecha_movimiento").setAttribute("min", ult_fecha_equipo);
+                        $('#fecha_movimiento').val(ult_fecha_equipo);
                     }
-                    console.log("x")
-                })
-            ).then(function() {
 
-                console.log(unico);
+                });
 
-                if (unico == true) {
-                    $('.btn-success').unbind("click");
-                    document.getElementById('submit-btn').click();
-                }
+            };
 
 
-            });
-            }); */
+            function onSelectClienteChange() {
+
+                var id_cliente = $(this).val();
+
+                // AJAX
+                $.get('/movimiento/' + id_cliente + '/centros', function(data) {
+
+                    var html_select = '<option value="">Seleccione Centro</option>';
+                    for (var i = 0; i < data.length; ++i)
+                        html_select += '<option value="' + data[i].id_centro + '">' + data[i]
+                        .nombre_centro +
+                        '</option>';
+                    $('#id_centro').html(html_select);
 
 
+                });
 
+            }
 
-/*
-                        $(document).ready(function() {
-
-                            $('.btn-success').click(function(e) {
-
-
-                                e.preventDefault();
-                                var stored = [];
-                                var inputs = $('.select-e');
-
-                                $.when(
-                                    $.each(inputs, function(k, v) {
-                                        var getVal = $(v).val();
-                                        if (stored.indexOf(getVal) != -1) {
-                                            $(this).parent().parent().parent().remove();
-                                            unico = false;
-                                            alert("fuck")
-                                        } else {
-                                            stored.push($(v).val());
-                                        }
-                                        console.log("x")
-                                    })
-                                ).then(function() {
-
-                                    console.log(unico);
-
-                                    if (unico == true) {
-                                        $('.btn-success').unbind("click");
-                                        document.getElementById('submit-btn').click();
-                                    }
-
-
-                                });
-
-
-
-
-            });
-
-            });
-             */
 
 
             function onSelectMovimientoChange() {
 
-                var tipo_movimiento = $(this).val();
 
+                $('#fecha_movimiento').val("");
+
+                var tipo_movimiento = $(this).val();
 
 
                 // AJAX
@@ -277,6 +250,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     var html_select = '<option value="">Seleccione Equipo</option>';
                     for (var i = 0; i < data.length; ++i)
                         html_select += '<option value="' + data[i].id_equipo + '">' + data[i].cod_equipo +
+                        data[i]
+                        .id_equipo +
                         '</option>';
                     $('.select-e').html(html_select);
 
@@ -291,14 +266,30 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 if ($(this).val() == 'Salida') {
 
                     $('#div_centro').hide();
-                    $("select#ids_centro option[value='1']").show();
-                    $("select#ids_centro").val("1");
+                    $('#div_cliente').hide();
+
+                    select = document.getElementById('id_centro');
+                    var opt = document.createElement('option');
+                    opt.value = 1;
+                    opt.innerHTML = 'Oficina';
+                    select.appendChild(opt);
+
+                    $("select#id_centro option[value='1']").show();
+                    $("select#id_centro").val("1");
+
+
+
+
 
 
                 } else {
                     $('#div_centro').show();
-                    $("select#ids_centro option[value='1']").hide();
-                    $("select#ids_centro").val("2");
+                    $('#div_cliente').show();
+                    $("select#id_centro option[value='1']").hide();
+                    $("select#id_centro").val("2");
+                    $('select[name*="clientes"] option[value="1"]').remove();
+
+
                 }
             }
         </script>
@@ -321,21 +312,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                 numero_row += 1;
 
-                /*    rows.push(1)
-                        if (rows.length !== 0) {
-                        select = 'select#select-equipo'+numero_row
-
-
-                         <div  class="form-group">
-                                    <select name="id_equipo[]" class="form-control select-e" id="select-equipo0" required>
-                                        <option value="">Seleccione Equipo</option>
-                                    </select>
-                                </div>
-                    } */
-
-
                 var tr = '<tr>' +
-                    '<td  class ="td-select">        <div  class="form-group"><select name="id_equipo[]" class="form-control select-e" id="select-equipo' +
+                    '<td  class ="td-select">        <div  class="form-group"><select onchange="onSelectEquipoChange(this.value)" name="id_equipo[]" class="form-control select-e" id="select-equipo' +
                     numero_row + '" required><option value="">Seleccione Equipo</option></select></div></td>' +
                     '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td></tr>';
 
@@ -354,7 +332,9 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                     var html_select = '<option value="">Seleccione Equipo</option>';
                     for (var i = 0; i < data.length; ++i)
-                        html_select += '<option value="' + data[i].id_equipo + '">' + data[i].cod_equipo + '</option>';
+                        html_select += '<option value="' + data[i].id_equipo + '">' + data[i].cod_equipo + data[i]
+                        .id_equipo +
+                        '</option>';
 
 
                     $('select#select-equipo' + numero_row).html(html_select);

@@ -25,7 +25,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    
+
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -33,20 +33,11 @@
                                 <thead class="thead">
                                     <tr>
 
-										
-
 										<th>Codigo equipo</th>
-                                        
-										<th>Fecha</th>
-                                       
-                                        
-                                      
 
-										
-                                      
-										
+										<th>Fecha</th>
+
 										<th>Estado Mantencion</th>
-                                       
 
                                         <th align="right"></th>
                                     </tr>
@@ -56,7 +47,7 @@
                                         <tr>
 											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
-											<td>{{ $mantencione->equipo->cod_equipo }}</td>
+											<td>{{ $mantencione->equipo->cod_equipo }}{{$mantencione->equipo->id_equipo}}</td>
 											<td>@if(isset($mantencione->descripcion_diagnostico))
                                                 {{ $mantencione->descripcion_diagnostico}}
                                                 @else
@@ -64,19 +55,14 @@
                                                 @endif
                                             </td>
 											<td>
-                                                @if(isset($mantencione->user->name))
-                                                {{ $mantencione->user->name }}
+                                                @if(isset($mantencione->estado_mantencion))
+                                                {{ $mantencione->estado_mantencion}}
                                                 @else
                                                 En proceso
 
                                                 @endif
-                                            
-                                            </td>
-                                            
 
-										
-										
-                                             
+                                            </td>
                                             <td align="right">
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
                                                     @can('Ver mantención')

@@ -26,25 +26,17 @@
                               </div>
                             @endcan
                         </div>
-                    </div>
-
-{{--                     @if ($message = Session::get('error'))
-                        <div class="alert alert-danger">
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
-                    @endif --}}
+                    @endif
 
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger">
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-danger">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -112,16 +104,12 @@
 
 
 <style>
-table th {
-    background-color: #337ab7 !important;
-    color: white;
-}
 
 .dt-buttons {
 
     padding-top:1%;
     padding-bottom:1%;
-
+    justify-content: center;
 }
 
 .paginate_button {
@@ -130,6 +118,8 @@ table th {
     padding: 1%;
     text-shadow: 0 0 2px black;
     font-weight: bold;
+    justify-content: center !important;
+    aling-items: center !important;
 
 
 }
@@ -141,6 +131,8 @@ table th {
     text-shadow: 0 0 2px #fff;
     text-align: justify;
     font-weight: 900;
+    justify-content: center !important;
+    aling-items: center !important;
 
 
 }
@@ -148,11 +140,17 @@ table th {
 .dataTables_info {
     padding-top:1%;
     padding-bottom:1%;
+    justify-content: center !important;
+    display:inline-block
 
 }
 
 .dataTables_length {
     font-weight: normal;
+    justify-content: center !important;
+    padding-left: 40%;
+    display:inline-block  !important;;
+    text-align:center !important;
 }
 
 

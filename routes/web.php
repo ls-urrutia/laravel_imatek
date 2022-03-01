@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CentroController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\ProveedoreController;
 use Haruncpi\LaravelUserActivity\Controllers\ActivityController;
 
 use App\Http\Controllers\MantencioneController;
@@ -45,6 +47,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('centros',CentroController::class);
 
+Route::resource('proveedores',ProveedoreController::class);
+
 Route::resource('equipos',EquipoController::class)->middleware('can:Ver lista de equipos');
 
 Route::resource('mantenciones',MantencioneController::class)->middleware('can:Ver lista de mantenciones');
@@ -68,11 +72,15 @@ Route::get('add-to-log',[HomeController::class,'add-to-log']);
 Route::get('logActivity',[HomeController::class,'logActivity']);
 /* Route::get('logActivity', 'HomeController@logActivity'); */
 
-Route::put('dashboard/{estado}', [User2Controller::class,'ubicacion']);
+Route::put('dashboard/{validacion}/validar/{id_equipo}', [MantencioneController::class,'validacion']);
 
-
+Route::get('movimiento/{id_equipo}/fechas','App\Http\Controllers\MovimientoController@fechas');
 
 Route::get('/movimiento/{tipo_m}/equipos','App\Http\Controllers\EquipoController@byEquipo');
+
+
+
+Route::get('/movimiento/{id_cliente}/centros','App\Http\Controllers\MovimientoController@centros');
 
 
 Route::group([
@@ -82,9 +90,6 @@ Route::group([
     Route::get(config('user-activity.route_path'), 'ActivityController@getIndex')->middleware('can:Ver actividad de usuario');
     Route::post(config('user-activity.route_path'), 'ActivityController@handlePostRequest')->middleware('can:Ver actividad de usuario');
 });
-
-
-
 
 
 

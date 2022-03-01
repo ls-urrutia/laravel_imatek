@@ -48,7 +48,7 @@ class Movimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_centro','id_movimiento','tipo_movimiento','fecha_movimiento','tipo_documento','n_documento','id_equipo'];
+    protected $fillable = ['id_centro','id_movimiento','tipo_movimiento','fecha_movimiento','n_documento','id_equipo'];
 
 
     /**

@@ -16,13 +16,16 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
 
             $table->id('id_equipo');
-            $table->string('cod_equipo')->unique();
+            $table->string('cod_equipo')->default("im");
             $table->string('tipo_documento');
             $table->integer('n_documento');
             $table->string('tipo_equipo');
             $table->string('modelo');
             $table->string('descripcion');
-            $table->string('estado')->default('Operativa');
+            $table->string('cod_fabrica');
+            $table->string('estado')->default('Operativo');
+            $table->string('estado_mantencion_equipo')->default('Validado');
+
             $table->date('fecha_ingreso');
             $table->string('proveedor');
             $table->bigInteger('id_centro')->unsigned()->default('1');

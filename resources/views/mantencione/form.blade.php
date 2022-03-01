@@ -4,25 +4,21 @@
             <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
           </div>
 
- <script type="text/javascript" src="{{ asset('/vendor/jquery/jquery.js') }}"></script>          
+ <script type="text/javascript" src="{{ asset('/vendor/jquery/jquery.js') }}"></script>
 
 
 
 <div class="box box-info padding-1">
+    <form>
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('Codigo_Equipo:') }}
-            {{ Form::select('id_equipo',$equipos,$mantencione->id_equipo,['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione']) }}
-            {!! $errors->first('id_equipo', '<div class="inval id-feedback">:message</p>') !!}
-                
-                
-                {{-- <select name="id_equipo" id="id_equipo" class ="form-control">
-                    <option value="" >Seleccione</option>
-                    @foreach($equipos2 as $e)
-                         <option value="{{$e->cod_equipo}}">{{$e->cod_equipo}}</option>
-                    @endforeach
-               </select>   --}}
-   
+            {{  Form::label('Codigo_Equipo:')}}
+            <select name="id_equipo" class="form-control">
+                @foreach ($equipos2 as $equipo)
+                    <option value="{{$equipo->id_equipo}}"> im{{$equipo->id_equipo}}</option>
+                @endforeach
+            </select>
+        </div>
         </div>
 
         <div class="form-group">
@@ -39,35 +35,27 @@
 
         <div class="form-group" id="descripcion-diagnostico">
             {{ Form::label('descripción_diagnostico:') }}
-            {{ Form::text('descripcion_diagnostico', $mantencione->descripcion_diagnostico, ['class' => 'form-control' . ($errors->has('descripcion_diagnostico') ? ' is-invalid' : ''), 'placeholder' => 'Descripción diagnostico','id'=>'descripcion-diagnostico']) }}
+            {{ Form::text('descripcion_diagnostico', $mantencione->descripcion_diagnostico, ['value'=>'22','class' => 'form-control' . ($errors->has('descripcion_diagnostico') ? ' is-invalid' : ''), 'placeholder' => 'Descripción diagnostico','id'=>'descripcion_diagnostico']) }}
             {!! $errors->first('descripcion_diagnostico', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="diagnostico-corriente">
             {{ Form::label('Corriente:') }}
-            {{ Form::text('diagnostico_corriente', $mantencione->diagnostico_corriente, ['class' => 'form-control' . ($errors->has('diagnostico_corriente') ? ' is-invalid' : ''), 'placeholder' => 'Corriente recibida','id'=>'diagnostico-corriente']) }}
+            {{ Form::text('diagnostico_corriente', $mantencione->diagnostico_corriente, ['class' => 'form-control' . ($errors->has('diagnostico_corriente') ? ' is-invalid' : ''), 'placeholder' => 'Corriente recibida','id'=>'diagnostico_corriente']) }}
             {!! $errors->first('diagnostico_corriente', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-
-{{-- ------------------------------------------------------------------------ --}}
-
         <div class="form-group" id="fecha-mantencion">
             {{ Form::label('fecha_mantención:') }}
-            {{ Form::date('fecha_mantencion', $mantencione->fecha_mantencion, ['class' => 'form-control' . ($errors->has('fecha_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Mantención','id'=>'fecha-mantencion']) }}
+            {{ Form::date('fecha_mantencion', $mantencione->fecha_mantencion, ['class' => 'form-control' . ($errors->has('fecha_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Mantención','id'=>'fecha_mantencion']) }}
             {!! $errors->first('fecha_mantencion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-       
-
         <div class="form-group" id="descripcion-mantencion">
             {{ Form::label('descripción:') }}
-            {{ Form::text('descripcion_mantencion', $mantencione->descripcion_mantencion, ['class' => 'form-control' . ($errors->has('descripcion_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion','id'=>'descripcion-mantencion']) }}
+            {{ Form::text('descripcion_mantencion', $mantencione->descripcion_mantencion, ['class' => 'form-control' . ($errors->has('descripcion_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion','id'=>'descripcion_mantencion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-
-      
-
         <div class="form-group" id="fecha-dado-baja">
             {{ Form::label('fecha_dado de baja:') }}
-            {{ Form::date('fecha_dado_baja', $mantencione->fecha_dado_baja, ['class' => 'form-control' . ($errors->has('fecha_dado_baja') ? ' is-invalid' : ''), 'placeholder' => 'Fecha dado de baja','id'=>'fecha-dado-baja']) }}
+            {{ Form::date('fecha_dado_baja', $mantencione->fecha_dado_baja, ['class' => 'form-control' . ($errors->has('fecha_dado_baja') ? ' is-invalid' : ''), 'placeholder' => 'Fecha dado de baja','id'=>'fecha_dado_baja']) }}
             {!! $errors->first('fecha_dado_baja', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="descripcion-dado-baja">
@@ -75,16 +63,7 @@
             {{ Form::text('descripcion_dado_baja', $mantencione->descripcion_dado_baja, ['class' => 'form-control' . ($errors->has('descripcion_dado_baja') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion','id'=>'descripcion_dado_baja']) }}
             {!! $errors->first('descripcion_dado_baja', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-
-        {{-- <div class="form-group">
-            {{ Form::label('estado_mantención:') }}
-           {!!Form::select('estado_mantencion',['Operativo' => 'Operativo', 'Dado de baja' => 'Dado de baja'], null, [ 'class' => 'form-control'. ($errors->has('estado_mantencion') ? 'is-invalid' : ''), 'placeholder' => 'Seleccione']) !!}
-            {!! $errors->first('estado_mantencion', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-     --}}
-        
-        
-        <div class="form-group" id="imagen1">
+          <div class="form-group" id="imagen1">
             {{ Form::label('imagen1') }}
             {{ Form::file('imagen1',$mantencione->imagen1, ['class' => 'form-control' . ($errors->has('imagen1') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo','id'=>'imagen1']) }}
             {!! $errors->first('imagen1', '<div class="invalid-feedback">:message</p>') !!}
@@ -100,16 +79,16 @@
             {{ Form::file('imagen3', $mantencione->imagen3, ['class' => 'form-control' . ($errors->has('imagen3') ? ' is-invalid' : ''), 'placeholder' => 'Id Equipo','id'=>'imagen3']) }}
             {!! $errors->first('imagen3', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-       
-        
-          
+
+
+
         <div class="componentes-mantencion" id="componentes-mantencion">
-    
+
             <table>
                 <tbody>
                     <tr>
                         <td> </td>
-                        <td class="espacio">  Buena</td>
+                        <td class="espacio">  Buena </td>
                         <td class="espacio">  Mala</td>
 
                     </tr>
@@ -130,7 +109,7 @@
                         <td>Tapas</td>
                         <td class="espacio"><input type="radio"  class=" radios" name="componente3" value="1" ></td>
                         <td class="espacio"><input type="radio" class="radios" name="componente3" value="0"></td>
-                        
+
                     </tr>
                     <tr>
                         <td>enchufe</td>
@@ -143,39 +122,34 @@
                         <td class="espacio"><input type="radio" class="radios" name="componente5" value="0"></td>
                     </tr>
                 </tbody>
-                    
-            
-        
+
+
+
             </table>
         </div>
        <br>
- 
-        
-
-
-   
-
 
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
+</form>
 
 
-   
+
 </div>
 <style>
     .espacio{
         text-align: center
-    
-        
+
+
     }
     .{
 
     }
 </style>
 <script type="text/javascript">
-    
+
     $(function() {
 
 
@@ -195,6 +169,9 @@
         $('#imagen1').hide();
         $('#imagen2').hide();
         $('#imagen3').hide();
+        
+
+
     });
 
 
@@ -209,59 +186,64 @@
         $('#componentes-mantencion').hide();
         $('#descripcion-mantencion').hide();
 
+
         $('#fecha-dado-baja').hide();
         $('#descripcion-dado-baja').hide();
-        
-      
+        $('input[type=text]').val('');
+        $('#imagen1').hide();
+        $('#imagen2').hide();
+       /*  document.getElementById("fecha_diagnostico").required = true;
+        document.getElementById("descripcion-diagnostico").required = true;
+        document.getElementById("diagnostico-corriente").required = true; */
+        $("#fecha-diagnostico").attr('required', true);  
+        $("#descripcion_diagnostico").attr('required', true);  
+        $("#diagnostico_corriente").attr('required', true); 
 
-        
+        $("#fecha_mantencion").attr('required', false);  
+        $("#componentes-mantencion").attr('required', false);  
+        $("#descripcion_mantencion").attr('required', false);  
+        $("#fecha_dado_baja").attr('required', false);  
+        $("#descripcion_dado_baja").attr('required', false);  
        
         
-        
 
-    /*    
-        $("select#ids_centro option[value='1']").show();
-        $("select#ids_centro").val("1");
-    */
+
+
     $('#div_centro').hide();
 
     } else if($(this).val() == 'Mantención'){
-       
         $('#fecha_diagnostico').hide();
         $('#descripcion-diagnostico').hide();
         $('#diagnostico-corriente').hide();
         $('#fecha-mantencion').show();
         $('#componentes-mantencion').show();
         $('#descripcion-mantencion').show();
+        $('#imagen1').show();
+        $('#imagen2').show();
+        $('#imagen3').hide();
 
-        $('#fecha-dado-baja').hide();
-        $('#descripcion-dado-baja').hide();
+        $("#fecha-diagnostico").attr('required', false);  
+        $("#descripcion_diagnostico").attr('required', false);  
+        $("#diagnostico_corriente").attr('required', false); 
 
-
-        
-
-
+        $("#fecha_mantencion").attr('required', true);  
+        $("#componentes-mantencion").attr('required', true);  
+        $("#descripcion_mantencion").attr('required', true);  
+        $("#fecha_dado_baja").attr('required', false);  
+        $("#descripcion_dado_baja").attr('required', false); 
        
 
 
+        $('#fecha-dado-baja').hide();
+        $('#descripcion-dado-baja').hide();
+        $('input[type=text]').val('');
 
-        /* $('#div_centro').show();
-        $("select#ids_centro option[value='1']").hide();
-        $("select#ids_centro").val("2");
-    } */
+
     }else if($(this).val() == 'Dar de baja'){
-        document.getElementById("fecha_diagnostico").value=null;
-        document.getElementById("descripcion-diagnostico").value=null;
-        document.getElementById("diagnostico-corriente").value=null;
-        document.getElementById("fecha-mantencion").value=null;
-        document.getElementById("componentes-mantencion").value=null;
-        document.getElementById("descripcion-mantencion").value=null;
-        $('#fecha_diagnostico').trigger("reset");
-        $('#descripcion-diagnostico').trigger("reset");
-        $('#diagnostico-corriente').trigger("reset");
-        $('#fecha-mantencion').trigger("reset");
-        $('#componentes-mantencion').trigger("reset");
-        $('#descripcion-mantencion').trigger("reset");
+
+
+
+        $('input[type=text]').val('');
         $('#fecha_diagnostico').hide();
         $('#descripcion-diagnostico').hide();
         $('#diagnostico-corriente').hide();
@@ -271,11 +253,19 @@
 
         $('#fecha-dado-baja').show();
         $('#descripcion-dado-baja').show();
-       
 
-        
-       
+        $("#fecha-diagnostico").attr('required', false);  
+        $("#descripcion_diagnostico").attr('required', false);  
+        $("#diagnostico_corriente").attr('required', false); 
 
+        $("#fecha_mantencion").attr('required', false);  
+        $("#componentes-mantencion").attr('required', false);  
+        $("#descripcion_mantencion").attr('required', false);  
+        $("#fecha_dado_baja").attr('required', true);  
+        $("#descripcion_dado_baja").attr('required', true); 
+        $('#imagen1').hide();
+        $('#imagen2').hide();
+        $('#imagen3').show();
 
     }
 
@@ -300,7 +290,7 @@
         });
 
 
-}
+    }
 
 
 </script>

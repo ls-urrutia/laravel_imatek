@@ -25,10 +25,10 @@
                     {{$nlamparas}}
                    </span>
                 </div>
-                
+
 
                 <div class="info-box-content">
-                  
+
                     <span class="info-box-text">En Revisión</span>
                     <span class="info-box-number">
 
@@ -106,49 +106,44 @@
                         <table id="users2ub" class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Ubicación</th>
-                                
-                                    <th>@can('Ver usuario')Actualizar Ubicación @endcan</th>
-                                 
+
+                                    <th>Equipo</th>
+                                    <th>Usuario Diagnostico</th>
+                                    <th>Usuario Mantención</th>
+                                    <th>Usuario Dado de baja</th>
+                                    <th>Fecha Diagnostico</th>
+                                    <th>Fecha Mantención</th>
                                     <th></th>
-                                    
-                                </tr>
+
+                                </tr>{{-- ['event'=>$eventId,'user'=>$userId --}}
                             </thead>
                             <tbody>
-                                @foreach ($users2 as $usuario)
+                                @foreach ($mantenciones2 as $mantencione)
                                 <tr>
-                                <form method="POST"  action="{{ action('App\Http\Controllers\User2Controller@ubicacion' , $usuario->id )}}"
+                                <form method="POST"  action="{{ action('App\Http\Controllers\MantencioneController@validacion' , [$mantencione->id_mantencion,'id_equipo' => $mantencione->id_equipo])}}"
                                           enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <th scope="row">{{ $usuario->id}}</th>
-                                        <td>{{ $usuario->name}}</td>
+
+                                        <th scope="row">{{ $mantencione->id_mantencion}}</th>
+                                        <td>IM{{ $mantencione->id_equipo }}</td>
+                                        <td>{{ $mantencione->id_usuario}}</td>
                                         <td>
-                                            {{ $usuario->email }}
+                                            {{ $mantencione->id_usuario0}}
                                         </td>
-                                        <td> {{ $usuario->estado }}
+                                        <td> {{ $mantencione->id_usuario2}}
                                         </td>
-                                        @can('Editar usuarios')
-
-
+                                        <td> {{ $mantencione->fecha_diagnostico}}
+                                        </td>
+                                        <td> {{ $mantencione->fecha_mantencion}}
+                                        </td>
                                         <td>
-                                             <div class="form-group">
-
-                                                        {{ Form::text('estado', $usuario->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Ubicación']) }}
-                                                        {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
-                                                    </div>
-
-
-                                                </td>
+                                               </td>
                                         <td>
-                                            
-                                            <input type="submit" value="Confirmar" class="btn btn-sm btn-success">
-                                            
+
+                                            <input type="submit" value="Validar" class="btn btn-sm btn-success">
+
                                         </td>
-                                        @endcan
 
                                     </form>
                                     </tr>

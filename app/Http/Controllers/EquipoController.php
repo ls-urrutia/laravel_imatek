@@ -6,6 +6,7 @@ use App\Models\Equipo;
 use App\Models\Centro;
 use App\Models\Mantencione;
 use App\Models\Movimiento;
+use App\Models\Proveedore;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\DB;
  */
 class EquipoController extends Controller
 {
-
     public function byEquipo($tipo_m)
     {
        /*  return Equipo::where('id_equipo', $id)->get(); */
@@ -33,7 +33,7 @@ class EquipoController extends Controller
             FROM movimientos
             GROUP BY id_equipo) groupedtt
         ON m.id_equipo = groupedtt.id_equipo
-        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? ;",[$tipo_m]);
+        AND m.fecha_movimiento = groupedtt.MaxDateTime where tipo_movimiento = ? and estado='Operativo' ;",[$tipo_m]);
 /*
        return DB::select("SELECT id_equipo, cod_equipo FROM `equipos` where id_equipo = ?",[$id_mov]); */
     }
@@ -58,21 +58,6 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::paginate();
 
-/*
-        $date = Carbon::parse('2016-09-17 11:00:00');
-        $now = Carbon::now(); */
-/*
-        $date = Carbon::parse('2020-01-19');
-        $date2 = '2020-01-14';
-        $diff = $date->diffInDays($date2);
-
-
-       /*  $fechas = DB::select('SELECT fecha_movimiento FROM movimientos where id_equipo=?',[2]); */
-
-/*
-        $fechas = DB::table('movimientos')->where([
-            ['id_equipo', '=', '1'],
-        ])->get(); */
 
         return view('equipo.index', compact('equipos'));
 
@@ -85,17 +70,18 @@ class EquipoController extends Controller
     public function mostrar() {
 
         $equipos = Equipo::paginate(); //1 page with 10 products
-        $users2 = User::all()->except(1);
+
+
+        $mantenciones = Mantencione::all();
 
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
 
 
-
         $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
         $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
-
+        $mantenciones2 = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and (estado_mantencion='Reparada' or estado_mantencion='Dada de baja');" );
 
 
         $nlamparas = $rawsQs1;
@@ -103,7 +89,7 @@ class EquipoController extends Controller
         $ncamarasrep = count($rawsQs3);
         $nlamparasrep = count($rawsQs4);
 
-        return view('dashboard',compact('ncamaras','nlamparas','users2','ncamarasrep','nlamparasrep'));
+        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2'));
     }
 
     /**
@@ -115,11 +101,11 @@ class EquipoController extends Controller
     {
         $equipo = new Equipo();
 
-
-
         $centros = Centro::pluck('nombre_centro','id_centro');
 
-        return view('equipo.create', compact('equipo', 'centros'));
+        $proveedores = Proveedore::all();
+
+        return view('equipo.create', compact('equipo', 'centros','proveedores'));
     }
 
     /**
@@ -135,7 +121,7 @@ class EquipoController extends Controller
 
 
         $tipo_equipo = $request->get('tipo_equipo');
-        $cod_equipo = $request->get('cod_equipo');
+        $cod_fabrica = $request->get('cod_fabrica');
         $tipo_documento = $request->get('tipo_documento');
         $n_documento= $request->get('n_documento');
         $modelo = $request->get('modelo');
@@ -143,10 +129,11 @@ class EquipoController extends Controller
         $estado = $request->get('estado');
         $fecha_ingreso = $request->get('fecha_ingreso');
         $proveedor = $request->get('proveedor');
+        
 
-            for ($i=0; $i < count($cod_equipo); $i++){
+            for ($i=0; $i < count($cod_fabrica); $i++){
                 $data=array(
-                'cod_equipo' =>   $cod_equipo[$i],                      //
+                'cod_fabrica' =>   $cod_fabrica[$i],                      //
                 'tipo_equipo' =>   $tipo_equipo,
                 'tipo_documento'=> $tipo_documento,
                 'n_documento' =>  $n_documento,
@@ -187,15 +174,8 @@ class EquipoController extends Controller
      */
     public function show($id)
     {
-        $equipo = Equipo::find($id);
 
-        /* $records['mantenciones'] = DB::table('equipos')
-                         ->join('mantenciones', 'mantenciones.id_equipo', '=', 'equipos.id_equipo')
-                         ->where('equipos.id_equipo', $equipo->id)
-                         ->paginate(5); */
-       /*  $equipos2= DB::select("SELECT * FROM mantenciones INNER JOIN equipos ON mantenciones.$id=equipos.$id"); */
-       /*  $prop =  Equipo::findOrFail($id)->mantenciones(); */
-        /* $contar = Equipo::withCount(['mantenciones'])->get(); */
+        $equipo = Equipo::find($id);
 
         $fechas = DB::select('SELECT tipo_movimiento, fecha_movimiento, id_centro FROM movimientos where id_equipo=?',[$id]);
 
@@ -251,36 +231,21 @@ class EquipoController extends Controller
                 }
 
 
-
                 /*conversión diferencia de fechas en meses y dias*/
                 /* $resultado = $resultado+1;
 
 
                 $resultado1= $resultado/30;
                 $dias = round($resultado%30); */
-                if($resultado!=null){
+
+
+
                 $resultado = $resultado*0.95;
 
 
+                $mes = round($resultado/30);
 
-                $mes = $resultado/30;
-                list($mes,$resultado) = explode(".",$mes);
-                $resultado = "0.".$resultado;
-                $resultado=$resultado*30;
-                }
-                $result = array(144);
-
-/* $sub_struct_month = ($result[0] / 30) ;
-$sub_struct_month = floor($sub_struct_month); 
-$sub_struct_days = ($result[0] % 30); // the rest of days
-$sub_struct = $sub_struct_month."m ".$sub_struct_days."d"; */
-
-
-
-
-
-
-
+                $resultado=$resultado%30;
 
 
                 /*Muestra las mantenciones de cada equipo */
@@ -293,7 +258,7 @@ $sub_struct = $sub_struct_month."m ".$sub_struct_days."d"; */
 
          ///mess falta//
 
-        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','movimientoequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','mes','movimientoequipo'));
     }
 
     /**
@@ -304,10 +269,12 @@ $sub_struct = $sub_struct_month."m ".$sub_struct_days."d"; */
      */
     public function edit($id)
     {
+
+        $proveedores = Proveedore::all();
         $equipo = Equipo::find($id);
         $centros = Centro::pluck('nombre_centro','id_centro');
 
-        return view('equipo.edit', compact('equipo','centros'));
+        return view('equipo.edit', compact('equipo','centros','proveedores'));
     }
 
     /**

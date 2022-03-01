@@ -1,26 +1,28 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Actualizar Movimiento
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Crear Proveedor</h1>
+@stop
+
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Actualizar Movimiento</span>
+                        <span class="card-title">Crear Proveedor</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('movimientos.update', $movimiento->id_movimiento) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('proveedores.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('movimiento.form2')
+                            @include('proveedore.form')
 
                         </form>
                     </div>

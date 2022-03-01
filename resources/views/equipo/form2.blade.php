@@ -53,9 +53,13 @@ $dateho = $dateho->format('Y-m-d');
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('proveedor:') }}
-            {{ Form::text('proveedor', $equipo->proveedor, ['class' => 'form-control' . ($errors->has('proveedor') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor']) }}
-            {!! $errors->first('proveedor', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('Proveedor:') }}
+            <select class="form-control" id="proveedor" name="proveedor">
+                <option disabled selected value>Seleccione Proveedor</option>
+                @foreach ($proveedores as $proveedor)
+                    <option value="{{ $proveedor->nombre_proveedor }}">{{ $proveedor->nombre_proveedor }}</option>
+                @endforeach
+            </select>
 
         </div>
     </div>

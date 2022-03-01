@@ -26,10 +26,6 @@ class User2Controller extends Controller
     }
 
 
-    public function prueba($id){
-
-    }
-
 
 
     public function index()

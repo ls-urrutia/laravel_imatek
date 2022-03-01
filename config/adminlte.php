@@ -331,7 +331,7 @@ return [
 
                 ],
             'can'=>'Ver roles',
-          
+
 
 
 
@@ -358,7 +358,7 @@ return [
                         ],
                         ],
                     'can'=> 'Ver lista de equipos',
-                  
+
 
             ],
 
@@ -385,12 +385,40 @@ return [
 
                         ],
                     'can'=> 'Ver lista de mantenciones',
-                    
+],
 
 
+[
+    'text'    => 'Gestión Movimientos',
+    'icon'    => 'none',
+    'submenu' => [
 
+
+        [
+            'text'    => 'Lista Movimientos',
+            'url'     => '/movimientos',
+            'icon'    => 'fa fa-angle-right',
+            'can'     =>   'Ver lista de movimientos',
+        ],
+
+
+        [
+            'text'    => 'Agregar Movimientos',
+            'url'     => '/movimientos/create',
+            'icon'    => 'fa fa-angle-right',
+            'can'     => 'Crear movimiento'
+
+        ],
+
+    ],
+    'can'=>'Ver lista de movimientos',
 
 ],
+
+
+
+
+
 [
     'text'    => 'Gestión Centros',
     'icon'    => 'none',
@@ -444,32 +472,33 @@ return [
 
 ],
 
+[
+    'text'    => 'Gestión Proveedores',
+    'icon'    => 'none',
+    'submenu' => [
+
+
         [
-            'text'    => 'Gestión Movimientos',
-            'icon'    => 'none',
-            'submenu' => [
-
-
-                [
-                    'text'    => 'Lista Movimientos',
-                    'url'     => '/movimientos',
-                    'icon'    => 'fa fa-angle-right',
-                    'can'     =>   'Ver lista de movimientos',
-                ],
-
-
-                [
-                    'text'    => 'Agregar Movimientos',
-                    'url'     => '/movimientos/create',
-                    'icon'    => 'fa fa-angle-right',
-                    'can'     => 'Crear movimiento'
-
-                ],
-
-            ],
-            'can'=>'Ver lista de movimientos',
+            'text'    => 'Lista Proveedores',
+            'url'     => '/proveedores',
+            'icon'    => 'fa fa-angle-right',
 
         ],
+
+
+        [
+            'text'    => 'Agregar Proveedores',
+            'url'     => '/proveedores/create',
+            'icon'    => 'fa fa-angle-right',
+
+
+        ],
+
+    ],
+
+
+],
+
 
 
         [
