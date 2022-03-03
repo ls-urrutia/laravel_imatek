@@ -69,7 +69,7 @@ class CentroController extends Controller
         $clientes->save();
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro created successfully.');
+            ->with('success', 'Centro creado exitosamente.');
     }
 
     /**
@@ -108,9 +108,9 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
-        
 
-        
+
+
         request()->validate(Centro::$rules);
         try{
         $centro->update($request->all());

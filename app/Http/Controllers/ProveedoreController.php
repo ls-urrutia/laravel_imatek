@@ -91,7 +91,7 @@ class ProveedoreController extends Controller
         $proveedore->update($request->all());
 
         return redirect()->route('proveedores.index')
-            ->with('success', 'Proveedore updated successfully');
+            ->with('success', 'Proveedor actualizado exitosamente.');
     }
 
     /**
@@ -104,6 +104,6 @@ class ProveedoreController extends Controller
         $proveedore = Proveedore::find($id)->delete();
 
         return redirect()->route('proveedores.index')
-            ->with('success', 'Proveedore deleted successfully');
+            ->with('error', 'Proveedor Eliminado exitosamente');
     }
 }

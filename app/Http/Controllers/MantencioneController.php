@@ -107,36 +107,35 @@ class MantencioneController extends Controller
         $mantenciones->descripcion_diagnostico = $request->get('descripcion_diagnostico');
         $mantenciones->descripcion_mantencion = $request->get('descripcion_mantencion');
         $mantenciones->descripcion_dado_baja = $request->get('descripcion_dado_baja');
+        $mantenciones->componentes2_targeta = $request->get('componentes2_targeta');
+        $mantenciones->probado_bajo_agua = $request->get('probado_bajo_agua');
+        $mantenciones->verificacion_reparacion = $request->get('verificacion_reparacion');
        /*  $mantenciones->validacion = 'Pendiente'; */
         //////////////////////
         //Recepción de componentes
-        if($request->get('componente1')!==null){
-            $placa = $request->get('componente1');
-        }else{
-            $placa = 0;
-        }
+
         if($request->get('componente2')!==null){
             $acrilico = $request->get('componente2');
         }else{
-            $acrilico = 0;
+            $acrilico = "-";
         }
         if($request->get('componente3')!==null){
             $tapas = $request->get('componente3');
         }else{
-            $tapas = "0";
+            $tapas = "-";
         }
         if($request->get('componente4')!==null){
             $enchufe = $request->get('componente4');
         }else{
-            $enchufe = "0";
+            $enchufe = "-";
         }
         if($request->get('componente5')!==null){
             $cable = $request->get('componente5');
         }else{
-            $cable = "0";
+            $cable = "-";
         }
 
-        $mantenciones->componentes_mantencion = $placa.$acrilico.$tapas.$enchufe.$cable;
+        $mantenciones->componentes_mantencion = $acrilico.$tapas.$enchufe.$cable;
 
 
 
@@ -273,7 +272,7 @@ class MantencioneController extends Controller
 
             array_push($arr,$cadena[$i]);
         }
-        $array2 =['Placa','Acrilico','Tapas','Enchufe','Cable'];
+        $array2 =['Acrilico','Tapas','Enchufe','Cable'];
 
 
 
@@ -334,6 +333,9 @@ class MantencioneController extends Controller
         $mantenciones->descripcion_diagnostico = $request->get('descripcion_diagnostico');
         $mantenciones->descripcion_mantencion = $request->get('descripcion_mantencion');
         $mantenciones->descripcion_dado_baja = $request->get('descripcion_dado_baja');
+        $mantenciones->componentes2_targeta = $request->get('componentes2_targeta');
+        $mantenciones->probado_bajo_agua = $request->get('probado_bajo_agua');
+        $mantenciones->verificacion_reparacion = $request->get('verificacion_reparacion');
 
         //Recepción de componentes
         if($request->get('componente1')!==null){

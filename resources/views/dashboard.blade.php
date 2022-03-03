@@ -9,7 +9,6 @@
 @section('content')
 
 
-    <section class="content">
         <div class="container-fluid">
             <!-- Info boxes -->
             <div class="row">
@@ -436,6 +435,7 @@
 
     @section('css')
         <link rel="stylesheet" href="/css/admin_custom.css">
+        <link rel="stylesheet" href="{{ asset('css/all.css') }}">
     @stop
 
     @section('js')
@@ -449,6 +449,7 @@
             $(document).ready(function() {
                 $('#validaciones').DataTable({
                     "paging": false,
+                    "ScrollX": false,
                     "lengthMenu": [
                         [5, 10, 50, -1],
                         [5, 10, 50, "All"]

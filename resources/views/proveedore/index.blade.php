@@ -6,6 +6,8 @@
     <h1>Movimientos</h1>
 @stop
 
+
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -30,7 +32,11 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id = "proveedores" class="table table-striped table-hover">
@@ -47,11 +53,11 @@
                                         <tr>
   											<td>{{ $proveedore->nombre_proveedor }}</td>
 
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -92,7 +98,7 @@
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
-
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 
     <script type="text/javascript">
     $(document).ready(function() {

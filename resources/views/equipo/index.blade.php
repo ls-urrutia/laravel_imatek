@@ -14,11 +14,12 @@
                                 {{ __('Equipos') }}
                             </span>
                             @can('Crear equipos')
-                             <div class="float-right">
-                                <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear equipo') }}
-                                </a>
-                              </div>
+                                <div class="float-right">
+                                    <a href="{{ route('equipos.create') }}" class="btn btn-primary btn-sm float-right"
+                                        data-placement="left">
+                                        {{ __('Crear equipo') }}
+                                    </a>
+                                </div>
                             @endcan
                         </div>
                     </div>
@@ -40,17 +41,17 @@
 
                                     <tr>
 
-										{{-- <th>Id Equipo</th> --}}
-										<th>Cod Equipo</th>
+                                        {{-- <th>Id Equipo</th> --}}
+                                        <th>Cod Equipo</th>
                                         {{-- <th>Tipo Documento</th> --}}
-										<th>N° Documento</th>
-										<th>Tipo Equipo</th>
-										<th>Modelo</th>
-										{{-- <th>Descripcion</th> --}}
-										<th>Estado</th>
-										{{-- <th>Fecha Compra</th> --}}
-										<th>Proveedor</th>
-										<th> Centro</th>
+                                        <th>N° Documento</th>
+                                        <th>Tipo Equipo</th>
+                                        <th>Modelo</th>
+                                        {{-- <th>Descripcion</th> --}}
+                                        <th>Estado</th>
+                                        {{-- <th>Fecha Compra</th> --}}
+                                        <th>Proveedor</th>
+                                        <th> Centro</th>
 
 
                                         <th align="right"></th>
@@ -58,49 +59,53 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($equipos as $equipo)
-
                                         <tr>
 
-											{{-- <td>{{ $equipo->id_equipo }}</td> --}}
-											<td>{{ $equipo->cod_equipo }}{{ $equipo->id_equipo }}</td>
-                                           {{--  <td>{{ $equipo->tipo_documento }}</td> --}}
-											<td>{{ $equipo->n_documento }}</td>
-											<td>{{ $equipo->tipo_equipo }}</td>
-											<td>{{ $equipo->modelo }}</td>
-											{{-- <td>{{ $equipo->descripcion }}</td> --}}
-											<td>@if($equipo->estado=='Operativo')
-                                                <span class="badge bg-success">{{ $equipo->estado }}</span></td>
-                                            @elseif($equipo->estado == 'En revisión')
-                                                <span class="badge bg-warning text-dark">{{ $equipo->estado }}</span></td>
-
-                                            @elseif($equipo->estado == 'Dado de baja')
-                                                <span class="badge bg-danger">{{ $equipo->estado }}</span></td>
-                                            @else
-                                                Error
-                                            @endif
-
-											<td>{{ $equipo->proveedor }}</td>
-											<td>
-                                                {{$equipo->centro->nombre_centro ?? 'Sin centro'}}
+                                            {{-- <td>{{ $equipo->id_equipo }}</td> --}}
+                                            <td>{{ $equipo->cod_equipo }}{{ $equipo->id_equipo }}</td>
+                                            {{-- <td>{{ $equipo->tipo_documento }}</td> --}}
+                                            <td>{{ $equipo->n_documento }}</td>
+                                            <td>{{ $equipo->tipo_equipo }}</td>
+                                            <td>{{ $equipo->modelo }}</td>
+                                            {{-- <td>{{ $equipo->descripcion }}</td> --}}
+                                            <td>
+                                                @if ($equipo->estado == 'Operativo')
+                                                    <span class="badge bg-success">{{ $equipo->estado }}</span>
                                             </td>
+                                        @elseif($equipo->estado == 'En revisión')
+                                            <span class="badge bg-warning text-dark">{{ $equipo->estado }}</span></td>
+                                        @elseif($equipo->estado == 'Dado de baja')
+                                            <span class="badge bg-danger">{{ $equipo->estado }}</span></td>
+                                        @else
+                                            Error
+                                    @endif
 
-                                            <td align="right">
-                                                <form action="{{ route('equipos.destroy',$equipo->id_equipo) }}" method="POST">
-                                                    @can('Ver equipo')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('equipos.show',$equipo->id_equipo) }}"><i class="fa fa-fw fa-eye"></i> </a>
-                                                    @endcan
-                                                    @can('Editar equipos')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('equipos.edit',$equipo->id_equipo) }}"><i class="fa fa-fw fa-edit"></i> </a>
-                                                    @endcan
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @can('Eliminar equipos')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
-                                                    @endcan
-                                                </form>
-                                            </td>
-                                        </tr>
+                                    <td>{{ $equipo->proveedor }}</td>
+                                    <td>
+                                        {{ $equipo->centro->nombre_centro ?? 'Sin centro' }}
+                                    </td>
 
+                                    <td align="right">
+                                        <form action="{{ route('equipos.destroy', $equipo->id_equipo) }}" method="POST">
+                                            @can('Ver equipo')
+                                                <a class="btn btn-sm btn-primary "
+                                                    href="{{ route('equipos.show', $equipo->id_equipo) }}"><i
+                                                        class="fa fa-fw fa-eye"></i> </a>
+                                            @endcan
+                                            @can('Editar equipos')
+                                                <a class="btn btn-sm btn-success"
+                                                    href="{{ route('equipos.edit', $equipo->id_equipo) }}"><i
+                                                        class="fa fa-fw fa-edit"></i> </a>
+                                            @endcan
+                                            @csrf
+                                            @method('DELETE')
+                                            @can('Eliminar equipos')
+                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                        class="fa fa-fw fa-trash"></i> </button>
+                                            @endcan
+                                        </form>
+                                    </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -127,8 +132,8 @@
 
 @stop
 @section('js')
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"> </script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"> </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -142,14 +147,17 @@
 
 
     <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+
 
 
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('#equipos').DataTable({
-            "lengthMenu": [[5,10, 50, -1],[5, 10, 50,"All"]],
-            language: {
+        $(document).ready(function() {
+            $('#equipos').DataTable({
+                "lengthMenu": [
+                    [5, 10, 50, -1],
+                    [5, 10, 50, "All"]
+                ],
+                language: {
                     "lengthMenu": "Mostrar _MENU_ registros",
                     "zeroRecords": "No se encontraron resultados",
                     "info": "",
@@ -158,37 +166,36 @@
                     "sSearch": "Buscar:",
                     "oPaginate": {
                         "sFirst": "Primero",
-                        "sLast":"Último",
-                        "sNext":"Siguiente",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
                         "sPrevious": "Anterior"
-                     },
-                     "sProcessing":"Procesando...",
+                    },
+                    "sProcessing": "Procesando...",
                 },
-            //para usar los botones
-            responsive: "true",
-            dom: 'Bfrtilp',
-            buttons:[
-                {
-                    extend:    'excelHtml5',
-                    text:      '<i class="fas fa-file-excel"></i> ',
-                    titleAttr: 'Exportar a Excel',
-                    className: 'btn btn-success'
-                },
-                {
-                    extend:    'pdfHtml5',
-                    text:      '<i class="fas fa-file-pdf"></i> ',
-                    titleAttr: 'Exportar a PDF',
-                    className: 'btn btn-danger'
-                },
-                {
-                    extend:    'print',
-                    text:      '<i class="fa fa-print"></i> ',
-                    titleAttr: 'Imprimir',
-                    className: 'btn btn-info'
-                },
-            ]
+                //para usar los botones
+                responsive: "true",
+                dom: 'Bfrtilp',
+                buttons: [{
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i> ',
+                        titleAttr: 'Exportar a Excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fas fa-file-pdf"></i> ',
+                        titleAttr: 'Exportar a PDF',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fa fa-print"></i> ',
+                        titleAttr: 'Imprimir',
+                        className: 'btn btn-info'
+                    },
+                ]
+            });
         });
-    });
     </script>
 
 @stop

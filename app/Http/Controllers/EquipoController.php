@@ -154,6 +154,7 @@ class EquipoController extends Controller
         $fecha_ingreso = $request->get('fecha_ingreso');
         $proveedor = $request->get('proveedor');
 
+
             for ($i=0; $i < count($cod_fabrica); $i++){
                 $data=array(
                 'cod_fabrica' =>   $cod_fabrica[$i],                      //
@@ -255,6 +256,16 @@ class EquipoController extends Controller
                     $entrada = $fechan;
 
                 }
+
+
+                /*conversión diferencia de fechas en meses y dias*/
+                /* $resultado = $resultado+1;
+
+
+                $resultado1= $resultado/30;
+                $dias = round($resultado%30); */
+
+
 
                 $resultado = $resultado*0.95;
 

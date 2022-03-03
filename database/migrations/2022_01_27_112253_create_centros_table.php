@@ -17,7 +17,7 @@ class CreateCentrosTable extends Migration
             $table->id('id_centro');
             $table->string('nombre_centro');
             $table->string('telefono_empresa');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();;
             $table->bigInteger('id_cliente')->unsigned();
             $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete("cascade");
             $table->timestamps();

@@ -27,8 +27,11 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
-
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id ="mantenciones" class="table table-striped table-hover">
@@ -53,14 +56,14 @@
 											<td>@if(isset($mantencione->descripcion_diagnostico))
                                                 {{ $mantencione->descripcion_diagnostico}}
                                                 @else
-                                                En proceso
+                                                -
                                                 @endif
                                             </td>
 											<td>
                                                 @if(isset($mantencione->estado_mantencion))
                                                 {{ $mantencione->estado_mantencion}}
                                                 @else
-                                                En proceso
+                                                -
 
                                                 @endif
 

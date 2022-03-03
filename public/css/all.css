@@ -84,3 +84,101 @@ table th {
 .dataTables_length {
     font-weight: normal;
 }
+.th-cod {
+
+    width: 15%;
+
+
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    display: block;
+    text-overflow: ellipsis;
+    background-color: transparent;
+    text-align-last:center !important;
+    line-height: 15px;
+    color: white;
+}
+
+.select2-results {
+    background-color: #343a40;
+}
+
+
+.select2-selection__rendered[title] {
+    background-color: #343a40;
+    text-align: center;
+    color: white !important;
+
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: transparent
+}
+.mr-5{
+    min-width:50px ;
+}
+/*                 .row{
+  min-width:50px ;
+} */
+.min{
+    min-width: 20%;
+}
+.min2{
+    margin-top:0 ;
+}
+.p{
+
+    margin:5px;
+    margin-left: 0;
+}
+
+
+.paginate_button.current {
+    color: #cbcbcb;
+    padding: 0.4%;
+    text-shadow: 0 0 2px #fff;
+    text-align: justify;
+    font-weight: 800;
+    font-size: 14px;
+    margin: 4px;
+    box-shadow: 0px 0px 10px 0px #333 inset;
+
+}
+
+.paginate_button {
+    BORDER-TOP: #335476 1px solid;
+    BORDER-RIGHT: #335476 1px solid;
+    BORDER-LEFT: #335476 1px solid;
+    BORDER-BOTTOM: #335476 1px solid;
+    background-color: #454D55;
+    border-radius: 10px;
+    padding: 4px;
+    color: #ababab;
+    box-shadow: 0px 0px 10px 0px #333 inset;
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #404850;
+}
