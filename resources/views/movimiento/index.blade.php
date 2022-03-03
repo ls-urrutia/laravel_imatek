@@ -1,6 +1,8 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+
+@section('title', 'Movimientos')
+
 
 @section('content_header')
     <h1>Movimientos</h1>
@@ -44,27 +46,31 @@
                                     <thead class="thead">
                                         <tr>
                                             {{-- <th>Id Movimiento</th> --}}
+
+                                            <th>Código Equipo</th>
                                             <th>Tipo Movimiento</th>
                                             <th>Fecha Movimiento</th>
                                             <th>Tipo Documento</th>
                                             <th>N° Documento</th>
-                                            <th>Código Equipo</th>
                                             <th>Centro</th>
 
                                             <th align="right"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
                                         @foreach ($movimientos as $movimiento)
                                             <tr>
                                                 {{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
+                                                <td>
+                                                    im{{ $movimiento->equipo->id_equipo }}
+                                                </td>
                                                 <td>{{ $movimiento->tipo_movimiento }}</td>
                                                 <td>{{ $movimiento->fecha_movimiento }}</td>
                                                 <td>{{ $movimiento->tipo_documento }}</td>
                                                 <td>{{ $movimiento->n_documento }}</td>
-                                                <td>
-                                                    {{ $movimiento->equipo->cod_equipo }}
-                                                </td>
+
                                                 <td>
                                                     {{ $movimiento->id_centro }}
                                                 </td>
@@ -108,64 +114,11 @@
     @section('css')
 
         <link rel="stylesheet" href="/css/admin_custom.css">
-
-
-        <style>
-            .dt-buttons {
-
-                padding-top: 1%;
-                padding-bottom: 1%;
-                justify-content: center;
-            }
-
-            .paginate_button {
-
-                color: aliceblue;
-                padding: 1%;
-                text-shadow: 0 0 2px black;
-                font-weight: bold;
-                justify-content: center !important;
-                aling-items: center !important;
-
-
-            }
-
-            .paginate_button.current {
-
-                color: aliceblue;
-                padding: 1%;
-                text-shadow: 0 0 2px #fff;
-                text-align: justify;
-                font-weight: 900;
-                justify-content: center !important;
-                aling-items: center !important;
-
-
-            }
-
-            .dataTables_info {
-                padding-top: 1%;
-                padding-bottom: 1%;
-                justify-content: center !important;
-                display: inline-block
-            }
-
-            .dataTables_length {
-                font-weight: normal;
-                justify-content: center !important;
-                padding-left: 40%;
-                display: inline-block !important;
-                ;
-                text-align: center !important;
-            }
-
-        </style>
+        <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
     @stop
 
     @section('js')
-
-
 
 
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"> </script>
@@ -180,11 +133,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
         <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 
-
         <script type="text/javascript">
-
             $(document).ready(function() {
                 $('#movimientos').DataTable({
                     "lengthMenu": [

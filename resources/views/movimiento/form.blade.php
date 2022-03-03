@@ -123,6 +123,9 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
         <script type="text/javascript">
+
+
+
             $(document).ready(function() {
                 $('.select-e').select2({
                     theme: "classic",

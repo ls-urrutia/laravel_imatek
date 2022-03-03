@@ -1,6 +1,8 @@
 @extends('adminlte::page')
 
-@section('title', 'Centros')
+
+@section('title', 'Movimientos')
+
 
 @section('content_header')
     <h1>Clientes</h1>

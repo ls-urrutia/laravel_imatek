@@ -1,46 +1,85 @@
 
 
+<script type="text/javascript" src="{{ asset('/vendor/jquery/jquery.js') }}"></script>
 
-
-
-<!-- Preloader -->
-<div class="preloader flex-column justify-content-center align-items-center">
-<img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-</div>
-
-
-
-
+<h4>Equipo im{{ $movimiento->equipo->id_equipo }}</h4>
 
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('Código Equipo') }}
-            {{ Form::select('id_equipo', $equipos, $movimiento->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Código Equipo']) }}
+            {{ Form::label('Id Equipo') }}
+            {{ Form::text('id_equipo', $movimiento->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''),'placeholder' => 'Código Equipo', 'readonly']) }}
             {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-           {{ Form::label('tipo_movimiento') }}
-           {!!Form::select('tipo_movimiento',['Entrada' => 'Entrada', 'Salida' => 'Salida'], null, [ 'class' => 'form-control'. ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
-           {!! $errors->first('tipo_movimiento', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
             {{ Form::label('fecha_movimiento') }}
-            {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Movimiento']) }}
+            {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
             {!! $errors->first('fecha_movimiento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('n_documento') }}
-            {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''), 'placeholder' => 'N Documento']) }}
+            {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('Centro') }}
-            {{ Form::select('id_centro', $centros, $movimiento->id_centro, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Centros']) }}
-            {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</p>') !!}
+
+
+
+        <div class="form-group" id="div_cliente">
+            {{ Form::label('Cliente') }}
+            <select class="form-control" id="clientes" name="clientes">
+                <option value="">Seleccione Cliente</option>
+                @foreach ($clientes as $cliente)
+                    <option value="{{ $cliente->id_cliente }}">{{ $cliente->nombre_empresa }}</option>
+                @endforeach
+            </select>
         </div>
+
+        <div class="form-group" id="div_centro">
+            {{ Form::label('Centro') }}
+            <select class="form-control" id="id_centro" name="id_centro" required>
+                <option value="">Seleccione Centro</option>
+            </select>
+
+        </div>
+
+
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+    $(function() {
+
+        $('#clientes').on('change', onSelectClienteChange);
+
+    });
+
+
+
+
+    function onSelectClienteChange() {
+
+        var id_cliente = $(this).val();
+
+        // AJAX
+        $.get('/movimiento/' + id_cliente + '/centros', function(data) {
+
+
+
+
+            var html_select = '<option value="">Seleccione Centro</option>';
+            for (var i = 0; i < data.length; ++i)
+                html_select += '<option value="' + data[i].id_centro + '">' + data[i]
+                .nombre_centro +
+                '</option>';
+            $('#id_centro').html(html_select);
+
+
+        });
+
+    }
+</script>

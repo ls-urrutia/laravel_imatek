@@ -8,6 +8,16 @@
 
 @section('content')
 <h2>EDITAR REGISTROS</h2>
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60"
+        width="60">
+</div>
+
+
+
+
 @if(session('info'))
 <div class="alert alert-succes">
   {{session('info')}}
@@ -40,7 +50,7 @@
                     </div>
                 @endforeach
                 {!! Form::submit('Editar Rol', ['class'=>'btn btn-primary']) !!}
-          {!! Form::close() !!}   
+          {!! Form::close() !!}
 
 
 

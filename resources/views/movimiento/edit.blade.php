@@ -1,10 +1,19 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Actualizar Movimiento
-@endsection
+@section('title', 'Equipos')
+
+@section('content_header')
+    <h1>Actualizar Movimiento</h1>
+@stop
 
 @section('content')
+
+<!-- Preloader -->
+<div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
+
+
     <section class="content container-fluid">
         <div class="">
             <div class="col-md-12">

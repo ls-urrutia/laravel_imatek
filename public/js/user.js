@@ -18,13 +18,13 @@ function mostrarContrasena2(){
 }
 
 
-$('.btn-danger').on('click', weafacil);
+$('.btn-danger').on('click', confirmacionDelete);
 
 
 
 function confirmacionDelete() {
 
-    var result = confirm("¿¿Seguro que quieres eliminarlo??");
+    var result = confirm("¿¿Seguro que quieres eliminarlo!!?? Cualquier eliminación podría afectar gravemente las operaciones y estados del equipo.");
 
     if (result) {
         alert("Eliminado con éxito")

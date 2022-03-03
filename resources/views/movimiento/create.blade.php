@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Movimientos')
 
 @section('content_header')
     <h1>Crear movimiento</h1>

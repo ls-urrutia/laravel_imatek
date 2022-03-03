@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Equipos')
 
 @section('content_header')
 
@@ -149,131 +149,131 @@
                       </style>
 
 
-
-                <ul class="nav nav-tabs">
-
-                    <li><a role="presentation" class="nav-link active" data-toggle="tab" href="#menu1" aria-controls="menu1" role="tab">Mantenciones</a></li>
-                    <li><a role="presentation" class="nav-link" data-toggle="tab" href="#menu2" aria-controls="menu2" role="tab">Movimientos</a></li>
-                  </ul>
-
-                  <div class="tab-content">
-
-                    <div id="menu1" class="tab-pane active ">
+    </div>
 
 
-                      <div class="card-body">
-                        <div class="table-responsive">
-                            <table id ="mantenciones" class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
+    <ul class="nav nav-tabs">
 
-										{{-- <th>Id Mantencion</th> --}}
+        <li><a role="presentation" class="nav-link active" data-toggle="tab" href="#menu1" aria-controls="menu1" role="tab">Mantenciones</a></li>
+        <li><a role="presentation" class="nav-link" data-toggle="tab" href="#menu2" aria-controls="menu2" role="tab">Movimientos</a></li>
+      </ul>
 
-										<th>Fecha Mantención</th>
-										<th>Descripción</th>
-										<th>Validación</th>
-										<th>Usuario</th>
-										<th>Código Equipo</th>
+      <div class="tab-content">
 
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($mantencionequipo as $mantencione)
-                                        <tr>
-											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
-
-											<td>{{ $mantencione->fecha_mantencion }}</td>
-											<td>{{ $mantencione->descripcion_mantencion }}</td>
-											<td>{{ $mantencione->validacion }}</td>
+        <div id="menu1" class="tab-pane active ">
 
 
-											<td>{{ $mantencione->id_usuario}}</td>
-											<td>{{ $mantencione->id_equipo}}
+          <div class="card-body">
+            <div class="table-responsive">
+                <table id ="mantenciones" class="table table-striped table-hover">
+                    <thead class="thead">
+                        <tr>
+
+                            {{-- <th>Id Mantencion</th> --}}
+
+                            <th>Fecha Mantención</th>
+                            <th>Descripción</th>
+                            <th>Validación</th>
+                            <th>Usuario</th>
+                            <th>Código Equipo</th>
+
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($mantencionequipo as $mantencione)
+                            <tr>
+                                {{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
+
+                                <td>{{ $mantencione->fecha_mantencion }}</td>
+                                <td>{{ $mantencione->descripcion_mantencion }}</td>
+                                <td>{{ $mantencione->validacion }}</td>
 
 
-                                            <td>
-                                                <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
-                                                    @can('Ver mantención')
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>
-                                                    @endcan
-                                                    @can('Editar mantenciones')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i></a>
-                                                    @endcan
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @can('Eliminar mantención')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
-                                                    @endcan
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    </div>
-                    <div id="menu2" class="tab-pane">
-
-                      <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="movimientos" class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-										{{-- <th>Id Movimiento</th> --}}
-										<th>Tipo Movimiento</th>
-										<th>Fecha Movimiento</th>
-										<th>Tipo Documento</th>
-										<th>N° Documento</th>
-										<th>Código Equipo</th>
-                                        <th>Centro</th>
-
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($movimientoequipo as $movimiento)
-                                        <tr>
-											{{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
-											<td>{{ $movimiento->tipo_movimiento }}</td>
-											<td>{{ $movimiento->fecha_movimiento }}</td>
-											<td>{{ $movimiento->tipo_documento }}</td>
-											<td>{{ $movimiento->n_documento }}</td>
-                                            <td>
-                                                {{ $movimiento->id_equipo}}
-                                            </td>
-                                            <td>
-                                                {{ $movimiento->id_centro}}
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    </div>
-                  </div>
+                                <td>{{ $mantencione->id_usuario}}</td>
+                                <td>{{ $mantencione->id_equipo}}
 
 
-
-                </div>
-
-
+                                <td>
+                                    <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">
+                                        @can('Ver mantención')
+                                        <a class="btn btn-sm btn-primary " href="{{ route('mantenciones.show',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                        @endcan
+                                        @can('Editar mantenciones')
+                                        <a class="btn btn-sm btn-success" href="{{ route('mantenciones.edit',$mantencione->id_mantencion) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                        @endcan
+                                        @csrf
+                                        @method('DELETE')
+                                        @can('Eliminar mantención')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                        @endcan
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-
         </div>
+        </div>
+        <div id="menu2" class="tab-pane">
+
+          <div class="card-body">
+            <div class="table-responsive">
+                <table id="movimientos" class="table table-striped table-hover">
+                    <thead class="thead">
+                        <tr>
+                            {{-- <th>Id Movimiento</th> --}}
+                            <th>Tipo Movimiento</th>
+                            <th>Fecha Movimiento</th>
+                            <th>Tipo Documento</th>
+                            <th>N° Documento</th>
+                            <th>Código Equipo</th>
+                            <th>Centro</th>
+
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($movimientoequipo as $movimiento)
+                            <tr>
+                                {{-- <td>{{ $movimiento->id_movimiento }}</td> --}}
+                                <td>{{ $movimiento->tipo_movimiento }}</td>
+                                <td>{{ $movimiento->fecha_movimiento }}</td>
+                                <td>{{ $movimiento->tipo_documento }}</td>
+                                <td>{{ $movimiento->n_documento }}</td>
+                                <td>
+                                    {{ $movimiento->id_equipo}}
+                                </td>
+                                <td>
+                                    {{ $movimiento->id_centro}}
+                                </td>
+                                <td>
+                                    <form action="{{ route('movimientos.destroy',$movimiento->id_movimiento) }}" method="POST">
+                                        <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-eye"></i></a>
+                                        <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id_movimiento) }}"><i class="fa fa-fw fa-edit"></i></a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+      </div>
+
+
 
     </div>
+
+
+</div>
+
+</div>
 
     <br>
 
@@ -292,7 +292,7 @@
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
 
-
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 
 
     <script type="text/javascript">
@@ -400,48 +400,5 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
-<style>
-    .ordenar {
-        padding-top: 5%;
-
-
-    }
-
-    .tab {}
-
-    .tex {
-        padding: 5px;
-    }
-
-
-    .buttons-excel {
-        size: 20px !important;
-        background-color:  !important;
-        padding: 5px !important;
-        padding-bottom:2px !important;
-        padding-top:2px !important;
-
-    }
-    .buttons-pdf {
-        size: 20px !important;
-        background-color:  !important;
-        padding: 5px !important;
-        padding-bottom:2px !important;
-        padding-top:2px !important;
-
-    }
-    .buttons-print {
-        size: 20px !important;
-        background-color:  !important;
-        padding: 5px !important;
-        padding-bottom:2px !important;
-        padding-top:2px !important;
-
-    }
-    .dt-buttons{
-        align-items: right !important;
-
-    }
-
-</style>
+<link rel="stylesheet" href="{{ asset('css/all.css') }}">
 @stop
