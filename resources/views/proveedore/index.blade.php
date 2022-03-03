@@ -47,11 +47,11 @@
                                         <tr>
   											<td>{{ $proveedore->nombre_proveedor }}</td>
 
-                                            <td>
+                                            <td align="right">
                                                 <form action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>

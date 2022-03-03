@@ -199,6 +199,54 @@
                                 {{ Form::text('diagnostico_corriente', $mantencione->diagnostico_corriente, ['class' => 'form-control' . ($errors->has('diagnostico_corriente') ? ' is-invalid' : ''), 'placeholder' => 'Corriente recibida','id'=>'diagnostico-corriente']) }}
                                 {!! $errors->first('diagnostico_corriente', '<div class="invalid-feedback">:message</p>') !!}
                             </div>
+                            
+                            <div class="form-group"id="componentes2-targeta">
+                                {{ Form::label('Targetas malas:') }}<span class="form-span">*</span>
+                               {!!Form::select('componentes2_targeta',['0'=>'0','1' => '1', '2' => '2','3'=>'3'],$mantencione->componentes2_targeta, [ 'class' => 'form-control'. ($errors->has('componentes2_targeta') ? 'is-invalid' : ''), 'placeholder' => 'Seleccione','id'=>'componentes2-targeta']) !!}
+                                {!! $errors->first('componentes2_targeta', '<div class="invalid-feedback">:message</p>') !!}
+                            </div>
+
+                            <div class="componentes-mantencion" id="componentes-mantencion">
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td> </td>
+                                            <td class="espacio">  Buena</td>
+                                            <td class="espacio">  Mala</td>
+
+                                        </tr>
+                                        
+
+
+                                        <tr>
+                                            <td>Acrilico</td>
+                                            <td class="espacio"><input type="radio"  class=" radios" name="componente2" value="1" ></td>
+                                            <td class="espacio"><input type="radio" class="radios" name="componente2" value="0"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Tapas</td>
+                                            <td class="espacio"><input type="radio"  class=" radios" name="componente3" value="1" ></td>
+                                            <td class="espacio"><input type="radio" class="radios" name="componente3" value="0"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>enchufe</td>
+                                            <td class="espacio"><input type="radio"  class=" radios" name="componente4" value="1" ></td>
+                                            <td class="espacio"><input type="radio" class="radios" name="componente4" value="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cable</td>
+                                            <td class="espacio"><input type="radio"  class=" radios" name="componente5" value="1" ></td>
+                                            <td class="espacio"><input type="radio" class="radios" name="componente5" value="0"></td>
+                                        </tr>
+                                    </tbody>
+
+
+
+                                </table>
+                            </div>
 
                     {{-- ------------------------------------------------------------------------ --}}
 
@@ -255,51 +303,7 @@
 
 
 
-                            <div class="componentes-mantencion" id="componentes-mantencion">
-
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td> </td>
-                                            <td class="espacio">  Buena</td>
-                                            <td class="espacio">  Mala</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Placa</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente1" value="1" ></td>
-                                            <td class="espacio"> <input type="radio" class=" radios" name="componente1" value="0"></td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>Acrilico</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente2" value="1" ></td>
-                                            <td class="espacio"><input type="radio" class="radios" name="componente2" value="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Tapas</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente3" value="1" ></td>
-                                            <td class="espacio"><input type="radio" class="radios" name="componente3" value="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>enchufe</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente4" value="1" ></td>
-                                            <td class="espacio"><input type="radio" class="radios" name="componente4" value="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cable</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente5" value="1" ></td>
-                                            <td class="espacio"><input type="radio" class="radios" name="componente5" value="0"></td>
-                                        </tr>
-                                    </tbody>
-
-
-
-                                </table>
-                            </div>
+                            
                            <br>
                            <div class="box-footer mt20">
                                <button type="submit" class="btn btn-primary">Guardar</button>
@@ -331,6 +335,9 @@ $(function() {
     $('#fecha-mantencion').hide();
     $('#componentes-mantencion').hide();
     $('#descripcion-mantencion').hide();
+    $('#verificacion_reparacion').hide();
+    $('#componentes2-targeta').hide();
+    $('#probado-bajo-agua').hide();
 
     $('#fecha-dado-baja').hide();
     $('#descripcion-dado-baja').hide();
@@ -352,6 +359,9 @@ if ($(this).val() == 'Diagnostico') {
     $('#fecha-mantencion').hide();
     $('#componentes-mantencion').hide();
     $('#descripcion-mantencion').hide();
+    $('#componentes2-targeta').show();
+    $('#probado-bajo-agua').hide();
+    $('#verificacion-reparacion').hide();
 
 
     $('#fecha-dado-baja').hide();

@@ -25,8 +25,10 @@ class CreateMantencionesTable extends Migration
             $table->string('descripcion_dado_baja')->nullable();
 
             $table->string('validacion')->default('Pendiente');
-
+            $table->string('probado_bajo_agua')->nullable();
+            $table->string('componentes2_targeta')->nullable();
             $table->string('componentes_mantencion')->nullable();
+            $table->string('verificacion_reparacion')->nullable();
             $table->string('diagnostico_corriente')->nullable();
 
 

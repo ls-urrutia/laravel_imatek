@@ -35,8 +35,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
         <div class="form-group">
-            {{ Form::label('tipo_movimiento') }}
-            <select name="tipo_movimiento" class="form-control" id="select-movimiento">
+            {{ Form::label('tipo_movimiento') }}<span class="form-span">*</span>
+            <select name="tipo_movimiento" class="form-control" id="select-movimiento" required>
                 <option value="">Seleccione Movimiento</option>
                 <option value="Salida">Entrada</option>
                 <option value="Entrada">Salida</option>
@@ -45,14 +45,14 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
             <div class="form-group">
-                {{ Form::label('fecha_movimiento:') }}
-                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['id' => 'fecha_movimiento','class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento']) }}
+                {{ Form::label('fecha_movimiento:') }}<span class="form-span">*</span>
+                {{ Form::date('fecha_movimiento', $movimiento->fecha_movimiento, ['id' => 'fecha_movimiento','class' => 'form-control' . ($errors->has('fecha_movimiento') ? ' is-invalid' : ''),'placeholder' => 'Fecha Movimiento','required']) }}
                 {!! $errors->first('fecha_movimiento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
 
             <div class="form-group">
 
-                {{ Form::label('Número de documento') }}
+                {{ Form::label('Número de documento') }}<span class="form-span">*</span>
                 {{ Form::text('n_documento', $movimiento->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N Documento','required' => '']) }}
                 {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
             </div>
@@ -60,8 +60,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
             <div class="form-group" id="div_cliente">
-                {{ Form::label('Cliente') }}
-                <select class="form-control" id="clientes" name="clientes">
+                {{ Form::label('Cliente') }}<span class="form-span">*</span>
+                <select class="form-control" id="clientes" name="clientes" required>
                     <option value="">Seleccione Cliente</option>
                     @foreach ($clientes as $cliente)
                         <option value="{{ $cliente->id_cliente }}">{{ $cliente->nombre_empresa }}</option>
@@ -70,7 +70,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
             </div>
 
             <div class="form-group" id="div_centro">
-                {{ Form::label('Centro') }}
+                {{ Form::label('Centro') }}<span class="form-span">*</span>
                 <select class="form-control" id="id_centro" name="id_centro" required>
                     <option value="">Seleccione Centro</option>
                 </select>
@@ -357,39 +357,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
 
-        <style>
-            .th-cod {
-
-                width: 15%;
-
-
-            }
-
-            .select2-container--default .select2-selection--single .select2-selection__rendered {
-                display: block;
-                text-overflow: ellipsis;
-                background-color: transparent: text-align-last:center !important;
-                line-height: 15px;
-                color: white;
-
-            }
-
-            .select2-results {
-                background-color: #343a40;
-            }
-
-
-            .select2-selection__rendered[title] {
-                background-color: #343a40;
-                text-align: center;
-                color: white !important;
-
-            }
-
-            .select2-container--default .select2-selection--single {
-                background-color: transparent
-            }
-
-        </style>
+        
+     
 
     </div>
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">

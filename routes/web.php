@@ -29,13 +29,15 @@ use Illuminate\Http\Request;
 */
 
 /* Route::get('/', function () {
-  dasdsa  return view('auth.login');
+  dasdsa  ;
 }); */
 
-Route::get('/', function () {
-    return view('auth.login');
-    /* return view('/dashboard'); */
-});
+    Route::get('/', function () {
+   
+        /* return view('/dashboard'); */
+        return view('auth.login');
+    });
+
 
 /* Route::get('register',[HomeController::class,'register']); */
 
@@ -43,6 +45,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
 
 
 Route::resource('centros',CentroController::class);

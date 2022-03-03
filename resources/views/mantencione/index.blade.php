@@ -51,14 +51,14 @@
 											<td>@if(isset($mantencione->descripcion_diagnostico))
                                                 {{ $mantencione->descripcion_diagnostico}}
                                                 @else
-                                                En proceso
+                                                -
                                                 @endif
                                             </td>
 											<td>
                                                 @if(isset($mantencione->estado_mantencion))
                                                 {{ $mantencione->estado_mantencion}}
                                                 @else
-                                                En proceso
+                                                -
 
                                                 @endif
 

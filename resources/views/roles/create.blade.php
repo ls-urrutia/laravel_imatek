@@ -24,7 +24,7 @@
             <div class="form group">
                 {!! Form::label('name', 'Nombre del rol:') !!}
                 <span class="form-span">*</span>
-                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                {!! Form::text('name', null, ['class'=>'form-control','required']) !!}
                 @error('name')
                 <small class="text-danger">
                     {{$message}}

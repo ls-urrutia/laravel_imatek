@@ -13,3 +13,51 @@ body{
 .space{
     margin-bottom: 19px;
 }
+.th-cod {
+
+    width: 15%;
+
+
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    display: block;
+    text-overflow: ellipsis;
+    background-color: transparent: text-align-last:center !important;
+    line-height: 15px;
+    color: white;
+
+}
+
+.select2-results {
+    background-color: #343a40;
+}
+
+
+.select2-selection__rendered[title] {
+    background-color: #343a40;
+    text-align: center;
+    color: white !important;
+
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: transparent
+}
+.mr-5{
+    min-width:50px ;
+}
+/*                 .row{
+  min-width:50px ;
+} */
+.min{
+    min-width: 20%;
+}
+.min2{
+    margin-top:0 ;
+}
+.p{
+    
+    margin:5px;
+    margin-left: 0;
+}

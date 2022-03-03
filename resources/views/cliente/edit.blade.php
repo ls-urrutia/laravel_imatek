@@ -17,7 +17,9 @@
 <h2>Editar Cliente</h2>
 
 
-
+<div class="card card-default">
+  <div class="card-body">          
+    <div class="box box-info padding-1">
 
 <form action="/clientes/{{$cliente->id_cliente}}" method="POST">
     @csrf
@@ -37,5 +39,8 @@
   <a href="/clientes" class="btn btn-secondary">Cancelar</a>
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+</div>
+  </div>
+</div>
 
 @endsection

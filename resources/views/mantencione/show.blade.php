@@ -32,7 +32,7 @@
                     <div class="container ml-0 ">
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Id Mantención:</p>
+                                <p class="p">Número Mantención:</p>
                             </div>
                             
                             <div class="col-6 col-md-2">
@@ -40,13 +40,28 @@
                             </div>
                           
                         </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Código Equipo:</p>
+                            </div>
+                            @if(isset($mantencione->id_equipo))
+                            <div class="col-6 col-md-2 ">
+                                <p class="p" >IM{{ $mantencione->id_equipo }}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2 ">
+                                <p class="text-secondary p font-italic " >No aplica</p>
+                            </div>
+                            @endif
+                           
+                        </div>
                         <br>
-                        <h3>Diagnostico</h3>
+                        <h3>Diagnóstico</h3>
                         
 
                          <div class="row" >
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Fecha Diagnostico:</p>
+                                <p class="p">Fecha Diagnóstico:</p>
                             </div>
                             @if(isset($mantencione->fecha_diagnostico))
                             <div class="col-6 col-md-2">
@@ -54,7 +69,7 @@
                             </div>
                             @else
                             <div class="col-6 col-md-2">
-                                <p class="p">No aplica</p>
+                                <p class="text-secondary p font-italic ">-</p>
                             </div>
                             @endif
                            
@@ -62,7 +77,7 @@
                        
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Descripción diagnostico:</p>
+                                <p class="p">Descripción diagnóstico:</p>
                             </div>
                             @if(isset($mantencione->descripcion_diagnostico))
                             <div class="col-6 col-md-6">
@@ -70,7 +85,7 @@
                             </div>
                             @else
                             <div class="col-6 col-md-2">
-                                <p class="p" >No aplica</p>
+                                <p class="text-secondary p font-italic " >-</p>
                             </div>
                             @endif
 
@@ -86,79 +101,26 @@
                             </div>
                             @else
                             <div class="col-6 col-md-2">
-                                <p class="p" >No aplica</p>
+                                <p class="text-secondary p font-italic " >-</p>
                             </div>
                             @endif
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Usuario Diagnostico:</p>
+                                <p class="p">Targetas malas:</p>
                             </div>
-                            @if(isset($mantencione->id_usuario0))
-                            <div class="col-6 col-md-6">
-                                <p class="p" >{{ $mantencione->id_usuario0}}</p>
-                            </div>
-                            @else
-                            <div class="col-6 col-md-6">
-                                <p class="p" >No aplica</p>
-                            </div>
-                            @endif
-                           
-                        </div>
-                        <br><br>
-                        <h3>Mantención</h3>
-                    
-
-                        <div class="row">
-                            <div class="col-6 col-md-2 ">
-                                <p class="p">Fecha mantención:</p>
-                            </div>
-                            @if(isset($mantencione->fecha_mantencion))
+                            @if(isset( $mantencione->componentes2_targeta))
                             <div class="col-6 col-md-2">
-                                <p class="p" > {{ $mantencione->fecha_mantencion }}</p>
+                                <p class="p" >{{ $mantencione->componentes2_targeta}}</p>
                             </div>
                             @else
                             <div class="col-6 col-md-2">
-                                <p class="p" >no aplica</p>
+                                <p class="text-secondary p font-italic " >-</p>
                             </div>
                             @endif
-                           
                         </div>
-                        <div class="row">
-                            <div class="col-6 col-md-2 ">
-                                <p class="p">Descripción mantención:</p>
-                            </div>
-                            @if(isset($mantencione->descripcion_mantencion))
-                            <div class="col-6 col-md-6">
-                                <p class="p" >{{ $mantencione->descripcion_mantencion }}</p>
-                            </div>
-                            @else
-                            <div class="col-6 col-md-2">
-                                <p class="p" >No aplica</p>
-                            </div>
-                            @endif
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-6 col-md-2 ">
-                                <p class="p">Usuario Mantención:</p>
-                            </div>
-                            @if(isset($mantencione->id_usuario))
-                            <div class="col-6 col-md-2">
-                                <p class="p" >{{ $mantencione->id_usuario}}</p>
-                            </div>
-                            @else
-                            <div class="col-6 col-md-2">
-                                <p class="p" >No aplica</p>
-                            </div>
-                            @endif
-                           
-                        </div>
-
                         
-                        
-                      
-                        <div class="row">
+{{--                         <div class="row">
                             @if(isset($arr[0]))
 
                                 <div class="col-6 col-md-2 ">
@@ -179,7 +141,33 @@
                                 @endif
                             @else   
                             <div class="col-6 col-md-2">
-                                <p class="pt" >Sin  Mantención</p>
+                                <p class="pt text-secondary p font-italic " >Sin  Mantención</p>
+                            </div> 
+                            @endif    
+                           
+                        </div> --}} 
+                        <div class="row">
+                            @if(isset($arr[0]))
+
+                                <div class="col-6 col-md-2 ">
+                                    <p class="pt">Acrilico:</p>
+                                </div>
+                                @if($arr[0]==0 )
+                                <div class="col-6 col-md-2 ">
+                                    <p class="pt">Mala</p>
+                                </div>
+                                @elseif($arr[0]==1 )
+                                <div class="col-6 col-md-2 ">
+                                    <p class="pt">Bueno</p>
+                                </div>
+                                @else
+                                <div class="col-6 col-md-2">
+                                    <p class="pt text-secondary p font-italic " >No aplica</p>
+                                </div>
+                                @endif
+                            @else   
+                            <div class="col-6 col-md-2">
+                                <p class="pt text-secondary p font-italic " >Sin  Mantención</p>
                             </div> 
                             @endif    
                            
@@ -188,7 +176,7 @@
                             @if(isset($arr[1]))
 
                                 <div class="col-6 col-md-2 ">
-                                    <p class="pt">Acrilico:</p>
+                                    <p class="pt">Tapas:</p>
                                 </div>
                                 @if($arr[1]==0 )
                                 <div class="col-6 col-md-2 ">
@@ -199,13 +187,13 @@
                                     <p class="pt">Bueno</p>
                                 </div>
                                 @else
-                                <div class="col-6 col-md-2">
+                                <div class="col-6 col-md-2 ">
                                     <p class="pt" >No aplica</p>
                                 </div>
                                 @endif
                             @else   
-                            <div class="col-6 col-md-2">
-                                <p class="pt" >Sin  Mantención</p>
+                            <div class="col-6 col-md-2 ">
+                                <p class="pt text-secondary p font-italic " >Sin  Mantención</p>
                             </div> 
                             @endif    
                            
@@ -214,7 +202,7 @@
                             @if(isset($arr[2]))
 
                                 <div class="col-6 col-md-2 ">
-                                    <p class="pt">Tapas:</p>
+                                    <p class="pt">Enchufe:</p>
                                 </div>
                                 @if($arr[2]==0 )
                                 <div class="col-6 col-md-2 ">
@@ -231,7 +219,7 @@
                                 @endif
                             @else   
                             <div class="col-6 col-md-2 ">
-                                <p class="pt" >Sin  Mantención</p>
+                                <p class="pt text-secondary p font-italic " >Sin  Mantención</p>
                             </div> 
                             @endif    
                            
@@ -240,7 +228,7 @@
                             @if(isset($arr[3]))
 
                                 <div class="col-6 col-md-2 ">
-                                    <p class="pt">Enchufe:</p>
+                                    <p class="pt">Cable:</p>
                                 </div>
                                 @if($arr[3]==0 )
                                 <div class="col-6 col-md-2 ">
@@ -252,42 +240,117 @@
                                 </div>
                                 @else
                                 <div class="col-6 col-md-2 ">
-                                    <p class="pt" >No aplica</p>
+                                    <p class="pt text-secondary p font-italic " >No aplica</p>
                                 </div>
                                 @endif
                             @else   
                             <div class="col-6 col-md-2 ">
-                                <p class="pt" >Sin  Mantención</p>
+                                <p class="pt text-secondary p font-italic " >Sin  Mantención</p>
                             </div> 
                             @endif    
                            
                         </div> 
                         <div class="row">
-                            @if(isset($arr[4]))
-
-                                <div class="col-6 col-md-2 ">
-                                    <p class="pt">Cable:</p>
-                                </div>
-                                @if($arr[4]==0 )
-                                <div class="col-6 col-md-2 ">
-                                    <p class="pt">Mala</p>
-                                </div>
-                                @elseif($arr[4]==1 )
-                                <div class="col-6 col-md-2 ">
-                                    <p class="pt">Bueno</p>
-                                </div>
-                                @else
-                                <div class="col-6 col-md-2 ">
-                                    <p class="pt" >No aplica</p>
-                                </div>
-                                @endif
-                            @else   
                             <div class="col-6 col-md-2 ">
-                                <p class="pt" >Sin  Mantención</p>
-                            </div> 
-                            @endif    
+                                <p class="p">Usuario Diagnóstico:</p>
+                            </div>
+                            @if(isset($mantencione->id_usuario0))
+                            <div class="col-6 col-md-6">
+                                <p class="p" >{{ $mantencione->id_usuario0}}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-6">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
                            
-                        </div> 
+                        </div>
+
+
+                        <br><br>
+                        <h3>Mantención</h3>
+                    
+
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Fecha mantención:</p>
+                            </div>
+                            @if(isset($mantencione->fecha_mantencion))
+                            <div class="col-6 col-md-2">
+                                <p class="p" > {{ $mantencione->fecha_mantencion }}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Descripción mantención:</p>
+                            </div>
+                            @if(isset($mantencione->descripcion_mantencion))
+                            <div class="col-6 col-md-6">
+                                <p class="p" >{{ $mantencione->descripcion_mantencion }}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Usuario Mantención:</p>
+                            </div>
+                            @if(isset($mantencione->id_usuario))
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $mantencione->id_usuario}}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Probado bajo agua</p>
+                            </div>
+                            @if(isset($mantencione->probado_bajo_agua))
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $mantencione->probado_bajo_agua}}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-2 ">
+                                <p class="p">Reparado</p>
+                            </div>
+                            @if(isset($mantencione->verificacion_reparacion))
+                            <div class="col-6 col-md-2">
+                                <p class="p" >{{ $mantencione->verificacion_reparacion}}</p>
+                            </div>
+                            @else
+                            <div class="col-6 col-md-2">
+                                <p class="text-secondary p font-italic " >-</p>
+                            </div>
+                            @endif
+                           
+                        </div>
+
+                        
+                        
+                      
+                        
                         <br><br>
                         <h3>Dar de baja</h3>
                         <div class="row">
@@ -300,7 +363,7 @@
                             </div>
                             @else
                             <div class="col-6 col-md-2 ">
-                                <p class="p" >No aplica</p>
+                                <p class="p text-secondary p font-italic " >No aplica</p>
                             </div>
                             @endif
                            
@@ -311,11 +374,11 @@
                             </div>
                             @if(isset($mantencione->descripcion_dado_baja))
                             <div class="col-6 col-md-6 ">
-                                <p class="p" >{{ $mantencione->descripcion_dado_baja}}</p>
+                                <p class="p text-justify " >{{ $mantencione->descripcion_dado_baja}}</p>
                             </div>
                             @else
                             <div class="col-6 col-md-2 ">
-                                <p class="p" >No aplica</p>
+                                <p class="p text-secondary p font-italic " >No aplica</p>
                             </div>
                             @endif
                            
@@ -331,26 +394,12 @@
                             </div>
                             @else
                             <div class="col-6 col-md-2 ">
-                                <p class="p" >No aplica</p>
+                                <p class="p text-secondary p font-italic " >No aplica</p>
                             </div>
                             @endif
                            
                         </div>
-                        <div class="row">
-                            <div class="col-6 col-md-2 ">
-                                <p class="p">Id Equipo:</p>
-                            </div>
-                            @if(isset($mantencione->id_equipo))
-                            <div class="col-6 col-md-2 ">
-                                <p class="p" >{{ $mantencione->id_equipo }}</p>
-                            </div>
-                            @else
-                            <div class="col-6 col-md-2 ">
-                                <p class="p" >No aplica</p>
-                            </div>
-                            @endif
-                           
-                        </div>
+                        
                
                        
                         
@@ -393,7 +442,7 @@
                       <br><br><br><br>
 
 
-                    <table class="tab">
+                    {{-- <table class="tab">
                         <h3 class="space">Diagnostico</h3>
                         <tbody>
                             <tr>
@@ -609,7 +658,7 @@
                             </tr>
                             
                         </body>
-                    </table>
+                    </table> --}}
 
                    
                     <br><br>

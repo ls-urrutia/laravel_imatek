@@ -12,7 +12,7 @@
     <form>
     <div class="box-body">
         <div class="form-group">
-            {{  Form::label('Codigo_Equipo:')}}
+            {{  Form::label('Codigo_Equipo:')}}<span class="form-span">*</span>
             <select name="id_equipo" class="form-control">
                 @foreach ($equipos2 as $equipo)
                     <option value="{{$equipo->id_equipo}}"> im{{$equipo->id_equipo}}</option>
@@ -22,13 +22,13 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('Operación:') }}
-           {!!Form::select('Operacion',['Diagnostico' => 'Diagnostico', 'Mantención' => 'Mantención','Dar de baja'=>'Dar de baja'], null, [ 'class' => 'form-control'. ($errors->has('Operacion') ? 'is-invalid' : ''), 'placeholder' => 'Seleccione','id'=>'select-operacion']) !!}
+            {{ Form::label('Operación:') }}<span class="form-span">*</span>
+           {!!Form::select('Operacion',['Diagnostico' => 'Diagnostico', 'Mantención' => 'Mantención','Dar de baja'=>'Dar de baja'], null, [ 'class' => 'form-control'. ($errors->has('Operacion') ? 'is-invalid' : ''), 'placeholder' => 'Seleccione','id'=>'select-operacion','required']) !!}
             {!! $errors->first('Operacion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         {{-- ///////////////////////////////////////diagnostico --}}
         <div class="form-group" id="fecha_diagnostico">
-            {{ Form::label('fecha_diagnostico:') }}
+            {{ Form::label('fecha_diagnostico:') }}<span class="form-span">*</span>
             {{ Form::date('fecha_diagnostico', $mantencione->fecha_diagnostico, ['class' => 'form-control' . ($errors->has('fecha_diagnostico') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Diagnostico','id'=>'fecha-diagnostico']) }}
             {!! $errors->first('fecha_diagnostico', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -39,13 +39,13 @@
             {!! $errors->first('descripcion_diagnostico', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="diagnostico-corriente">
-            {{ Form::label('Corriente:') }}
+            {{ Form::label('Corriente:') }}<span class="form-span">*</span>
             {{ Form::text('diagnostico_corriente', $mantencione->diagnostico_corriente, ['class' => 'form-control' . ($errors->has('diagnostico_corriente') ? ' is-invalid' : ''), 'placeholder' => 'Corriente recibida','id'=>'diagnostico_corriente']) }}
             {!! $errors->first('diagnostico_corriente', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="fecha-mantencion">
-            {{ Form::label('fecha_mantención:') }}
-            {{ Form::date('fecha_mantencion', $mantencione->fecha_mantencion, ['class' => 'form-control' . ($errors->has('fecha_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Mantención','id'=>'fecha_mantencion']) }}
+            {{ Form::label('fecha_mantención:') }}<span class="form-span">*</span>
+            {{ Form::date('fecha_mantencion', $mantencione->fecha_mantencion, ['class' => 'form-control' . ($errors->has('fecha_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Mantención','id'=>'fecha-mantencion2']) }}
             {!! $errors->first('fecha_mantencion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="descripcion-mantencion">
@@ -53,9 +53,14 @@
             {{ Form::text('descripcion_mantencion', $mantencione->descripcion_mantencion, ['class' => 'form-control' . ($errors->has('descripcion_mantencion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion','id'=>'descripcion_mantencion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+
+
+       
+
+        
         <div class="form-group" id="fecha-dado-baja">
-            {{ Form::label('fecha_dado de baja:') }}
-            {{ Form::date('fecha_dado_baja', $mantencione->fecha_dado_baja, ['class' => 'form-control' . ($errors->has('fecha_dado_baja') ? ' is-invalid' : ''), 'placeholder' => 'Fecha dado de baja','id'=>'fecha_dado_baja']) }}
+            {{ Form::label('fecha_dado de baja:') }}<span class="form-span">*</span>
+            {{ Form::date('fecha_dado_baja', $mantencione->fecha_dado_baja, ['class' => 'form-control' . ($errors->has('fecha_dado_baja') ? ' is-invalid' : ''), 'placeholder' => 'Fecha dado de baja','id'=>'fecha-dado-baja2']) }}
             {!! $errors->first('fecha_dado_baja', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group" id="descripcion-dado-baja">
@@ -82,6 +87,29 @@
 
 
 
+        {{-- mantencion --}}
+        <div class="form-group"id="componentes2-targeta">
+            {{ Form::label('Targetas malas:') }}<span class="form-span">*</span>
+           {!!Form::select('componentes2_targeta',['0'=>'0','1' => '1', '2' => '2','3'=>'3'], null, [ 'class' => 'form-control'. ($errors->has('componentes2_targeta') ? 'is-invalid' : ''), 'placeholder' => 'Seleccione','id'=>'componentes2-targeta']) !!}
+            {!! $errors->first('componentes2_targeta', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div  id="probado-bajo-agua">
+            
+        <p class="mb-2">Probado bajo agua<p>
+            <div class="row">
+        <div class="mr-3 ml-2"><input type="radio"  class="radios " name="probado_bajo_agua" value="Si" >Si</div>
+        <div class=""><input type="radio" class="radios " name="probado_bajo_agua" value="No">No</div>
+        </div>
+        </div>
+
+        <div id="verificacion-reparacion">
+        
+            <label><input type="radio" class="mr-2" id="verificacion_reparacion" value="" name="verificacion_reparacion">Reparado</label><br>
+            </div>
+
+
+
+
         <div class="componentes-mantencion" id="componentes-mantencion">
 
             <table>
@@ -92,32 +120,28 @@
                         <td class="espacio">  Mala</td>
 
                     </tr>
-                    <tr>
-                        <td>Placa</td>
-                        <td class="espacio"><input type="radio"  class=" radios" name="componente1" value="1" ></td>
-                        <td class="espacio"> <input type="radio" class=" radios" name="componente1" value="0"></td>
-                    </tr>
+                    
 
 
                     <tr>
-                        <td>Acrilico</td>
+                        <td>Acrilico<span class="form-span">*</span></td>
                         <td class="espacio"><input type="radio"  class=" radios" name="componente2" value="1" ></td>
                         <td class="espacio"><input type="radio" class="radios" name="componente2" value="0"></td>
 
                     </tr>
                     <tr>
-                        <td>Tapas</td>
+                        <td>Tapas<span class="form-span">*</span></td>
                         <td class="espacio"><input type="radio"  class=" radios" name="componente3" value="1" ></td>
                         <td class="espacio"><input type="radio" class="radios" name="componente3" value="0"></td>
 
                     </tr>
                     <tr>
-                        <td>enchufe</td>
+                        <td>Enchufe<span class="form-span">*</span></td>
                         <td class="espacio"><input type="radio"  class=" radios" name="componente4" value="1" ></td>
                         <td class="espacio"><input type="radio" class="radios" name="componente4" value="0"></td>
                     </tr>
                     <tr>
-                        <td>Cable</td>
+                        <td>Cable<span class="form-span">*</span></td>
                         <td class="espacio"><input type="radio"  class=" radios" name="componente5" value="1" ></td>
                         <td class="espacio"><input type="radio" class="radios" name="componente5" value="0"></td>
                     </tr>
@@ -163,9 +187,13 @@
         $('#fecha-mantencion').hide();
         $('#componentes-mantencion').hide();
         $('#descripcion-mantencion').hide();
+        $('#verificacion-reparacion').hide();
 
         $('#fecha-dado-baja').hide();
         $('#descripcion-dado-baja').hide();
+        $('#probado-bajo-agua').hide();
+        $('#componentes2-targeta').hide();
+
         $('#imagen1').hide();
         $('#imagen2').hide();
         $('#imagen3').hide();
@@ -181,9 +209,15 @@
         $('#fecha_diagnostico').show();
         $('#descripcion-diagnostico').show();
         $('#diagnostico-corriente').show();
+        $('#componentes-mantencion').show();
+        $('#componentes2-targeta').show();
+        $('#probado-bajo-agua').hide();
+        $('#verificacion-reparacion').hide();
+
+       
 
         $('#fecha-mantencion').hide();
-        $('#componentes-mantencion').hide();
+       
         $('#descripcion-mantencion').hide();
 
 
@@ -195,14 +229,16 @@
        /*  document.getElementById("fecha_diagnostico").required = true;
         document.getElementById("descripcion-diagnostico").required = true;
         document.getElementById("diagnostico-corriente").required = true; */
-        $("#fecha-diagnostico").attr('required', true);  
+        $("#fecha-diagnostico2").attr('required', true);  
         $("#descripcion_diagnostico").attr('required', true);  
-        $("#diagnostico_corriente").attr('required', true); 
+        $("#diagnostico_corriente").attr('required', true);
+        $("#componentes2_targeta").attr('required', true);
 
-        $("#fecha_mantencion").attr('required', false);  
-        $("#componentes-mantencion").attr('required', false);  
+        $("#fecha-mantencion2").attr('required', false);  
+        $("#verificacion-reparacion").attr('required', false);  
+        $("#componentes-mantencion").attr('required', true);  
         $("#descripcion_mantencion").attr('required', false);  
-        $("#fecha_dado_baja").attr('required', false);  
+        $("#fecha-dado-baja2").attr('required', false);  
         $("#descripcion_dado_baja").attr('required', false);  
        
         
@@ -216,8 +252,11 @@
         $('#descripcion-diagnostico').hide();
         $('#diagnostico-corriente').hide();
         $('#fecha-mantencion').show();
-        $('#componentes-mantencion').show();
+        $('#componentes-mantencion').hide();
         $('#descripcion-mantencion').show();
+        $('#componentes2-targeta').hide();
+        $('#probado-bajo-agua').show();
+        $('#verificacion-reparacion').show();
         $('#imagen1').show();
         $('#imagen2').show();
         $('#imagen3').hide();
@@ -225,9 +264,12 @@
         $("#fecha-diagnostico").attr('required', false);  
         $("#descripcion_diagnostico").attr('required', false);  
         $("#diagnostico_corriente").attr('required', false); 
+        $("#componentes-mantencion").attr('required', false); 
 
-        $("#fecha_mantencion").attr('required', true);  
-        $("#componentes-mantencion").attr('required', true);  
+        $("#fecha_mantencion").attr('required', true); 
+        $("#verificacion-reparacion").attr('required', true); 
+        $("#probado-bajo-agua").attr('required', true);   
+         
         $("#descripcion_mantencion").attr('required', true);  
         $("#fecha_dado_baja").attr('required', false);  
         $("#descripcion_dado_baja").attr('required', false); 
@@ -250,6 +292,10 @@
         $('#fecha-mantencion').hide();
         $('#componentes-mantencion').hide();
         $('#descripcion-mantencion').hide();
+        $('#componentes2-targeta').hide();
+        $('#probado-bajo-agua').hide();
+        $('#verificacion-reparacion').hide();
+
 
         $('#fecha-dado-baja').show();
         $('#descripcion-dado-baja').show();
@@ -257,7 +303,9 @@
         $("#fecha-diagnostico").attr('required', false);  
         $("#descripcion_diagnostico").attr('required', false);  
         $("#diagnostico_corriente").attr('required', false); 
-
+        $("#verificacion-reparacion").attr('required', false);
+        $("#componentes2_targeta").attr('required', false);  
+        $("#probado-bajo-agua").attr('required', false );
         $("#fecha_mantencion").attr('required', false);  
         $("#componentes-mantencion").attr('required', false);  
         $("#descripcion_mantencion").attr('required', false);  
@@ -294,6 +342,7 @@
 
 
 </script>
+<link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
 
 

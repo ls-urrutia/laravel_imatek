@@ -23,37 +23,37 @@ $dateho = $dateho->format('Y-m-d');
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('tipo_equipo:') }}
-            {!! Form::select('tipo_equipo', ['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección', 'id' => 'tipoequipo']) !!}
+            {{ Form::label('tipo_equipo:') }}<span class="form-span">*</span>
+            {!! Form::select('tipo_equipo', ['Camara' => 'Camara', 'Lampara' => 'Lampara'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección', 'id' => 'tipoequipo','required']) !!}
         </div>
         <div class="form-group">
-            {{ Form::label('tipo_documento:') }}
-            {!! Form::select('tipo_documento', ['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección']) !!}
+            {{ Form::label('tipo_documento:') }}<span class="form-span">*</span>
+            {!! Form::select('tipo_documento', ['Factura' => 'Factura', 'Guía Despacho' => 'Guía Despacho'], null, ['class' => 'form-control' . ($errors->has('tipo_equipo') ? 'is-invalid' : ''), 'placeholder' => 'Selección','required']) !!}
             {!! $errors->first('tipo_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('n°_documento:') }}
-            {{ Form::input('number','n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N° Documento']) }}
+            {{ Form::label('n°_documento:') }}<span class="form-span">*</span>
+            {{ Form::input('number','n_documento', $equipo->n_documento, ['class' => 'form-control' . ($errors->has('n_documento') ? ' is-invalid' : ''),'placeholder' => 'N° Documento','required']) }}
             {!! $errors->first('n_documento', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('modelo:') }}
-            {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''),'placeholder' => 'Modelo']) }}
+            {{ Form::label('modelo:') }}<span class="form-span">*</span>
+            {{ Form::text('modelo', $equipo->modelo, ['class' => 'form-control' . ($errors->has('modelo') ? ' is-invalid' : ''),'placeholder' => 'Modelo','required']) }}
             {!! $errors->first('modelo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('descripción:') }}
-            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''),'placeholder' => 'Descripción']) }}
+            {{ Form::text('descripcion', $equipo->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''),'placeholder' => 'Descripción','required']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Fecha_ingreso:') }}
-            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''),'placeholder' => 'Fecha Compra']) }}
+            {{ Form::label('Fecha_ingreso:') }}<span class="form-span">*</span>
+            {{ Form::date('fecha_ingreso', $equipo->fecha_ingreso, ['class' => 'form-control' . ($errors->has('fecha_ingreso') ? ' is-invalid' : ''),'placeholder' => 'Fecha Compra','required']) }}
             {!! $errors->first('fecha_ingreso', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Proveedor:') }}
-            <select class="form-control" id="proveedor" name="proveedor">
+            {{ Form::label('Proveedor:') }}<span class="form-span">*</span>
+            <select class="form-control" id="proveedor" name="proveedor" >
                 <option disabled selected value>Seleccione Proveedor</option>
                 @foreach ($proveedores as $proveedor)
                     <option value="{{ $proveedor->nombre_proveedor }}">{{ $proveedor->nombre_proveedor }}</option>
@@ -129,3 +129,4 @@ $dateho = $dateho->format('Y-m-d');
         </script>
 
     </div>
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">

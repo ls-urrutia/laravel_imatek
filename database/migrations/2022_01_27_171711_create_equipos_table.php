@@ -21,7 +21,7 @@ class CreateEquiposTable extends Migration
             $table->integer('n_documento');
             $table->string('tipo_equipo');
             $table->string('modelo');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();;
             $table->string('cod_fabrica');
             $table->string('estado')->default('Operativo');
             $table->string('estado_mantencion_equipo')->default('Validado');

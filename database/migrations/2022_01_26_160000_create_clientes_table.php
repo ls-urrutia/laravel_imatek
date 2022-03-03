@@ -17,7 +17,7 @@ class CreateClientesTable extends Migration
             $table->id('id_cliente');
             $table->string('nombre_empresa');
             $table->string('rut_empresa');
-            $table->string('descripcion');
+            $table->string('descripcion','255')->nullable();;
             $table->timestamps();
         });
     }
