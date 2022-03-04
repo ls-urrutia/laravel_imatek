@@ -1,10 +1,8 @@
 html, body {
     height: 100%;
 }
-body{
-    
-    
-}
+
+
 .form-span{
     color: red;
     font-size: 12px;
@@ -23,7 +21,8 @@ body{
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     display: block;
     text-overflow: ellipsis;
-    background-color: transparent: text-align-last:center !important;
+    background-color: transparent;
+    text-align-last:center !important;
     line-height: 15px;
     color: white;
 
@@ -60,4 +59,77 @@ body{
     
     margin:5px;
     margin-left: 0;
+}
+
+.ordenar {
+    padding-top: 5%;
+}
+
+
+.tex {
+    padding: 5px;
+}
+
+
+.buttons-excel {
+    size: 20px !important;
+    padding: 5px !important;
+    padding-bottom:2px !important;
+    padding-top:2px !important;
+}
+
+.buttons-pdf {
+    size: 20px !important;
+    padding: 5px !important;
+    padding-bottom:2px !important;
+    padding-top:2px !important;
+}
+
+.buttons-print {
+    size: 20px !important;
+    padding: 5px !important;
+    padding-bottom:2px !important;
+    padding-top:2px !important;
+}
+
+.dt-buttons{
+    align-items: right !important;
+    margin-bottom: 10px !important;
+
+}
+
+table th {
+
+    color: white;
+}
+
+
+.paginate_button {
+
+    color:aliceblue;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
+
+
+}
+
+.paginate_button.current {
+
+    color:aliceblue;
+    padding: 1%;
+    text-shadow: 0 0 2px #fff;
+    text-align: justify;
+    font-weight: 900;
+
+
+}
+
+.dataTables_info {
+    padding-top:1%;
+    padding-bottom:1%;
+
+}
+
+.dataTables_length {
+    font-weight: normal;
 }

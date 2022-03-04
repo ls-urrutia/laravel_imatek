@@ -16,3 +16,20 @@ function mostrarContrasena2(){
         tipo.type = "password";
     }
 }
+
+
+$('.btn-danger').on('click', confirmacionDelete);
+
+
+
+function confirmacionDelete() {
+
+    var result = confirm("¿¿Seguro que quieres eliminarlo!!?? Cualquier eliminación podría afectar gravemente las operaciones y estados del equipo.");
+
+    if (result) {
+        alert("Eliminado con éxito")
+    }else {
+        return false;
+    }
+
+};

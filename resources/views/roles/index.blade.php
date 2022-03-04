@@ -47,7 +47,7 @@
                             <td width="10px">
                                 @can('Eliminar roles')
                                 <form action="{{route('roles.destroy', $role)}}" method="POST">
-                                   
+
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="class=btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
@@ -66,13 +66,14 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 @stop
 
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
-   
-    
+
+
 
     <script>
     $(document).ready(function() {
@@ -82,5 +83,5 @@
         });
     } );
     </script>
-    
+
 @stop

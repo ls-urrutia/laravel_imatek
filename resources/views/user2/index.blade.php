@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Usuarios')
 
 @section('content_header')
     <h1>Módulo Usuarios</h1>
@@ -46,21 +46,21 @@
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
-                                   
-                                    
+
+
 
                                     <th></th>
-                                    
-                                    
+
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users2 as $usuario)
                                     <tr>
-                                     
 
-                                  
-                                       
+
+
+
 
                                         <td>{{ $usuario->id}}</td>
                                         <td>{{ $usuario->name}}</td>
@@ -84,7 +84,7 @@
                                             </form>
                                         </td>
                                         @endcan
-                                       
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -107,7 +107,7 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js">  </script>
 
-
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 
     <script>
 

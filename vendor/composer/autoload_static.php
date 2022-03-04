@@ -681,6 +681,7 @@ class ComposerStaticInitce807b479c3b026d4e98ef31acbb6773
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MantencioneController' => __DIR__ . '/../..' . '/app/Http/Controllers/MantencioneController.php',
         'App\\Http\\Controllers\\MovimientoController' => __DIR__ . '/../..' . '/app/Http/Controllers/MovimientoController.php',
+        'App\\Http\\Controllers\\ProveedoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedoreController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\User2Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/User2Controller.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',

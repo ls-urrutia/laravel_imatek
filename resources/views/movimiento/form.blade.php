@@ -61,7 +61,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
             <div class="form-group" id="div_cliente">
                 {{ Form::label('Cliente') }}<span class="form-span">*</span>
-                <select class="form-control" id="clientes" name="clientes" required>
+                <select class="form-control" id="clientes" name="clientes">
                     <option value="">Seleccione Cliente</option>
                     @foreach ($clientes as $cliente)
                         <option value="{{ $cliente->id_cliente }}">{{ $cliente->nombre_empresa }}</option>
@@ -123,6 +123,9 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
         <script type="text/javascript">
+
+
+
             $(document).ready(function() {
                 $('.select-e').select2({
                     theme: "classic",
@@ -152,6 +155,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 valid = true;
 
             });
+
 
 
 
@@ -199,8 +203,20 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
                 $.get('/movimiento/' + val + '/fechas', function(data) {
 
-                    ult_fecha_equipo = data[0].fecha_movimiento;
+                        var ult_fecha_equipo = new Date(data[0].fecha_movimiento);
 
+               /*          ult_fecha_equipo.setDate(ult_fecha_equipo_fecha_equipo.getDate() + 1); */
+
+                            month = '' + (ult_fecha_equipo.getMonth() + 1),
+                            day = '' + (ult_fecha_equipo.getDate()+ 2),
+                            year = ult_fecha_equipo.getFullYear();
+
+                        if (month.length < 2)
+                            month = '0' + month;
+                        if (day.length < 2)
+                            day = '0' + day;
+
+                        ult_fecha_equipo = [year, month, day].join('-');
 
 
                     fecha_actual = document.getElementById("fecha_movimiento").value;
@@ -208,6 +224,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     if (fecha_actual < ult_fecha_equipo) {
                         document.getElementById("fecha_movimiento").setAttribute("min", ult_fecha_equipo);
                         $('#fecha_movimiento').val(ult_fecha_equipo);
+                        alert("Se ha actualizado la fecha al último registro de la fecha del equipo")
                     }
 
                 });
@@ -349,8 +366,14 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                     alert("No esta permitido remover la última fila");
                 } else {
                     $(this).parent().parent().remove();
-                }
 
+
+                    $("#fecha_movimiento").removeAttr("min");
+                    $("#fecha_movimiento").val('');
+
+                    alert("La fecha se ha reiniciado.")
+
+                }
             });
         </script>
 

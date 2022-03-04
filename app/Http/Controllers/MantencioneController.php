@@ -35,7 +35,6 @@ class MantencioneController extends Controller
     public function validacion($id, $id_equipo)
     {
 
-
         $mantencion = Mantencione::find($id);
 
         $mantencion->validacion= 'Validado';
@@ -57,17 +56,14 @@ class MantencioneController extends Controller
         $equipo->estado_mantencion_equipo = 'Validado';
         $equipo->estado = 'Dado de baja';
         $equipo->save();
-           
        }
-
-        
-
-
-        $mantencion->save();
+       $mantencion->save();
 
         return redirect('dashboard')
             ->with('success', 'Equipo validado exitosamente');;
     }
+
+
 
     public function index()
     {
@@ -298,7 +294,7 @@ class MantencioneController extends Controller
         $equipos = Equipo::pluck('cod_equipo','id_equipo');
 
         return view('mantencione.edit', compact('mantencione','equipos'))->with('success','Mantención actualizada exitosamente');
-        }catch(\Exception $exception){  
+        }catch(\Exception $exception){
             return view('mantencione.edit', compact('mantencione','equipos'))->with('error','No se pudo editar la mantención');
         }
     }
@@ -342,11 +338,7 @@ class MantencioneController extends Controller
         $mantenciones->verificacion_reparacion = $request->get('verificacion_reparacion');
 
         //Recepción de componentes
-        if($request->get('componente1')!==null){
-            $placa = $request->get('componente1');
-        }else{
-            $placa = 0;
-        }
+        
         if($request->get('componente2')!==null){
             $acrilico = $request->get('componente2');
         }else{
@@ -368,7 +360,7 @@ class MantencioneController extends Controller
             $cable = "0";
         }
 
-        $mantenciones->componentes_mantencion = $placa.$acrilico.$tapas.$enchufe.$cable;
+        $mantenciones->componentes_mantencion = $acrilico.$tapas.$enchufe.$cable;
         $mantenciones->diagnostico_corriente = $request->get('diagnostico_corriente');
 
        /*  $mantenciones->estado_mantencion= $request->get('estado_mantencion'); */
@@ -412,9 +404,9 @@ class MantencioneController extends Controller
        /*  $mantenciones->id_usuario =  $request->user()->id; */
 
        /* */
-       $mantenciones->id_usuario0 =  $request->get('id');
+      /*  $mantenciones->id_usuario0 =  $request->get('id');
        $mantenciones->id_usuario = $request->get('id');
-       $mantenciones->id_usuario2 =  $request->get('id');
+       $mantenciones->id_usuario2 =  $request->get('id'); */
 
        if($request->get('Operacion')=='Diagnostico'&&$request->get('fecha_diagnostico')!==null&&$request->get('descripcion_diagnostico')!==null&&$request->get('corriente_diagnostico')!==null){
         $mantenciones->id_usuario0 =  $request->user()->id;

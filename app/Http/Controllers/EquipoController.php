@@ -20,6 +20,15 @@ use Illuminate\Support\Facades\DB;
  */
 class EquipoController extends Controller
 {
+
+
+
+
+//Esta funcion recibe el valor seleccionado en  el select box(Entrada,Salida,Compra) y busca los equipos operativos en estos (excluye dados de baja)
+//para mostrarlos en los select box de abajo del formulario (crear movimiento) de los equipos y así poder ingresar equipos que esten operativos y
+//correspondan a la categoria seleccionada.
+
+
     public function byEquipo($tipo_m)
     {
        /*  return Equipo::where('id_equipo', $id)->get(); */
@@ -66,30 +75,45 @@ class EquipoController extends Controller
     }
 
 
-
+    //FUNCION PARA EL DASHBOARD
     public function mostrar() {
 
-        $equipos = Equipo::paginate(); //1 page with 10 products
-
+        $equipos = Equipo::paginate();
 
         $mantenciones = Mantencione::all();
+
+
+        //Muestra de lamparas y camaras, tambien en revisión.
 
 
         $rawsQs1 = DB::table('equipos')->get()->where('tipo_equipo','=','Lampara')->count();
         $rawsQs2 = DB::table('equipos')->get()->where('tipo_equipo','=','Camara')->count();
 
 
+
+
         $rawsQs3 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Camara';" );
         $rawsQs4 =  DB::select("SELECT estado FROM equipos where estado='En revisión' and tipo_equipo='Lampara';" );
+
+
+
+
         $mantenciones2 = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and (estado_mantencion='Reparada' or estado_mantencion='Dada de baja');" );
 
+        $mantenciones3 = DB::select("SELECT * FROM mantenciones where validacion='Validado' and (estado_mantencion='Reparada' or estado_mantencion='Dada de baja');" );
+
+        $enrevision = DB::select("SELECT * FROM equipos where estado='En revisión';" );
+
+        $dadadebaja = DB::select("SELECT * FROM mantenciones where validacion!='Validado' and estado_mantencion='Dada de baja';" );
+
+        $diagnosticos = DB::select("SELECT * FROM mantenciones where estado_mantencion = 'A mantención';" );
 
         $nlamparas = $rawsQs1;
         $ncamaras = $rawsQs2;
         $ncamarasrep = count($rawsQs3);
         $nlamparasrep = count($rawsQs4);
 
-        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2'));
+        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2','enrevision','dadadebaja','diagnosticos','mantenciones3'));
     }
 
     /**
@@ -149,6 +173,9 @@ class EquipoController extends Controller
 
                 $id = DB::getPdo()->lastInsertId();
 
+
+                //Al crear un equipo igual se registra un movimiento 'Compra', automaticamente.
+
                 $data2= [
                     'id_equipo' => $id,
                     'tipo_movimiento' => 'Compra',
@@ -163,7 +190,7 @@ class EquipoController extends Controller
 
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo creado exitosamente.');
+            ->with('success', 'Equipo creado exitosamente');
     }
 
     /**
@@ -258,7 +285,7 @@ class EquipoController extends Controller
 
          ///mess falta//
 
-        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','mes','movimientoequipo'));
+        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','movimientoequipo','mes'));
     }
 
     /**

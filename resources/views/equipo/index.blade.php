@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('title', 'Equipos')
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -121,54 +123,8 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
-
-<style>
-table th {
-
-    color: white;
-}
-
-.dt-buttons {
-
-    padding-top:1%;
-    padding-bottom:1%;
-
-}
-
-.paginate_button {
-
-    color:aliceblue;
-    text-shadow: 0 0 2px black;
-    font-weight: bold;
-
-
-}
-
-.paginate_button.current {
-
-    color:aliceblue;
-    padding: 1%;
-    text-shadow: 0 0 2px #fff;
-    text-align: justify;
-    font-weight: 900;
-
-
-}
-
-.dataTables_info {
-    padding-top:1%;
-    padding-bottom:1%;
-
-}
-
-.dataTables_length {
-    font-weight: normal;
-}
-
-
-
-</style>
 @stop
 @section('js')
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">  </script>
@@ -185,7 +141,8 @@ table th {
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
 
-
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
 
     <script type="text/javascript">

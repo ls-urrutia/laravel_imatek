@@ -58,6 +58,8 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name'=>'Ver lista de usuarios'])->syncRoles([$role1]);
         Permission::create(['name'=>'Ver usuario'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Validar mantenciones'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Vista tecnico'])->syncRoles([$role1]);
         Permission::create(['name'=>'Ver actividad de usuario'])->syncRoles([$role1]);
         Permission::create(['name'=>'Crear usuarios'])->syncRoles([$role1]);
         Permission::create(['name'=>'Editar usuarios'])->syncRoles([$role1]);
@@ -103,7 +105,7 @@ class RoleSeeder extends Seeder
 
 
 
-       
+
 
 
 

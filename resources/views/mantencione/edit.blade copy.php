@@ -133,11 +133,7 @@
                                             <td class="espacio">  Mala</td>
 
                                         </tr>
-                                        <tr>
-                                            <td>Placa</td>
-                                            <td class="espacio"><input type="radio"  class=" radios" name="componente1" value="1" ></td>
-                                            <td class="espacio"> <input type="radio" class=" radios" name="componente1" value="0"></td>
-                                        </tr>
+                                     
 
 
                                         <tr>

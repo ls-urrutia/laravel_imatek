@@ -117,7 +117,7 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id_cliente);
         $cliente->delete();
 
-        return redirect('/clientes')->with('success','Cliente eliminado satisfactoriamente');
+        return redirect('/clientes')->with('success','Cliente eliminado exitosamente');
         }catch(\Exception $exception){
             return redirect('/clientes')->with('error','No se pudo eliminar al cliente');
         }

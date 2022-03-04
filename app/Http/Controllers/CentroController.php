@@ -69,7 +69,7 @@ class CentroController extends Controller
         $clientes->save();
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro created successfully.');
+            ->with('success', 'Centro creado exitosamente.');
     }
 
     /**
@@ -116,7 +116,7 @@ class CentroController extends Controller
         $centro->update($request->all());
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro actualizado satisfactoriamente');
+            ->with('success', 'Centro actualizado exitosamente');
         }catch(\Exception $exception){
             return redirect()->route('centros.index')
             ->with('success', 'No se pudo actualizar el centro');
@@ -134,10 +134,10 @@ class CentroController extends Controller
         $centro = Centro::find($id)->delete();
 
         return redirect()->route('centros.index')
-            ->with('success', 'Centro eliminado satisfactoriamente');
+            ->with('success', 'Centro eliminado exitosamente');
         }catch(\Exception $exception){
             return redirect()->route('centros.index')
-            ->with('success', 'No se pudo eliminar el centroS');
+            ->with('success', 'No se pudo eliminar el centro');
         }
     }
 

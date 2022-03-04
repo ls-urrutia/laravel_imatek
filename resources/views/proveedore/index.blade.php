@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Proveedores')
 
 @section('content_header')
     <h1>Movimientos</h1>
@@ -72,54 +72,9 @@
 @section('css')
 
 <link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" href="{{ asset('css/all.css') }}">
 
 
-<style>
-
-
-
-
-.dt-buttons {
-
-    padding-top:1%;
-    padding-bottom:1%;
-
-}
-
-.paginate_button {
-
-    color:aliceblue;
-    padding: 1%;
-    text-shadow: 0 0 2px black;
-    font-weight: bold;
-
-
-}
-
-.paginate_button.current {
-
-    color:aliceblue;
-    padding: 1%;
-    text-shadow: 0 0 2px #fff;
-    text-align: justify;
-    font-weight: 900;
-
-
-}
-
-.dataTables_info {
-    padding-top:1%;
-    padding-bottom:1%;
-
-}
-
-.dataTables_length {
-    font-weight: normal;
-}
-
-
-
-</style>
 
 @stop
 
