@@ -259,10 +259,17 @@ class MovimientoController extends Controller
     public function update(Request $request, Movimiento $movimiento)
     {
 
+/*
+        request()->validate(Movimiento::$rules) */;
 
-        request()->validate(Movimiento::$rules);
+        $centro_n = Centro::find($request->get('id_centro'));
+        $centro = $centro_n->nombre_centro;
 
-            $movimiento->update($request->all());
+
+        $movimiento->update($request->all());
+        $movimiento->id_centro = $centro;
+        $movimiento->update();
+
 
             return redirect()->route('movimientos.index')
                 ->with('success', 'Movimiento actualizado satisfactoriamente');

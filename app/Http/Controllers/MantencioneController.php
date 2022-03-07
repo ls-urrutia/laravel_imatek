@@ -432,6 +432,7 @@ class MantencioneController extends Controller
 
 
         $equipo = Equipo::find($request->get('id_equipo'));
+
         if($request->get('estado_mantencion')!==null){
         $equipo->estado = $request->get('estado_mantencion');}
         $equipo->save();

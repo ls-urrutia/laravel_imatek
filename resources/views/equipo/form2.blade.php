@@ -15,13 +15,14 @@ $dateho = $dateho->format('Y-m-d');
             <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
           </div>
 
+<h4>Equipo IM{{ $equipo->id_equipo }}</h4>
 
 <div class="box box-info padding-1">
     <div class="box-body">
         <div class="form-group">
-            {{ Form::label('codigo_equipo:') }}
-            {{ Form::text('cod_equipo', $equipo->cod_equipo, ['class' => 'form-control' . ($errors->has('od_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Código Equipo']) }}
-            {!! $errors->first('cod_equipo', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('id_equipo:') }}
+            {{ Form::text('id_equipo', $equipo->id_equipo, ['class' => 'form-control' . ($errors->has('id_equipo') ? ' is-invalid' : ''), 'placeholder' => 'Código Equipo','readonly']) }}
+            {!! $errors->first('id_equipo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
            {{ Form::label('tipo_documento:') }}

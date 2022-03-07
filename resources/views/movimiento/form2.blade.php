@@ -2,7 +2,7 @@
 
 <script type="text/javascript" src="{{ asset('/vendor/jquery/jquery.js') }}"></script>
 
-<h4>Equipo im{{ $movimiento->equipo->id_equipo }}</h4>
+<h4>Equipo IM{{ $movimiento->equipo->id_equipo }}</h4>
 
 <div class="box box-info padding-1">
     <div class="box-body">

@@ -169,7 +169,7 @@ a {
 html {
     overflow: scroll;
     overflow-x: hidden;
-    overflow-y: hidden;
+
 }
 
 ::-webkit-scrollbar {
@@ -181,4 +181,12 @@ html {
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
     background: #404850;
+}
+
+.nav-link {
+    color: #ced4da;
+}
+
+.nav-tabs{
+    background-color: #404850;
 }
