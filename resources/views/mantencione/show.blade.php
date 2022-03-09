@@ -257,9 +257,9 @@
 
 
 
-                            @if($mantencione->id_usuario != null)
+                            @if($mantencione->id_usuario0 != null)
                             <div class="col-6 col-md-6">
-	                    <p class="p" >      {{ $usuarios[$mantencione->id_usuario]->name }} </p>
+	                    <p class="p" >      {{ $usuarios[$mantencione->id_usuario0]->name }} </p>
                             </div>
                             @else
                             <div class="col-6 col-md-6">
@@ -310,9 +310,9 @@
                             <div class="col-6 col-md-2 ">
                                 <p class="p">Usuario Mantención:</p>
                             </div>
-                             @if ($mantencione->id_usuario0 != null)
+                             @if ($mantencione->id_usuario != null)
                             <div class="col-6 col-md-2">
-                                <p class="p" >     {{ $usuarios[$mantencione->id_usuario0]->name }}</p>
+                                <p class="p" > {{ $usuarios[$mantencione->id_usuario]->name }}</p>
                             </div>
                             @else
                             <div class="col-6 col-md-2">

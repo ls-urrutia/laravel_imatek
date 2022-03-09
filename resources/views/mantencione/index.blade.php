@@ -41,8 +41,10 @@
 										<th>Código equipo</th>
 
 										<th>Fecha</th>
-										
+
 										<th>Estado Mantención</th>
+
+                                        <th>Descripción</th>
 
                                         <th align="right"></th>
                                     </tr>
@@ -53,10 +55,15 @@
 											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
 											<td>IM{{$mantencione->equipo->id_equipo}}</td>
-											<td>@if(isset($mantencione->descripcion_diagnostico))
-                                                {{ $mantencione->descripcion_diagnostico}}
+
+                                            <td>
+                                                @if(isset($mantencione->fecha_dado_baja))
+                                                {{$mantencione->fecha_dado_baja}}
+                                                @elseif(isset($mantencione->fecha_mantencion))
+                                                {{$mantencione->fecha_mantencion}}
+                                                @elseif(isset($mantencione->fecha_diagnostico))
+                                                {{$mantencione->fecha_diagnostico}}
                                                 @else
-                                                -
                                                 @endif
                                             </td>
 											<td>
@@ -67,6 +74,13 @@
 
                                                 @endif
 
+                                            </td>
+
+											<td>@if(isset($mantencione->descripcion_diagnostico))
+                                                {{ $mantencione->descripcion_diagnostico}}
+                                                @else
+                                                -
+                                                @endif
                                             </td>
                                             <td align="right">
                                                 <form action="{{ route('mantenciones.destroy',$mantencione->id_mantencion) }}" method="POST">

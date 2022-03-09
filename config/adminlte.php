@@ -333,10 +333,6 @@ return [
             'can'=>'Ver roles',
 
 
-
-
-
-
         ],
 
         [
@@ -508,8 +504,8 @@ return [
             'can'     => 'Ver actividad de usuario'
 
         ],
-	/*
 
+/*
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de usuario',
@@ -521,9 +517,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ], */
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

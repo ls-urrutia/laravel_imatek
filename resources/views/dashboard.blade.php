@@ -261,6 +261,7 @@
 
                                         <th>Codigo equipo</th>
                                         <th>Fecha</th>
+                                        <th>Usuario que registró</th>
                                         <th>Estado Mantencion</th>
                                         <th>Tarjetas malas</th>
                                         <th>Acrílico</th>
@@ -277,15 +278,24 @@
                                         <tr>
                                             {{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
-                                            <td>im{{ $mantencione->id_equipo }}</td>
+                                            <td>IM{{ $mantencione->id_equipo }}</td>
                                             <td>
-                                                @if (isset($mantencione->descripcion_diagnostico))
-                                                    {{ $mantencione->descripcion_diagnostico }}
+                                                @if(isset($mantencione->fecha_dado_baja))
+                                                {{$mantencione->fecha_dado_baja}}
+                                                @elseif(isset($mantencione->fecha_mantencion))
+                                                {{$mantencione->fecha_mantencion}}
+                                                @elseif(isset($mantencione->fecha_diagnostico))
+                                                {{$mantencione->fecha_diagnostico}}
                                                 @else
-                                                    -
                                                 @endif
                                             </td>
-                                            <td>lala</td>
+
+                                            <td>
+                                                {{$usuarios[$mantencione->id_usuario0]->name }}
+                                            </td>
+
+
+                                            <td>{{$mantencione->estado_mantencion}}</td>
                                             <td>
                                                 @if (isset($mantencione->componentes2_targeta))
                                                     {{ $mantencione->componentes2_targeta}}
