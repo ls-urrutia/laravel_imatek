@@ -5,7 +5,7 @@
 
 
 @section('content_header')
-    <h1>Clientes</h1>
+    <h1>Movimiento</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
 
          <!-- Preloader -->
          <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake"  src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"  alt="AdminLTELogo" height="60" width="60">
           </div>
 
     <section class="content container-fluid">
@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Movimiento</span>
+                            <span class="card-title">Vista Movimientos</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('movimientos.index') }}"> Atrás</a>
@@ -32,7 +32,7 @@
                     <div class="container ml-0 ">
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p ml-3">Numero Movimiento:</p>
+                                <p class="p ml-3">Número Movimiento:</p>
                             </div>
                             <div class="col-6 col-md-2">
                                 <p class="p"> {{ $movimiento->id_movimiento }}</p>

@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\MantencioneController' => $baseDir . '/app/Http/Controllers/MantencioneController.php',
     'App\\Http\\Controllers\\MovimientoController' => $baseDir . '/app/Http/Controllers/MovimientoController.php',
+    'App\\Http\\Controllers\\ProveedoreController' => $baseDir . '/app/Http/Controllers/ProveedoreController.php',
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
     'App\\Http\\Controllers\\User2Controller' => $baseDir . '/app/Http/Controllers/User2Controller.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',

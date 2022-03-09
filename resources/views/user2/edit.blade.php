@@ -9,7 +9,9 @@
 @section('content')
 <h2>EDITAR REGISTROS</h2>
 
-<form action="/users2/{{$user2->id}}" method="POST">
+    <form method="POST" action="{{ route('users2.update', $user2->id) }}" role="form"
+        enctype="multipart/form-data">
+
     @csrf
     @method('PUT')
 
@@ -29,7 +31,7 @@
         <input id="passw" name="passw" type="password" class="form-control" tabindex="3" >
     </div>
 
-  <a href="/users2" class="btn btn-secondary">Cancelar</a>
+  <a href="{{ route('users2.index') }}" class="btn btn-secondary">Cancelar</a>
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 

@@ -107,7 +107,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Targetas malas:</p>
+                                <p class="p">Tarjetas malas:</p>
                             </div>
                             @if(isset( $mantencione->componentes2_targeta))
                             <div class="col-6 col-md-2">
@@ -150,7 +150,7 @@
                             @if(isset($arr[0]))
 
                                 <div class="col-6 col-md-2 ">
-                                    <p class="pt">Acrilico:</p>
+                                    <p class="pt">Acrílico:</p>
                                 </div>
                                 @if($arr[0]==0 )
                                 <div class="col-6 col-md-2 ">
@@ -254,15 +254,20 @@
                             <div class="col-6 col-md-2 ">
                                 <p class="p">Usuario Diagnóstico:</p>
                             </div>
-                            @if(isset($mantencione->id_usuario0))
+
+
+
+                            @if($mantencione->id_usuario != null)
                             <div class="col-6 col-md-6">
-                                <p class="p" >{{ $mantencione->id_usuario0}}</p>
+	                    <p class="p" >      {{ $usuarios[$mantencione->id_usuario]->name }} </p>
                             </div>
                             @else
                             <div class="col-6 col-md-6">
                                 <p class="text-secondary p font-italic " >-</p>
                             </div>
                             @endif
+
+
 
                         </div>
 
@@ -305,9 +310,9 @@
                             <div class="col-6 col-md-2 ">
                                 <p class="p">Usuario Mantención:</p>
                             </div>
-                            @if(isset($mantencione->id_usuario))
+                             @if ($mantencione->id_usuario0 != null)
                             <div class="col-6 col-md-2">
-                                <p class="p" >{{ $mantencione->id_usuario}}</p>
+                                <p class="p" >     {{ $usuarios[$mantencione->id_usuario0]->name }}</p>
                             </div>
                             @else
                             <div class="col-6 col-md-2">

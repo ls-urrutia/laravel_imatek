@@ -21,7 +21,8 @@
   <div class="card-body">          
     <div class="box box-info padding-1">
 
-<form action="/clientes/{{$cliente->id_cliente}}" method="POST">
+    <form method="POST" action="{{ route('clientes.update',$cliente->id_cliente) }}" role="form"
+        enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -36,7 +37,7 @@
         <label for="" class="form-label">Descripción</label>
         <input id="descripcion" name="descripcion" type="text"  class="form-control" tabindex="3" value="{{$cliente->descripcion}}">
       </div>
-  <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+  <a  href="{{ route('clientes.index') }}"   class="btn btn-secondary">Cancelar</a>
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 </div>

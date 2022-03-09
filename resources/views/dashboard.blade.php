@@ -124,13 +124,27 @@
                                                         @csrf
                                                         @method('PUT')
 
-                                                        <th scope="row">{{ $mantencione->id_mantencion }}</th>
+
                                                         <td>IM{{ $mantencione->id_equipo }}</td>
-                                                        <td>{{ $mantencione->id_usuario }}</td>
-                                                        <td>
-                                                            {{ $mantencione->id_usuario0 }}
+                                                       	                                            <td>
+                                                            @if ($mantencione->id_usuario0 != null)
+                                                                {{ $usuarios[$mantencione->id_usuario0]->name }}
+                                                            @else
+                                                            @endif
                                                         </td>
-                                                        <td> {{ $mantencione->id_usuario2 }}
+
+                                                        <td>
+                                                            @if ($mantencione->id_usuario != null)
+                                                                {{ $usuarios[$mantencione->id_usuario]->name }}
+                                                            @else
+                                                            @endif
+                                                        </td>
+
+                                                        <td>
+                                                            @if ($mantencione->id_usuario2 != null)
+                                                                {{ $usuarios[$mantencione->id_usuario2]->name }}
+                                                            @else
+                                                            @endif
                                                         </td>
                                                         <td> {{ $mantencione->fecha_diagnostico }}
                                                         </td>
@@ -139,11 +153,8 @@
                                                         <td>
                                                         </td>
                                                         <td>
-
                                                             <input type="submit" value="Validar" class="btn btn-sm btn-success">
-
                                                         </td>
-
                                                     </form>
                                                 </tr>
                                             @endforeach
@@ -157,8 +168,6 @@
             </div>
         @endcan
         @can('Vista tecnico')
-
-
 
             <ul class="nav nav-tabs">
 
@@ -175,9 +184,6 @@
             <div class="tab-content">
 
                 <div id="menu1" class="tab-pane active ">
-
-
-
 
                     <div class="card-body">
                         <div class="table-responsive">

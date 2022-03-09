@@ -113,7 +113,11 @@ class EquipoController extends Controller
         $ncamarasrep = count($rawsQs3);
         $nlamparasrep = count($rawsQs4);
 
-        return view('dashboard',compact('ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2','enrevision','dadadebaja','diagnosticos','mantenciones3'));
+
+ $usuarios = User::all();
+
+
+        return view('dashboard',compact('usuarios','ncamaras','nlamparas','mantenciones','ncamarasrep','nlamparasrep','mantenciones2','enrevision','dadadebaja','diagnosticos','mantenciones3'));
     }
 
     /**
@@ -282,10 +286,12 @@ class EquipoController extends Controller
                 $movimientoequipo = DB::select('SELECT * FROM movimientos where id_equipo=?',[$id]);
 
 
+		$usuarios = User::all();
+
 
          ///mess falta//
 
-        return view('equipo.show', compact('equipo','fechaarray','resultado','mantencionequipo','movimientoequipo','mes'));
+        return view('equipo.show', compact('usuarios','equipo','fechaarray','resultado','mantencionequipo','movimientoequipo','mes'));
     }
 
     /**

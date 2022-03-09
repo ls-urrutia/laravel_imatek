@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Edición</h1>
+    <h1>Roles</h1>
 @stop
 
 @section('content')
-<h2>EDITAR REGISTROS</h2>
+<h2>Edicion Roles</h2>
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">

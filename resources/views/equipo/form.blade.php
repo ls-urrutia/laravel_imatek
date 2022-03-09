@@ -14,7 +14,7 @@ $dateho = $dateho->format('Y-m-d');
 
 <!-- Preloader -->
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60"
+    <img class="animation__shake" src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"  alt="AdminLTELogo" height="60"
         width="60">
 </div>
 
@@ -77,7 +77,7 @@ $dateho = $dateho->format('Y-m-d');
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Equipos: 1<input type="text" name="cod_fabrica[]" class="form-control" required="">
+                                    <td>Equipos: 1<input type="text" name="cod_fabrica[]" class="form-control select-e" required="">
                                     </td>
                                     <td><a class="btn btn-danger remove"><i class="bi bi-x-circle-fill"></i></a></td>
                                 </tr>
@@ -88,7 +88,7 @@ $dateho = $dateho->format('Y-m-d');
                                     <td style="border: none"></td>
                                     <td style="border: none"></td>
                                     <td style="border: none"></td>
-                                    <td><input type="submit" name="" value="Guardar" class="btn btn-success"></td>
+                                    <td><input type="submit" name="" value="Guardar" class="btn btn-success" onclick="clickErrores()"  ></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -109,7 +109,7 @@ $dateho = $dateho->format('Y-m-d');
             function addRow() {
                 num += 1;
                 var tr = '<tr>' +
-                    '<td>Equipos: ' + num + '<input type="text" name="cod_fabrica[]" class="form-control" required=""></td>' +
+                    '<td>Equipos: ' + num + '<input type="text" name="cod_fabrica[]" class="form-control select-e" required=""></td>' +
                     '<td><a class="btn btn-danger remove"><i class="bi bi-x-octagon"></i></a></td>' +
                     '</tr>';
                 $('tbody').append(tr);
@@ -126,7 +126,45 @@ $dateho = $dateho->format('Y-m-d');
                 }
 
             });
+
+
+			           function checkIfArrayIsUnique(myArray) {
+                return myArray.length === new Set(myArray).size;
+            }
+
+
+            function clickErrores() {
+
+                var inputs = $('.select-e');
+                var store = [];
+
+                $.each(inputs, function(k, v) {
+
+                    var getVal = $(v).val();
+                    store.push($(v).val());
+
+                    key = getVal;
+
+                    if (checkIfArrayIsUnique(store) != true) {
+                        alert("Ha repetido el código de fábrica: " + key)
+
+                    }
+
+
+                });
+
+                if (checkIfArrayIsUnique(store) != true) {
+
+                } else {
+                    $(".btn-success").prop('type', 'submit');
+
+                }
+
+            }
+
+
         </script>
 
     </div>
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+	

@@ -42,7 +42,7 @@
                                     <tr>
 
                                         {{-- <th>Id Equipo</th> --}}
-                                        <th>Cod Equipo</th>
+                                        <th>Códogp Equipo</th>
                                         {{-- <th>Tipo Documento</th> --}}
                                         <th>N° Documento</th>
                                         <th>Tipo Equipo</th>
@@ -62,7 +62,7 @@
                                         <tr>
 
                                             {{-- <td>{{ $equipo->id_equipo }}</td> --}}
-                                            <td>{{ $equipo->cod_equipo }}{{ $equipo->id_equipo }}</td>
+                                            <td>IM{{ $equipo->id_equipo }}</td>
                                             {{-- <td>{{ $equipo->tipo_documento }}</td> --}}
                                             <td>{{ $equipo->n_documento }}</td>
                                             <td>{{ $equipo->tipo_equipo }}</td>

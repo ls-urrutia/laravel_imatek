@@ -38,11 +38,11 @@
                                 <thead class="thead">
                                     <tr>
 
-										<th>Codigo equipo</th>
+										<th>Código equipo</th>
 
 										<th>Fecha</th>
-
-										<th>Estado Mantencion</th>
+										
+										<th>Estado Mantención</th>
 
                                         <th align="right"></th>
                                     </tr>
@@ -52,7 +52,7 @@
                                         <tr>
 											{{-- <td>{{ $mantencione->id_mantencion }}</td> --}}
 
-											<td>{{ $mantencione->equipo->cod_equipo }}{{$mantencione->equipo->id_equipo}}</td>
+											<td>IM{{$mantencione->equipo->id_equipo}}</td>
 											<td>@if(isset($mantencione->descripcion_diagnostico))
                                                 {{ $mantencione->descripcion_diagnostico}}
                                                 @else

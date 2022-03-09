@@ -115,7 +115,7 @@ class User2Controller extends Controller
         $user2->save();
 
 
-        return redirect('/users2')
+          return redirect()->route('users2.index')
             ->with('success', 'Usuario creado exitosamente.');
 
 
@@ -195,10 +195,10 @@ class User2Controller extends Controller
 
             $user2->save();
 
-            return redirect('/users2')
+             return redirect()->route('users2.index')
                 ->with('success', 'Usuario actualizado exitosamente');
         }catch(\Exception $exception){
-            return redirect('/users2')
+             return redirect()->route('users2.index')
             ->with('error', 'No se pudo actualizar el usuario');
         }
     }
@@ -217,10 +217,10 @@ class User2Controller extends Controller
             $user2 = User::find($id);
             $user2->delete();
 
-            return redirect('/users2')
+             return redirect()->route('users2.index')
                 ->with('success', 'Usuario eliminado exitosamente');
         }catch(\Exception $exception){
-            return redirect('/users2')
+            return redirect()->route('users2.index')
             ->with('error', 'No se pudo eliminar el usuario');
 
         }

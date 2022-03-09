@@ -8,8 +8,9 @@
 
 @section('content')
 
+ <form method="POST" action="{{ route('users2.update', $user2->id) }}" role="form"
+        enctype="multipart/form-data">
 
-<form action="/users2/{{$user2->id}}" method="POST">
     @csrf
     @method('PUT')
 

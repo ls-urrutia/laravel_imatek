@@ -12,7 +12,7 @@
 
          <!-- Preloader -->
          <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"  alt="AdminLTELogo" height="60" width="60">
           </div>
 
 
@@ -50,7 +50,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6 col-md-2 ">
-                            <p class="p ml-3">Telefono Empresa:</p>
+                            <p class="p ml-3">Teléfono Empresa:</p>
                         </div>
                         <div class="col-6 col-md-2">
                             <p class="p" >{{ $centro->telefono_empresa }}</p>

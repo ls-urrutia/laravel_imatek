@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1>Crear Cliente</h1>
+
 @stop
 
 @section('content')
@@ -11,13 +12,14 @@
 
          <!-- Preloader -->
          <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake"  src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"  alt="AdminLTELogo" height="60" width="60">
           </div>
 <div class="card card-default">
   <div class="card-body">          
     <div class="box box-info padding-1">
 
-        <form action="/clientes" method="POST">
+           <form method="POST" action="{{ route('clientes.store') }}" role="form"
+        enctype="multipart/form-data">
             @csrf
           <div class="mb-3">
             <label for="" class="form-label">Nombre Empresa:</label><span class="form-span">*</span>
@@ -31,7 +33,7 @@
             <label for="" class="form-label">Descripción:</label>
             <input id="descripcion" name="descripcion" type="text"  class="form-control" tabindex="3">
           </div>
-          <a href="/clientes" class="btn btn-secondary" tabindex="5">Cancelar</a>
+          <a href="{{ route('clientes.index') }}"  class="btn btn-secondary" tabindex="5">Cancelar</a>
           <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
         </form>
     </div>

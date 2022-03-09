@@ -25,7 +25,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 <!-- Preloader -->
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60"
+    <img class="animation__shake"  src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"  alt="AdminLTELogo" height="60"
         width="60">
 </div>
 
@@ -201,7 +201,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
             function onSelectEquipoChange(val) {
 
-                $.get('/movimiento/' + val + '/fechas', function(data) {
+                $.get('/public/index.php/movimiento/' + val + '/fechas', function(data) {
 
                         var ult_fecha_equipo = new Date(data[0].fecha_movimiento);
 
@@ -237,7 +237,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 var id_cliente = $(this).val();
 
                 // AJAX
-                $.get('/movimiento/' + id_cliente + '/centros', function(data) {
+                $.get('/public/index.php/movimiento/' + id_cliente + '/centros', function(data) {
 
                     var html_select = '<option value="">Seleccione Centro</option>';
                     for (var i = 0; i < data.length; ++i)
@@ -262,7 +262,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 
 
                 // AJAX
-                $.get('/movimiento/' + tipo_movimiento + '/equipos', function(data) {
+                $.get('/public/index.php/movimiento/' + tipo_movimiento + '/equipos', function(data) {
 
                     var html_select = '<option value="">Seleccione Equipo</option>';
                     for (var i = 0; i < data.length; ++i)
@@ -345,7 +345,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
                 var tipo_movimiento = $("select#select-movimiento option:checked").val();
 
                 // AJAX
-                $.get('/movimiento/' + tipo_movimiento + '/equipos', function(data) {
+                $.get('/public/index.php/movimiento/' + tipo_movimiento + '/equipos', function(data) {
 
                     var html_select = '<option value="">Seleccione Equipo</option>';
                     for (var i = 0; i < data.length; ++i)

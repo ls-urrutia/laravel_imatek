@@ -18,7 +18,7 @@
 
          <!-- Preloader -->
          <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake"  src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"    alt="AdminLTELogo" height="60" width="60">
           </div>
 
 <br>
@@ -43,17 +43,17 @@
                     <div class="container ml-0 ">
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Codigo Equipo:</p>
+                                <p class="p">Código Equipo:</p>
                             </div>
                             <div class="col-6 col-md-2">
-                                <p class="p"> {{ $equipo->cod_equipo }}</p>
+                                   <p class="p"> IM{{ $equipo->id_equipo }}</p>
                             </div>
 
                         </div>
 
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Numero documento:</p>
+                                <p class="p">Número documento:</p>
                             </div>
                             <div class="col-6 col-md-2">
                                 <p class="p" >{{ $equipo->n_documento }}</p>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-2 ">
-                                <p class="p">Descripciòn:</p>
+                                <p class="p">Descripción:</p>
                             </div>
                             <div class="col-6 col-md-6">
                                 <p class="p" >{{ $equipo->descripcion }}</p>
@@ -120,7 +120,7 @@
                                 <p class="p">Centro:</p>
                             </div>
                             <div class="col-6 col-md-2">
-                                <p class="p" >{{ $equipo->id_centro }}</p>
+                                 <p class="p" >{{ $movimientoequipo[0]->id_centro }}</p>
                             </div>
 
                         </div>
@@ -189,9 +189,18 @@
                                 <td>{{ $mantencione->descripcion_mantencion }}</td>
                                 <td>{{ $mantencione->validacion }}</td>
 
+                                 <td>
+					 @if ($mantencione->id_usuario != null)
+                                         {{ $usuarios[$mantencione->id_usuario]->name }}
+                                         @else
+                                         @endif
+</td>
+                                <td>
+                                   IM{{ $mantencione->id_equipo}}
+                                </td>
 
-                                <td>{{ $mantencione->id_usuario}}</td>
-                                <td>{{ $mantencione->id_equipo}}
+
+
 
 
                                 <td>
@@ -243,7 +252,7 @@
                                 <td>{{ $movimiento->tipo_documento }}</td>
                                 <td>{{ $movimiento->n_documento }}</td>
                                 <td>
-                                    {{ $movimiento->id_equipo}}
+	                                  IM  {{ $movimiento->id_equipo}}
                                 </td>
                                 <td>
                                     {{ $movimiento->id_centro}}

@@ -508,7 +508,7 @@ return [
             'can'     => 'Ver actividad de usuario'
 
         ],
-
+	/*
 
         ['header' => 'Configuración de la cuenta'],
         [
@@ -520,7 +520,8 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
+
     ],
 
     /*

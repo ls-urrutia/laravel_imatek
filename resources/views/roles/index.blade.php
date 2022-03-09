@@ -27,7 +27,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Role</th>
+                        <th>Rol</th>
                         @can('Editar roles')
                         <th></th>
                         @endcan

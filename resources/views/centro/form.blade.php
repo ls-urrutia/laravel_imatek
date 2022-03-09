@@ -2,7 +2,7 @@
 
          <!-- Preloader -->
          <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="..\..\vendor\adminlte\dist\img\AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake"   src="{{ URL::asset('imagenes/AdminLTELogo.png')}}"    alt="AdminLTELogo" height="60" width="60">
           </div>
 
 
@@ -17,7 +17,7 @@
             {!! $errors->first('nombre_centro', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('telefono_empresa:') }}<span class="form-span">*</span>
+            {{ Form::label('teléfono_empresa:') }}<span class="form-span">*</span>
             {{ Form::text('telefono_empresa', $centro->telefono_empresa, ['class' => 'form-control' . ($errors->has('telefono_empresa') ? ' is-invalid' : ''), 'placeholder' => 'Telefono Empresa','required']) }}
             {!! $errors->first('telefono_empresa', '<div class="invalid-feedback">:message</p>') !!}
         </div>
